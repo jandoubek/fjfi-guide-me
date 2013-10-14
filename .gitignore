@@ -23,4 +23,5 @@ local.properties
 res/values/com_crashlytics_export_strings.xml
 
 # Eclipse metadata
-.metadata/*
+.metadata
+.metadata/.*
