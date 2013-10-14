@@ -8,5 +8,12 @@ package cz.fjfi.guideme.core;
  */
 public enum Direction
 {
-    
+    North,
+    Northeast,
+    East,
+    Southeast,
+    South,
+    Southwest,
+    West,
+    Northwest;
 }
