@@ -1,5 +1,7 @@
 package cz.fjfi.guideme.core;
 
+import java.util.ArrayList;
+
 /**
  * This class contains the pathfinding and navigation logic of the GuideMe app.
  * @author 
@@ -35,11 +37,11 @@ public class Guide
     * TODO: comment
     */
     //TODO: body
-    public final List<Node> findRouteBetween(Node from, Node to){return new List();}
+    public final ArrayList<Node> findRouteBetween(Node from, Node to){return new ArrayList();}
 
     /***************************************************************************
     * TODO: comment
     */
     //TODO: body
-    public final List<Node> findRouteBetween(Node from, Node to, List<Node> through){return new List();}
+    public final ArrayList<Node> findRouteBetween(Node from, Node to, ArrayList<Node> through){return new ArrayList();}
 }
