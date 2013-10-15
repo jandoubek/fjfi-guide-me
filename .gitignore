@@ -1,4 +1,3 @@
-
 # built application files
 *.apk
 *.ap_
@@ -17,7 +16,7 @@ gen/
 local.properties
 
 # Eclipse project files
-.classpath
+*.classpath
 .project
 RemoteSystemsTempFiles/*
 
