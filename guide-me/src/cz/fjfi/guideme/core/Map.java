@@ -1,4 +1,5 @@
 package cz.fjfi.guideme.core;
+import java.util.UUID;
 
 /**
  * This class represents map of GuideMe app. It provides getter and setters for
@@ -27,7 +28,7 @@ public class Map
      * TODO: comment
      */
     //TODO: body
-    public String getGUID(){return "";}
+    public UUID getGUID(){return null;}
     
     /***************************************************************************
      * TODO: comment
@@ -57,7 +58,7 @@ public class Map
      * TODO: comment
      */
     //TODO: body
-    public void setGUID(String newGUID){}
+    public void setGUID(UUID newGUID){}
     
     /***************************************************************************
      * TODO: comment
@@ -89,5 +90,5 @@ public class Map
      * TODO: comment
      */
     //TODO: body
-    public final String generateGUID(){return "";}
+    public final UUID generateGUID(){return UUID.randomUUID();}
 }

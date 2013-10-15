@@ -1,6 +1,7 @@
 package cz.fjfi.guideme.core;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * This class represents simple edge from one node to another in GuideMe map. It
@@ -15,7 +16,7 @@ public class Edge
 //== CLASS CONSTANTS ===========================================================
 //== CLASS VARIABLES ===========================================================
 //== INSTANCE VARIABLES ========================================================
-	private String guid;
+	private UUID guid;
 	private String name;
 	private long timeDistance;
 	private Node start;
@@ -31,7 +32,7 @@ public class Edge
      * TODO: comment
      */
     //TODO: constructor parameters and body
-    public Edge(String guid, String name, long timeDistance, Node start, Node end, Direction direction,
+    public Edge(UUID guid, String name, long timeDistance, Node start, Node end, Direction direction,
     			String description, Map myMap, List<Location> locations)
     {
     	this.guid = guid;
@@ -51,7 +52,7 @@ public class Edge
      * TODO: comment
      */
     //TODO: body
-    public final String getGUID(){return this.guid;}
+    public final UUID getGUID(){return this.guid;}
     
     /***************************************************************************
      * TODO: comment
@@ -99,7 +100,7 @@ public class Edge
      * TODO: comment
      */
     //TODO: body
-    public final void setGUID(String newGUID){this.guid = newGUID;}
+    public final void setGUID(UUID newGUID){this.guid = newGUID;}
     
     /***************************************************************************
      * TODO: comment

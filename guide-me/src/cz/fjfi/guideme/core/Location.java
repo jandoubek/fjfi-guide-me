@@ -1,5 +1,5 @@
 package cz.fjfi.guideme.core;
-
+import java.util.UUID;
 /**
  * This class represents location in map of GuideMe app. It provides basic getters
  * and setters fot its atributes.
@@ -27,7 +27,7 @@ public class Location
      * TODO: comment
      */
     //TODO: body
-    public final String getGUID(){return "";}
+    public final UUID getGUID(){return null;}
     
     /***************************************************************************
      * TODO: comment
@@ -51,7 +51,7 @@ public class Location
      * TODO: comment
      */
     //TODO: body
-    public final void setGUID(String newGUID){}
+    public final void setGUID(UUID newGUID){}
     
     /***************************************************************************
      * TODO: comment
