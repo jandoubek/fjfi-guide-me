@@ -7,5 +7,9 @@ package cz.fjfi.guideme.core;
  */
 public class Utility
 {
+	/***************************************************************************
+     * TODO: comment
+     */
+    //TODO: body
     public static String generateGUID(){return "";}
 }

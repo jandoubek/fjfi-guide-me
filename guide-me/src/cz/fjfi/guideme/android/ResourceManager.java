@@ -10,7 +10,10 @@ import cz.fjfi.guideme.core.*;
  */
 public class ResourceManager
 {
-
+	/***************************************************************************
+     * TODO: comment
+     */
+    //TODO: body
 	public static Map loadMap(String fileName)
 	{
 		return null;
