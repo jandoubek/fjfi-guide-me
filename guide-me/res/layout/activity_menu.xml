@@ -23,7 +23,7 @@
         android:layout_below="@+id/buttonCreateMap"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="29dp"
-        android:text="Nastavení" />
+        android:text="@string/buttonSettings" />
 
     <Button
         android:id="@+id/buttonNavigate"

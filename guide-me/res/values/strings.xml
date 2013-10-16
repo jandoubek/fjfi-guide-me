@@ -7,5 +7,6 @@
     <string name="buttonNavigate">Navigace</string>
     <string name="buttonCreateMap">Vytvoř mapu</string>
     <string name="buttonSettings">Nastavení</string>
+    <string name="author">FJFI group</string>
 
 </resources>
