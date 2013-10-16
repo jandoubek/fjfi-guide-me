@@ -8,9 +8,30 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MenuActivity" >
 
-    <TextView
+    <Button
+        android:id="@+id/buttonCreateMap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Vytvoř mapu" />
+
+    <Button
+        android:id="@+id/buttonSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonCreateMap"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="29dp"
+        android:text="Nastavení" />
+
+    <Button
+        android:id="@+id/buttonNavigate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/buttonCreateMap"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="18dp"
+        android:text="Navigace" />
 
 </RelativeLayout>

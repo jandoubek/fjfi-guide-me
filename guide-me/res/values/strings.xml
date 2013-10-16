@@ -4,5 +4,8 @@
     <string name="app_name">GuideMe</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Guide.me!</string>
+    <string name="buttonNavigate">Navigace</string>
+    <string name="buttonCreateMap">Vytvoř mapu</string>
+    <string name="buttonSettings">Nastavení</string>
 
 </resources>
