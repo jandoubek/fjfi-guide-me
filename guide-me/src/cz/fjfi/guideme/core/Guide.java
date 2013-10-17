@@ -98,14 +98,26 @@ public class Guide
             route.add(currentNode);
         }
         Collections.reverse(route);
-        
 
         return route;
     }
 
     /***************************************************************************
-    * TODO: comment
+    * finds the shortest route between nodes 'from' and 'to', passing through all nodes contained in 'through'
     */
-    //TODO: body
-    public final ArrayList<Node> findRouteBetween(Node from, Node to, ArrayList<Node> through){return new ArrayList();}
+    public final List<Node> findRouteBetween(Node from, Node to, List<Node> through) {
+        ListIterator<Node> throughIterator = through.listIterator();
+        Node currentStart = from;
+        Node currentEnd = throughIterator.next();
+        List<Node> route = findRouteBetween(currentStart, currentEnd);
+        while (throughIterator.hasNext()) {
+            route.remove(route.size() - 1);
+            currentStart = currentEnd;
+            currentEnd = throughIterator.next();
+            route.addAll(findRouteBetween(currentStart, currentEnd));
+        }
+        route.remove(route.size() - 1);
+        route.addAll(findRouteBetween(currentEnd,to));
+        return route;
+    }
 }
