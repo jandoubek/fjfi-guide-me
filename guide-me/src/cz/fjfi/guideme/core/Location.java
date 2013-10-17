@@ -2,7 +2,7 @@ package cz.fjfi.guideme.core;
 import java.util.UUID;
 /**
  * This class represents location in map of GuideMe app. It provides basic getters
- * and setters fot its atributes.
+ * and setters for its atributes.
  * @author
  * @version
  */
