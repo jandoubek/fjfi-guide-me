@@ -86,6 +86,8 @@ public class Map
      */
     //TODO: body
     public void setDescription(String newDescription){}
+    
+    public List<Node> getNodes() {return this.mappedNodes;}
      
 //== OTHER METHODS =============================================================
     
