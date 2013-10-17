@@ -1,5 +1,5 @@
 package cz.fjfi.guideme.core;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * This class represents map of GuideMe app. It provides getter and setters for
@@ -12,6 +12,9 @@ public class Map
 //== CLASS CONSTANTS ===========================================================
 //== CLASS VARIABLES ===========================================================
 //== INSTANCE VARIABLES ========================================================
+    private List<Node> mappedNodes;
+    private List<Edge> mappedEdges;
+    private List<Location> mappedLocations;
 
 //==============================================================================
 //== CONSTRUCTORS ==============================================================
@@ -83,7 +86,7 @@ public class Map
      */
     //TODO: body
     public void setDescription(String newDescription){}
-    
+     
 //== OTHER METHODS =============================================================
     
      /***************************************************************************
@@ -91,4 +94,24 @@ public class Map
      */
     //TODO: body
     public final UUID generateGUID(){return UUID.randomUUID();}
+
+    public List<Node> getNeighborsOf(Node node) {
+        List<Node> neighbors = new ArrayList<Node>();
+        List<Edge> outwardEdges = getEdgesStartingIn(node);
+        for (Edge e : outwardEdges) {
+            neighbors.add(e.getEnd());
+        }
+        return neighbors;
+    }
+    
+    public List<Edge> getEdgesStartingIn(Node start) {
+        List<Edge> edges = new ArrayList<Edge>();
+        for (Edge e : this.mappedEdges) {
+            if (e.getStart() == start) {
+                edges.add(e);
+            }
+        }
+        return edges;
+    }
+
 }
