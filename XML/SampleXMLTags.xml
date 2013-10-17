@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map guid="">
+    <name></name>
+    <author name="" email="" />
+    <description></description>
+    <nodelist>
+        <node guid="">
+            <name></name>
+            <locs>
+                <loc guid="" />
+                <loc guid="" />
+            </locs>
+            <desc></desc>
+        </node>
+        <node guid="">
+            <locs>
+                <loc guid="" />
+                <loc guid="" />
+            </locs>
+            <name></name>
+            <desc></desc>
+        </node>
+    </nodelist>
+    <edgelist>
+        <edge guid="">
+            <name></name>
+            <distance time="" />
+            <start guid="" />
+            <end guid="" />
+            <direction></direction>
+            <location guid="" />
+            <desc></desc>
+        </edge>
+        <edge guid="">
+            <name></name>
+            <distance time="" />
+            <start guid="" />
+            <end guid="" />
+            <direction></direction>
+            <desc></desc>
+        </edge>
+    </edgelist>
+    <locationlist>
+        <location guid="">
+            <name></name>
+            <desc></desc>
+        </location>
+        <location guid="">
+            <name></name>
+            <desc></desc>
+        </location>
+    </locationlist>
+</map>
