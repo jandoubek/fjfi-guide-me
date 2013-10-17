@@ -115,5 +115,14 @@ public class Map
         }
         return edges;
     }
+    
+    public Edge getEdgeConnectingNodes(Node from, Node to) {
+        for (Edge e : this.mappedEdges) {
+            if (e.getStart() == from && e.getEnd() == to) {
+                return e;
+            }
+        }
+        throw new IllegalArgumentException("Nodes are not connected.");
+    }
 
 }
