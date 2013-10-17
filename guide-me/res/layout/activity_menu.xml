@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="Vytvoř mapu" />
+        android:text="@string/menu_bt_create_map" />
 
     <Button
         android:id="@+id/buttonSettings"
@@ -23,7 +23,7 @@
         android:layout_below="@+id/buttonCreateMap"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="29dp"
-        android:text="@string/buttonSettings" />
+        android:text="@string/menu_bt_settings" />
 
     <Button
         android:id="@+id/buttonNavigate"
@@ -32,6 +32,6 @@
         android:layout_above="@+id/buttonCreateMap"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="18dp"
-        android:text="Navigace" />
+        android:text="@string/menu_bt_navigate" />
 
 </RelativeLayout>
