@@ -22,6 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="cz.fjfi.guideme.CreateMapActivity"
+            android:label="@string/title_activity_create_map" >
+        </activity>
     </application>
 
 </manifest>

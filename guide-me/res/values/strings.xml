@@ -8,5 +8,6 @@
     <string name="menu_bt_create_map">Vytvoř mapu</string>
     <string name="menu_bt_settings">Nastavení</string>
     <string name="app_author">FJFI group</string>
+    <string name="title_activity_create_map">CreateMapActivity</string>
 
 </resources>
