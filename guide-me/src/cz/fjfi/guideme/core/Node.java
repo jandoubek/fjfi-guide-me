@@ -93,4 +93,19 @@ private Map myMap;
     public final void setDescription(String newDescription){this.description = newDescription;}
     
 //== OTHER METHODS ============================================================= 
+    public String exportXML()
+    {
+    	String output = new String("<node guid=\"" + this.getGUID() + "\">\n"
+    								+ "<name>" + this.getName() + "<\name>\n" 
+    								+ "<locs>\n");
+    	for(Location loc:this.locations)
+    	{
+    		output = output.concat("<loc guid=\"" + loc.getGUID() + "\" />\n");
+    	}
+    	output = output.concat("</locs>\n"
+    							+ "<name>" + this.getName() + "<\name>\n"
+    							+ "<desc>" + this.getDescription() + "</desc>\n" 
+    							+ "</node>\n");
+    	return output;
+    }
 }

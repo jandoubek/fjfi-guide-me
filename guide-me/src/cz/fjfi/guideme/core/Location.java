@@ -76,5 +76,12 @@ public class Location
     public final void setDescription(String newDescription){this.description = newDescription;}
     
 //== OTHER METHODS =============================================================
-   
+    public String exportXML()
+    {
+    	String output = new String("<location guid=\"" + this.getGUID() + "\">\n"
+    								+ "<name>" + this.getName() + "</name>\n"
+    								+ "<desc>" + this.getDescription() + "</desc>\n"
+    								+ "</location>\n");
+    	return output;
+    }
 }

@@ -1,5 +1,9 @@
 
 package cz.fjfi.guideme.core;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 //import java.util.UUID;
 import java.util.*;
 
@@ -45,46 +49,41 @@ public class Map
     /***************************************************************************
     // Getter of guid
     */
-    // TODO: body
 	public UUID getGuid() {
 		//return guid;
-		return null;
+		return this.guid;
 	}	
 
     /***************************************************************************
     * Getter of name of the map
     */
-    //TODO: body
     public String getName()
     {
-    	return "";
+    	return this.name;
     }
     
     /***************************************************************************
     * Getter of name of the map author  
     */
-    //TODO: body
     public String getAuthorName()
     {
-    	return "";
+    	return this.authorName;
     }
     
     /***************************************************************************
     * Getter of email of the map author 
     */
-    //TODO: body
     public String getAuthorEmail()
     {
-    	return "";
+    	return this.authorEmail;
     }
     
     /***************************************************************************
     * Getter of description of the map
     */
-    //TODO: body
     public String getDescription()
     {
-    	return "";
+    	return this.getDescription();
     }
 
     /***************************************************************************
@@ -210,5 +209,44 @@ public class Map
     	return true;
     }
     
+	public void exportXML(File outputFile)
+	{
+		String output = new String("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+									+ "<map guid=\"" + this.getGuid() + "\">"
+									+ "<name>" + this.getName() + "</name>\n"
+									+ "<author name=\"" + this.getAuthorName() + "\" email=\"" + this.getAuthorEmail() + "\" />\n"
+									+ "<description>" + this.getDescription() + "</description>\n"
+									+ "<nodelist>\n");
+		for(Node node:this.mappedNodes)
+		{
+			output = output.concat(node.exportXML());
+		}
+		output.concat("</nodelist>\n<edgelist>\n");
+		
+		for(Edge edge:this.mappedEdges)
+		{
+			output = output.concat(edge.exportXML());
+		}
+		output.concat("</edgelist>\n<locationlist>\n");
+		
+		for(Location loc:this.mappedLocations)
+		{
+			output = output.concat(loc.exportXML());
+		}
+		output.concat("</locationlist>\n</map>\n");
+		
+		System.out.print(output);
+		
+		PrintWriter out;
+		try {
+			out = new PrintWriter(new FileWriter(outputFile));
+			out.print(output);
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 }
       
