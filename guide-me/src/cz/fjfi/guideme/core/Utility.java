@@ -1,5 +1,7 @@
 package cz.fjfi.guideme.core;
 
+import java.util.UUID;
+
 /******************************************************************************
  * This class provides utility methods for GuideMe app and its core objects.
  * @author
@@ -11,5 +13,8 @@ public class Utility
      * TODO: comment
      */
     //TODO: body
-    public static String generateGUID(){return "";}
+	public final static UUID generateGUID()
+	{
+    	return UUID.randomUUID();
+    }
 }

@@ -140,11 +140,6 @@ public class Map
     * TODO: comment
     */
     //TODO: body
-	public final UUID generateGUID()
-	{
-    	return UUID.randomUUID();
-    }
-
     public List<Node> getNeighborsOf(Node node)
     {
         List<Node> neighbors = new ArrayList<Node>();
@@ -179,34 +174,25 @@ public class Map
     /***************************************************************************
     * Add a new single node to the map
     */
-    //TODO: arguments, body
-    public final boolean addNode()
+    public final void addNode(Node newNode)
     {
-    	// if not success, then return false;
-    	// (a nebo zmenit boolean na void, nevim co je lepsi)
-    	return true;
+    	this.mappedNodes.add(newNode);
     }
     
     /***************************************************************************
     * Add a new single edge to the map (between two nodes)
     */
-    //TODO: arguments, body
-    public final boolean addEdge()
+    public final void addEdge(Edge newEdge)
     {
-    	// if not success, then return false;
-    	// (a nebo zmenit boolean na void, nevim co je lepsi)
-    	return true;
+    	this.mappedEdges.add(newEdge);
     }
     
     /***************************************************************************
     * Add a new location to the map
     */
-    //TODO: arguments, body
-    public final boolean addLocation()
+    public final void addLocation(Location newLocation)
     {
-    	// if not success, then return false;
-    	// (a nebo zmenit boolean na void, nevim co je lepsi)    	
-    	return true;
+    	this.mappedLocations.add(newLocation);
     }
     
 	public void exportXML(File outputFile)
