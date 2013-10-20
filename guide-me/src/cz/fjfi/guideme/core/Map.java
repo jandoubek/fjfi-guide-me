@@ -85,6 +85,20 @@ public class Map
     {
     	return this.getDescription();
     }
+    
+    /***************************************************************************
+    * Getter for a nodes
+    */ 
+	public List<Node> getNodes() {
+		return this.mappedNodes;
+	}
+	
+	/***************************************************************************
+	* Getter for a locations
+	*/ 
+	public List<Location> getLocations() {
+		return this.mappedLocations;
+	}
 
     /***************************************************************************
     * Setter for guid
@@ -125,14 +139,7 @@ public class Map
     {
      	this.description = newDescription;    	
     }
-     
-    /***************************************************************************
-    * Setter for a nodes
-    */ 
-	public List<Node> getNodes() {
-		return this.mappedNodes;
-	}
-    
+      
      //============================================================================== 
      //== OTHER METHODS =============================================================
     
@@ -222,7 +229,6 @@ public class Map
 		output.concat("</locationlist>\n</map>\n");
 		
 		System.out.print(output);
-		
 		PrintWriter out;
 		try {
 			out = new PrintWriter(new FileWriter(outputFile));
@@ -232,7 +238,6 @@ public class Map
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 }
       
