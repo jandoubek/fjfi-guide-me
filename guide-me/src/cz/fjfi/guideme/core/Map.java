@@ -1,5 +1,6 @@
 
 package cz.fjfi.guideme.core;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -83,7 +84,7 @@ public class Map
     */
     public String getDescription()
     {
-    	return this.getDescription();
+    	return this.description;
     }
     
     /***************************************************************************
@@ -144,9 +145,10 @@ public class Map
      //== OTHER METHODS =============================================================
     
     /***************************************************************************
-    * TODO: comment
+    * Method, that return neighbor of given node
+    * @param: node
+    * @return: neighbor of given node
     */
-    //TODO: body
     public List<Node> getNeighborsOf(Node node)
     {
         List<Node> neighbors = new ArrayList<Node>();
@@ -157,6 +159,11 @@ public class Map
         return neighbors;
     }
     
+    /***************************************************************************
+    * Method, that return edges, where starting given node
+    * @param: starting node
+    * @return: edges
+    */
     public List<Edge> getEdgesStartingIn(Node start)
     {
         List<Edge> edges = new ArrayList<Edge>();
@@ -168,6 +175,11 @@ public class Map
         return edges;
     }
     
+    /***************************************************************************
+    * Method, that return the edge(s), that connecting two given nodes
+    * @param: starting node, final node
+    * @return: edges
+    */    
     public Edge getEdgeConnectingNodes(Node from, Node to)
     {
         for (Edge e : this.mappedEdges) {
@@ -230,6 +242,7 @@ public class Map
 		
 		System.out.print(output);
 		PrintWriter out;
+		
 		try {
 			out = new PrintWriter(new FileWriter(outputFile));
 			out.print(output);
@@ -238,6 +251,7 @@ public class Map
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 }
       
