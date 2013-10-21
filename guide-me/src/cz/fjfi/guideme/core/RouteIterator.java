@@ -62,13 +62,13 @@ public class RouteIterator implements ListIterator<Edge>
     @Override
     public void remove()
     {
-        throw new UnsupportedOperationException("RouteIterator.add not supported.");
+        throw new UnsupportedOperationException("RouteIterator.remove not supported.");
     }
 
     @Override
     public void set(Edge arg0)
     {
-        throw new UnsupportedOperationException("RouteIterator.add not supported.");
+        throw new UnsupportedOperationException("RouteIterator.set not supported.");
     }
 
 }
