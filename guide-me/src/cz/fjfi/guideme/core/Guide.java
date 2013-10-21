@@ -14,6 +14,7 @@ public class Guide
 //== INSTANCE VARIABLES ========================================================
 
     private Map map;
+    private Navigator navigator;
 
 //==============================================================================
 //== CONSTRUCTORS ==============================================================
@@ -30,15 +31,33 @@ public class Guide
 //== GETTERS AND SETTERS =======================================================
 //== OTHER METHODS =============================================================
     
-     /***************************************************************************
-     * TODO: comment
+    /**
+     * prepares the instance for navigation
      */
-    //TODO: body
-    public final String getCurrentLabel(long time){return "";}
+    public final Navigator beginNavigation(Route route)
+    {
+        navigator = new Navigator(route);
+        return navigator;
+    }
+    
+    /***************************************************************************
+    * returns navigation instructions given elapsed time
+    */
+    public final String getCurrentLabel(Navigator nav, long time)
+    {
+        return navigator.getCurrentLabel(time);
+    }
+    
+    /**
+     * skips to the next navigation instruction and returns it
+     */
+    public final String getNextLabel(Navigator nav)
+    {
+        return navigator.getNextLabel();
+    }
 
     /***************************************************************************
     * finds the shortest route between nodes 'from' and 'to'
-    * returns an empty list if no route exists
     */
     public final Route findRouteBetween(Node from, Node to)
     {
@@ -53,5 +72,13 @@ public class Guide
     {
         Pathfinder finder = new Pathfinder(map);
         return finder.findRouteBetween(from, to, through);
+    }
+
+    /**
+     * returns the map Guide operates on
+     */
+    public final Map getMap()
+    {
+        return map;
     }
 }
