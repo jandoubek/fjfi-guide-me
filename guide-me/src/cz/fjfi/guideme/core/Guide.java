@@ -42,6 +42,7 @@ public class Guide
     
     /***************************************************************************
     * returns navigation instructions given elapsed time
+    * takes a Navigator parameter due to temporal coupling
     */
     public final String getCurrentLabel(Navigator nav, long time)
     {
@@ -50,6 +51,7 @@ public class Guide
     
     /**
      * skips to the next navigation instruction and returns it
+     * takes a Navigator parameter due to temporal coupling
      */
     public final String getNextLabel(Navigator nav)
     {
