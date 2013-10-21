@@ -10,34 +10,62 @@ import java.util.*;
 public class Pathfinder {
     private Map map;
     private java.util.Map<Node, Long> distances;
-    private java.util.Map<Node, Node> previous;
+    private java.util.Map<Node, Edge> previous;
     private Set<Node> openSet;
     
     public Pathfinder(Map map)
     {
         this.map = map;
-        this.distances = new HashMap<Node, Long>();
-        this.previous = new HashMap<Node, Node>();
-        this.openSet = new HashSet<Node>(map.getNodes()); 
+        reset();
     }
-    
+
     /**
      * finds the shortest route between nodes 'from' and 'to'
      */
-    public final List<Node> findRouteBetween(Node from, Node to)
+    public final Route findRouteBetween(Node from, Node to)
+    {
+        return new Route(findEdgeListBetween(from, to));
+    }
+    
+    /**
+     * finds the shortest route between nodes 'from' and 'to' passing through all nodes contained in 'through'
+     */
+    public final Route findRouteBetween(Node from, Node to, List<Node> through)
+    {
+        ListIterator<Node> throughIterator = through.listIterator();
+        Node currentStart = from;
+        Node currentEnd = throughIterator.next();
+        List<Edge> route = findEdgeListBetween(currentStart, currentEnd);
+        while (throughIterator.hasNext())
+        {
+            currentStart = currentEnd;
+            currentEnd = throughIterator.next();
+            route.addAll(findEdgeListBetween(currentStart, currentEnd));
+        }
+        route.addAll(findEdgeListBetween(currentEnd,to));
+        return new Route(route);
+    }
+    
+    /**
+     * finds the edges in the shortest path between nodes 'from' and 'to'
+     */
+    private List<Edge> findEdgeListBetween(Node from, Node to)
     {
         initializeDistances(from);
         
-        while (!openSet.isEmpty()) {
+        while (!openSet.isEmpty())
+        {
             Node closestOpenNode = getClosestOpenNode();
             openSet.remove(closestOpenNode);
             
-            if (closestOpenNode == to) {
+            if (closestOpenNode == to)
+            {
                 break; // reached target, end search
             }
 
             long distanceToClosestNode = distances.get(closestOpenNode);
-            if (distanceToClosestNode == Long.MAX_VALUE) {
+            if (distanceToClosestNode == Long.MAX_VALUE)
+            {
                 throw new IllegalArgumentException("No route exists.");
             }
             
@@ -46,13 +74,21 @@ public class Pathfinder {
 
         return constructRoute(from, to);
     }
+    
+    private void reset()
+    {
+        previous = new HashMap<Node, Edge>();
+        openSet = new HashSet<Node>(map.getNodes()); 
+    }
 
     /**
      * initialize the distances array
      */
     private void initializeDistances(Node from)
     {
-        for (Node n : map.getNodes()) {
+        distances = new HashMap<Node, Long>();
+        for (Node n : map.getNodes())
+        {
             distances.put(n, Long.MAX_VALUE);
         }
         distances.put(from, Long.valueOf(0));      
@@ -65,9 +101,11 @@ public class Pathfinder {
     {
         long minDistance = Long.MAX_VALUE;
         Node closestOpenNode = openSet.iterator().next();
-        for (Node n : openSet) {
+        for (Node n : openSet)
+        {
             long currentDistance = distances.get(n);
-            if (minDistance < currentDistance) {
+            if (minDistance < currentDistance)
+            {
                 minDistance = currentDistance;
                 closestOpenNode = n;
             }
@@ -82,8 +120,10 @@ public class Pathfinder {
     {
         long distanceToClosestNode = distances.get(closestOpenNode);
         List<Node> neighbors = map.getNeighborsOf(closestOpenNode);
-        for (Node n : neighbors) {
-            if (openSet.contains(n)) {
+        for (Node n : neighbors)
+        {
+            if (openSet.contains(n))
+            {
                 updatePathFor(n, closestOpenNode, distanceToClosestNode);
             }
         }        
@@ -97,23 +137,25 @@ public class Pathfinder {
     {
         Edge connectingEdge = map.getEdgeConnectingNodes(closestOpenNode, n);
         long newDistance = distanceToClosestNode + connectingEdge.getTimeDistance();
-        if (newDistance < distances.get(n)) {
+        if (newDistance < distances.get(n))
+        {
             distances.put(n, newDistance);
-            previous.put(n, closestOpenNode);
+            previous.put(n, connectingEdge);
         }
     }
 
     /**
      * construct the route from the distance and previous arrays
      */
-    private List<Node> constructRoute(Node from, Node to)
+    private List<Edge> constructRoute(Node from, Node to)
     {
-        List<Node> route = new ArrayList<Node>();
+        List<Edge> route = new ArrayList<Edge>();
         Node currentNode = to;
-        route.add(currentNode);
-        while (currentNode != from) {
-            currentNode = previous.get(currentNode);
-            route.add(currentNode);
+        while (currentNode != from)
+        {
+            Edge currentEdge = previous.get(currentNode);
+            currentNode = currentEdge.getStart();
+            route.add(currentEdge);
         }
         Collections.reverse(route);
         return route;
