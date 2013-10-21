@@ -21,13 +21,14 @@ public class Map
     //== CLASS CONSTANTS ===========================================================
 	 
     //== CLASS VARIABLES ===========================================================	
-	private UUID guid;	
-	private String name;
-	private String authorName;
-	private String authorEmail;
-	private String description;	
 	
 	//== INSTANCE VARIABLES ========================================================
+    private UUID guid;  
+    private String name;
+    private String authorName;
+    private String authorEmail;
+    private String description; 
+
     private List<Node> mappedNodes;
     private List<Edge> mappedEdges;
     private List<Location> mappedLocations;
@@ -88,14 +89,14 @@ public class Map
     }
     
     /***************************************************************************
-    * Getter for a nodes
+    * Getter for the list of nodes
     */ 
 	public List<Node> getNodes() {
 		return this.mappedNodes;
 	}
 	
 	/***************************************************************************
-	* Getter for a locations
+	* Getter for the list of locations
 	*/ 
 	public List<Location> getLocations() {
 		return this.mappedLocations;
@@ -134,7 +135,7 @@ public class Map
     }
      
     /***************************************************************************
-    * Setter for a description
+    * Setter for description
     */
     public void setDescription(String newDescription)
     {
@@ -145,7 +146,7 @@ public class Map
      //== OTHER METHODS =============================================================
     
     /***************************************************************************
-    * Method, that return neighbor of given node
+    * Returns all nodes neighboring the given node
     * @param: node
     * @return: neighbor of given node
     */
@@ -160,7 +161,7 @@ public class Map
     }
     
     /***************************************************************************
-    * Method, that return edges, where starting given node
+    * Returns edges starting from the given node
     * @param: starting node
     * @return: edges
     */
@@ -176,7 +177,7 @@ public class Map
     }
     
     /***************************************************************************
-    * Method, that return the edge(s), that connecting two given nodes
+    * Returns edge connecting the given nodes
     * @param: starting node, final node
     * @return: edges
     */    
@@ -191,7 +192,7 @@ public class Map
     }
     
     /***************************************************************************
-    * Add a new single node to the map
+    * Add a new node to the map
     */
     public final void addNode(Node newNode)
     {
@@ -199,7 +200,7 @@ public class Map
     }
     
     /***************************************************************************
-    * Add a new single edge to the map (between two nodes)
+    * Add a new edge to the map (between two nodes)
     */
     public final void addEdge(Edge newEdge)
     {
