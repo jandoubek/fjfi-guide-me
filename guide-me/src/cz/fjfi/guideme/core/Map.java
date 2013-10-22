@@ -51,7 +51,8 @@ public class Map
     /***************************************************************************
     // Getter of guid
     */
-	public UUID getGuid() {
+	public UUID getGuid()
+	{
 		//return guid;
 		return this.guid;
 	}	
@@ -98,7 +99,8 @@ public class Map
 	/***************************************************************************
 	* Getter for the list of locations
 	*/ 
-	public List<Location> getLocations() {
+	public List<Location> getLocations()
+	{
 		return this.mappedLocations;
 	}
 
@@ -154,7 +156,9 @@ public class Map
     {
         List<Node> neighbors = new ArrayList<Node>();
         List<Edge> outwardEdges = getEdgesStartingIn(node);
-        for (Edge e : outwardEdges) {
+        
+        for (Edge e : outwardEdges)
+        {
             neighbors.add(e.getEnd());
         }
         return neighbors;
@@ -168,8 +172,11 @@ public class Map
     public List<Edge> getEdgesStartingIn(Node start)
     {
         List<Edge> edges = new ArrayList<Edge>();
-        for (Edge e : this.mappedEdges) {
-            if (e.getStart() == start) {
+        
+        for (Edge e : this.mappedEdges)
+        {
+            if (e.getStart() == start)
+            {
                 edges.add(e);
             }
         }
@@ -183,8 +190,10 @@ public class Map
     */    
     public Edge getEdgeConnectingNodes(Node from, Node to)
     {
-        for (Edge e : this.mappedEdges) {
-            if (e.getStart() == from && e.getEnd() == to) {
+        for (Edge e : this.mappedEdges)
+        {
+            if (e.getStart() == from && e.getEnd() == to)
+            {
                 return e;
             }
         }
@@ -244,15 +253,18 @@ public class Map
 		System.out.print(output);
 		PrintWriter out;
 		
-		try {
+		try
+		{
 			out = new PrintWriter(new FileWriter(outputFile));
 			out.print(output);
 			out.close();
-		} catch (IOException e) {
+		}
+		catch (IOException e)
+		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
+	
 }
       
