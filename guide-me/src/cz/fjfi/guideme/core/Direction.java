@@ -1,7 +1,7 @@
 package cz.fjfi.guideme.core;
 
 /**
- * Thic enumeration contains all allowed directions in GuideMe app and methods
+ * This enumeration contains all allowed directions in GuideMe app and methods
  * to work with them.
  * Feel free to modify :-D
  * @author
@@ -18,6 +18,10 @@ public enum Direction
     West,
     Northwest;
     
+    /***************************************************************************
+     * TODO: comment
+     */
+    //TODO: body
     public Direction turnRight()
     {
     	Direction[] directions = Direction.values();
@@ -26,6 +30,10 @@ public enum Direction
     	return directions[ordinal];
     }
     
+    /***************************************************************************
+     * TODO: comment
+     */
+    //TODO: body
     public Direction turnLeft()
     {
     	Direction[] directions = Direction.values();

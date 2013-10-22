@@ -52,91 +52,135 @@ public class Edge
      * TODO: comment
      */
     //TODO: body
-    public final UUID getGUID(){return this.guid;}
+    public final UUID getGUID()
+    {
+        return this.guid;
+    }
     
     /***************************************************************************
      * TODO: comment
      */
     //TODO: body
-    public final String getName(){return this.name;}
+    public final String getName()
+    {
+    	return this.name;
+    }
     
     /***************************************************************************
      * TODO: comment
      */
     //TODO: body
-    public final long getTimeDistance(){return this.timeDistance;}
+    public final long getTimeDistance()
+    {
+    	return this.timeDistance;
+    }
     
     /***************************************************************************
      * TODO: comment
      */
     //TODO: body
-    public final Node getStart(){return this.start;}
+    public final Node getStart()
+    {
+    	return this.start;
+    }
     
     /***************************************************************************
      * TODO: comment
      */
     //TODO: body
-    public final Node getEnd(){return this.end;}
+    public final Node getEnd()
+    {
+    	return this.end;
+    }
     
     /***************************************************************************
      * TODO: comment
      */
     //TODO: body
-    public final Direction getDirection(){return this.direction;}
+    public final Direction getDirection()
+    {
+    	return this.direction;
+    }
     
     /***************************************************************************
      * TODO: comment
      */
     //TODO: body
-    public final String getDescription(){return this.description;}
+    public final String getDescription()
+    {return this.description;
+    }
     
     /***************************************************************************
      * TODO: comment
      */
     //TODO: body
-    protected final Map getMyMap(){return this.myMap;}
+    protected final Map getMyMap()
+    {
+    	return this.myMap;
+    }
     
     /***************************************************************************
      * TODO: comment
      */
     //TODO: body
-    public final void setGUID(UUID newGUID){this.guid = newGUID;}
+    public final void setGUID(UUID newGUID)
+    {
+    	this.guid = newGUID;
+    }
     
     /***************************************************************************
      * TODO: comment
      */
     //TODO: body
-    public final void setName(String newName){this.name = newName;}
+    public final void setName(String newName)
+    {
+    	this.name = newName;
+    }
     
     /***************************************************************************
      * TODO: comment
      */
     //TODO: body
-    public final void setTimeDistance(long newTimeDistance){this.timeDistance = newTimeDistance;}
+    public final void setTimeDistance(long newTimeDistance)
+    {
+    	this.timeDistance = newTimeDistance;
+    }
     
     /***************************************************************************
      * TODO: comment
      */
     //TODO: body
-    public final void setStart(Node newStart){this.start = newStart;}
+    public final void setStart(Node newStart)
+    {
+    	this.start = newStart;
+    }
     
     /***************************************************************************
      * TODO: comment
      */
     //TODO: body
-    public final void setEnd(Node newEnd){this.end = newEnd;}
+    public final void setEnd(Node newEnd)
+    {
+    	this.end = newEnd;
+    }
     
     /***************************************************************************
      * TODO: comment
      */
     //TODO: body
-    public final void setDirection(Direction newDirection){this.direction = newDirection;}
+    public final void setDirection(Direction newDirection)
+    {
+    	this.direction = newDirection;
+    }
     
     /***************************************************************************
      * TODO: comment
      */
     //TODO: body
-    public final void setDescription(String newDescription){this.description = newDescription;}
+    public final void setDescription(String newDescription)
+    {
+    	this.description = newDescription;
+    }
     
 //== OTHER METHODS =============================================================
     public String exportXML()
@@ -151,4 +195,5 @@ public class Edge
     						+ "<desc>" + this.getDescription() + "</desc>\n"
     						+ "</edge>\n");
     }
+    
 }
