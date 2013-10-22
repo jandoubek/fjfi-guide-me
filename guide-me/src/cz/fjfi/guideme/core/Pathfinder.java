@@ -7,17 +7,28 @@ import java.util.*;
  * @author Martin Sochor
  *
  */
-public class Pathfinder {
+public class Pathfinder
+{
+//== CLASS CONSTANTS ===========================================================
+//== CLASS VARIABLES ===========================================================
+//== INSTANCE VARIABLES ========================================================
+	
     private Map map;
     private java.util.Map<Node, Long> distances;
     private java.util.Map<Node, Edge> previous;
     private Set<Node> openSet;
+    
+//==============================================================================
+//== CONSTRUCTORS ==============================================================
     
     public Pathfinder(Map map)
     {
         this.map = map;
         reset();
     }
+    
+  //== GETTERS AND SETTERS =======================================================
+  //== OTHER METHODS ============================================================= 
 
     /**
      * finds the shortest route between nodes 'from' and 'to'
