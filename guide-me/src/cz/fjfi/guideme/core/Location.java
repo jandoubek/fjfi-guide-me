@@ -37,45 +37,71 @@ public class Location
      * TODO: comment
      */
     //TODO: body
-    public final UUID getGUID(){return this.guid;}
+    public final UUID getGUID()
+    {
+    	return this.guid;
+    }
     
     /***************************************************************************
      * TODO: comment
      */
     //TODO: body
-    public final String getName(){return this.name;}
+    public final String getName()
+    {
+    	return this.name;
+    }
     
     /***************************************************************************
      * TODO: comment
      */
     //TODO: body
-    public final String getDescription(){return this.description;}
+    public final String getDescription()
+    {
+    	return this.description;
+    }
     
     /***************************************************************************
      * TODO: comment
      */
     //TODO: body
-    protected final Map getMyMap(){return this.myMap;}
+    protected final Map getMyMap()
+    {
+    	return this.myMap;
+    }
     
     /***************************************************************************
      * TODO: comment
      */
     //TODO: body
-    public final void setGUID(UUID newGUID){this.guid = newGUID;}
+    public final void setGUID(UUID newGUID)
+    {
+    	this.guid = newGUID;
+    }
     
     /***************************************************************************
      * TODO: comment
      */
     //TODO: body
-    public final void setName(String newName){this.name = newName;}
+    public final void setName(String newName)
+    {
+    	this.name = newName;
+    }
     
     /***************************************************************************
      * TODO: comment
      */
     //TODO: body
-    public final void setDescription(String newDescription){this.description = newDescription;}
+    public final void setDescription(String newDescription)
+    {
+    	this.description = newDescription;
+    }
     
 //== OTHER METHODS =============================================================
+    
+    /***************************************************************************
+     * TODO: comment
+     */
+    //TODO: body
     public String exportXML()
     {
     	String output = new String("<location guid=\"" + this.getGUID() + "\">\n"
