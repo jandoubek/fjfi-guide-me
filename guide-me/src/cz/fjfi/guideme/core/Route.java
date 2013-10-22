@@ -11,15 +11,27 @@ import java.util.*;
 
 public class Route
 {
+//== CLASS CONSTANTS ===========================================================
+//== CLASS VARIABLES ===========================================================
+//== INSTANCE VARIABLES ========================================================
+
     private List<Edge> route;
     private final Node start, end;
     
+//==============================================================================
+//== CONSTRUCTORS ==============================================================
+    
+    /***************************************************************************
+     * TODO: comment
+     */
     public Route(List<Edge> edges)
     {
         this.route = edges;
         this.start = edges.get(0).getStart();
         this.end = edges.get(edges.size()-1).getEnd();
     }
+   
+//== GETTERS AND SETTERS =======================================================
     
     /**
      * Returns the start node of the route
@@ -52,4 +64,7 @@ public class Route
     {
         return new RouteIterator(route.listIterator(location));
     }
+    
+//== OTHER METHODS =============================================================
+    
 }
