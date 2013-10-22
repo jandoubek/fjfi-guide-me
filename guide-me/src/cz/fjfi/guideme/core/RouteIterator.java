@@ -10,13 +10,26 @@ import java.util.ListIterator;
 
 public class RouteIterator implements ListIterator<Edge>
 {
+//== CLASS CONSTANTS ===========================================================
+//== CLASS VARIABLES ===========================================================
+//== INSTANCE VARIABLES ========================================================
+	
     private ListIterator<Edge> iterator;
     
+//==============================================================================
+//== CONSTRUCTORS ==============================================================
+    
+    /***************************************************************************
+     * TODO: comment
+     */
     public RouteIterator(ListIterator<Edge> iterator)
     {
         this.iterator = iterator;
     }
 
+//== GETTERS AND SETTERS =======================================================
+//== OTHER METHODS =============================================================
+    
     @Override
     public boolean hasNext()
     {
