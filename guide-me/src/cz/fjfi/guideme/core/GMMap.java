@@ -15,7 +15,7 @@ import java.util.*;
  * @author Martin Sochor 
  * @version 
  */
-public class Map 
+public class GMMap 
 {
 
     //== CLASS CONSTANTS ===========================================================
@@ -29,8 +29,8 @@ public class Map
     private String authorEmail;
     private String description; 
 
-    private List<Node> mappedNodes;
-    private List<Edge> mappedEdges;
+    private List<GMNode> mappedNodes;
+    private List<GMEdge> mappedEdges;
     private List<Location> mappedLocations;
 	
     //==============================================================================
@@ -40,7 +40,7 @@ public class Map
      * TODO: comment
      */
     //TODO: constructor parameters and body
-    public Map()
+    public GMMap()
     {
     	
     }
@@ -92,7 +92,7 @@ public class Map
     /***************************************************************************
     * Getter for the list of nodes
     */ 
-	public List<Node> getNodes() {
+	public List<GMNode> getNodes() {
 		return this.mappedNodes;
 	}
 	
@@ -152,12 +152,12 @@ public class Map
     * @param: node
     * @return: neighbor of given node
     */
-    public List<Node> getNeighborsOf(Node node)
+    public List<GMNode> getNeighborsOf(GMNode node)
     {
-        List<Node> neighbors = new ArrayList<Node>();
-        List<Edge> outwardEdges = getEdgesStartingIn(node);
+        List<GMNode> neighbors = new ArrayList<GMNode>();
+        List<GMEdge> outwardEdges = getEdgesStartingIn(node);
         
-        for (Edge e : outwardEdges)
+        for (GMEdge e : outwardEdges)
         {
             neighbors.add(e.getEnd());
         }
@@ -169,11 +169,11 @@ public class Map
     * @param: starting node
     * @return: edges
     */
-    public List<Edge> getEdgesStartingIn(Node start)
+    public List<GMEdge> getEdgesStartingIn(GMNode start)
     {
-        List<Edge> edges = new ArrayList<Edge>();
+        List<GMEdge> edges = new ArrayList<GMEdge>();
         
-        for (Edge e : this.mappedEdges)
+        for (GMEdge e : this.mappedEdges)
         {
             if (e.getStart() == start)
             {
@@ -188,9 +188,9 @@ public class Map
     * @param: starting node, final node
     * @return: edges
     */    
-    public Edge getEdgeConnectingNodes(Node from, Node to)
+    public GMEdge getEdgeConnectingNodes(GMNode from, GMNode to)
     {
-        for (Edge e : this.mappedEdges)
+        for (GMEdge e : this.mappedEdges)
         {
             if (e.getStart() == from && e.getEnd() == to)
             {
@@ -203,7 +203,7 @@ public class Map
     /***************************************************************************
     * Add a new node to the map
     */
-    public final void addNode(Node newNode)
+    public final void addNode(GMNode newNode)
     {
     	this.mappedNodes.add(newNode);
     }
@@ -211,7 +211,7 @@ public class Map
     /***************************************************************************
     * Add a new edge to the map (between two nodes)
     */
-    public final void addEdge(Edge newEdge)
+    public final void addEdge(GMEdge newEdge)
     {
     	this.mappedEdges.add(newEdge);
     }
@@ -232,13 +232,13 @@ public class Map
 									+ "<author name=\"" + this.getAuthorName() + "\" email=\"" + this.getAuthorEmail() + "\" />\n"
 									+ "<description>" + this.getDescription() + "</description>\n"
 									+ "<nodelist>\n");
-		for(Node node:this.mappedNodes)
+		for(GMNode node:this.mappedNodes)
 		{
 			output = output.concat(node.exportXML());
 		}
 		output.concat("</nodelist>\n<edgelist>\n");
 		
-		for(Edge edge:this.mappedEdges)
+		for(GMEdge edge:this.mappedEdges)
 		{
 			output = output.concat(edge.exportXML());
 		}

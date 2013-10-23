@@ -11,7 +11,7 @@ import java.util.UUID;
  * @version
  */
 
-public class Edge
+public class GMEdge
 {
 //== CLASS CONSTANTS ===========================================================
 //== CLASS VARIABLES ===========================================================
@@ -19,11 +19,11 @@ public class Edge
 	private UUID guid;
 	private String name;
 	private long timeDistance;
-	private Node start;
-	private Node end;
+	private GMNode start;
+	private GMNode end;
 	private Direction direction;
 	private String description;
-	private Map myMap;
+	private GMMap myMap;
 	private List<Location> locations;
 //==============================================================================
 //== CONSTRUCTORS ==============================================================
@@ -32,8 +32,8 @@ public class Edge
      * TODO: comment
      */
     //TODO: constructor parameters and body
-    public Edge(UUID guid, String name, long timeDistance, Node start, Node end, Direction direction,
-    			String description, Map myMap, List<Location> locations)
+    public GMEdge(UUID guid, String name, long timeDistance, GMNode start, GMNode end, Direction direction,
+    			String description, GMMap myMap, List<Location> locations)
     {
     	this.guid = guid;
     	this.name = name;
@@ -79,7 +79,7 @@ public class Edge
      * TODO: comment
      */
     //TODO: body
-    public final Node getStart()
+    public final GMNode getStart()
     {
     	return this.start;
     }
@@ -88,7 +88,7 @@ public class Edge
      * TODO: comment
      */
     //TODO: body
-    public final Node getEnd()
+    public final GMNode getEnd()
     {
     	return this.end;
     }
@@ -114,7 +114,7 @@ public class Edge
      * TODO: comment
      */
     //TODO: body
-    protected final Map getMyMap()
+    protected final GMMap getMyMap()
     {
     	return this.myMap;
     }
@@ -150,7 +150,7 @@ public class Edge
      * TODO: comment
      */
     //TODO: body
-    public final void setStart(Node newStart)
+    public final void setStart(GMNode newStart)
     {
     	this.start = newStart;
     }
@@ -159,7 +159,7 @@ public class Edge
      * TODO: comment
      */
     //TODO: body
-    public final void setEnd(Node newEnd)
+    public final void setEnd(GMNode newEnd)
     {
     	this.end = newEnd;
     }

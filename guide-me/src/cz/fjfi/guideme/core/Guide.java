@@ -13,7 +13,7 @@ public class Guide
 //== CLASS VARIABLES ===========================================================
 //== INSTANCE VARIABLES ========================================================
 
-    private Map map;
+    private GMMap map;
     private Navigator navigator;
 
 //==============================================================================
@@ -23,7 +23,7 @@ public class Guide
      * TODO: comment
      */
     //TODO: constructor parameters and body
-    public Guide(Map map)
+    public Guide(GMMap map)
     {
         this.map = map;
     }
@@ -61,7 +61,7 @@ public class Guide
     /***************************************************************************
     * finds the shortest route between nodes 'from' and 'to'
     */
-    public final Route findRouteBetween(Node from, Node to)
+    public final Route findRouteBetween(GMNode from, GMNode to)
     {
         Pathfinder finder = new Pathfinder(map);
         return finder.findRouteBetween(from, to);
@@ -70,7 +70,7 @@ public class Guide
     /***************************************************************************
     * finds the shortest route between nodes 'from' and 'to', passing through all nodes contained in 'through'
     */
-    public final Route findRouteBetween(Node from, Node to, List<Node> through)
+    public final Route findRouteBetween(GMNode from, GMNode to, List<GMNode> through)
     {
         Pathfinder finder = new Pathfinder(map);
         return finder.findRouteBetween(from, to, through);
@@ -79,7 +79,7 @@ public class Guide
     /**
      * returns the map Guide operates on
      */
-    public final Map getMap()
+    public final GMMap getMap()
     {
         return map;
     }

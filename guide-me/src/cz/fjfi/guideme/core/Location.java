@@ -14,7 +14,7 @@ public class Location
 	private UUID guid;
 	private String name;
 	private String description;
-	private Map myMap;
+	private GMMap myMap;
 
 //==============================================================================
 //== CONSTRUCTORS ==============================================================
@@ -23,7 +23,7 @@ public class Location
      * TODO: comment
      */
     //TODO: constructor parameters and body
-    public Location(UUID guid, String name, String description, Map myMap)
+    public Location(UUID guid, String name, String description, GMMap myMap)
 	{
 		this.guid = guid;
 		this.name = name;
@@ -64,7 +64,7 @@ public class Location
      * TODO: comment
      */
     //TODO: body
-    protected final Map getMyMap()
+    protected final GMMap getMyMap()
     {
     	return this.myMap;
     }

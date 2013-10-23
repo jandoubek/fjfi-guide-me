@@ -25,11 +25,11 @@ public class ResourceManager
      * TODO: comment
      */
     //TODO: body
-	public static Map loadMap(String fileName)
+	public static GMMap loadMap(String fileName)
 	{
-		Map createdMap = new Map();
-		List<Node> nodeList = new ArrayList<Node>();
-		List<Edge> edgeList = new ArrayList<Edge>();
+		GMMap createdMap = new GMMap();
+		List<GMNode> nodeList = new ArrayList<GMNode>();
+		List<GMEdge> edgeList = new ArrayList<GMEdge>();
 		List<Location> locationList = new ArrayList<Location>();
 		
 		try

@@ -10,7 +10,7 @@ public class Navigator
 {
     private Route route;
     private RouteIterator currentIterator;
-    private Edge currentEdge;
+    private GMEdge currentEdge;
     private long lastTime;
     
     public Navigator(Route route)
@@ -68,7 +68,7 @@ public class Navigator
      */
     private String generateLabel()
     {
-        Node endpoint = currentEdge.getEnd();
+        GMNode endpoint = currentEdge.getEnd();
         String label = currentEdge.getDescription() + "\n-> " + endpoint.getDescription();
         return label;
     }

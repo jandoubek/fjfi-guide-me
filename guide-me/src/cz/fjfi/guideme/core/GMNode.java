@@ -9,7 +9,7 @@ import java.util.List;
  * @author 
  * @version
  */
-public class Node
+public class GMNode
 {
 //== CLASS CONSTANTS ===========================================================
 //== CLASS VARIABLES ===========================================================
@@ -18,7 +18,7 @@ private UUID  guid;
 private String name;
 private List<Location> locations;
 private String description;
-private Map myMap;
+private GMMap myMap;
 	
 //==============================================================================
 //== CONSTRUCTORS ==============================================================
@@ -27,7 +27,7 @@ private Map myMap;
      * TODO: comment
      */
     //TODO: constructor parameters and body
-    public Node(UUID guid, String name, List<Location> locations, String description,  Map myMap)
+    public GMNode(UUID guid, String name, List<Location> locations, String description,  GMMap myMap)
 	{
 		this.guid = guid;
 		this.name = name;
@@ -78,7 +78,7 @@ private Map myMap;
      * TODO: comment
      */
     //TODO: body
-    protected final Map getMyMap()
+    protected final GMMap getMyMap()
     {
     	return this.myMap;
     }

@@ -13,15 +13,15 @@ public class Pathfinder
 //== CLASS VARIABLES ===========================================================
 //== INSTANCE VARIABLES ========================================================
 	
-    private Map map;
-    private java.util.Map<Node, Long> distances;
-    private java.util.Map<Node, Edge> previous;
-    private Set<Node> openSet;
+    private GMMap map;
+    private java.util.Map<GMNode, Long> distances;
+    private java.util.Map<GMNode, GMEdge> previous;
+    private Set<GMNode> openSet;
     
 //==============================================================================
 //== CONSTRUCTORS ==============================================================
     
-    public Pathfinder(Map map)
+    public Pathfinder(GMMap map)
     {
         this.map = map;
         reset();
@@ -33,7 +33,7 @@ public class Pathfinder
     /**
      * finds the shortest route between nodes 'from' and 'to'
      */
-    public final Route findRouteBetween(Node from, Node to)
+    public final Route findRouteBetween(GMNode from, GMNode to)
     {
         return new Route(findEdgeListBetween(from, to));
     }
@@ -41,12 +41,12 @@ public class Pathfinder
     /**
      * finds the shortest route between nodes 'from' and 'to' passing through all nodes contained in 'through'
      */
-    public final Route findRouteBetween(Node from, Node to, List<Node> through)
+    public final Route findRouteBetween(GMNode from, GMNode to, List<GMNode> through)
     {
-        ListIterator<Node> throughIterator = through.listIterator();
-        Node currentStart = from;
-        Node currentEnd = throughIterator.next();
-        List<Edge> route = findEdgeListBetween(currentStart, currentEnd);
+        ListIterator<GMNode> throughIterator = through.listIterator();
+        GMNode currentStart = from;
+        GMNode currentEnd = throughIterator.next();
+        List<GMEdge> route = findEdgeListBetween(currentStart, currentEnd);
         while (throughIterator.hasNext())
         {
             currentStart = currentEnd;
@@ -60,13 +60,13 @@ public class Pathfinder
     /**
      * finds the edges in the shortest path between nodes 'from' and 'to'
      */
-    private List<Edge> findEdgeListBetween(Node from, Node to)
+    private List<GMEdge> findEdgeListBetween(GMNode from, GMNode to)
     {
         initializeDistances(from);
         
         while (!openSet.isEmpty())
         {
-            Node closestOpenNode = getClosestOpenNode();
+            GMNode closestOpenNode = getClosestOpenNode();
             openSet.remove(closestOpenNode);
             
             if (closestOpenNode == to)
@@ -88,17 +88,17 @@ public class Pathfinder
     
     private void reset()
     {
-        previous = new HashMap<Node, Edge>();
-        openSet = new HashSet<Node>(map.getNodes()); 
+        previous = new HashMap<GMNode, GMEdge>();
+        openSet = new HashSet<GMNode>(map.getNodes()); 
     }
 
     /**
      * initialize the distances array
      */
-    private void initializeDistances(Node from)
+    private void initializeDistances(GMNode from)
     {
-        distances = new HashMap<Node, Long>();
-        for (Node n : map.getNodes())
+        distances = new HashMap<GMNode, Long>();
+        for (GMNode n : map.getNodes())
         {
             distances.put(n, Long.MAX_VALUE);
         }
@@ -108,11 +108,11 @@ public class Pathfinder
     /**
      * find the node in openSet with lowest distance
      */
-    private Node getClosestOpenNode()
+    private GMNode getClosestOpenNode()
     {
         long minDistance = Long.MAX_VALUE;
-        Node closestOpenNode = openSet.iterator().next();
-        for (Node n : openSet)
+        GMNode closestOpenNode = openSet.iterator().next();
+        for (GMNode n : openSet)
         {
             long currentDistance = distances.get(n);
             if (minDistance < currentDistance)
@@ -127,11 +127,11 @@ public class Pathfinder
     /**
      * update the distances and previous arrays if necessary
      */
-    private void updatePaths(Node closestOpenNode)
+    private void updatePaths(GMNode closestOpenNode)
     {
         long distanceToClosestNode = distances.get(closestOpenNode);
-        List<Node> neighbors = map.getNeighborsOf(closestOpenNode);
-        for (Node n : neighbors)
+        List<GMNode> neighbors = map.getNeighborsOf(closestOpenNode);
+        for (GMNode n : neighbors)
         {
             if (openSet.contains(n))
             {
@@ -143,10 +143,10 @@ public class Pathfinder
     /**
      * update the distance and previous arrays for node 'n' if necessary
      */
-    private void updatePathFor(Node n, Node closestOpenNode,
+    private void updatePathFor(GMNode n, GMNode closestOpenNode,
             long distanceToClosestNode)
     {
-        Edge connectingEdge = map.getEdgeConnectingNodes(closestOpenNode, n);
+        GMEdge connectingEdge = map.getEdgeConnectingNodes(closestOpenNode, n);
         long newDistance = distanceToClosestNode + connectingEdge.getTimeDistance();
         if (newDistance < distances.get(n))
         {
@@ -158,13 +158,13 @@ public class Pathfinder
     /**
      * construct the route from the distance and previous arrays
      */
-    private List<Edge> constructRoute(Node from, Node to)
+    private List<GMEdge> constructRoute(GMNode from, GMNode to)
     {
-        List<Edge> route = new ArrayList<Edge>();
-        Node currentNode = to;
+        List<GMEdge> route = new ArrayList<GMEdge>();
+        GMNode currentNode = to;
         while (currentNode != from)
         {
-            Edge currentEdge = previous.get(currentNode);
+            GMEdge currentEdge = previous.get(currentNode);
             currentNode = currentEdge.getStart();
             route.add(currentEdge);
         }

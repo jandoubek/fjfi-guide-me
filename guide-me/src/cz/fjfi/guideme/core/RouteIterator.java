@@ -8,13 +8,13 @@ import java.util.ListIterator;
  *
  */
 
-public class RouteIterator implements ListIterator<Edge>
+public class RouteIterator implements ListIterator<GMEdge>
 {
 //== CLASS CONSTANTS ===========================================================
 //== CLASS VARIABLES ===========================================================
 //== INSTANCE VARIABLES ========================================================
 	
-    private ListIterator<Edge> iterator;
+    private ListIterator<GMEdge> iterator;
     
 //==============================================================================
 //== CONSTRUCTORS ==============================================================
@@ -22,7 +22,7 @@ public class RouteIterator implements ListIterator<Edge>
     /***************************************************************************
      * TODO: comment
      */
-    public RouteIterator(ListIterator<Edge> iterator)
+    public RouteIterator(ListIterator<GMEdge> iterator)
     {
         this.iterator = iterator;
     }
@@ -43,7 +43,7 @@ public class RouteIterator implements ListIterator<Edge>
     }
 
     @Override
-    public Edge next()
+    public GMEdge next()
     {
         return iterator.next();
     }
@@ -55,7 +55,7 @@ public class RouteIterator implements ListIterator<Edge>
     }
 
     @Override
-    public Edge previous()
+    public GMEdge previous()
     {
         return iterator.previous();
     }
@@ -67,7 +67,7 @@ public class RouteIterator implements ListIterator<Edge>
     }
 
     @Override
-    public void add(Edge arg0)
+    public void add(GMEdge arg0)
     {
         throw new UnsupportedOperationException("RouteIterator.add not supported.");
     }
@@ -79,7 +79,7 @@ public class RouteIterator implements ListIterator<Edge>
     }
 
     @Override
-    public void set(Edge arg0)
+    public void set(GMEdge arg0)
     {
         throw new UnsupportedOperationException("RouteIterator.set not supported.");
     }

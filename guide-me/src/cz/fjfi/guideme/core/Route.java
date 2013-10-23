@@ -15,8 +15,8 @@ public class Route
 //== CLASS VARIABLES ===========================================================
 //== INSTANCE VARIABLES ========================================================
 
-    private List<Edge> route;
-    private final Node start, end;
+    private List<GMEdge> route;
+    private final GMNode start, end;
     
 //==============================================================================
 //== CONSTRUCTORS ==============================================================
@@ -24,7 +24,7 @@ public class Route
     /***************************************************************************
      * TODO: comment
      */
-    public Route(List<Edge> edges)
+    public Route(List<GMEdge> edges)
     {
         this.route = edges;
         this.start = edges.get(0).getStart();
@@ -36,7 +36,7 @@ public class Route
     /**
      * Returns the start node of the route
      */
-    public final Node getStart()
+    public final GMNode getStart()
     {
         return start;
     }
@@ -44,7 +44,7 @@ public class Route
     /**
      * Returns the end node of the route
      */
-    public final Node getEnd()
+    public final GMNode getEnd()
     {
         return end;
     }
