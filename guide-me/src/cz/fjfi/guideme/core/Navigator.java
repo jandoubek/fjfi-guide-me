@@ -12,12 +12,14 @@ public class Navigator
     private RouteIterator currentIterator;
     private GMEdge currentEdge;
     private long lastTime;
+    private long timeOnCurrentEdge;
     
     public Navigator(Route route)
     {
         this.route = route;
         this.currentIterator = route.iterator();
         this.lastTime = 0;
+        this.timeOnCurrentEdge = 0;
         getNextLabel();
     }
 
@@ -26,11 +28,14 @@ public class Navigator
      */
     public final String getCurrentLabel(long time)
     {
+        long timeDelta = time - lastTime + timeOnCurrentEdge;
         // advance to the proper point on the route
-        while (lastTime + currentEdge.getTimeDistance() < time && currentIterator.hasNext())
+        while (timeDelta > currentEdge.getTimeDistance() && currentIterator.hasNext())
         {
+            timeDelta -= currentEdge.getTimeDistance();
             advanceToNextEdge();
         }
+        timeOnCurrentEdge = timeDelta;
         lastTime = time;
         return generateLabel();
     }
