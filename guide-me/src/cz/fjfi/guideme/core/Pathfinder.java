@@ -14,8 +14,8 @@ public class Pathfinder
 //== INSTANCE VARIABLES ========================================================
 	
     private GMMap map;
-    private java.util.Map<GMNode, Long> distances;
-    private java.util.Map<GMNode, GMEdge> previous;
+    private Map<GMNode, Long> distances;
+    private Map<GMNode, GMEdge> previous;
     private Set<GMNode> openSet;
     
 //==============================================================================
