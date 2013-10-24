@@ -5,6 +5,8 @@ import android.util.Log;
 
 
 public class NavigateAsync extends AsyncTask<String, String, Void> {
+	private final long updateTime=2000;
+	private long startTime;
 	private NavigateActivity context;
 
 	public NavigateAsync(NavigateActivity context){
@@ -20,8 +22,8 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 			synchronized (this) {
 				try {
 
-					wait(2000);
-					time += 2000;
+					wait(updateTime);
+					time += updateTime;
 					publishProgress(""+time);
 					if(time>20000){
 						return null;
@@ -37,7 +39,7 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 	@Override
 	protected void onProgressUpdate(String... progress) {
 		Log.i("ASYNC", progress[0]);
-		//context.popis.setText(progress[0]);
+		context.vypis.setText(progress[0]);
 	}
 
 	@Override
