@@ -9,8 +9,19 @@
     tools:context=".NavigateActivity" >
 
     <TextView
+        android:id="@+id/navigate_tv_vypis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/hello_world" />
+
+    <Button
+        android:id="@+id/navigate_bt_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/navigate_tv_vypis"
+        android:layout_below="@+id/navigate_tv_vypis"
+        android:layout_marginTop="94dp"
+        android:text="Button"
+        android:onClick="navigate_bt_start_OnClick" />
 
 </RelativeLayout>
