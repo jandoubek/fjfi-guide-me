@@ -42,7 +42,9 @@ public class GMMap
     //TODO: constructor parameters and body
     public GMMap()
     {
-    	
+    	mappedNodes = new ArrayList<GMNode>();
+    	mappedEdges = new ArrayList<GMEdge>();
+    	mappedLocations = new ArrayList<Location>();
     }
     
     //==============================================================================
@@ -236,22 +238,22 @@ public class GMMap
 		{
 			output = output.concat(node.exportXML());
 		}
-		output.concat("</nodelist>\n<edgelist>\n");
+		output = output.concat(new String("</nodelist>\n<edgelist>\n"));
 		
 		for(GMEdge edge:this.mappedEdges)
 		{
 			output = output.concat(edge.exportXML());
 		}
-		output.concat("</edgelist>\n<locationlist>\n");
+		output = output.concat(new String("</edgelist>\n<locationlist>\n"));
 		
 		for(Location loc:this.mappedLocations)
 		{
 			output = output.concat(loc.exportXML());
 		}
-		output.concat("</locationlist>\n</map>\n");
+		output = output.concat(new String("</locationlist>\n</map>\n"));
 		
 		System.out.print(output);
-		PrintWriter out;
+		/*PrintWriter out;
 		
 		try
 		{
@@ -263,7 +265,7 @@ public class GMMap
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 	}
 	
 }
