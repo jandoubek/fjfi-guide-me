@@ -10,5 +10,7 @@
     <string name="app_author">FJFI group</string>
     <string name="title_activity_create_map">CreateMapActivity</string>
     <string name="title_activity_navigate">NavigateActivity</string>
+    <string name="navigate_bt_start">start</string>
+    <string name="navigate_tv_vypis">Navigace z místa A do místa B</string>
 
 </resources>

@@ -5,9 +5,14 @@ import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
+import cz.fjfi.guideme.core.*;
 
 public class NavigateActivity extends Activity {
 	public TextView vypis;
+	private Route route;
+	private GMMap gmMap;
+	private GMNode from, to;
+	private Pathfinder pathfinder;
 
 
 	@Override
@@ -15,6 +20,12 @@ public class NavigateActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_navigate);
 		vypis = (TextView) findViewById(R.id.navigate_tv_vypis);
+		gmMap = new GMMap();
+		pathfinder = new Pathfinder(gmMap);
+		from = new GMNode(null, null, null, null, null); // I need method getNode() !!
+		to = new GMNode(null, null, null, null, null); // zat’m nemohu zjistit uzel
+		route = pathfinder.findRouteBetween(from, to);
+		
 	}
 
 	@Override
@@ -28,6 +39,11 @@ public class NavigateActivity extends Activity {
 	{
 		NavigateAsync navigateAsync = new NavigateAsync(this);
 		navigateAsync.execute("");
+	}
+	
+	public Route getRoute()
+	{
+		return route;
 	}
 
 }
