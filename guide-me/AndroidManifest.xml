@@ -26,6 +26,10 @@
             android:name="cz.fjfi.guideme.CreateMapActivity"
             android:label="@string/title_activity_create_map" >
         </activity>
+        <activity
+            android:name="cz.fjfi.guideme.NavigateActivity"
+            android:label="@string/title_activity_navigate" >
+        </activity>
     </application>
 
 </manifest>

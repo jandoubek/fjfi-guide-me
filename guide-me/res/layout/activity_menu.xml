@@ -32,6 +32,7 @@
         android:layout_above="@+id/buttonCreateMap"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="18dp"
-        android:text="@string/menu_bt_navigate" />
+        android:text="@string/menu_bt_navigate"
+        android:onClick="menu_bt_navigate_onClick" />
 
 </RelativeLayout>
