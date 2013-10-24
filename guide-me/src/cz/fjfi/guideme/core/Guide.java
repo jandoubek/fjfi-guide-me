@@ -71,8 +71,7 @@ public class Guide
     */
     public final Route findRouteBetween(GMNode from, GMNode to)
     {
-        Pathfinder finder = new Pathfinder(map);
-        return finder.findRouteBetween(from, to);
+        return Pathfinder.findRouteBetween(map, from, to);
     }
 
     /***************************************************************************
@@ -80,8 +79,7 @@ public class Guide
     */
     public final Route findRouteBetween(GMNode from, GMNode to, List<GMNode> through)
     {
-        Pathfinder finder = new Pathfinder(map);
-        return finder.findRouteBetween(from, to, through);
+        return Pathfinder.findRouteBetween(map, from, to, through);
     }
 
     /**

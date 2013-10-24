@@ -21,7 +21,7 @@ public class Pathfinder
 //==============================================================================
 //== CONSTRUCTORS ==============================================================
     
-    public Pathfinder(GMMap map)
+    private Pathfinder(GMMap map)
     {
         this.map = map;
         reset();
@@ -33,27 +33,29 @@ public class Pathfinder
     /**
      * finds the shortest route between nodes 'from' and 'to'
      */
-    public final Route findRouteBetween(GMNode from, GMNode to)
+    public static final Route findRouteBetween(GMMap map, GMNode from, GMNode to)
     {
-        return new Route(findEdgeListBetween(from, to));
+        Pathfinder finder = new Pathfinder(map);
+        return new Route(finder.findEdgeListBetween(from, to));
     }
     
     /**
      * finds the shortest route between nodes 'from' and 'to' passing through all nodes contained in 'through'
      */
-    public final Route findRouteBetween(GMNode from, GMNode to, List<GMNode> through)
+    public static final Route findRouteBetween(GMMap map, GMNode from, GMNode to, List<GMNode> through)
     {
+        Pathfinder finder = new Pathfinder(map);
         ListIterator<GMNode> throughIterator = through.listIterator();
         GMNode currentStart = from;
         GMNode currentEnd = throughIterator.next();
-        List<GMEdge> route = findEdgeListBetween(currentStart, currentEnd);
+        List<GMEdge> route = finder.findEdgeListBetween(currentStart, currentEnd);
         while (throughIterator.hasNext())
         {
             currentStart = currentEnd;
             currentEnd = throughIterator.next();
-            route.addAll(findEdgeListBetween(currentStart, currentEnd));
+            route.addAll(finder.findEdgeListBetween(currentStart, currentEnd));
         }
-        route.addAll(findEdgeListBetween(currentEnd,to));
+        route.addAll(finder.findEdgeListBetween(currentEnd,to));
         return new Route(route);
     }
     
