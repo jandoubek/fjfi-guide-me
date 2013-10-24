@@ -2,12 +2,16 @@ package cz.fjfi.guideme;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import cz.fjfi.guideme.core.Navigator;
+import cz.fjfi.guideme.core.Route;
 
 
 public class NavigateAsync extends AsyncTask<String, String, Void> {
 	private final long updateTime=2000;
 	private long startTime;
 	private NavigateActivity context;
+	private Route route;
+	private Navigator navigator;
 
 	public NavigateAsync(NavigateActivity context){
 		this.context=context;
@@ -15,17 +19,18 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 
 	@Override
 	protected Void doInBackground(String... params) {
-		// TODO Auto-generated method stub
 		Log.i("ASYNC", "background");
 		startTime=System.currentTimeMillis();
 		long time = 0;
+		String label;
 		while (true) {
 			synchronized (this) {
 				try {
 
 					wait(updateTime);
 					time += updateTime;
-					publishProgress(""+(System.currentTimeMillis()-startTime));
+					label = navigator.getCurrentLabel(System.currentTimeMillis()-startTime);
+					publishProgress(label);
 					if(time>20000){
 						return null;
 					}
@@ -53,7 +58,9 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 	@Override
 	protected void onPreExecute() {
 		Log.i("ASYNC", "on pre");
-
+		
+		route = context.getRoute();
+		navigator = new Navigator(route);
 		super.onPreExecute();
 	}
 
