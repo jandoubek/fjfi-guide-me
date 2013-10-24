@@ -34,8 +34,21 @@ public class MenuActivity extends Activity
 	
 	/** Called when the user clicks the Navigate button */
 	public void menu_bt_navigate_onClick(View view) {
-	    Intent intent = new Intent(this, NavigateActivity.class);
+	    Intent intent = new Intent(this, NavigateActivity.class); // for a prototype
 	    startActivity(intent);
 	}
+	
+	/** Called when the user clicks the Create map button */
+	public void menu_bt_createMap_onClick(View view) {
+	    Intent intent = new Intent(this, CreateMapActivity.class);
+	    startActivity(intent);
+	}
+	
+	/** Called when the user clicks the Settings button */
+	public void menu_bt_settings_onClick(View view) {
+	    Intent intent = new Intent(this, CreateMapActivity.class);
+	    startActivity(intent);
+	}
+	
 	
 }

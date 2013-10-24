@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="@string/menu_bt_create_map" />
+        android:text="@string/menu_bt_create_map"
+        android:onClick="menu_bt_createMap_onClick" />
 
     <Button
         android:id="@+id/buttonSettings"
@@ -23,7 +24,8 @@
         android:layout_below="@+id/buttonCreateMap"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="29dp"
-        android:text="@string/menu_bt_settings" />
+        android:text="@string/menu_bt_settings"
+        android:onClick="menu_bt_settings_onClick" />
 
     <Button
         android:id="@+id/buttonNavigate"
