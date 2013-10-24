@@ -17,6 +17,7 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 	protected Void doInBackground(String... params) {
 		// TODO Auto-generated method stub
 		Log.i("ASYNC", "background");
+		startTime=System.currentTimeMillis();
 		long time = 0;
 		while (true) {
 			synchronized (this) {
@@ -24,7 +25,7 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 
 					wait(updateTime);
 					time += updateTime;
-					publishProgress(""+time);
+					publishProgress(""+(System.currentTimeMillis()-startTime));
 					if(time>20000){
 						return null;
 					}
