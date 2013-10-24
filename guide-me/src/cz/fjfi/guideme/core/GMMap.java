@@ -252,8 +252,8 @@ public class GMMap
 		}
 		output = output.concat(new String("</locationlist>\n</map>\n"));
 		
-		System.out.print(output);
-		/*PrintWriter out;
+		//System.out.print(output);
+		PrintWriter out;
 		
 		try
 		{
@@ -265,7 +265,7 @@ public class GMMap
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 	}
 	
 }
