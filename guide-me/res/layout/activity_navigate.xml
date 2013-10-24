@@ -21,7 +21,7 @@
         android:layout_alignLeft="@+id/navigate_tv_vypis"
         android:layout_below="@+id/navigate_tv_vypis"
         android:layout_marginTop="94dp"
-        android:text="Button"
+        android:text="@string/navigate_bt_start"
         android:onClick="navigate_bt_start_OnClick" />
 
 </RelativeLayout>
