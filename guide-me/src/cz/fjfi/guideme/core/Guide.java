@@ -26,6 +26,7 @@ public class Guide
     public Guide(GMMap map)
     {
         this.map = map;
+        this.navigator = null;
     }
     
 //== GETTERS AND SETTERS =======================================================
@@ -33,28 +34,35 @@ public class Guide
     
     /**
      * prepares the instance for navigation
+     * has to be called before getCurrentLabel or getNextLabel
      */
-    public final Navigator beginNavigation(Route route)
+    public final void beginNavigation(Route route)
     {
         navigator = new Navigator(route);
-        return navigator;
     }
     
     /***************************************************************************
     * returns navigation instructions given elapsed time
     * takes a Navigator parameter due to temporal coupling
+     * beginNavigation has to be called before this method
     */
-    public final String getCurrentLabel(Navigator nav, long time)
+    public final String getCurrentLabel(long time)
     {
+    	if (navigator == null) {
+			throw new IllegalStateException("Guide.beginNavigation was not called before Guide.getCurrentLabel.");
+		}
         return navigator.getCurrentLabel(time);
     }
     
     /**
      * skips to the next navigation instruction and returns it
-     * takes a Navigator parameter due to temporal coupling
+     * beginNavigation has to be called before this method
      */
-    public final String getNextLabel(Navigator nav)
+    public final String getNextLabel()
     {
+    	if (navigator == null) {
+			throw new IllegalStateException("Guide.beginNavigation was not called before Guide.getNextLabel.");
+		}
         return navigator.getNextLabel();
     }
 
