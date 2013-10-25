@@ -268,5 +268,17 @@ public class GMMap
 		}
 	}
 	
+	public GMNode getNode(UUID guid)
+	{
+		for(GMNode node:this.mappedNodes)
+		{
+			if(node.getGUID() == guid)
+			{
+				return node;
+			}
+		}
+		return null;
+	}
+	
 }
       
