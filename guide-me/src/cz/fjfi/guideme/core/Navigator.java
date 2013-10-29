@@ -94,13 +94,13 @@ public class Navigator
         String label;
     	if (reachedEnd)
     	{
-    		label = "Reached final destination " + endpoint.getDescription();
+    		label = "Dosazen cil " + endpoint.getDescription();
         }
     	else
     	{
-    		label = "Currently going through: " + currentEdge.getDescription() + "\n" +
-            		"Will reach " + endpoint.getDescription() +
-            		" in: " + (currentEdge.getTimeDistance() - timeOnCurrentEdge) + "ms";
+    		label = "Prave prochazite: " + currentEdge.getDescription() + "\n" +
+            		"Dalsiho bodu " + endpoint.getDescription() +
+            		" dosahnete za: " + (currentEdge.getTimeDistance() - timeOnCurrentEdge)/1000 + "s";
     	}
         return label;
     }
