@@ -8,6 +8,7 @@ package cz.fjfi.guideme.core;
 
 public class Navigator
 {
+	private boolean reachedEnd;
     private Route route;
     private RouteIterator currentIterator;
     private GMEdge currentEdge;
@@ -20,6 +21,7 @@ public class Navigator
         this.currentIterator = route.iterator();
         this.lastTime = 0;
         this.timeOnCurrentEdge = 0;
+        this.reachedEnd = false;
         getNextLabel();
     }
 
@@ -30,7 +32,7 @@ public class Navigator
     {
         long timeDelta = time - lastTime + timeOnCurrentEdge;
         // advance to the proper point on the route
-        while (timeDelta > currentEdge.getTimeDistance() && currentIterator.hasNext())
+        while (timeDelta > currentEdge.getTimeDistance() && !reachedEnd)
         {
             timeDelta -= currentEdge.getTimeDistance();
             advanceToNextEdge();
@@ -45,7 +47,7 @@ public class Navigator
      */
     public final String getNextLabel()
     {
-        if (currentIterator.hasNext())
+        if (!reachedEnd)
         {
             advanceToNextEdge();
         }
@@ -59,13 +61,28 @@ public class Navigator
     {
         return route;
     }
+    
+    /**
+     * returns current edge
+     */
+    public final GMEdge getCurrentEdge()
+    {
+    	return currentEdge;
+    }
 
     /**
      * skips to the next instruction
      */
     private void advanceToNextEdge()
     {
-        currentEdge = currentIterator.next();
+    	if (currentIterator.hasNext())
+    	{
+    		currentEdge = currentIterator.next();
+    	}
+    	else
+    	{
+    		reachedEnd = true;
+    	}
     }
     
     /**
@@ -74,7 +91,17 @@ public class Navigator
     private String generateLabel()
     {
         GMNode endpoint = currentEdge.getEnd();
-        String label = currentEdge.getDescription() + "\n-> " + endpoint.getDescription();
+        String label;
+    	if (reachedEnd)
+    	{
+    		label = "Reached final destination " + endpoint.getDescription();
+        }
+    	else
+    	{
+    		label = "Currently going through: " + currentEdge.getDescription() + "\n" +
+            		"Will reach " + endpoint.getDescription() +
+            		" in: " + (currentEdge.getTimeDistance() - timeOnCurrentEdge) + "ms";
+    	}
         return label;
     }
 }
