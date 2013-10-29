@@ -7,7 +7,7 @@ import cz.fjfi.guideme.core.Route;
 
 
 public class NavigateAsync extends AsyncTask<String, String, Void> {
-	private final long updateTime=2000;
+	private final long updateTime=1000;
 	private long startTime;
 	private NavigateActivity context;
 	private Route route;
@@ -31,7 +31,7 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 					time += updateTime;
 					label = navigator.getCurrentLabel(System.currentTimeMillis()-startTime);
 					publishProgress(label);
-					if(time>20000){
+					if(time>60000){
 						return null;
 					}
 

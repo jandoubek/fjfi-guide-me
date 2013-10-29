@@ -117,7 +117,7 @@ public class Pathfinder
         for (GMNode n : openSet)
         {
             long currentDistance = distances.get(n);
-            if (minDistance < currentDistance)
+            if (currentDistance < minDistance)
             {
                 minDistance = currentDistance;
                 closestOpenNode = n;
