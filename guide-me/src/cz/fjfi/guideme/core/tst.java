@@ -22,19 +22,19 @@ public class tst {
 		Location loc = new Location(Utility.generateGUID(),"loc","test location", myMap);
 		myMap.addLocation(loc);
 		
-		GMNode n1 = new GMNode(guid1,new String("n1"),myMap.getLocations(),new String("desc"),myMap);
+		GMNode n1 = new GMNode(guid1,new String("n1"),myMap.getLocations(),new String("start - bod A"),myMap);
 		//System.out.print(n1.exportXML());
-		GMNode n2 = new GMNode(Utility.generateGUID(),"n2",myMap.getLocations(),"desc - ucebna",myMap);
-		GMNode n3 = new GMNode(Utility.generateGUID(),"n3",myMap.getLocations(),"desc - tam co byval Pytlicek",myMap);
-		GMNode n4 = new GMNode(guid2,"n4",myMap.getLocations(),"desc - cil",myMap);
+		GMNode n2 = new GMNode(Utility.generateGUID(),"n2",myMap.getLocations(),"zahnete do leva tam co byval Pytlicek",myMap);
+		GMNode n3 = new GMNode(Utility.generateGUID(),"n3",myMap.getLocations(),"zahnete do leva (u Palantova)",myMap);
+		GMNode n4 = new GMNode(guid2,"n4",myMap.getLocations(),"cil - bod B",myMap);
 		myMap.addNode(n1);
 		myMap.addNode(n2);
 		myMap.addNode(n3);
 		myMap.addNode(n4);
 		
-		GMEdge e1 = new GMEdge(Utility.generateGUID(),"e1", 7000, n1, n2, Direction.Northeast, "edge e1",myMap, myMap.getLocations());
-		GMEdge e2 = new GMEdge(Utility.generateGUID(),"e2", 12000, n2, n3, Direction.Southeast, "edge e2",myMap, myMap.getLocations());
-		GMEdge e3 = new GMEdge(Utility.generateGUID(),"e3", 18000, n3, n4, Direction.Southwest, "edge e3",myMap, myMap.getLocations());
+		GMEdge e1 = new GMEdge(Utility.generateGUID(),"e1", 15000, n1, n2, Direction.Northeast, "severn’ chodba KM",myMap, myMap.getLocations());
+		GMEdge e2 = new GMEdge(Utility.generateGUID(),"e2", 27000, n2, n3, Direction.Southeast, "hlavn’ chodba KM",myMap, myMap.getLocations());
+		GMEdge e3 = new GMEdge(Utility.generateGUID(),"e3", 18000, n3, n4, Direction.Southwest, "jiìn’ chotba KM",myMap, myMap.getLocations());
 		//System.out.print(e1.exportXML());
 		myMap.addEdge(e1);
 		myMap.addEdge(e2);
