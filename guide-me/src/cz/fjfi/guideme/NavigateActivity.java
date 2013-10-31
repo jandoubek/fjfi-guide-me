@@ -13,6 +13,7 @@ public class NavigateActivity extends Activity {
 	private Route route;
 	private GMMap gmMap;
 	private GMNode from, to;
+	private boolean navigateIsRunning = false;
 
 
 	@Override
@@ -39,8 +40,12 @@ public class NavigateActivity extends Activity {
 	
 	public void navigate_bt_start_OnClick(View view)
 	{
-		NavigateAsync navigateAsync = new NavigateAsync(this);
-		navigateAsync.execute("");
+		if (!navigateIsRunning)
+		{
+			NavigateAsync navigateAsync = new NavigateAsync(this);
+			navigateAsync.execute("");
+			navigateIsRunning = true;
+		}
 	}
 	
 	public Route getRoute()
