@@ -22,13 +22,7 @@ public class GMMap
 	 
     //== CLASS VARIABLES ===========================================================	
 	
-	//== INSTANCE VARIABLES ========================================================
-    private UUID guid;  
-    private String name;
-    private String authorName;
-    private String authorEmail;
-    private String description; 
-
+	private GMMapHeader header;
     private List<GMNode> mappedNodes;
     private List<GMEdge> mappedEdges;
     private List<Location> mappedLocations;
@@ -42,6 +36,7 @@ public class GMMap
     //TODO: constructor parameters and body
     public GMMap()
     {
+        header = new GMMapHeader();
     	mappedNodes = new ArrayList<GMNode>();
     	mappedEdges = new ArrayList<GMEdge>();
     	mappedLocations = new ArrayList<Location>();
@@ -56,7 +51,7 @@ public class GMMap
 	public UUID getGuid()
 	{
 		//return guid;
-		return this.guid;
+		return this.header.getGuid();
 	}	
 
     /***************************************************************************
@@ -64,7 +59,7 @@ public class GMMap
     */
     public String getName()
     {
-    	return this.name;
+    	return this.header.getName();
     }
     
     /***************************************************************************
@@ -72,7 +67,7 @@ public class GMMap
     */
     public String getAuthorName()
     {
-    	return this.authorName;
+    	return this.header.getAuthorName();
     }
     
     /***************************************************************************
@@ -80,7 +75,7 @@ public class GMMap
     */
     public String getAuthorEmail()
     {
-    	return this.authorEmail;
+    	return this.header.getAuthorEmail();
     }
     
     /***************************************************************************
@@ -88,9 +83,18 @@ public class GMMap
     */
     public String getDescription()
     {
-    	return this.description;
+    	return this.header.getDescription();
     }
     
+    /**
+     * TODO: Comment
+     * @return the header
+     */
+    public final GMMapHeader getHeader()
+    {
+        return header;
+    }
+
     /***************************************************************************
     * Getter for the list of nodes
     */ 
@@ -111,7 +115,7 @@ public class GMMap
     */
 	public void setGuid(UUID newGUID)
     {
-    	this.guid = newGUID;
+    	this.header.setGuid(newGUID);
     }
      
     /***************************************************************************
@@ -119,7 +123,7 @@ public class GMMap
     */  
     public void setName(String newName)
     {
-    	this.name = newName;
+    	this.header.setName(newName);
     }
      
     /***************************************************************************
@@ -127,7 +131,7 @@ public class GMMap
     */
     public void setAuthorName(String newAuthorName)
     {
-    	 this.authorName = newAuthorName;
+    	 this.header.setAuthorName(newAuthorName);
     }
      
     /***************************************************************************
@@ -135,7 +139,7 @@ public class GMMap
     */
     public void setAuthorEmail(String newAuthorEmail)
     {
-    	this.authorEmail = newAuthorEmail;     	
+    	this.header.setAuthorEmail(newAuthorEmail);     	
     }
      
     /***************************************************************************
@@ -143,7 +147,7 @@ public class GMMap
     */
     public void setDescription(String newDescription)
     {
-     	this.description = newDescription;    	
+     	this.header.setDescription(newDescription);    	
     }
       
      //============================================================================== 
