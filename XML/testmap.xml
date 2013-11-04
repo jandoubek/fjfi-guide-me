@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map guid="194f6283-aa8b-40c3-a0ee-c600775906fb"><name>my map</name>
+<author name="Martin" email="email@email.com" />
+<description>test map</description>
+<nodelist>
+<node guid="2fa4142d-1785-48fd-aa50-16f0c44a9630">
+<name>n1</name>
+<locs>
+<loc guid="3340ea17-729b-4769-9027-5d07abecf6c4" />
+</locs>
+<name>n1</name>
+<desc>start - bod A</desc>
+</node>
+<node guid="c5742e54-4be0-4f21-805c-449859b03029">
+<name>n2</name>
+<locs>
+<loc guid="3340ea17-729b-4769-9027-5d07abecf6c4" />
+</locs>
+<name>n2</name>
+<desc>zahnete do leva tam co byval Pytlicek</desc>
+</node>
+<node guid="a97187ad-834d-48c4-8095-812dd0fa2e6c">
+<name>n3</name>
+<locs>
+<loc guid="3340ea17-729b-4769-9027-5d07abecf6c4" />
+</locs>
+<name>n3</name>
+<desc>zahnete do leva (u Palantova)</desc>
+</node>
+<node guid="cbbf07de-dd4d-40da-b677-6a6310575a21">
+<name>n4</name>
+<locs>
+<loc guid="3340ea17-729b-4769-9027-5d07abecf6c4" />
+</locs>
+<name>n4</name>
+<desc>cil - bod B</desc>
+</node>
+</nodelist>
+<edgelist>
+<edge guid="ed1102f9-03d0-4567-a0a8-184678693b0b">
+<name>e1</name>
+<distance time="15000" />
+<start guid="2fa4142d-1785-48fd-aa50-16f0c44a9630" />
+<end guid="c5742e54-4be0-4f21-805c-449859b03029" />
+<direction>Northeast</direction>
+<desc>severn’ chodba KM</desc>
+</edge>
+<edge guid="ac882e16-26c6-49e8-ad02-67f9022e7e4d">
+<name>e2</name>
+<distance time="27000" />
+<start guid="c5742e54-4be0-4f21-805c-449859b03029" />
+<end guid="a97187ad-834d-48c4-8095-812dd0fa2e6c" />
+<direction>Southeast</direction>
+<desc>hlavn’ chodba KM</desc>
+</edge>
+<edge guid="6016e6d6-2527-4ecf-a804-ab5be75f0a93">
+<name>e3</name>
+<distance time="18000" />
+<start guid="a97187ad-834d-48c4-8095-812dd0fa2e6c" />
+<end guid="cbbf07de-dd4d-40da-b677-6a6310575a21" />
+<direction>Southwest</direction>
+<desc>jiìn’ chotba KM</desc>
+</edge>
+</edgelist>
+<locationlist>
+<location guid="3340ea17-729b-4769-9027-5d07abecf6c4">
+<name>loc</name>
+<desc>test location</desc>
+</location>
+</locationlist>
+</map>
