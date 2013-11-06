@@ -13,6 +13,7 @@ public class GMMapHeader
     private String authorName;
     private String authorEmail;
     private String description;
+    private String filename;
 
     /**
      * TODO: Comment
@@ -109,5 +110,23 @@ public class GMMapHeader
     public void setDescription(String description)
     {
         this.description = description;
+    }
+
+    /**
+     * TODO: Comment
+     * @return the filename
+     */
+    public String getFilename()
+    {
+        return filename;
+    }
+
+    /**
+     * TODO: Comment
+     * @param filename the filename to set
+     */
+    public void setFilename(String filename)
+    {
+        this.filename = filename;
     }
 }
