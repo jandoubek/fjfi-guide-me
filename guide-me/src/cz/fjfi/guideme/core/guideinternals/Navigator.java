@@ -1,4 +1,9 @@
-package cz.fjfi.guideme.core;
+package cz.fjfi.guideme.core.guideinternals;
+
+import cz.fjfi.guideme.core.GMEdge;
+import cz.fjfi.guideme.core.GMNode;
+import cz.fjfi.guideme.core.Route;
+import cz.fjfi.guideme.core.RouteIterator;
 
 /***
  * This class contains the navigation logic for the GuideMe app.

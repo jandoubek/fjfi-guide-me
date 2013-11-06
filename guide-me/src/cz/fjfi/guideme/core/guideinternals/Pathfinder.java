@@ -1,6 +1,11 @@
-package cz.fjfi.guideme.core;
+package cz.fjfi.guideme.core.guideinternals;
 
 import java.util.*;
+
+import cz.fjfi.guideme.core.GMEdge;
+import cz.fjfi.guideme.core.GMMap;
+import cz.fjfi.guideme.core.GMNode;
+import cz.fjfi.guideme.core.Route;
 
 /**
  * This class contains the pathfinding logic for the GuideMe app.

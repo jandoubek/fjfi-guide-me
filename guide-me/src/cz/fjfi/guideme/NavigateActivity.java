@@ -10,6 +10,7 @@ import java.util.UUID;
 
 public class NavigateActivity extends Activity {
 	public TextView vypis;
+	private Guide guide = Guide.getInstance();
 	private Route route;
 	private GMMap gmMap;
 	private GMNode from, to;
@@ -26,8 +27,9 @@ public class NavigateActivity extends Activity {
 		UUID guid2 = Utility.generateGUID();
 		gmMap = tst.testmap(guid1,guid2);
 		from = gmMap.getNode(guid1); // 
-		to = gmMap.getNode(guid2); // 
-		route = Pathfinder.findRouteBetween(gmMap, from, to);
+		to = gmMap.getNode(guid2); //
+		guide.setMap(gmMap);
+		route = guide.findRouteBetween(from, to);
 		
 	}
 

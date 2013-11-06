@@ -1,6 +1,7 @@
 package cz.fjfi.guideme.core;
 
 import java.util.*;
+import cz.fjfi.guideme.core.guideinternals.*;
 
 /**
  * This class contains the pathfinding and navigation interface for the GuideMe app.
@@ -11,10 +12,15 @@ public class Guide
 {
 //== CLASS CONSTANTS ===========================================================
 //== CLASS VARIABLES ===========================================================
+    
+    private static class SingletonHolder {
+        public static final Guide INSTANCE = new Guide();
+    }
+    
 //== INSTANCE VARIABLES ========================================================
 
-    private GMMap map;
-    private Navigator navigator;
+    private GMMap map = null;
+    private Navigator navigator = null;
 
 //==============================================================================
 //== CONSTRUCTORS ==============================================================
@@ -23,23 +29,60 @@ public class Guide
      * TODO: comment
      */
     //TODO: constructor parameters and body
-    public Guide(GMMap map)
+    private Guide()
+    {
+    }
+    
+//== GETTERS AND SETTERS =======================================================
+
+    /**
+     * returns the singleton instance of Guide
+     */
+    public static final Guide getInstance()
+    {
+        return SingletonHolder.INSTANCE;
+    }
+    
+    /**
+     * returns the map Guide operates on
+     */
+    public final GMMap getCurrentMap()
+    {
+        if (map == null)
+        {
+            throw new IllegalStateException("getCurrentMap called before setMap");
+        }
+        return map;
+    }
+
+    /**
+     * sets the map for Guide to operate on
+     */
+    public final void setMap(GMMap map)
     {
         this.map = map;
         this.navigator = null;
     }
     
-//== GETTERS AND SETTERS =======================================================
-//== OTHER METHODS =============================================================
-    
-    /**
-     * prepares the instance for navigation
-     * has to be called before getCurrentLabel or getNextLabel
-     */
-    public final void beginNavigation(Route route)
+    public final void setRoute(Route route)
     {
+        if (map == null)
+        {
+            throw new IllegalStateException("setRoute called before setMap");
+        }
         navigator = new Navigator(route);
     }
+    
+    public final Route getCurrentRoute()
+    {
+        if (navigator == null)
+        {
+            throw new IllegalStateException("getCurrentRoute called before setRoute");
+        }
+        return navigator.getRoute();
+    }
+    
+//== OTHER METHODS =============================================================
     
     /***************************************************************************
     * returns navigation instructions given elapsed time
@@ -48,22 +91,11 @@ public class Guide
     */
     public final String getCurrentLabel(long time)
     {
-    	if (navigator == null) {
-			throw new IllegalStateException("Guide.beginNavigation was not called before Guide.getCurrentLabel.");
+    	if (navigator == null)
+    	{
+			throw new IllegalStateException("getCurrentLabel called before setRoute");
 		}
         return navigator.getCurrentLabel(time);
-    }
-    
-    /**
-     * skips to the next navigation instruction and returns it
-     * beginNavigation has to be called before this method
-     */
-    public final String getNextLabel()
-    {
-    	if (navigator == null) {
-			throw new IllegalStateException("Guide.beginNavigation was not called before Guide.getNextLabel.");
-		}
-        return navigator.getNextLabel();
     }
 
     /***************************************************************************
@@ -71,6 +103,10 @@ public class Guide
     */
     public final Route findRouteBetween(GMNode from, GMNode to)
     {
+        if (map == null)
+        {
+            throw new IllegalStateException("findRouteBetween called before setMap");
+        }
         return Pathfinder.findRouteBetween(map, from, to);
     }
 
@@ -79,14 +115,11 @@ public class Guide
     */
     public final Route findRouteBetween(GMNode from, GMNode to, List<GMNode> through)
     {
+        if (map == null)
+        {
+            throw new IllegalStateException("findRouteBetween called before setMap");
+        }
         return Pathfinder.findRouteBetween(map, from, to, through);
     }
 
-    /**
-     * returns the map Guide operates on
-     */
-    public final GMMap getMap()
-    {
-        return map;
-    }
 }

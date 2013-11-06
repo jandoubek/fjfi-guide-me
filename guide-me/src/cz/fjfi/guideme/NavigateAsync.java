@@ -2,7 +2,7 @@ package cz.fjfi.guideme;
 
 import android.os.AsyncTask;
 import android.util.Log;
-import cz.fjfi.guideme.core.Navigator;
+import cz.fjfi.guideme.core.Guide;
 import cz.fjfi.guideme.core.Route;
 
 
@@ -11,7 +11,7 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 	private long startTime;
 	private NavigateActivity context;
 	private Route route;
-	private Navigator navigator;
+	private Guide guide = Guide.getInstance();
 
 	public NavigateAsync(NavigateActivity context){
 		this.context=context;
@@ -29,7 +29,7 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 
 					wait(updateTime);
 					time += updateTime;
-					label = navigator.getCurrentLabel(System.currentTimeMillis()-startTime);
+					label = guide.getCurrentLabel(System.currentTimeMillis()-startTime);
 					publishProgress(label);
 					if(time>60000){
 						return null;
@@ -60,7 +60,7 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 		Log.i("ASYNC", "on pre");
 		
 		route = context.getRoute();
-		navigator = new Navigator(route);
+		guide.setRoute(route);
 		super.onPreExecute();
 	}
 
