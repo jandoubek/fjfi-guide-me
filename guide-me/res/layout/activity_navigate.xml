@@ -24,4 +24,12 @@
         android:text="@string/navigate_bt_start"
         android:onClick="navigate_bt_start_OnClick" />
 
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="@string/navigate_bt_next" />
+
 </RelativeLayout>
