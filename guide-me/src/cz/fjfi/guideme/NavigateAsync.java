@@ -10,20 +10,26 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 	private final long updateTime=1000;
 	private long startTime;
 	private NavigateActivity context;
-	private Route route;
 	private Guide guide = Guide.getInstance();
 
-	public NavigateAsync(NavigateActivity context){
+	public NavigateAsync(NavigateActivity context, long timeStart){
 		this.context=context;
+		if(timeStart>0){
+
+			this.startTime=timeStart;	
+		}
+		else 
+			startTime=System.currentTimeMillis();
+
+
 	}
 
 	@Override
 	protected Void doInBackground(String... params) {
-		Log.i("ASYNC", "background");
-		startTime=System.currentTimeMillis();
+		
 		long time = 0;
 		String label;
-		while (true) {
+		while (!isCancelled()) {
 			synchronized (this) {
 				try {
 
@@ -40,27 +46,22 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 				}
 			}	
 		}
+		return null;
 	}
 
 	@Override
 	protected void onProgressUpdate(String... progress) {
-		Log.i("ASYNC", progress[0]);
 		context.vypis.setText(progress[0]);
+		context.setStartTime(startTime);
 	}
 
 	@Override
 	protected void onPostExecute(Void result) {
-		Log.i("ASYNC", "on post");
-
 		super.onPostExecute(result);
 	}
 
 	@Override
 	protected void onPreExecute() {
-		Log.i("ASYNC", "on pre");
-		
-		route = context.getRoute();
-		guide.setRoute(route);
 		super.onPreExecute();
 	}
 

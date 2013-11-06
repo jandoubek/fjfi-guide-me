@@ -15,23 +15,19 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="cz.fjfi.guideme.MenuActivity"
-            android:label="@string/app_name" 
-            android:screenOrientation="portrait">
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name="cz.fjfi.guideme.CreateMapActivity"
-            android:label="@string/title_activity_create_map"
-            android:screenOrientation="portrait" >
+            android:label="@string/title_activity_create_map" >
         </activity>
         <activity
             android:name="cz.fjfi.guideme.NavigateActivity"
-            android:label="@string/title_activity_navigate"
-            android:screenOrientation="portrait" >
+            android:label="@string/title_activity_navigate" >
         </activity>
     </application>
 
