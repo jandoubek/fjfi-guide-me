@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import cz.fjfi.guideme.core.*;
 import java.util.UUID;
@@ -51,6 +52,8 @@ public class NavigateActivity extends Activity {
 	{
 		if (!navigateIsRunning)
 		{
+			Button startBT = (Button) findViewById(R.id.navigate_bt_start);
+			startBT.setEnabled(false);
 			startAsync();
 		}
 	}
@@ -85,6 +88,8 @@ public class NavigateActivity extends Activity {
 		navigateIsRunning = savedInstanceState.getBoolean("running");
 		if(navigateIsRunning)
 		{
+			Button startBT = (Button) findViewById(R.id.navigate_bt_start);
+			startBT.setEnabled(false);
 			startAsync();
 		}
 	}
