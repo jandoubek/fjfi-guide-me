@@ -30,4 +30,4 @@ res/values/com_crashlytics_export_strings.xml
 
 
 # config file for web pages
-html/config.php
+html/db.php
