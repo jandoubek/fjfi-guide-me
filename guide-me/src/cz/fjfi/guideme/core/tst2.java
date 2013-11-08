@@ -101,15 +101,15 @@ public class tst2 {
 		//lokace 1
 		GMEdge e0201 = new GMEdge(Utility.generateGUID(),"e0201", 0, n02, n01, Direction.North, "pøíchod na WC" ,myMap, myMap.getLocations());
 		GMEdge e0302 = new GMEdge(Utility.generateGUID(),"e0302", 1600, n03, n02, Direction.North, "chodba" ,myMap, myMap.getLocations());
-		GMEdge e0402 = new GMEdge(Utility.generateGUID(),"e0402", 2000, n04, n02, Direction.NorthWest,"chodba" ,myMap, myMap.getLocations());
-		GMEdge e0403 = new GMEdge(Utility.generateGUID(),"e0403", 2000, n04, n03, Direction.SouthWest,"chodba" ,myMap, myMap.getLocations());
+		GMEdge e0402 = new GMEdge(Utility.generateGUID(),"e0402", 2000, n04, n02, Direction.Northwest,"chodba" ,myMap, myMap.getLocations());
+		GMEdge e0403 = new GMEdge(Utility.generateGUID(),"e0403", 2000, n04, n03, Direction.Southwest,"chodba" ,myMap, myMap.getLocations());
 		GMEdge e0504 = new GMEdge(Utility.generateGUID(),"e0504", 0, n05, n04, Direction.West, "odchod ze schodištì" ,myMap, myMap.getLocations());
                                                            
 		GMEdge e0703 = new GMEdge(Utility.generateGUID(),"e0703", 0, n07, n03, Direction.North, "odchod z na KM" ,myMap, myMap.getLocations());
 		//lokace 2
 		GMEdge e0806 = new GMEdge(Utility.generateGUID(),"e0806", 0, n08, n06, Direction.West, "vstup do místnosti T-1xx" ,myMap, myMap.getLocations());
 		GMEdge e0807 = new GMEdge(Utility.generateGUID(),"e0807", 700, n08, n07, Direction.Northeast,"hlavní chodba KM" ,myMap, myMap.getLocations());
-		GMEdge e0907 = new GMEdge(Utility.generateGUID(),"e0907", 700, n09, n07, Direction.NorthWest,"hlavní chodba KM" ,myMap, myMap.getLocations());
+		GMEdge e0907 = new GMEdge(Utility.generateGUID(),"e0907", 700, n09, n07, Direction.Northwest,"hlavní chodba KM" ,myMap, myMap.getLocations());
 		GMEdge e1707 = new GMEdge(Utility.generateGUID(),"e1707", 5600, n17, n07, Direction.North, "hlavní chodba KM" ,myMap, myMap.getLocations());
 		GMEdge e1907 = new GMEdge(Utility.generateGUID(),"e1907", 8900, n19, n07, Direction.North, "hlavní chodba KM" ,myMap, myMap.getLocations());
 		GMEdge e0908 = new GMEdge(Utility.generateGUID(),"e0908", 1100, n09, n08, Direction.West, "hlavní chodba KM" ,myMap, myMap.getLocations());
