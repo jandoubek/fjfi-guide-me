@@ -168,7 +168,7 @@ function f_upload() {
   $obsah = '';	
 	$max_velikost_pro_nahrani_MB = 20;
 		
-  $url = './index.php?p=10';	
+  $url = './index.php?p=9';	
   
   $obsah .= '<div style="position: relative; top: -40px;">';	
 	$obsah .= '<h3>Nahrát mapu v XML</h3>';	

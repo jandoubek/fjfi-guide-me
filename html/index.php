@@ -42,9 +42,10 @@ if (array_key_exists('p', $_GET)) {
 		case "5"    : $page = "documentation.php"  ; break;
 		case "6"    : $page = "about.php"          ; break;
 		case "7"    : $page = "policy.php"         ; break;
-		case "8"    : $page = "contact.php"        ; break;
-		case "9"    : $page = "map_admin.php"      ; break;
-		case "10"   : $page = "addmap.php"         ; break;
+		case "8"    : $page = "contact.php"        ; break;	
+		case "9"    : $page = "addmap.php"         ; break;
+		case "10"   : $page = "deletemap.php"      ; break;
+		case "11"   : $page = "modifymap.php"      ; break;
 		default     : $page = "home.php"           ; break;
 	}	
 	

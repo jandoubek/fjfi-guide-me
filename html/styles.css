@@ -387,3 +387,28 @@ input.seraditsestupne:hover {
 .errormsg {
 	color: #c00000;
 }
+
+.stahnoutmapu {
+	padding: 0px;
+	margin: 0px;	
+}
+
+.stahnoutmapu  input {
+  font-family: Verdana, Arial, Helvetica, Sans-serif;
+	border: 0px;
+	background: #ffeeaa;
+	color: navy;
+	padding: 0px;
+	margin: 0px;	
+	font-weight: bold;
+	font-size: 22px;
+	position: relative;
+	left: -11px;
+	top: 3px;
+	
+}
+
+.stahnoutmapu input:hover {
+	text-decoration: none;
+	color: #66ccff;
+}

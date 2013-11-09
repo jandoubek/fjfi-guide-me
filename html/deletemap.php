@@ -3,7 +3,7 @@
 
   // priprava na formular s potvrzenim smazani souboru
   if ( (array_key_exists('odeslo',$_POST)) && (array_key_exists('smazatpolozku',$_POST)) && ($_POST['odeslo']==1) ) {
-		$nazev_s = $_POST['nazev'];
+		$nazev_s = htmlspecialchars($_POST['nazev']);
 		
 	}
 	else {
@@ -37,19 +37,66 @@
 	}
 	
 	
+	// ulozeni provedenych zmen v atributech mapy
+	if ( (array_key_exists('odeslo',$_POST)) && (array_key_exists('provedzmenu',$_POST)) && ($_POST['odeslo']==1) ) {
+		
+		$guid = htmlspecialchars($_POST['RefGuid']);
+		$name = htmlspecialchars($_POST['NewName']);
+		$description = htmlspecialchars($_POST['NewDescription']);
+		$gpscoords = htmlspecialchars($_POST['NewGpsCoords']);
+
+		$zpr = '';
+		
+		if (empty($name)) {
+			$zpr .= 'Je potřeba zadat název mapy.<br />';
+		}
+		
+		if (empty($gpscoords)) {
+			$zpr .= 'Je potřeba zadat GPS souřadnice objektu.<br />';
+		}
+
+		if (strlen($name)>50) {
+			$zpr .= 'Název mapy je příliš dlouhý.<br />';
+		}		
+
+		if (strlen($gpscoords)>23) {
+			$zpr .= 'Řetězev udávající GPS souřadnice je příliš dlouhý.<br />';
+		}		
+		
+		if (strlen($description)>2000) {
+			$zpr .= 'Detailní popis je příliš dlouhý. Je povoleno pouze 2000 znaků.<br />';
+		}
+		
+		if (empty($zpr)) {
+		
+		$sql = "UPDATE `GMMap` SET ";	
+		$sql.= "`Name` = '" . $name . "', ";		
+		$sql.= "`GpsCoords` = '" . $gpscoords . "', ";	
+		$sql.= "`Description` = '" . $description . "' " ;	
+		$sql.= "WHERE `Guid` =  '" . $guid . "' ";
+	
+		db_func($sql);
+		
+		} else {
+		
+			echo '<span style="position: relative; left: 300px; top: 15px;" class="errormsg">'  . $zpr . '</span>';
+	
+		}
+		
+	}
+	
 
 // STAZENI
 // formular pro stazeni polozky
 function f_stahnout_polozku($nazev) {
 
   $obsah = '';
-	$url = 'index.php?p=9';
+	$url = 'index.php?p=10';
 
   $obsah .= '<form method="post" action="' . $url . '" accept-charset="UTF-8 iso-8859-2 windows-1250">';
   $obsah .= '<input type="hidden" name="nazev" value="' . $nazev . '" />';
   $obsah .= '<input type="hidden" name="odeslo" value="1" />';
   $obsah .= '<input type="submit" name="stahnoutpolozku" value="" class="stahnoutpolozku" />';
-
   $obsah .= '</form>';
 
   return $obsah;
@@ -57,16 +104,18 @@ function f_stahnout_polozku($nazev) {
 }
 
 // formular pro zmenu nazvu polozky
-function f_zmenit_polozku($nazev) {
+function f_zmenit_polozku($soubor,$nazev,$gps) {
 
   $obsah = '';
+	
 	$url = './index.php?p=11';
 
   $obsah .= '<form method="post" action="' . $url . '" accept-charset="UTF-8 iso-8859-2 windows-1250">';
-  $obsah .= '<input type="hidden" name="nazev" value="' . $nazev . '" />';
-  $obsah .= '<input type="hidden" name="odeslo" value="1" />';
-  $obsah .= '<input type="submit" name="zmenitpolozku" value="A_" class="tlacitkosmazat" />';
-
+  $obsah .= '<input type="hidden" name="soubor" value="' . $soubor . '" />';
+	$obsah .= '<input type="hidden" name="nazev" value="' . $nazev . '" />';
+	$obsah .= '<input type="hidden" name="gps" value="' . $gps . '" />';
+  $obsah .= '<input type="hidden" name="odeslo" value="1" />';  
+	$obsah .= '<input type="submit" name="zmenitpol" value="A_" class="tlacitkosmazat" />';
   $obsah .= '</form>';
 
   return $obsah;
@@ -77,13 +126,12 @@ function f_zmenit_polozku($nazev) {
 function f_smazat_polozku($nazev) {
 
   $obsah = '';
-  $url = './index.php?p=9';	
+  $url = './index.php?p=10';	
 
 	$obsah .= '<form method="post" action="' . $url . '" accept-charset="UTF-8 iso-8859-2 windows-1250">';
 	$obsah .= '<input type="hidden" name="nazev" value="' . $nazev . '" />';
 	$obsah .= '<input type="hidden" name="odeslo" value="1" />';
 	$obsah .= '<input type="submit" name="smazatpolozku" value="X" class="tlacitkosmazat" />';
-
 	$obsah .= '</form>';
 	
   return $obsah;
@@ -95,12 +143,13 @@ function f_smazat_polozku($nazev) {
 function f_potvrdit_smazani_polozky($nazev) {
 
   $obsah = '';
-  $url = './index.php?p=9';	
+  $url = './index.php?p=10';	
 	
 	$obsah .= '<form method="post" action="' . $url . '" accept-charset="UTF-8 iso-8859-2 windows-1250">';
 	$obsah .= '<input type="hidden" name="nazev" value="' . $nazev . '" />';
 	$obsah .= '<input type="hidden" name="odeslo" value="1" />';
-	$obsah .= '<input type="submit" name="potvrditsmazani" value="POTVRDIT SMAZÁNÍ" class="tlacitkosmazat" />';
+	$obsah .= '<input type="submit" name="potvrditsmazani" value="POTVRDIT SMAZÁNÍ" class="tlacitkosmazat" />';	
+	$obsah .= '</form>';
 
   return $obsah;
 
@@ -114,13 +163,11 @@ function f_potvrdit_smazani_polozky($nazev) {
 function f_serad_dle_nazvu_vzestupne() {
 
   $obsah = '';
-  $url = './index.php?p=9';
+  $url = './index.php?p=10';
 	
   $obsah .= '<form method="post" action="' . $url . '" accept-charset="UTF-8 iso-8859-2 windows-1250">';
-
   $obsah .= '<input type="hidden" name="odeslo" value="1" />';
   $obsah .= '<input type="submit" name="seraddlenazvuvzestupne" value="" class="seraditvzestupne" />';
-
   $obsah .= '</form>';
 
   return $obsah;
@@ -132,13 +179,11 @@ function f_serad_dle_nazvu_vzestupne() {
 function f_serad_dle_nazvu_sestupne() {
 
   $obsah = '';
-  $url = './index.php?p=9';
+  $url = './index.php?p=10';
 
   $obsah .= '<form method="post" action="' . $url . '" accept-charset="UTF-8 iso-8859-2 windows-1250">';
-
   $obsah .= '<input type="hidden" name="odeslo" value="1" />';
   $obsah .= '<input type="submit" name="seraddlenazvusestupne" value="" class="seraditsestupne" />';
-
   $obsah .= '</form>';
 
   return $obsah;
@@ -150,12 +195,11 @@ function f_serad_dle_nazvu_sestupne() {
 function f_serad_dle_data_vytvoreni_vzestupne() {
 
   $obsah = '';
-  $url = './index.php?p=9';
+  $url = './index.php?p=10';
 
   $obsah .= '<form method="post" action="' . $url . '" accept-charset="UTF-8 iso-8859-2 windows-1250">';
   $obsah .= '<input type="hidden" name="odeslo" value="1" />';
   $obsah .= '<input type="submit" name="seraddledatavytvorenivzestupne" value="" class="seraditvzestupne" />';
-
   $obsah .= '</form>';
 
   return $obsah;
@@ -167,12 +211,11 @@ function f_serad_dle_data_vytvoreni_vzestupne() {
 function f_serad_dle_data_vytvoreni_sestupne() {
 
   $obsah = '';
-  $url = './index.php?p=9';
+  $url = './index.php?p=10';
 	
   $obsah .= '<form method="post" action="' . $url . '" accept-charset="UTF-8 iso-8859-2 windows-1250">';
   $obsah .= '<input type="hidden" name="odeslo" value="1" />';
   $obsah .= '<input type="submit" name="seraddledatavytvorenisestupne" value="" class="seraditsestupne" />';
-
   $obsah .= '</form>';
 
   return $obsah;
@@ -184,12 +227,11 @@ function f_serad_dle_data_vytvoreni_sestupne() {
 function f_serad_dle_data_zmeny_vzestupne() {
 
   $obsah = '';
-  $url = './index.php?p=9';
+  $url = './index.php?p=10';
 
   $obsah .= '<form method="post" action="' . $url . '" accept-charset="UTF-8 iso-8859-2 windows-1250">';
   $obsah .= '<input type="hidden" name="odeslo" value="1" />';
   $obsah .= '<input type="submit" name="seraddledatazmenyvzestupne" value="" class="seraditvzestupne" />';
-
   $obsah .= '</form>';
 
   return $obsah;
@@ -201,12 +243,11 @@ function f_serad_dle_data_zmeny_vzestupne() {
 function f_serad_dle_data_zmeny_sestupne() {
 
   $obsah = '';
-  $url = './index.php?p=9';
+  $url = './index.php?p=10';
 
   $obsah .= '<form method="post" action="' . $url . '" accept-charset="UTF-8 iso-8859-2 windows-1250">';
   $obsah .= '<input type="hidden" name="odeslo" value="1" />';
   $obsah .= '<input type="submit" name="seraddledatazmenysestupne" value="" class="seraditsestupne" />';
-
   $obsah .= '</form>';
 
   return $obsah;
@@ -227,10 +268,10 @@ function f_display($nazev_s) {
   $obsah .=  '<tr>';	
 	$obsah .=  '<th style="margin: 0px; padding: 1px; border: 1px solid black; background-color: #ffcc00; font-size: 10px; text-align: left; min-width: 360px; max-width: 360px; width: 360px;"><table class="tabprochazeni"><tr><td style="font-weight: bold;">&nbsp;Název mapy&nbsp;</td><td>' . f_serad_dle_nazvu_vzestupne() . '</td><td>' . f_serad_dle_nazvu_sestupne() . '</td></tr></table></th>';    
 	$obsah .=  '<th style="margin: 0px; padding: 2px; border: 1px solid black; background-color: #ffcc00; font-size: 10px; min-width: 152px; text-align: left; padding-left: 6px;">Soubor</th>';    
-	$obsah .=  '<th style="margin: 0px; padding: 2px; border: 1px solid black; background-color: #ffcc00; font-size: 10px; min-width: 130px; text-align: left; padding-left: 6px;">GPS souřadnice</th>';    
+	$obsah .=  '<th style="margin: 0px; padding: 2px; border: 1px solid black; background-color: #ffcc00; font-size: 10px; min-width: 138px; text-align: left; padding-left: 6px;">GPS souřadnice</th>';    
   $obsah .=  '<th style="margin: 0px; padding: 1px; border: 1px solid black; background-color: #ffcc00; font-size: 10px; min-width: 140px; padding-left: 6px;"><table class="tabprochazeni"><tr><td style="font-weight: bold;">Vytvořeno&nbsp;</td><td>' . f_serad_dle_data_vytvoreni_vzestupne() . '</td><td>' . f_serad_dle_data_vytvoreni_sestupne() . '</td></tr></table></th>';  	
 	$obsah .=  '<th style="margin: 0px; padding: 1px; border: 1px solid black; background-color: #ffcc00; font-size: 10px; min-width: 140px; padding-left: 6px;"><table class="tabprochazeni"><tr><td style="font-weight: bold;">Zmeněno&nbsp;</td><td>' . f_serad_dle_data_zmeny_vzestupne() . '</td><td>' . f_serad_dle_data_zmeny_sestupne() . '</td></tr></table></th>';  
-  $obsah .=  '<th style="margin: 0px; padding: 1px; border: 1px solid black; background-color: #ffcc00; font-size: 10px; min-width: 85px;">Velikost</th>';    	  
+  $obsah .=  '<th style="margin: 0px; padding: 1px; border: 1px solid black; background-color: #ffcc00; font-size: 10px; min-width: 80px;">Velikost</th>';    	  
   $obsah .=  '<th style="margin: 0px; padding: 2px; border: 0px solid black; font-size: 10px;" colspan="3"></th>';
   $obsah .=  '</tr>';
 	
@@ -408,9 +449,10 @@ function f_display($nazev_s) {
 			$vypis_soub .= '<td style="margin: 0px; padding: 2px; border: 1px solid black; font-size: 10px; vertical-align: center;">' . $datum_vytvoreni . '</td>';      
       $vypis_soub .= '<td style="margin: 0px; padding: 2px; border: 1px solid black; font-size: 10px; vertical-align: center;">' . $zmena . '</td>';      
       $vypis_soub .= '<td style="margin: 0px; padding: 2px; border: 1px solid black; font-size: 10px; vertical-align: center;">' . $velikost . '</td>';
-      $vypis_soub .= '<td style="margin: 0px; padding: 1px; border: 0px solid black; font-size: 10px; vertical-align: center; padding: 0px 3px 0px 7px;">' . f_stahnout_polozku($soubor) .  '</td>';
-      $vypis_soub .= '<td style="margin: 0px; padding: 1px; border: 0px solid black; font-size: 10px; vertical-align: center; padding: 0px 1px 0px 0px;">' . f_zmenit_polozku($soubor) .  '</td>';
-						
+			
+			$vypis_soub .= '<td style="margin: 0px; padding: 1px; border: 0px solid black; font-size: 10px; vertical-align: center; padding: 0px 3px 0px 7px;">' . f_stahnout_polozku($soubor) .  '</td>';      
+			$vypis_soub .= '<td style="margin: 0px; padding: 1px; border: 0px solid black; font-size: 10px; vertical-align: center; padding: 0px 1px 0px 0px;">' . f_zmenit_polozku($soubor,$nazev,$gps) .  '</td>';
+     					
 			if ( (isset($nazev_s)) && ($nazev_s==$soubor) ) {
 				$vypis_soub .= '<td style="margin: 0px; padding: 1px; border: 0px solid black; font-size: 10px; vertical-align: center; padding: 0px 1px 0px 0px; text-align: left;">' . f_potvrdit_smazani_polozky($soubor). '</td>';
 			} else {
@@ -441,9 +483,7 @@ function f_display($nazev_s) {
 	
 } 
 
-
 echo f_display($nazev_s);
-
 
 
 ?>
