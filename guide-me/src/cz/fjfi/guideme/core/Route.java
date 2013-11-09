@@ -16,7 +16,7 @@ public class Route
 //== INSTANCE VARIABLES ========================================================
 
     private List<GMEdge> detailedRoute;
-    private List<RouteEdge> route = null;
+    private List<RouteEdge> route = new ArrayList<RouteEdge>();
     private final GMNode start, end;
     
 //==============================================================================
