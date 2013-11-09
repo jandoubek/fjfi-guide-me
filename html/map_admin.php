@@ -4,6 +4,7 @@
   // priprava na formular s potvrzenim smazani souboru
   if ( (array_key_exists('odeslo',$_POST)) && (array_key_exists('smazatpolozku',$_POST)) && ($_POST['odeslo']==1) ) {
 		$nazev_s = $_POST['nazev'];
+		
 	}
 	else {
 	  $nazev_s = null;
@@ -13,168 +14,36 @@
 	// smazat soubor
 	if ( (array_key_exists('odeslo',$_POST)) && (array_key_exists('potvrditsmazani',$_POST)) && ($_POST['odeslo']==1) ) {
 	
-		$soubor_smazat = $_POST['nazev'];
-				
-		unlink('./maps/' . $soubor_smazat);
+		$soubor_smazat = htmlspecialchars($_POST['nazev']);			
+	
+		$nazev_cele = explode('.',$soubor_smazat);
+		$naz = $nazev_cele[0];
+			
+		$sql = "DELETE FROM `GMMap` WHERE `GMMap`.`Guid` = '" . $naz . "'";	
+		db_func($sql);
+	
+		$path = './maps/' . $soubor_smazat;
+		unlink($path);
 				
 	}
 	
-	
-	
-//
-// osetreni odeslani souboru
-//
-if ( (array_key_exists('odeslo',$_POST)) && (array_key_exists('nahratsoubor',$_POST)) && ($_POST['odeslo']==1) ) {
 
-   $chyby_uploadu = array(
-     1 => 'Soubor překročil velikost <code>upload_max_filesize</code>.',
-     2 => 'Soubor překročil velikost <code>MAX_FILE_SIZE</code> definovanou v HTML formuláři.',
-     3 => 'Soubor byl na server přenesen jen částečně.',
-     4 => 'Nebyl uploadován žádný soubor.',
-     6 => 'Chybí adresář pro dočasné soubory.',
-     7 => 'Chyba zápisu souboru na disk.',
-     8 => 'Upload souboru byl zastaven kvůli nepovolené příponě.'
-   );
-
-   $text = '';
-		
-   $ch           = $_FILES['soub']['error'];                    // chyba prenosu
-   $jmeno        = $_FILES['soub']['tmp_name'];                 // soubor na serveru
-   $jmeno_puv    = $_FILES['soub']['name'];                     // puvodni jmeno
-   $typ          = $_FILES['soub']['type'];                     // MIME typ    
-   $jmeno      = prevod_do_utf8(bezpecny_nazev_souboru($jmeno));
-   $jmeno_puv  = prevod_do_utf8(bezpecny_nazev_souboru($jmeno_puv));
-			
-   if (!empty($jmeno)) {
-   // byl-li soubor zadan
-				
-		if ($ch != 0) {
-		// nastala chyba pri prenosu
-
-      $text .= 'Soubor "<code>' .  $jmeno_puv . '"</code> se nepodařilo přenést na server' . $chyby_uploadu[$ch];
-			
-    } else {
-    // nenastala zadna chyba pri prenosu do docasneho adresare
-
-		$new_dest = "./maps/".$_FILES['soub']['name'];		
-		
-      // presun z docasneho uloziste do trvaleho
-      if ( @move_uploaded_file($_FILES['soub']['tmp_name'],$new_dest) ) {
-				$text .= 'Soubor <code>' .  $jmeno_puv . '</code> byl úspěšně uložen';				
-      } else {
-        $text .= 'Během ukládání souboru <code>' .  $jmeno_puv . '</code> došlo k chybě';		  			
-      }  // konec testu chyby pri presunu
-			
-    }  // konec testu chyby pri prenosu
-		
-  } // konec testu, jestli neni jmeno prazdne
-	
-	echo '<span style="position: relative; left: 380px;">'  . $text . '</span>';
-	
-  } // konec osetreni formulare na odeslani souboru
-	
-	if (isset($new_dest)) {
-		chmod($new_dest, 0777);
-	}
-
-	
-	
-  //
   // osetreni formulare na stazeni a ulozeni polozky
-  //
   if ( (array_key_exists('odeslo',$_POST)) && (array_key_exists('stahnoutpolozku',$_POST)) && ($_POST['odeslo']==1) ) { 
   
     $nazev = osetrivstup($_POST['nazev']);
-		$cesta_nazev = './maps/' . $nazev;		
-		$velikost    = filesize($cesta_nazev);
-    $cesta_pole  = pathinfo($cesta_nazev);
-    $pripona     = strtolower($cesta_pole["extension"]);
-
-    if(ini_get('zlib.output_compression')) {ini_set('zlib.output_compression', 'Off');}  // nektere prohlizece vyzaduji 
-
-        header("Pragma: public");
-        header("Expires: 0");
-        header("Cache-control: private", false);                                        // urcite prohlizece vyzaduji
-        header("Cache-Control: no-cache, must-revalidate, post-check=0, pre-check=0");  // HTTP/1.1
-        header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");                               // datum v minulosti (nekdy zakaze cacheovani)
-        header("Content-Description: File Transfer");
-        header("Content-Disposition: attachment; filename=\"".$cesta_pole["basename"]."\"");      
-        header("Content-Type: text/xml");
-        header('Content-Transfer-Encoding: binary');                      
-        header("Content-Length: $velikost");
-  
-     ob_clean();
-     flush();
-
-      readfile($cesta_nazev);
-     exit;
- 
+		download_map($nazev);
+		
 	}
 	
 	
-//
-// FUNKCE PRO VYPSANI OBSAHU ADRESARE DO POLE
-//
-function zjisti_obsah_adresare($adresar='') {
 
-  if (trim($adresar)=='') {return;}
-  if (!is_readable($adresar)) {return;}
-
-  $vypis = '';
-  $adr = new DirectoryIterator($adresar);
-  $i = 0;
-  
-  while ($adr->valid()) {
-  
-    $polozka = $adr->current();
-    $typ = $polozka->getType();
-        
-    if (!in_array($polozka->__toString(), array('.','..'))) {      // . a .. ignorujeme
-
-		  /*
-      if ($typ=="dir") {   // jedna se o adresar
-
-        $vypis[$i]['typ'] = 'adr';
-        $vypis[$i]['nazev'] = prevod_do_utf8($polozka->__toString());
-        $vypis[$i]['datum_vytvoreni'] = date('d. m. Y H:i:s', $polozka->getMTime()); 
-        $vypis[$i]['velikost_b'] = 0;
-        
-        $retezec = $polozka->__toString();
-      }
-			*/
-
-      if ($typ=="file") {  // jedna se o soubor
-
-        $vypis[$i]['typ'] = 'soub';
-        $vypis[$i]['nazev'] = prevod_do_utf8($polozka->__toString());
-        $vypis[$i]['datum_vytvoreni'] = date('d. m. Y H:i:s', $polozka->getMTime());
-        $vypis[$i]['velikost_b'] = $polozka->getSize();
-
-        $retezec = $polozka->__toString();
-        
-      }
-
-      $i++;              // dalsi index
-
-    } // konec testu na . a .. 
-
-    $adr->next();        // dalsi prvek   
-    
-  } // konec cyklu while 
-
-  return $vypis;
-
-} 
-
-
-// STAZENI, ZMENA NAZVU
-
+// STAZENI
 // formular pro stazeni polozky
 function f_stahnout_polozku($nazev) {
 
   $obsah = '';
 	$url = 'index.php?p=9';
-//  $url = 'index.php?a=' . urlencode($GLOBALS['akce']);
 
   $obsah .= '<form method="post" action="' . $url . '" accept-charset="UTF-8 iso-8859-2 windows-1250">';
   $obsah .= '<input type="hidden" name="nazev" value="' . $nazev . '" />';
@@ -188,16 +57,15 @@ function f_stahnout_polozku($nazev) {
 }
 
 // formular pro zmenu nazvu polozky
-function f_prejmenovat_polozku($nazev) {
+function f_zmenit_polozku($nazev) {
 
   $obsah = '';
-	  $url = './index.php?p=9';
-//  $url = 'index.php?a=zmenitnazevpolozky';
+	$url = './index.php?p=11';
 
   $obsah .= '<form method="post" action="' . $url . '" accept-charset="UTF-8 iso-8859-2 windows-1250">';
   $obsah .= '<input type="hidden" name="nazev" value="' . $nazev . '" />';
   $obsah .= '<input type="hidden" name="odeslo" value="1" />';
-  $obsah .= '<input type="submit" name="prejmenovatpolozku" value="A_" class="tlacitkosmazat" />';
+  $obsah .= '<input type="submit" name="zmenitpolozku" value="A_" class="tlacitkosmazat" />';
 
   $obsah .= '</form>';
 
@@ -241,14 +109,13 @@ function f_potvrdit_smazani_polozky($nazev) {
 
 
 // SERAZENI
+
 // formular
-function f_serad_dle_popisu_vzestupne() {
+function f_serad_dle_nazvu_vzestupne() {
 
   $obsah = '';
   $url = './index.php?p=9';
-  //$url = 'index.php?a=' . urlencode($GLOBALS['akce']);
 	
-
   $obsah .= '<form method="post" action="' . $url . '" accept-charset="UTF-8 iso-8859-2 windows-1250">';
 
   $obsah .= '<input type="hidden" name="odeslo" value="1" />';
@@ -262,13 +129,13 @@ function f_serad_dle_popisu_vzestupne() {
 
 
 // formular
-function f_serad_dle_popisu_sestupne() {
+function f_serad_dle_nazvu_sestupne() {
 
   $obsah = '';
   $url = './index.php?p=9';
-  //$url = 'index.php?a=' . urlencode($GLOBALS['akce']);
-	
+
   $obsah .= '<form method="post" action="' . $url . '" accept-charset="UTF-8 iso-8859-2 windows-1250">';
+
   $obsah .= '<input type="hidden" name="odeslo" value="1" />';
   $obsah .= '<input type="submit" name="seraddlenazvusestupne" value="" class="seraditsestupne" />';
 
@@ -284,8 +151,6 @@ function f_serad_dle_data_vytvoreni_vzestupne() {
 
   $obsah = '';
   $url = './index.php?p=9';
-  //$url = 'index.php?a=' . urlencode($GLOBALS['akce']);
-
 
   $obsah .= '<form method="post" action="' . $url . '" accept-charset="UTF-8 iso-8859-2 windows-1250">';
   $obsah .= '<input type="hidden" name="odeslo" value="1" />';
@@ -303,7 +168,6 @@ function f_serad_dle_data_vytvoreni_sestupne() {
 
   $obsah = '';
   $url = './index.php?p=9';
-  //$url = 'index.php?a=' . urlencode($GLOBALS['akce']);
 	
   $obsah .= '<form method="post" action="' . $url . '" accept-charset="UTF-8 iso-8859-2 windows-1250">';
   $obsah .= '<input type="hidden" name="odeslo" value="1" />';
@@ -316,31 +180,38 @@ function f_serad_dle_data_vytvoreni_sestupne() {
 }
 
 
-// FORMULAR pro upload
-function f_upload() {
+// formular
+function f_serad_dle_data_zmeny_vzestupne() {
 
-  $obsah = '';	
-	$max_velikost_pro_nahrani_MB = 20;
-		
+  $obsah = '';
   $url = './index.php?p=9';
-	//$url = './index.php?a=9?action=' . urlencode($GLOBALS['akce']);
-  
-  $obsah .= '<div style="position: relative; top: -40px;">';	
-	$obsah .= '<h3>Nahrát mapu v XML</h3>';	
-  $obsah .= '<form method="post" action="' . $url . '" enctype="multipart/form-data">';
 
-  $obsah .= '<p><input type="file" name="soub" id="soub" />&nbsp;';
-  $obsah .= '<input type="hidden" name="MAX_FILE_SIZE" value="' . $max_velikost_pro_nahrani_MB . '" />';
+  $obsah .= '<form method="post" action="' . $url . '" accept-charset="UTF-8 iso-8859-2 windows-1250">';
   $obsah .= '<input type="hidden" name="odeslo" value="1" />';
+  $obsah .= '<input type="submit" name="seraddledatazmenyvzestupne" value="" class="seraditvzestupne" />';
 
-  $obsah .= '<br /><br /><input type="submit" name="nahratsoubor" value="NAHRAJ MAPU" /></p>';
   $obsah .= '</form>';
-  $obsah .= '</div>';
-	
-	return $obsah;
 
-}   
+  return $obsah;
 
+}
+
+
+// formular
+function f_serad_dle_data_zmeny_sestupne() {
+
+  $obsah = '';
+  $url = './index.php?p=9';
+
+  $obsah .= '<form method="post" action="' . $url . '" accept-charset="UTF-8 iso-8859-2 windows-1250">';
+  $obsah .= '<input type="hidden" name="odeslo" value="1" />';
+  $obsah .= '<input type="submit" name="seraddledatazmenysestupne" value="" class="seraditsestupne" />';
+
+  $obsah .= '</form>';
+
+  return $obsah;
+
+}
 
 // VYPIS OBSAHU
 function f_display($nazev_s) {
@@ -353,11 +224,12 @@ function f_display($nazev_s) {
 	
   $obsah .=  '<table style="border-collapse: collapse; font-size: 10px; text-align: center;">';
 
-  $obsah .=  '<tr>';
-	$obsah .=  '<th style="margin: 0px; padding: 2px; border: 1px solid black; background-color: #ffcc00; font-size: 10px; min-width: 200px; text-align: left; padding-left: 6px;">Soubor</th>';    
-	$obsah .=  '<th style="margin: 0px; padding: 1px; border: 1px solid black; background-color: #ffcc00; font-size: 10px; text-align: left; min-width: 360px;"><table class="tabprochazeni"><tr><td style="font-weight: bold;">&nbsp;Popis mapy&nbsp;</td><td>' . f_serad_dle_popisu_vzestupne() . '</td><td>' . f_serad_dle_popisu_sestupne() . '</td></tr></table></th>';    
-  $obsah .=  '<th style="margin: 0px; padding: 1px; border: 1px solid black; background-color: #ffcc00; font-size: 10px; min-width: 145px; padding-left: 6px;"><table class="tabprochazeni"><tr><td style="font-weight: bold;">Vytvořeno&nbsp;</td><td>' . f_serad_dle_data_vytvoreni_vzestupne() . '</td><td>' . f_serad_dle_data_vytvoreni_sestupne() . '</td></tr></table></th>';  
-	$obsah .=  '<th style="margin: 0px; padding: 1px; border: 1px solid black; background-color: #ffcc00; font-size: 10px; min-width: 145px;">Změněno</th>'; 
+  $obsah .=  '<tr>';	
+	$obsah .=  '<th style="margin: 0px; padding: 1px; border: 1px solid black; background-color: #ffcc00; font-size: 10px; text-align: left; min-width: 360px; max-width: 360px; width: 360px;"><table class="tabprochazeni"><tr><td style="font-weight: bold;">&nbsp;Název mapy&nbsp;</td><td>' . f_serad_dle_nazvu_vzestupne() . '</td><td>' . f_serad_dle_nazvu_sestupne() . '</td></tr></table></th>';    
+	$obsah .=  '<th style="margin: 0px; padding: 2px; border: 1px solid black; background-color: #ffcc00; font-size: 10px; min-width: 152px; text-align: left; padding-left: 6px;">Soubor</th>';    
+	$obsah .=  '<th style="margin: 0px; padding: 2px; border: 1px solid black; background-color: #ffcc00; font-size: 10px; min-width: 130px; text-align: left; padding-left: 6px;">GPS souřadnice</th>';    
+  $obsah .=  '<th style="margin: 0px; padding: 1px; border: 1px solid black; background-color: #ffcc00; font-size: 10px; min-width: 140px; padding-left: 6px;"><table class="tabprochazeni"><tr><td style="font-weight: bold;">Vytvořeno&nbsp;</td><td>' . f_serad_dle_data_vytvoreni_vzestupne() . '</td><td>' . f_serad_dle_data_vytvoreni_sestupne() . '</td></tr></table></th>';  	
+	$obsah .=  '<th style="margin: 0px; padding: 1px; border: 1px solid black; background-color: #ffcc00; font-size: 10px; min-width: 140px; padding-left: 6px;"><table class="tabprochazeni"><tr><td style="font-weight: bold;">Zmeněno&nbsp;</td><td>' . f_serad_dle_data_zmeny_vzestupne() . '</td><td>' . f_serad_dle_data_zmeny_sestupne() . '</td></tr></table></th>';  
   $obsah .=  '<th style="margin: 0px; padding: 1px; border: 1px solid black; background-color: #ffcc00; font-size: 10px; min-width: 85px;">Velikost</th>';    	  
   $obsah .=  '<th style="margin: 0px; padding: 2px; border: 0px solid black; font-size: 10px;" colspan="3"></th>';
   $obsah .=  '</tr>';
@@ -367,68 +239,201 @@ function f_display($nazev_s) {
 
 	
     // RAZENI POLI
-    if ( (array_key_exists('odeslo',$_POST)) && (array_key_exists('seraddlepopisuvzestupne',$_POST)) && ($_POST['odeslo']==1) ) {
-      //usort($obsahadr, "sort_popis_vzestup");
+		$jine_razeni = 1;
+		
+		if ( (array_key_exists('odeslo',$_POST)) && (array_key_exists('seraddlenazvusestupne',$_POST)) && ($_POST['odeslo']==1) ) {
+			$jine_razeni = 2;
     }
 
-    if ( (array_key_exists('odeslo',$_POST)) && (array_key_exists('seraddlepopisusestupne',$_POST)) && ($_POST['odeslo']==1) ) {
-      //usort($obsahadr, "sort_popis_sestup");
-    }
-	
 	  if ( (array_key_exists('odeslo',$_POST)) && (array_key_exists('seraddledatavytvorenivzestupne',$_POST)) && ($_POST['odeslo']==1) ) {
-      //usort($obsahadr, "sort_datum_vytvoreni_vzestup");
+			$jine_razeni = 3;
+      
     }
 
     if ( (array_key_exists('odeslo',$_POST)) && (array_key_exists('seraddledatavytvorenisestupne',$_POST)) && ($_POST['odeslo']==1) ) {		
-      //usort($obsahadr, "sort_datum_vytvoreni_sestup");
+			$jine_razeni = 4;
+ 
     }
 		
-	
-   // vypisovani souboru z adresare	
+	  if ( (array_key_exists('odeslo',$_POST)) && (array_key_exists('seraddledatazmenyvzestupne',$_POST)) && ($_POST['odeslo']==1) ) {
+			$jine_razeni = 5;
+      
+    }
+
+    if ( (array_key_exists('odeslo',$_POST)) && (array_key_exists('seraddledatazmenysestupne',$_POST)) && ($_POST['odeslo']==1) ) {		
+			$jine_razeni = 6;
+      
+    }
+		
+		
+		// vypisovani souboru z adresare	
 		$vypis_soub = '';
+		
+		$vypis = array();
+		$j = 0;
  
     for ($i=0; $i < sizeof($obsahadr); $i++) {
 		
-      $nazev = $obsahadr[$i]['nazev'];
-			$nazev_cesta = './maps/' . $nazev;
-			$datum_vytvoreni = $obsahadr[$i]['datum_vytvoreni'];
-      $zmena = strftime("%d. %m. %Y %H:%M:%S", filemtime($nazev_cesta));			
-			$velikost = velikost_vypis($obsahadr[$i]['velikost_b']);
+		  $nazev = $obsahadr[$i]['nazev'];
+			$nazev_cele = explode('.',$nazev);
+			$naz = $nazev_cele[0];					
+		
+			// porovnej realne nahrane soubory s databazi 
+			$maps_db = db_select('SELECT * from GMMap');
+
+			foreach ($maps_db as $key => $val) {
 			
-			$vypis_soub .= '<tr class="tab">';
-      $vypis_soub .= '<td style="margin: 0px; padding: 2px; border: 1px solid black; font-size: 10px; text-align: left; vertical-align: center;">&nbsp;' . $nazev . '</td>';
-      $vypis_soub .= '<td style="margin: 0px; padding: 2px; border: 1px solid black; font-size: 10px; text-align: left; vertical-align: center; padding-left: 6px;">' . 'Popis' . '</td>';
+				$guid_db = $val['Guid'];
+				
+				// shoda
+				if ($guid_db==$naz) {
+								
+					$j++;			
+					$nazev_cesta = './maps/' . $nazev;
+					$datum_vytvoreni = $obsahadr[$i]['datum_vytvoreni'];
+					$zmena = strftime("%d. %m. %Y %H:%M:%S", filemtime($nazev_cesta));	
+					$velikost = velikost_vypis($obsahadr[$i]['velikost_b']);			
+				
+					$name = $val['Name'];
+					$gpscoords = $val['GpsCoords'];
+
+					$k = $j-1;
+          $vypis[$k]['Name'] = $name;
+					$vypis[$k]['File'] = $nazev;
+					$vypis[$k]['GpsCoords'] = $gpscoords;
+					$vypis[$k]['MapUploaded'] = $datum_vytvoreni;
+					$vypis[$k]['MapModified'] = $zmena;
+					$vypis[$k]['MapSize'] = $velikost;
+					
+				}
+			}
+		}	
+
+    // sestrideni dle vybraneho razeni, pokud neni, serazeno dle nazvu vzestupne
+		switch ($jine_razeni) {
+		
+			case "1" : 
+			
+				$val = array();
+				foreach ($vypis as $key => $row) {
+					$val[$key] = $row['Name'];
+				}
+		
+				array_multisort($val, SORT_ASC, $vypis);		
+			
+			break;
+			
+			case "2" : 
+			
+				$val = array();
+				foreach ($vypis as $key => $row) {
+					$val[$key] = $row['Name'];
+				}
+		
+				array_multisort($val, SORT_DESC, $vypis);		
+			
+			break;
+
+			case "3" : 
+			
+				$val = array();
+				foreach ($vypis as $key => $row) {
+					$val[$key] = $row['MapUploaded'];
+				}
+		
+				array_multisort($val, SORT_ASC, $vypis);		
+			
+			break;
+			
+			case "4" : 
+			
+				$val = array();
+				foreach ($vypis as $key => $row) {
+					$val[$key] = $row['MapUploaded'];
+				}
+		
+				array_multisort($val, SORT_DESC, $vypis);		
+			
+			break;
+			
+			case "5" : 
+			
+				$val = array();
+				foreach ($vypis as $key => $row) {
+					$val[$key] = $row['MapModified'];
+				}
+		
+				array_multisort($val, SORT_ASC, $vypis);		
+			
+			break;
+			
+			case "6" : 
+			
+				$val = array();
+				foreach ($vypis as $key => $row) {
+					$val[$key] = $row['MapModified'];
+				}
+		
+				array_multisort($val, SORT_DESC, $vypis);		
+			
+			break;			
+			
+			default :
+
+				$val = array();
+				foreach ($vypis as $key => $row) {
+					$val[$key] = $row['Name'];
+				}
+		
+				array_multisort($val, SORT_ASC, $vypis);		
+			 break;
+			 
+		}	
+		
+		foreach ($vypis as $key => $row) {		
+			
+			$nazev = $row['Name'];			
+			$soubor = $row['File'];
+			$gps =	$row['GpsCoords'];
+		  $datum_vytvoreni = $row['MapUploaded'];
+			$zmena = $row['MapModified'];
+			$velikost = $row['MapSize'];
+			
+			$soubor_vypis = substr($soubor, 0, 22) . '..';
+			
+		  $vypis_soub .= '<tr class="tab">';									
+			$vypis_soub .= '<td style="margin: 0px; padding: 2px; border: 1px solid black; font-size: 10px; text-align: left; vertical-align: center;">&nbsp;' . $nazev . '</td>';
+			$vypis_soub .= '<td style="margin: 0px; padding: 2px; border: 1px solid black; font-size: 10px; text-align: left; vertical-align: center;" title=' . $soubor . '>&nbsp;' . $soubor_vypis . '</td>';			
+			$vypis_soub .= '<td style="margin: 0px; padding: 2px; border: 1px solid black; font-size: 10px; vertical-align: center;">' . $gps . '</td>';      
 			$vypis_soub .= '<td style="margin: 0px; padding: 2px; border: 1px solid black; font-size: 10px; vertical-align: center;">' . $datum_vytvoreni . '</td>';      
       $vypis_soub .= '<td style="margin: 0px; padding: 2px; border: 1px solid black; font-size: 10px; vertical-align: center;">' . $zmena . '</td>';      
       $vypis_soub .= '<td style="margin: 0px; padding: 2px; border: 1px solid black; font-size: 10px; vertical-align: center;">' . $velikost . '</td>';
-      $vypis_soub .= '<td style="margin: 0px; padding: 1px; border: 0px solid black; font-size: 10px; vertical-align: center; padding: 0px 3px 0px 7px;">' . f_stahnout_polozku($nazev) .  '</td>';
-      $vypis_soub .= '<td style="margin: 0px; padding: 1px; border: 0px solid black; font-size: 10px; vertical-align: center; padding: 0px 1px 0px 0px;">' . f_prejmenovat_polozku($nazev) .  '</td>';
-				
-				
-			if ( (isset($nazev_s)) && ($nazev_s==$nazev) ) {
-				$vypis_soub .= '<td style="margin: 0px; padding: 1px; border: 0px solid black; font-size: 10px; vertical-align: center; padding: 0px 1px 0px 0px; text-align: left;">' . f_potvrdit_smazani_polozky($nazev). '</td>';
+      $vypis_soub .= '<td style="margin: 0px; padding: 1px; border: 0px solid black; font-size: 10px; vertical-align: center; padding: 0px 3px 0px 7px;">' . f_stahnout_polozku($soubor) .  '</td>';
+      $vypis_soub .= '<td style="margin: 0px; padding: 1px; border: 0px solid black; font-size: 10px; vertical-align: center; padding: 0px 1px 0px 0px;">' . f_zmenit_polozku($soubor) .  '</td>';
+						
+			if ( (isset($nazev_s)) && ($nazev_s==$soubor) ) {
+				$vypis_soub .= '<td style="margin: 0px; padding: 1px; border: 0px solid black; font-size: 10px; vertical-align: center; padding: 0px 1px 0px 0px; text-align: left;">' . f_potvrdit_smazani_polozky($soubor). '</td>';
 			} else {
-				$vypis_soub .= '<td style="margin: 0px; padding: 1px; border: 0px solid black; font-size: 10px; vertical-align: center; padding: 0px 1px 0px 0px; text-align: left;">' . f_smazat_polozku($nazev). '</td>';
+				$vypis_soub .= '<td style="margin: 0px; padding: 1px; border: 0px solid black; font-size: 10px; vertical-align: center; padding: 0px 1px 0px 0px; text-align: left;">' . f_smazat_polozku($soubor). '</td>';
 			}
-
 			
-      $vypis_soub .= '</tr>';   
-			
+			$vypis_soub .= '</tr>';			
+				
 		}
-				
- 
+	 
 		$obsah .= $vypis_soub;
-				
 
-    } else {
-    
+    } 
+		
+		if ((!isset($j))||($j==0)) {
+		
       $obsah .= '<tr>';
-      $obsah .= '<td style="margin: 0px; padding: 2px; border: 1px solid black; font-size: 10px; vertical-align: center;" colspan="6">' . 'V aktuálním adresáři se nenachází žádný soubor.' . '</td>';
+      $obsah .= '<td style="margin: 0px; padding: 2px; border: 1px solid black; font-size: 10px; vertical-align: center;" colspan="7">' . 'V aktuálním adresáři se nenachází žádný soubor.' . '</td>';
       $obsah .= '<td style="margin: 0px; padding: 2px; border: 0px solid black; font-size: 10px;">&nbsp;</td>';
       $obsah .= '</tr>';
-    
-    }
-        
+		
+		}
+
   $obsah .= '</table>';
 	$obsah .= '</div>';	
 
@@ -436,9 +441,6 @@ function f_display($nazev_s) {
 	
 } 
 
-
-
-echo f_upload();
 
 echo f_display($nazev_s);
 

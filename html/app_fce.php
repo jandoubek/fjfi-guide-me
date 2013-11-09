@@ -199,4 +199,100 @@ function prevod_do_utf8($retezec='') {
 }
 
 
+//
+// STAZENI VYBRANE MAPY
+//
+function download_map($nazev) {
+
+		$cesta_nazev = './maps/' . $nazev;		
+		$velikost    = filesize($cesta_nazev);
+    $cesta_pole  = pathinfo($cesta_nazev);
+    $pripona     = strtolower($cesta_pole["extension"]);
+
+    if(ini_get('zlib.output_compression')) {ini_set('zlib.output_compression', 'Off');}  // nektere prohlizece vyzaduji 
+
+        header("Pragma: public");
+        header("Expires: 0");
+        header("Cache-control: private", false);                                        // urcite prohlizece vyzaduji
+        header("Cache-Control: no-cache, must-revalidate, post-check=0, pre-check=0");  // HTTP/1.1
+        header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");                               // datum v minulosti (nekdy zakaze cacheovani)
+        header("Content-Description: File Transfer");
+        header("Content-Disposition: attachment; filename=\"".$cesta_pole["basename"]."\"");      
+        header("Content-Type: text/xml");
+        header('Content-Transfer-Encoding: binary');                      
+        header("Content-Length: $velikost");
+  
+     ob_clean();
+     flush();
+
+     readfile($cesta_nazev);
+     exit;
+
+}
+
+
+//
+// FUNKCE PRO VYPSANI OBSAHU ADRESARE DO POLE
+//
+function zjisti_obsah_adresare($adresar='') {
+
+  if (trim($adresar)=='') {return;}
+  if (!is_readable($adresar)) {return;}
+
+  $vypis = '';
+  $adr = new DirectoryIterator($adresar);
+  $i = 0;
+  
+  while ($adr->valid()) {
+  
+    $polozka = $adr->current();
+    $typ = $polozka->getType();
+        
+    if (!in_array($polozka->__toString(), array('.','..'))) {      // . a .. ignorujeme
+
+      if ($typ=="file") {  // jedna se o soubor
+
+        $vypis[$i]['typ'] = 'soub';
+        $vypis[$i]['nazev'] = prevod_do_utf8($polozka->__toString());
+        $vypis[$i]['datum_vytvoreni'] = date('d. m. Y H:i:s', $polozka->getMTime());
+        $vypis[$i]['velikost_b'] = $polozka->getSize();
+
+        $retezec = $polozka->__toString();
+        
+      }
+
+      $i++;              // dalsi index
+
+    } // konec testu na . a .. 
+
+    $adr->next();        // dalsi prvek   
+    
+  } // konec cyklu while 
+
+  return $vypis;
+
+} 
+
+
+//
+// FUNKCE PRO TRIDENI ASOCIATIVNICH POLI
+//
+function sorting($asocpole,$sloupec,$order='ASC') {
+
+		$val = array();
+		
+		foreach ($asocpole as $key => $row) {
+			$val[$key] = $row['Name'];
+		}
+		
+		if ((trim(strtoupper($order)))=='DESC')
+			array_multisort($val, SORT_DESC, $asocpole);
+		else {
+			array_multisort($val, SORT_ASC, $asocpole);
+		}
+			
+		return;
+		
+}
+
 ?>

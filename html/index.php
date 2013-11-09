@@ -11,25 +11,25 @@ mb_internal_encoding('utf-8');
 
 // konstanta POUZE_PRO_LADENI
 // 1 = stranky jsou v modu ladeni, jsou striktne vypisovany vsechny chyby + dostupne nektere dalsi funkce
-// cokoli jineho = ostry mod provozu webu, nejsou vypisovana chybova hlaseni 
+// cokoli jineho znamena produknci mod provozu webu, nejsou vypisovana chybova hlaseni 
 if (!defined('POUZE_PRO_LADENI')) {define('POUZE_PRO_LADENI', 1);}
 
 
-// NASTAVENI MODU LADENI (podle konstanty v config.php)
+// NASTAVENI MODU LADENI 
 if (constant("POUZE_PRO_LADENI")==1) {
-  // striktni vypis a reporting chybovych zprav v produkcnim modu
+  
   error_reporting(E_ALL | E_STRICT);
   if (!ini_get('display_errors')) {ini_set('display_errors', 1);}
   
 } else {
-  // z hlediska bezpecnosti se nebudou v ostrem modu vypisovat a reportovat chyby
+
   error_reporting(0);
   if (!ini_get('display_errors')) {ini_set('display_errors', 0);} 
   
 }
 
 
-
+// MENU
 if (array_key_exists('p', $_GET)) {
 
   $pg = htmlspecialchars($_GET['p']);	
@@ -43,7 +43,8 @@ if (array_key_exists('p', $_GET)) {
 		case "6"    : $page = "about.php"          ; break;
 		case "7"    : $page = "policy.php"         ; break;
 		case "8"    : $page = "contact.php"        ; break;
-		case "9"    : $page = "map_admin.php"        ; break;
+		case "9"    : $page = "map_admin.php"      ; break;
+		case "10"   : $page = "addmap.php"         ; break;
 		default     : $page = "home.php"           ; break;
 	}	
 	
@@ -60,6 +61,18 @@ if (!file_exists($page)) {
 
 require_once('app_fce.php');
 require_once('head.php');
+
+$dbfile = 'db.php';
+
+if (file_exists($dbfile)) {
+  require_once($dbfile);
+} else {
+  echo 'V projektu chybí skript ' . $dbfile . '<br />Kontaktujte správce webu';
+	die();
+}
+
+
+
 require_once('menu.php');
 require_once($page);
 require_once('foot.php');
