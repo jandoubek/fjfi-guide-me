@@ -1,0 +1,18 @@
+
+Version 0.0.104
+Prototype only!!
+
+Jazyk / Language:
+Èesky / Czech
+
+Testováno na / Tested on:
+Android 2.2.2 (ZTE Blade)
+Android 4.0.1
+
+K instalaci je nutné nastavit, aby mohly být do systému
+Android instalovány aplikace, které pocházejí
+i z jiných zdrojù, než je Google Play.
+
+Odkazy / Links:
+http://kmlinux.fjfi.cvut.cz/~fortpet2/guideme/index.php?p=5
+https://github.com/jandoubek/fjfi-guide-me/wiki

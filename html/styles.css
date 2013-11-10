@@ -129,13 +129,12 @@ margin: 5px;
 }
 
 #download1 {
-	width: 220px;
+	width: 240px;
 	float: left;
 }
 
 #download2 {
-	width: 340px;
-	text-align: center;
+	width: 540px;
 	float: left; 
 	font-weight: bold;
 }
