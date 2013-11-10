@@ -29,6 +29,10 @@
             android:name="cz.fjfi.guideme.NavigateActivity"
             android:label="@string/title_activity_navigate" >
         </activity>
+        <activity
+            android:name="cz.fjfi.guideme.MapSelectionActivity"
+            android:label="@string/title_activity_navigate" >
+        </activity>
     </application>
 
 </manifest>

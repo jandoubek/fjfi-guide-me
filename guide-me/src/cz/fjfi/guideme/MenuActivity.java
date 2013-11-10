@@ -40,7 +40,7 @@ public class MenuActivity extends Activity
 	
 	/** Called when the user clicks the Create map button */
 	public void menu_bt_createMap_onClick(View view) {
-	    Intent intent = new Intent(this, CreateMapActivity.class);
+	    Intent intent = new Intent(this, MapSelectionActivity.class);
 	    startActivity(intent);
 	}
 	
