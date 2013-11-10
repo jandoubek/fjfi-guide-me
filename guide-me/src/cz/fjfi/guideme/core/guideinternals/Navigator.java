@@ -1,9 +1,6 @@
 package cz.fjfi.guideme.core.guideinternals;
 
-import cz.fjfi.guideme.core.GMEdge;
-import cz.fjfi.guideme.core.GMNode;
-import cz.fjfi.guideme.core.Route;
-import cz.fjfi.guideme.core.RouteIterator;
+import cz.fjfi.guideme.core.*;
 
 /***
  * This class contains the navigation logic for the GuideMe app.
@@ -17,8 +14,10 @@ public class Navigator
     private Route route;
     private RouteIterator currentIterator;
     private GMEdge currentEdge;
+    private RouteSegment currentSegment;
     private long lastTime;
     private long timeOnCurrentEdge;
+    private long timeOnCurrentSegment;
     
     public Navigator(Route route)
     {
@@ -26,6 +25,7 @@ public class Navigator
         this.currentIterator = route.iterator();
         this.lastTime = 0;
         this.timeOnCurrentEdge = 0;
+        this.timeOnCurrentSegment = 0;
         this.reachedEnd = false;
         getNextLabel();
     }
@@ -36,13 +36,16 @@ public class Navigator
     public final String getCurrentLabel(long time)
     {
         long timeDelta = time - lastTime + timeOnCurrentEdge;
+        timeOnCurrentSegment -= timeOnCurrentEdge;
         // advance to the proper point on the route
         while (timeDelta > currentEdge.getTimeDistance() && !reachedEnd)
         {
+            timeOnCurrentSegment += currentEdge.getTimeDistance();
             timeDelta -= currentEdge.getTimeDistance();
             advanceToNextEdge();
         }
         timeOnCurrentEdge = timeDelta;
+        timeOnCurrentSegment += timeOnCurrentEdge;
         lastTime = time;
         return generateLabel();
     }
@@ -76,13 +79,37 @@ public class Navigator
     }
 
     /**
+     * returns current segment
+     * @return the currentSegment
+     */
+    public final RouteSegment getCurrentSegment()
+    {
+        return currentSegment;
+    }
+    
+    /**
+     * returns the index of the current RouteEdge on the route
+     * @return
+     */
+    public int getCurrentIndex()
+    {
+        return currentIterator.previousIndex();
+    }
+
+    /**
      * skips to the next instruction
      */
     private void advanceToNextEdge()
     {
     	if (currentIterator.hasNext())
     	{
-    		currentEdge = currentIterator.next();
+    	    RouteEdge nextEdge = currentIterator.next();
+    		currentEdge = nextEdge.getEdge();
+    		if (currentSegment != nextEdge.getSegment())
+    		{
+    		    timeOnCurrentSegment = 0;
+    		    currentSegment = nextEdge.getSegment();
+    		}
     	}
     	else
     	{
@@ -108,5 +135,14 @@ public class Navigator
             		" dosahnete za: " + (currentEdge.getTimeDistance() - timeOnCurrentEdge)/1000 + "s";
     	}
         return label;
+    }
+    
+    /**
+     * generates the current route point
+     * @return the current point on the route
+     */
+    private RoutePoint generateRoutePoint()
+    {
+        return new RoutePoint(timeOnCurrentEdge,timeOnCurrentSegment,getCurrentIndex());
     }
 }
