@@ -1,6 +1,8 @@
 package cz.fjfi.guideme.core;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.UUID;
 
 import cz.fjfi.guideme.core.GMMap;
@@ -19,14 +21,17 @@ public class tst {
 		myMap.setGuid(Utility.generateGUID());
 		myMap.setName("my map");
 		
+		UUID locguid = Utility.generateGUID();
+		List<UUID> loclist = new LinkedList<UUID>();
+		loclist.add(locguid);
 		Location loc = new Location(Utility.generateGUID(),"loc","test location", myMap);
 		myMap.addLocation(loc);
 		
-		GMNode n1 = new GMNode(guid1,new String("n1"),myMap.getLocations(),new String("start - bod A"),myMap);
+		GMNode n1 = new GMNode(guid1,new String("n1"),loclist,new String("start - bod A"),myMap);
 		//System.out.print(n1.exportXML());
-		GMNode n2 = new GMNode(Utility.generateGUID(),"n2",myMap.getLocations(),"zahnete do leva tam co byval Pytlicek",myMap);
-		GMNode n3 = new GMNode(Utility.generateGUID(),"n3",myMap.getLocations(),"zahnete do leva (u Palantova)",myMap);
-		GMNode n4 = new GMNode(guid2,"n4",myMap.getLocations(),"cil - bod B",myMap);
+		GMNode n2 = new GMNode(Utility.generateGUID(),"n2",loclist,"zahnete do leva tam co byval Pytlicek",myMap);
+		GMNode n3 = new GMNode(Utility.generateGUID(),"n3",loclist,"zahnete do leva (u Palantova)",myMap);
+		GMNode n4 = new GMNode(guid2,"n4",loclist,"cil - bod B",myMap);
 		myMap.addNode(n1);
 		myMap.addNode(n2);
 		myMap.addNode(n3);
