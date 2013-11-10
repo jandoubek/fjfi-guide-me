@@ -1,18 +1,19 @@
 package cz.fjfi.guideme.core;
 
-import cz.fjfi.guideme.core.*;
+import java.util.*;
 
 /**
  * This class represents a "rough" edge on the route, used to generate instructions
  * @author Martin Sochor
  *
  */
-public class RouteEdge
+public class RouteSegment
 {
     //== CLASS CONSTANTS ===========================================================
     //== CLASS VARIABLES ===========================================================
     //== INSTANCE VARIABLES ========================================================
     
+    private List<GMEdge> edges;
     private GMNode start;
     private GMNode end;
     private Direction direction;
@@ -21,12 +22,17 @@ public class RouteEdge
     //==============================================================================
     //== CONSTRUCTORS ==============================================================
     
-    public RouteEdge (GMNode start, GMNode end, Direction direction, long timeDistance)
+    public RouteSegment (List<GMEdge> edges)
     {
-        this.start = start;
-        this.end = end;
-        this.direction = direction;
-        this.timeDistance = timeDistance;
+        this.edges = new ArrayList<GMEdge>(edges);
+        this.start = this.edges.get(0).getStart();
+        this.end = this.edges.get(edges.size()-1).getEnd();
+        this.direction = this.edges.get(0).getDirection();
+        this.timeDistance = 0;
+        for (GMEdge e : this.edges)
+        {
+            this.timeDistance += e.getTimeDistance();
+        }
     }
     //== GETTERS AND SETTERS =======================================================
 
@@ -93,6 +99,22 @@ public class RouteEdge
     public void setTimeDistance(long timeDistance)
     {
         this.timeDistance = timeDistance;
+    }
+    /**
+     * returns the start iterator to the edge list
+     * @return
+     */
+    ListIterator<GMEdge> firstEdgeIterator()
+    {
+        return edges.listIterator();
+    }
+    /**
+     * returns the end iterator to the edge list
+     * @return
+     */
+    ListIterator<GMEdge> lastEdgeIterator()
+    {
+        return edges.listIterator(edges.size());
     }
     //== OTHER METHODS =============================================================
 }

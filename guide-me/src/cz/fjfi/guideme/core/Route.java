@@ -15,8 +15,7 @@ public class Route
 //== CLASS VARIABLES ===========================================================
 //== INSTANCE VARIABLES ========================================================
 
-    private List<GMEdge> detailedRoute;
-    private List<RouteEdge> route = new ArrayList<RouteEdge>();
+    private List<RouteSegment> route = new ArrayList<RouteSegment>();
     private final GMNode start, end;
     
 //==============================================================================
@@ -27,10 +26,9 @@ public class Route
      */
     public Route(List<GMEdge> edges)
     {
-        this.detailedRoute = edges;
         this.start = edges.get(0).getStart();
         this.end = edges.get(edges.size()-1).getEnd();
-        constructRoute(detailedRoute);
+        constructRoute(edges);
     }
    
 //== GETTERS AND SETTERS =======================================================
@@ -56,15 +54,7 @@ public class Route
      */
     public final RouteIterator iterator()
     {
-        return new RouteIterator(detailedRoute.listIterator());
-    }
-    
-    /**
-     * Returns an iterator pointing to a given index in the route
-     */
-    public final RouteIterator iterator(int location)
-    {
-        return new RouteIterator(detailedRoute.listIterator(location));
+        return new RouteIterator(route.listIterator());
     }
     
 //== OTHER METHODS =============================================================
@@ -75,23 +65,20 @@ public class Route
      */
     private void constructRoute(List<GMEdge> edges)
     {
-        GMNode currentStart = getStart();
-        GMNode currentNode = getStart();
         ListIterator<GMEdge> currentIterator = edges.listIterator();
         GMEdge currentEdge = currentIterator.next();
         Direction currentDirection = currentEdge.getDirection();
+        List<GMEdge> currentSegment;
 
         while (currentIterator.hasNext())
         {
-            long accumulatedDistance = 0;
+            currentSegment = new ArrayList<GMEdge>();
             while (currentIterator.hasNext() && currentDirection == currentEdge.getDirection())
             {
-                accumulatedDistance += currentEdge.getTimeDistance();
-                currentNode = currentEdge.getEnd();
+                currentSegment.add(currentEdge);
                 currentEdge = currentIterator.next();
             }
-            route.add(new RouteEdge(currentStart, currentNode, currentDirection, accumulatedDistance));
-            currentStart = currentNode;
+            route.add(new RouteSegment(currentSegment));
             currentDirection = currentEdge.getDirection();
         }
     }
