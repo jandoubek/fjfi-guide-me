@@ -258,8 +258,8 @@ function f_serad_dle_data_zmeny_sestupne() {
 function f_display($nazev_s) {
  
   $obsah = '';
-  $obsah .= '<div style="position: relative; top: -20px;">';	
-	$obsah .= '<h3>Nahrané mapy</h3>';	
+  $obsah .= '<div style="position: relative; top: -40px;">';	
+	$obsah .= '<h3>Nahrané mapy</h3><br />';	
 	
 	$obsahadr = zjisti_obsah_adresare('./maps/');
 	

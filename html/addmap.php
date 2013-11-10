@@ -18,24 +18,6 @@ function getGuid($file) {
 }
 
 
-function authors() {
-
-	$authors = array(
-		0 => array("1", "Matěj", "Antoš", "matejantos@gmail.com"),
-		1 => array("2", "Kateřina", "Benetková", "benetkat@gmail.com"),
-		2 => array("3", "Jan", "Doubek", "jandoubek@gmail.com"),
-		3 => array("4", "Petr", "Fořt", "petrf89@gmail.com"),
-		4 => array("5", "Martin", "Fous", "Martin456@gmail.com"),
-		5 => array("6", "Tomáš", "Juřík", "MagogCZ@gmail.com"),
-		6 => array("7", "Vladislav", "Klíma", "klimavla@gmail.com"),
-		7 => array("8", "Martin", "Sochor", "themartin@gmail.com")
-	);
-
-	return $authors;
-
-}
-
-
 // 1. osetreni odeslani souboru
 if ( (array_key_exists('odeslo',$_POST)) && (array_key_exists('nahratsoubor',$_POST)) && ($_POST['odeslo']==1) ) {
 	 
@@ -110,8 +92,10 @@ if ( (array_key_exists('odeslo',$_POST)) && (array_key_exists('nahratsoubor',$_P
 		// 6. presun z docasneho uloziste do trvaleho
 		if (!(@move_uploaded_file($_FILES['soub']['tmp_name'],$new_dest))) {
 			echo '<span class="errormsg">Během ukládání souboru <code>' .  $jmeno_puv . '</code> došlo k chybě<br /><a href="javascript:history.back(1)">&lt; &lt; Zpět</a></span>';		  						
-			die();		
+			die();					
 		}
+		
+		echo 'kuk3';
 							
 	// 7. nastavit maximalni opravneni
 	if (isset($new_dest)) {
@@ -163,18 +147,19 @@ if ( (array_key_exists('odeslo',$_POST)) && (array_key_exists('nahratsoubor',$_P
 	
 
 // FORMULAR pro upload
-function f_upload() {
+function f_upload($idu) {
 
   $obsah = '';	
 	$max_velikost_pro_nahrani_MB = 20;
 		
   $url = './index.php?p=9';	
   
-  $obsah .= '<div style="position: relative; top: -40px;">';	
+  $obsah .= '<div style="position: relative; top: -60px;">';	
 	$obsah .= '<h3>Nahrát mapu v XML</h3>';	
+	
   $obsah .= '<form method="post" action="' . $url . '" enctype="multipart/form-data">';
 
-  $obsah .= '<p>';
+  $obsah .= '<p><br />';
 	$obsah .= '<input type="file" name="soub" id="soub" />';
 	$obsah .= '<br /><br />';
 	
@@ -187,24 +172,12 @@ function f_upload() {
 	$obsah .= '</textarea>';
 	$obsah .= '<br /><br />';
 	
-	$obsah .= 'Autor: ';
-  $obsah .= '<select name="Author">';	
-	$obsah .= '<option value="0" selected="selected">-- Vyberte --</option>';
-	
-	$authors = authors();	
-	
-	foreach ($authors as $key => $val) {
-	  $autor_celejm = $val[1] . ' ' .  $val[2];		
-		$hodnota = (string)$key+1;
-		$obsah .= '<option value="' .  $hodnota . '">' . $autor_celejm . '</option>';
-	}
-	
-	$obsah .= '</select><br />';	
-
+	$obsah .= '<input type="hidden" name="Author" value="' . $idu . '" />';	
   $obsah .= '<input type="hidden" name="MAX_FILE_SIZE" value="' . $max_velikost_pro_nahrani_MB . '" />';
+	
   $obsah .= '<input type="hidden" name="odeslo" value="1" />';	
 
-  $obsah .= '<br /><br /><input type="submit" name="nahratsoubor" value="NAHRAJ MAPU" /></p>';
+  $obsah .= '<input type="submit" name="nahratsoubor" value="NAHRAJ MAPU" /></p>';
   $obsah .= '</form>';
   $obsah .= '</div>';
 	
@@ -213,10 +186,7 @@ function f_upload() {
 }   
 	
 echo '<br /><br />';
-echo f_upload();
-
-	
-
+echo f_upload($idu);
 
 
 ?>

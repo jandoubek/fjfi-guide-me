@@ -29,6 +29,18 @@ if (constant("POUZE_PRO_LADENI")==1) {
 }
 
 
+require_once('app_fce.php');
+
+$dbfile = 'db.php';
+
+if (file_exists($dbfile)) {
+  require_once($dbfile);
+} else {
+  echo 'V projektu chybí skript ' . $dbfile . '<br />Kontaktujte správce webu';
+	die();
+}
+
+
 // MENU
 if (array_key_exists('p', $_GET)) {
 
@@ -43,37 +55,24 @@ if (array_key_exists('p', $_GET)) {
 		case "6"    : $page = "about.php"          ; break;
 		case "7"    : $page = "policy.php"         ; break;
 		case "8"    : $page = "contact.php"        ; break;	
-		case "9"    : $page = "addmap.php"         ; break;
-		case "10"   : $page = "deletemap.php"      ; break;
-		case "11"   : $page = "modifymap.php"      ; break;
+		case "9"    : $page = "addmap.php"         ; require_once('security.php'); break;
+		case "10"   : $page = "managemaps.php"     ; require_once('security.php'); break;
+		case "11"   : $page = "modifymap.php"      ; require_once('security.php'); break;		
+		case "12"   : $page = "profile.php"        ; require_once('security.php'); break;
+		case "13"   : $page = "login.php"          ; break;
+		case "14"   : $page = "logout.php"         ; break;
 		default     : $page = "home.php"           ; break;
 	}	
 	
 } else {
-
-  $page = 'home.php';
-	
+  $page = 'home.php';	
 }
 
 if (!file_exists($page)) {
   $page = "home.php";
 }
 
-
-require_once('app_fce.php');
 require_once('head.php');
-
-$dbfile = 'db.php';
-
-if (file_exists($dbfile)) {
-  require_once($dbfile);
-} else {
-  echo 'V projektu chybí skript ' . $dbfile . '<br />Kontaktujte správce webu';
-	die();
-}
-
-
-
 require_once('menu.php');
 require_once($page);
 require_once('foot.php');
