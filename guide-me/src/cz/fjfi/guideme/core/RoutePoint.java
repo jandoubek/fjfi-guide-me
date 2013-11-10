@@ -11,74 +11,52 @@ public class RoutePoint
     //== CLASS VARIABLES ===========================================================
     //== INSTANCE VARIABLES ========================================================
     
-    private GMEdge edge;
-    private RouteSegment segment;
-    private RouteIterator iterator;
     private long edgeDistancePassed;
     private long segmentDistancePassed;
-
+    private int routeIndex;
+    
     //==============================================================================
     //== CONSTRUCTORS ==============================================================
-
     /**
-     * Constructs the route point from the given parameters
-     * @param edge
-     * @param segment
-     * @param iterator
-     * @param distancePassed
+     * TODO: Comment
+     * @param routeEdge
+     * @param edgeDistancePassed
+     * @param segmentDistancePassed
+     * @param routeIndex
      */
-    public RoutePoint(GMEdge edge, RouteSegment segment,
-            RouteIterator iterator, long edgeDistancePassed,
-            long segmentDistancePassed)
+    public RoutePoint(long edgeDistancePassed,
+            long segmentDistancePassed, int routeIndex)
     {
-        this.edge = edge;
-        this.segment = segment;
-        this.iterator = iterator;
         this.edgeDistancePassed = edgeDistancePassed;
         this.segmentDistancePassed = segmentDistancePassed;
-    }    
-    
+        this.routeIndex = routeIndex;
+    }   
     //== GETTERS AND SETTERS =======================================================
-    
+
     /**
-     * returns the current edge
-     * @return the edge
-     */
-    public GMEdge getEdge()
-    {
-        return edge;
-    }
-    /**
-     * returns the current segment
      * TODO: Comment
-     * @return
-     */
-    public RouteSegment getSegment()
-    {
-        return segment;
-    }
-    /**
-     * returns the iterator to the current point on the route
-     * @return the iterator
-     */
-    public RouteIterator getIterator()
-    {
-        return iterator;
-    }
-    /**
-     * returns the distance passed on the current edge
-     * @return the distancePassed
+     * @return the edgeDistancePassed
      */
     public long getEdgeDistancePassed()
     {
         return edgeDistancePassed;
     }
+
     /**
-     * returns the distance passed on the current segment
+     * TODO: Comment
      * @return the segmentDistancePassed
      */
     public long getSegmentDistancePassed()
     {
         return segmentDistancePassed;
+    }
+
+    /**
+     * TODO: Comment
+     * @return the routeIndex
+     */
+    public int getRouteIndex()
+    {
+        return routeIndex;
     }
 }

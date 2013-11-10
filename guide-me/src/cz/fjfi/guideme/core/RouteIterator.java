@@ -1,7 +1,6 @@
 package cz.fjfi.guideme.core;
 
 import java.util.ListIterator;
-import java.util.NoSuchElementException;
 
 /***
  * This class allows iteration over Route
@@ -9,14 +8,13 @@ import java.util.NoSuchElementException;
  *
  */
 
-public class RouteIterator implements ListIterator<GMEdge>
+public class RouteIterator implements ListIterator<RouteEdge>
 {
 //== CLASS CONSTANTS ===========================================================
 //== CLASS VARIABLES ===========================================================
 //== INSTANCE VARIABLES ========================================================
 	
-    private ListIterator<GMEdge> edgeIterator;
-    private ListIterator<RouteSegment> segmentIterator;
+    private ListIterator<RouteEdge> iterator;
     
 //==============================================================================
 //== CONSTRUCTORS ==============================================================
@@ -24,10 +22,9 @@ public class RouteIterator implements ListIterator<GMEdge>
     /***************************************************************************
      * TODO: comment
      */
-    public RouteIterator(ListIterator<RouteSegment> iterator)
+    public RouteIterator(ListIterator<RouteEdge> iterator)
     {
-        this.segmentIterator = iterator;
-        this.edgeIterator = iterator.next().firstEdgeIterator();
+        this.iterator = iterator;
     }
 
 //== GETTERS AND SETTERS =======================================================
@@ -36,67 +33,41 @@ public class RouteIterator implements ListIterator<GMEdge>
     @Override
     public boolean hasNext()
     {
-        return edgeIterator.hasNext() || segmentIterator.hasNext();
+        return iterator.hasNext();
     }
 
     @Override
     public boolean hasPrevious()
     {
-        return edgeIterator.hasPrevious() || segmentIterator.hasPrevious();
+        return iterator.hasPrevious();
     }
 
     @Override
-    public GMEdge next()
+    public RouteEdge next()
     {
-        if (edgeIterator.hasNext())
-        {
-            return edgeIterator.next();
-        }
-        else if (segmentIterator.hasNext())
-        {
-            RouteSegment nextSegment = segmentIterator.next();
-            edgeIterator = nextSegment.firstEdgeIterator();
-            return edgeIterator.next();
-        }
-        else
-        {
-            throw new NoSuchElementException("RouteIterator.next called when iterator was at end");
-        }
+        return iterator.next();
     }
 
     @Override
     public int nextIndex()
     {
-        throw new UnsupportedOperationException("RouteIterator.nextIndex not supported.");
+        return iterator.nextIndex();
     }
 
     @Override
-    public GMEdge previous()
+    public RouteEdge previous()
     {
-        if (edgeIterator.hasPrevious())
-        {
-            return edgeIterator.previous();
-        }
-        else if (segmentIterator.hasPrevious())
-        {
-            RouteSegment prevSegment = segmentIterator.previous();
-            edgeIterator = prevSegment.lastEdgeIterator();
-            return edgeIterator.previous();
-        }
-        else
-        {
-            throw new NoSuchElementException("RouteIterator.previous called when iterator was at beginning");
-        }
+        return iterator.previous();
     }
 
     @Override
     public int previousIndex()
     {
-        throw new UnsupportedOperationException("RouteIterator.previousIndex not supported.");
+        return iterator.previousIndex();
     }
 
     @Override
-    public void add(GMEdge arg0)
+    public void add(RouteEdge arg0)
     {
         throw new UnsupportedOperationException("RouteIterator.add not supported.");
     }
@@ -108,46 +79,8 @@ public class RouteIterator implements ListIterator<GMEdge>
     }
 
     @Override
-    public void set(GMEdge arg0)
+    public void set(RouteEdge arg0)
     {
         throw new UnsupportedOperationException("RouteIterator.set not supported.");
-    }
-
-    public boolean hasNextSegment()
-    {
-        return segmentIterator.hasNext();
-    }
-    
-    public boolean hasPreviousSegment()
-    {
-        return segmentIterator.hasPrevious();
-    }
-    
-    public RouteSegment nextSegment()
-    {
-        if (segmentIterator.hasNext())
-        {
-            RouteSegment nextSegment = segmentIterator.next();
-            edgeIterator = nextSegment.firstEdgeIterator();
-            return nextSegment;
-        }
-        else
-        {
-            throw new NoSuchElementException("RouteIterator.nextSegment called when iterator was at end");
-        }
-    }
-    
-    public RouteSegment previousSegment()
-    {
-        if (segmentIterator.hasPrevious())
-        {
-            RouteSegment prevSegment = segmentIterator.previous();
-            edgeIterator = prevSegment.lastEdgeIterator();
-            return prevSegment;
-        }
-        else
-        {
-            throw new NoSuchElementException("RouteIterator.previousSegment called when iterator was at beginning");
-        }
     }
 }

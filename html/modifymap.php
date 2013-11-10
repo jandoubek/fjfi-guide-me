@@ -27,17 +27,21 @@ function f_modify($guid,$nazev_puv,$gps_puv) {
 	
   $obsah = '';	   
   $obsah .= '<div style="position: relative; top: -40px;">';	
-	$obsah .= '<br />';
 	$obsah .= '<h3>Upravit mapu</h3>';	
-		
+	
   $obsah .= '<form method="post" action="' . $url . '" enctype="multipart/form-data">';
-  $obsah .= '<p>';
+  $obsah .= '<p><br />';
 	$obsah .= 'Název mapy: <input type="text" name="NewName" maxlenth="80" size="34" value="' . $name_db . '" />';	
 	$obsah .= '<br /><br />';
-	$obsah .= 'GPS souřadnice: <input type="text" name="NewGpsCoords" maxlenth="23" size="30" value="' . $gpscoords_db . '" />';	
+	$obsah .= 'GPS souřadnice: <input type="text" name="NewGpsCoords" maxlenth="23" size="30" value="' . $gpscoords_db . '" />';		
+	$obsah .= '<br /><br />';	
 	
-	$obsah .= '<br /><br />';
-	$obsah .= '<textarea name="NewDescription" cols="44" rows="4" maxlength="2000">';	
+	if (!empty($descrition_db)) {
+		$obsah .= '<textarea name="NewDescription" cols="44" rows="4" maxlength="2000">';	
+	} else {
+		$obsah .= '<textarea name="NewDescription" cols="44" rows="4" maxlength="2000" placeholder="Sem můžete umístit detail popisující mapu.">';	
+	}
+
 	$obsah .= $descrition_db;
 	$obsah .= '</textarea>';
 	$obsah .= '<br /><br />';
@@ -45,7 +49,7 @@ function f_modify($guid,$nazev_puv,$gps_puv) {
 	$obsah .= '<input type="hidden" name="RefGuid" value="' . $guid . '" />';	
   $obsah .= '<input type="hidden" name="odeslo" value="1" />';	
 
-  $obsah .= '<br /><input type="submit" name="provedzmenu" value="ULOŽIT" /></p>';
+  $obsah .= '<input type="submit" name="provedzmenu" value="ULOŽIT" /></p>';
   $obsah .= '</form>';
   $obsah .= '</div>';
 

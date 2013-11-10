@@ -13,7 +13,6 @@ public class RouteSegment
     //== CLASS VARIABLES ===========================================================
     //== INSTANCE VARIABLES ========================================================
     
-    private List<GMEdge> edges;
     private GMNode start;
     private GMNode end;
     private Direction direction;
@@ -24,12 +23,11 @@ public class RouteSegment
     
     public RouteSegment (List<GMEdge> edges)
     {
-        this.edges = new ArrayList<GMEdge>(edges);
-        this.start = this.edges.get(0).getStart();
-        this.end = this.edges.get(edges.size()-1).getEnd();
-        this.direction = this.edges.get(0).getDirection();
+        this.start = edges.get(0).getStart();
+        this.end = edges.get(edges.size()-1).getEnd();
+        this.direction = edges.get(0).getDirection();
         this.timeDistance = 0;
-        for (GMEdge e : this.edges)
+        for (GMEdge e : edges)
         {
             this.timeDistance += e.getTimeDistance();
         }
@@ -100,21 +98,4 @@ public class RouteSegment
     {
         this.timeDistance = timeDistance;
     }
-    /**
-     * returns the start iterator to the edge list
-     * @return
-     */
-    ListIterator<GMEdge> firstEdgeIterator()
-    {
-        return edges.listIterator();
-    }
-    /**
-     * returns the end iterator to the edge list
-     * @return
-     */
-    ListIterator<GMEdge> lastEdgeIterator()
-    {
-        return edges.listIterator(edges.size());
-    }
-    //== OTHER METHODS =============================================================
 }

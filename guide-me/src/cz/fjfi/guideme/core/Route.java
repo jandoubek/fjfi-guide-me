@@ -15,7 +15,7 @@ public class Route
 //== CLASS VARIABLES ===========================================================
 //== INSTANCE VARIABLES ========================================================
 
-    private List<RouteSegment> route = new ArrayList<RouteSegment>();
+    private List<RouteEdge> route = new ArrayList<RouteEdge>();
     private final GMNode start, end;
     
 //==============================================================================
@@ -68,18 +68,33 @@ public class Route
         ListIterator<GMEdge> currentIterator = edges.listIterator();
         GMEdge currentEdge = currentIterator.next();
         Direction currentDirection = currentEdge.getDirection();
-        List<GMEdge> currentSegment;
+        List<GMEdge> currentSegmentList = new ArrayList<GMEdge>();
+        boolean lastEdgeFound = false;
 
-        while (currentIterator.hasNext())
+        while (!lastEdgeFound)
         {
-            currentSegment = new ArrayList<GMEdge>();
-            while (currentIterator.hasNext() && currentDirection == currentEdge.getDirection())
+            if (currentDirection == currentEdge.getDirection())
             {
-                currentSegment.add(currentEdge);
-                currentEdge = currentIterator.next();
+                currentSegmentList.add(currentEdge);
+                if (currentIterator.hasNext())
+                {
+                    currentEdge = currentIterator.next();
+                }
+                else
+                {
+                    lastEdgeFound = true;
+                }
             }
-            route.add(new RouteSegment(currentSegment));
-            currentDirection = currentEdge.getDirection();
+            if (currentDirection != currentEdge.getDirection() || lastEdgeFound)
+            {
+                RouteSegment newSegment = new RouteSegment(currentSegmentList);
+                for (GMEdge newEdge : currentSegmentList)
+                {
+                    route.add(new RouteEdge(newEdge, newSegment));
+                }
+                currentSegmentList = new ArrayList<GMEdge>();
+                currentDirection = currentEdge.getDirection();
+            }
         }
     }
 }

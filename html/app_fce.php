@@ -1,9 +1,6 @@
 ﻿<?php
 
 
-
-
-
 // FUNKCE PRO ODSTRANENI DIAKRITIKY
 function odstran_diakritiku($retezec) {
 
@@ -13,7 +10,6 @@ function odstran_diakritiku($retezec) {
   return $retezec;
    
 }
-
 
 
 // FUNKCE PRO OSETRENI VSTUPU
@@ -125,6 +121,7 @@ function antispam($email) {
   $zakodovane .= $adresa . "' + '\">' + '" . $adresa . "' + '<\/a>');\n--></script>";
 
   return $zakodovane;
+	
 }
 
 
@@ -279,10 +276,14 @@ function zjisti_obsah_adresare($adresar='') {
 //
 function sorting($asocpole,$sloupec,$order='ASC') {
 
-		$val = array();
+		if (!is_array($asocpole)) {
+		return false;
+		}
 		
+		$val = array();
+				
 		foreach ($asocpole as $key => $row) {
-			$val[$key] = $row['Name'];
+			$val[$key] = $row['' . $sloupec . ''];
 		}
 		
 		if ((trim(strtoupper($order)))=='DESC')
@@ -290,9 +291,22 @@ function sorting($asocpole,$sloupec,$order='ASC') {
 		else {
 			array_multisort($val, SORT_ASC, $asocpole);
 		}
+					
+				array_multisort($val, SORT_ASC, $vypis);	
 			
-		return;
+		return true;
 		
+}
+
+
+
+function authors() {
+
+  $authors = array();
+	$authors = db_select('SELECT * from Author');
+
+	return $authors;	
+	
 }
 
 ?>
