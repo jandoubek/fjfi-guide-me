@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import cz.fjfi.guideme.core.*;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class NavigateActivity extends Activity {
@@ -35,7 +38,10 @@ public class NavigateActivity extends Activity {
 		from = gmMap.getNode(guid1); // 
 		to = gmMap.getNode(guid2); //
 		guide.setMap(gmMap);
-		route = guide.findRouteBetween(from, to);
+		List<GMNode> nodeList = new ArrayList<GMNode>();
+		nodeList.add(from);
+		nodeList.add(to);
+		route = guide.findRouteBetween(nodeList);
 		guide.setRoute(route);
 
 	}

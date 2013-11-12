@@ -80,21 +80,12 @@ public class Guide
     //== OTHER METHODS =============================================================
     
     /**
-     * finds the shortest route between nodes 'from' and 'to'
+     * finds the shortest route through the nodes in the list
      */
-    public final Route findRouteBetween(GMNode from, GMNode to)
+    public final Route findRouteBetween(List<GMNode> nodes)
     {
         checkForMap("findRouteBetween called before setMap");
-        return Pathfinder.findRouteBetween(map, from, to);
-    }
-
-    /**
-     * finds the shortest route between nodes 'from' and 'to', passing through all nodes contained in 'through'
-     */
-    public final Route findRouteBetween(GMNode from, GMNode to, List<GMNode> through)
-    {
-        checkForMap("findRouteBetween called before setMap");
-        return Pathfinder.findRouteBetween(map, from, to, through);
+        return Pathfinder.findRouteBetween(map, nodes);
     }
     
     /**
