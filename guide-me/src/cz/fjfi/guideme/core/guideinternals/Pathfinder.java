@@ -35,32 +35,23 @@ public class Pathfinder
   //== GETTERS AND SETTERS =======================================================
   //== OTHER METHODS ============================================================= 
 
+   
     /**
-     * finds the shortest route between nodes 'from' and 'to'
+     * finds the shortest route through nodes in the list 'nodes'
      */
-    public static final Route findRouteBetween(GMMap map, GMNode from, GMNode to)
+    public static final Route findRouteBetween(GMMap map, List<GMNode> nodes)
     {
         Pathfinder finder = new Pathfinder(map);
-        return new Route(finder.findEdgeListBetween(from, to));
-    }
-    
-    /**
-     * finds the shortest route between nodes 'from' and 'to' passing through all nodes contained in 'through'
-     */
-    public static final Route findRouteBetween(GMMap map, GMNode from, GMNode to, List<GMNode> through)
-    {
-        Pathfinder finder = new Pathfinder(map);
-        ListIterator<GMNode> throughIterator = through.listIterator();
-        GMNode currentStart = from;
-        GMNode currentEnd = throughIterator.next();
-        List<GMEdge> route = finder.findEdgeListBetween(currentStart, currentEnd);
+        ListIterator<GMNode> throughIterator = nodes.listIterator();
+        GMNode currentStart = throughIterator.next();
+        GMNode currentEnd = currentStart;
+        List<GMEdge> route = new ArrayList<GMEdge>();
         while (throughIterator.hasNext())
         {
             currentStart = currentEnd;
             currentEnd = throughIterator.next();
             route.addAll(finder.findEdgeListBetween(currentStart, currentEnd));
         }
-        route.addAll(finder.findEdgeListBetween(currentEnd,to));
         return new Route(route);
     }
     

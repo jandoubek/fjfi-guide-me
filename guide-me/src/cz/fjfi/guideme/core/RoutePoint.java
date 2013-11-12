@@ -13,29 +13,28 @@ public class RoutePoint
     
     private long edgeDistancePassed;
     private long segmentDistancePassed;
-    private int routeIndex;
+    private RouteIterator iterator;
     
     //==============================================================================
     //== CONSTRUCTORS ==============================================================
     /**
-     * TODO: Comment
-     * @param routeEdge
-     * @param edgeDistancePassed
-     * @param segmentDistancePassed
-     * @param routeIndex
+     * constructor
+     * @param edgeDistancePassed time passed since edge was reached
+     * @param segmentDistancePassed time passed since segment was reached
+     * @param iterator iterator pointing at the current edge
      */
     public RoutePoint(long edgeDistancePassed,
-            long segmentDistancePassed, int routeIndex)
+            long segmentDistancePassed, RouteIterator iterator)
     {
         this.edgeDistancePassed = edgeDistancePassed;
         this.segmentDistancePassed = segmentDistancePassed;
-        this.routeIndex = routeIndex;
+        this.iterator = iterator;
     }   
     //== GETTERS AND SETTERS =======================================================
 
     /**
-     * TODO: Comment
-     * @return the edgeDistancePassed
+     * returns how much time has passed since the current edge was reached
+     * @return the edge distance passed
      */
     public long getEdgeDistancePassed()
     {
@@ -43,8 +42,8 @@ public class RoutePoint
     }
 
     /**
-     * TODO: Comment
-     * @return the segmentDistancePassed
+     * returns how much time has passed since the current segment was reached
+     * @return the segment distance passed
      */
     public long getSegmentDistancePassed()
     {
@@ -52,11 +51,11 @@ public class RoutePoint
     }
 
     /**
-     * TODO: Comment
-     * @return the routeIndex
+     * returns an iterator pointing to the current edge
+     * @return current iterator
      */
-    public int getRouteIndex()
+    public RouteIterator getIterator()
     {
-        return routeIndex;
+        return iterator.copy();
     }
 }

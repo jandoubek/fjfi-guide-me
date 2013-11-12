@@ -13,6 +13,7 @@ public class RouteEdge
     
     private GMEdge edge;
     private RouteSegment segment;
+    private int segmentIndex;
     
     //==============================================================================
     //== CONSTRUCTORS ==============================================================
@@ -21,10 +22,11 @@ public class RouteEdge
      * @param edge
      * @param segment
      */
-    public RouteEdge(GMEdge edge, RouteSegment segment)
+    RouteEdge(GMEdge edge, RouteSegment segment, int segmentIndex)
     {
         this.edge = edge;
         this.segment = segment;
+        this.segmentIndex = segmentIndex;
     }
     //== GETTERS AND SETTERS =======================================================
 
@@ -45,6 +47,14 @@ public class RouteEdge
     {
         return segment;
     }
+
+    /**
+     * returns the index of the edge in the segment
+     * @return segment index of the edge
+     */
+	public int getSegmentIndex() {
+		return segmentIndex;
+	}
 
     //== OTHER METHODS =============================================================
 }

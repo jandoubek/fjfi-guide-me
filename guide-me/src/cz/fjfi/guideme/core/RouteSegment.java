@@ -17,11 +17,12 @@ public class RouteSegment
     private GMNode end;
     private Direction direction;
     private long timeDistance;
+    private int length;
     
     //==============================================================================
     //== CONSTRUCTORS ==============================================================
     
-    public RouteSegment (List<GMEdge> edges)
+    RouteSegment (List<GMEdge> edges)
     {
         this.start = edges.get(0).getStart();
         this.end = edges.get(edges.size()-1).getEnd();
@@ -31,11 +32,12 @@ public class RouteSegment
         {
             this.timeDistance += e.getTimeDistance();
         }
+        this.length = edges.size();
     }
     //== GETTERS AND SETTERS =======================================================
 
     /**
-     * TODO: Comment
+     * returns the beginning node of the segment
      * @return the start
      */
     public GMNode getStart()
@@ -43,15 +45,7 @@ public class RouteSegment
         return start;
     }
     /**
-     * TODO: Comment
-     * @param start the start to set
-     */
-    public void setStart(GMNode start)
-    {
-        this.start = start;
-    }
-    /**
-     * TODO: Comment
+     * returns the final node of the segment
      * @return the end
      */
     public GMNode getEnd()
@@ -59,15 +53,7 @@ public class RouteSegment
         return end;
     }
     /**
-     * TODO: Comment
-     * @param end the end to set
-     */
-    public void setEnd(GMNode end)
-    {
-        this.end = end;
-    }
-    /**
-     * TODO: Comment
+     * returns the direction of the segment
      * @return the direction
      */
     public Direction getDirection()
@@ -75,27 +61,19 @@ public class RouteSegment
         return direction;
     }
     /**
-     * TODO: Comment
-     * @param direction the direction to set
-     */
-    public void setDirection(Direction direction)
-    {
-        this.direction = direction;
-    }
-    /**
-     * TODO: Comment
+     * returns the total time/distance of the segment
      * @return the timeDistance
      */
     public long getTimeDistance()
     {
         return timeDistance;
     }
+    
     /**
-     * TODO: Comment
-     * @param timeDistance the timeDistance to set
+     * returns the number of edges in the segment
+     * @return number of edges
      */
-    public void setTimeDistance(long timeDistance)
-    {
-        this.timeDistance = timeDistance;
-    }
+    public int getLength() {
+		return length;
+	}
 }
