@@ -234,7 +234,10 @@ public class ResourceManager
             }
             else if (parser.getName() == "location")
             {
-                uuid = java.util.UUID.fromString(parser.getText());
+                if(parser.getAttributeName(0) == "guid")
+                {
+                    uuid = java.util.UUID.fromString(parser.getAttributeValue(0));
+                }
             }
             else if (parser.getName() == "name")
             {
@@ -252,8 +255,68 @@ public class ResourceManager
         return location;
     }
 
-    private static GMEdge readEdge(XmlPullParser parser, GMMap createdMap)
+    private static GMEdge readEdge(XmlPullParser parser, GMMap createdMap) throws XmlPullParserException, IOException
     {
-        return null;
+        UUID uuid = null;
+        String name = "";
+        long distance = 0;
+        GMNode start = null;
+        GMNode end = null;
+        Direction direction = null;
+        String description = "";
+        
+        parser.require(XmlPullParser.START_TAG, "", "edge");
+        while (parser.getName() != "edgelist")
+        {
+            if (parser.getEventType() != XmlPullParser.START_TAG)
+            {
+                parser.next();
+            }
+            else if (parser.getName() == "edge")
+            {
+                if(parser.getAttributeName(0) == "guid")
+                {
+                    uuid = java.util.UUID.fromString(parser.getAttributeValue(0));
+                }
+            }
+            else if (parser.getName() == "name")
+            {
+                name = parser.getText();
+            }
+            else if (parser.getName() == "distance")
+            {
+                if(parser.getAttributeName(0) == "time")
+                {
+                    distance = Long.parseLong(parser.getAttributeValue(0));
+                }
+            }
+            else if (parser.getName() == "start")
+            {
+                if(parser.getAttributeName(0) == "guid")
+                {
+                    start = createdMap.getNode(java.util.UUID.fromString(parser.getAttributeValue(0)));
+                }
+            }
+            else if (parser.getName() == "end")
+            {
+                if(parser.getAttributeName(0) == "guid")
+                {
+                    end = createdMap.getNode(java.util.UUID.fromString(parser.getAttributeValue(0)));
+                }
+            }
+            else if (parser.getName() == "direction")
+            {
+                direction = Direction.valueOf(parser.getText());
+            }
+            else if (parser.getName() == "desc")
+            {
+                description = parser.getText();
+            }
+        }
+        
+        parser.require(XmlPullParser.END_TAG, "", "edgelist");
+        parser.next();
+        GMEdge edge = new GMEdge(uuid, name, distance, start, end, direction, description, createdMap);
+        return edge;
     }
 }

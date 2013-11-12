@@ -24,7 +24,7 @@ public class GMEdge
 	private Direction direction;
 	private String description;
 	private GMMap myMap;
-	private List<Location> locations;
+	
 //==============================================================================
 //== CONSTRUCTORS ==============================================================
     
@@ -33,7 +33,7 @@ public class GMEdge
      */
     //TODO: constructor parameters and body
     public GMEdge(UUID guid, String name, long timeDistance, GMNode start, GMNode end, Direction direction,
-    			String description, GMMap myMap, List<Location> locations)
+    			String description, GMMap myMap)
     {
     	this.guid = guid;
     	this.name = name;
@@ -43,7 +43,6 @@ public class GMEdge
     	this.direction = direction;
     	this.description = description;
     	this.myMap = myMap;
-    	this.locations = locations;
     }
     
 //== GETTERS AND SETTERS =======================================================
