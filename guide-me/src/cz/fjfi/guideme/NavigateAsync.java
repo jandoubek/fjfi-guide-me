@@ -6,6 +6,7 @@ import cz.fjfi.guideme.core.GMEdge;
 import cz.fjfi.guideme.core.GMNode;
 import cz.fjfi.guideme.core.Guide;
 import cz.fjfi.guideme.core.Route;
+import cz.fjfi.guideme.core.RouteIterator;
 import cz.fjfi.guideme.core.RoutePoint;
 import cz.fjfi.guideme.core.RouteSegment;
 
@@ -71,8 +72,9 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 	
 	private String generateLabel(RoutePoint point)
 	{
-	    GMEdge edge = point.getIterator().get();
-	    RouteSegment segment = point.getIterator().getSegment();
+	    RouteIterator currentPosition = point.getIterator();
+	    GMEdge edge = currentPosition.get();
+	    RouteSegment segment = currentPosition.getSegment();
 	    String label;
 	    GMNode endpoint = guide.getCurrentRoute().getEnd();
 	    if (guide.reachedDestination())
@@ -84,9 +86,37 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 	        label = "Mirite k cili: " + endpoint.getDescription() + "\n" +
                     "Dalsiho bodu " + segment.getEnd().getDescription() +
                     " dosahnete za: " + (segment.getTimeDistance() - point.getSegmentDistancePassed())/1000 + "s" + "\n\n" +
-                    "Nyni se nachazite na: " + edge.getDescription() + "\n" +
-                    edge.getStart().getName() + " -> " + edge.getEnd().getName() + "(" +
-                    (edge.getTimeDistance() - point.getEdgeDistancePassed())/1000 + " s)";
+                    "Nyni se nachazite na: " + edge.getDescription() + "\n";
+            RouteIterator previousPosition = point.getIterator();
+            previousPosition.previous();
+	        if (previousPosition.hasPrevious())
+	        {
+	            GMEdge prevEdge = previousPosition.previous();
+	            label += prevEdge.getStart().getName() + " -> "; 
+	        }
+	        label += edge.getStart().getName() + " -- " + edge.getEnd().getName() + "(" +
+	                (edge.getTimeDistance() - point.getEdgeDistancePassed())/1000 + "s)";
+	        if (currentPosition.hasNext())
+	        {
+	            GMEdge nextEdge = currentPosition.next();
+	            label += " -> " + nextEdge.getEnd().getName();
+	        }
+	        label += "\n\n";
+	        previousPosition = point.getIterator();
+	        previousPosition.previous();
+	        if (previousPosition.hasPreviousSegment())
+	        {
+	            RouteSegment prevSegment = previousPosition.previousSegment();
+	            label += prevSegment.getStart().getName() + " -- " + prevSegment.getEnd().getName() + "\n";
+	        }
+	        currentPosition = point.getIterator();
+	        label += segment.getStart().getName() + " -- " + segment.getEnd().getName() + " <--\n";
+	        if (currentPosition.hasNextSegment())
+	        {
+	            RouteSegment nextSegment = currentPosition.nextSegment();
+	            label += nextSegment.getStart().getName() + " -- " + nextSegment.getEnd().getName();
+	        }
+	        
 	    }
 	    return label;
 	}

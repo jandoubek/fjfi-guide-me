@@ -56,6 +56,6 @@ public class RoutePoint
      */
     public RouteIterator getIterator()
     {
-        return iterator;
+        return iterator.copy();
     }
 }

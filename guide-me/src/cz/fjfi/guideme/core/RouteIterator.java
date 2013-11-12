@@ -142,7 +142,7 @@ public class RouteIterator
      */
     public boolean hasNextSegment()
     {
-    	return nextSegmentIndex() != route.size();
+    	return nextSegmentIndex() < route.size();
     }
     
     /**
@@ -151,11 +151,11 @@ public class RouteIterator
      */
     public boolean hasPreviousSegment()
     {
-    	return previousSegmentIndex() != 0;
+    	return previousSegmentIndex() >= 0;
     }
     
     /**
-     * returns the next segment in the route
+     * returns the next segment in the route and advances the iterator to it
      * @return the next segment
      */
     public RouteSegment nextSegment()
@@ -181,9 +181,9 @@ public class RouteIterator
     {
     	try
     	{
-    		RouteEdge edge = route.get(cursor);
+    		RouteEdge edge = route.get(lastRet);
     		int distance = edge.getSegment().getLength() - edge.getSegmentIndex();
-    		return cursor + distance;
+    		return lastRet + distance;
     	}
     	catch (IndexOutOfBoundsException e)
     	{
@@ -192,7 +192,7 @@ public class RouteIterator
     }
     
     /**
-     * returns the previous segment in the route
+     * returns the previous segment in the route and moves the iterator back to it
      * @return the previous segment
      */
     public RouteSegment previousSegment()
@@ -220,9 +220,7 @@ public class RouteIterator
     	{
     		RouteEdge edge = route.get(cursor);
     		int distance = edge.getSegmentIndex();
-    		edge = route.get(cursor - distance - 1);
-    		distance += edge.getSegment().getLength();
-    		return cursor - distance;
+    		return cursor - distance - 1;
     	}
     	catch (IndexOutOfBoundsException e)
     	{

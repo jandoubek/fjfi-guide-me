@@ -25,10 +25,6 @@ public class Guide
 //==============================================================================
 //== CONSTRUCTORS ==============================================================
     
-    /***************************************************************************
-     * TODO: comment
-     */
-    //TODO: constructor parameters and body
     private Guide()
     {
     }
@@ -48,10 +44,7 @@ public class Guide
      */
     public final GMMap getCurrentMap()
     {
-        if (map == null)
-        {
-            throw new IllegalStateException("getCurrentMap called before setMap");
-        }
+        checkForMap("getCurrentMap called before setMap");
         return map;
     }
 
@@ -70,10 +63,7 @@ public class Guide
      */
     public final void setRoute(Route route)
     {
-        if (map == null)
-        {
-            throw new IllegalStateException("setRoute called before setMap");
-        }
+        checkForMap("setRoute called before setMap");
         navigator = new Navigator(route);
     }
     
@@ -83,10 +73,7 @@ public class Guide
      */
     public final Route getCurrentRoute()
     {
-        if (navigator == null)
-        {
-            throw new IllegalStateException("getCurrentRoute called before setRoute");
-        }
+        checkForNavigator("getCurrentRoute called before setRoute");
         return navigator.getRoute();
     }
     
@@ -97,10 +84,7 @@ public class Guide
      */
     public final Route findRouteBetween(GMNode from, GMNode to)
     {
-        if (map == null)
-        {
-            throw new IllegalStateException("findRouteBetween called before setMap");
-        }
+        checkForMap("findRouteBetween called before setMap");
         return Pathfinder.findRouteBetween(map, from, to);
     }
 
@@ -109,10 +93,7 @@ public class Guide
      */
     public final Route findRouteBetween(GMNode from, GMNode to, List<GMNode> through)
     {
-        if (map == null)
-        {
-            throw new IllegalStateException("findRouteBetween called before setMap");
-        }
+        checkForMap("findRouteBetween called before setMap");
         return Pathfinder.findRouteBetween(map, from, to, through);
     }
     
@@ -121,10 +102,7 @@ public class Guide
      */
     public final RoutePoint getCurrentRoutePoint(long time)
     {
-        if (navigator == null)
-        {
-            throw new IllegalStateException("getCurrentRoutePoint called before setRoute");
-        }
+        checkForNavigator("getCurrentRoutePoint called before setRoute");
         return navigator.getCurrentRoutePoint(time);
     }
     
@@ -133,10 +111,7 @@ public class Guide
      */
     public final void goToNextSegment(long time)
     {
-        if (navigator == null)
-        {
-            throw new IllegalStateException("goToNextSegment called before setRoute");
-        }
+        checkForNavigator("goToNextSegment called before setRoute");
         navigator.goToNextSegment(time);
     }
     
@@ -145,10 +120,23 @@ public class Guide
      */
     public final boolean reachedDestination()
     {
+        checkForNavigator("reachedDestination called before setRoute");
+        return navigator.reachedEnd();
+    }
+    
+    private final void checkForMap(String message)
+    {
+        if (map == null)
+        {
+            throw new IllegalStateException(message);
+        }
+    }
+    
+    private final void checkForNavigator(String message)
+    {
         if (navigator == null)
         {
-            throw new IllegalStateException("reachedDestination called before setRoute");
+            throw new IllegalStateException(message);
         }
-        return navigator.reachedEnd();
     }
 }
