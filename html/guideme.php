@@ -10,10 +10,10 @@ echo '<br />';
 echo 'nebo vytvořit svůj vlastní model a sdílet jej s ostaními.';
 echo '<br /><br /><br />';
 
-echo 'Pořebujete-li poradit, jak nainstalovat a ovládat aplikaci guide.me,<br />zvolte příslušné téma v nabídce <a href="./index.php?p=5">Dokumentace</a>.';
+echo 'Pořebujete-li poradit, jak nainstalovat a ovládat aplikaci guide.me,<br />zvolte příslušné téma v nabídce <a href="dokumentace">Dokumentace</a>.';
 echo '<br /><br />';
 
-echo 'Mapy je možné stáhovat přímo v telefonu, nebo z těchto stránek a poté je přidat do telefonu manuálně.<br />Seznam dostupných map ke stažení naleznete v sekci <a href="./index.php?p=4">Mapy</a>.';
+echo 'Mapy je možné stáhovat přímo v telefonu, nebo z těchto stránek a poté je přidat do telefonu manuálně.<br />Seznam dostupných map ke stažení naleznete v sekci <a href="mapy">Mapy</a>.';
 
 echo '<br /><br />';
 
