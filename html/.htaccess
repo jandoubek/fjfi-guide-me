@@ -1,26 +1,35 @@
 AddDefaultCharset UTF-8
 
+ErrorDocument 403 http://kmlinux.fjfi.cvut.cz/~fortpet2/guideme/
+ErrorDocument 404 http://kmlinux.fjfi.cvut.cz/~fortpet2/guideme/
+ErrorDocument 500 http://kmlinux.fjfi.cvut.cz/~fortpet2/guideme/
+
+Options -Indexes
 Options +FollowSymlinks
+
 RewriteEngine on
 
-RewriteBase /
+RewriteBase /~fortpet2/guideme/
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l  
 
 DirectorySlash Off
 
-RewriteRule ^uvod([/]?)$ /~fortpet2/guideme/ [L]
-RewriteRule ^o-projektu([/]?)$ /~fortpet2/guideme/index.php?p=2 [L]
-RewriteRule ^stahnout([/]?)$ /~fortpet2/guideme/index.php?p=3 [L]
-RewriteRule ^mapy([/]?)$ /~fortpet2/guideme/index.php?p=4 [L]
-RewriteRule ^dokumentace([/]?)$ /~fortpet2/guideme/index.php?p=5 [L]
-RewriteRule ^o-nas([/]?)$ /~fortpet2/guideme/index.php?p=6 [L]
-RewriteRule ^prava([/]?)$ /~fortpet2/guideme/index.php?p=7 [L]
-RewriteRule ^kontakt([/]?)$ /~fortpet2/guideme/index.php?p=8 [L]
+RewriteRule ^uvod([/]?)$ %{HTTP_HOST}/ [L]
+RewriteRule ^o-projektu$ /~fortpet2/guideme/index.php?p=2 [L]
+RewriteRule ^stahnout$ /~fortpet2/guideme/index.php?p=3 [L]
+RewriteRule ^mapy$ /~fortpet2/guideme/index.php?p=4 [L]
+RewriteRule ^dokumentace$ /~fortpet2/guideme/index.php?p=5 [L]
+RewriteRule ^o-nas$ /~fortpet2/guideme/index.php?p=6 [L]
+RewriteRule ^prava$ /~fortpet2/guideme/index.php?p=7 [L]
+RewriteRule ^kontakt$ /~fortpet2/guideme/index.php?p=8 [L]
 
-RewriteRule ^pridat-mapu([/]?)$ /~fortpet2/guideme/index.php?p=9 [L]
-RewriteRule ^sprava-map([/]?)$ /~fortpet2/guideme/index.php?p=10 [L]
-RewriteRule ^upravit-mapu([/]?)$ /~fortpet2/guideme/index.php?p=11 [L]
-RewriteRule ^profil([/]?)$ /~fortpet2/guideme/index.php?p=12 [L]
-RewriteRule ^prihlasit([/]?)$ /~fortpet2/guideme/index.php?p=13 [L]
+RewriteRule ^pridat-mapu$ /~fortpet2/guideme/index.php?p=9 [L]
+RewriteRule ^sprava-map$ /~fortpet2/guideme/index.php?p=10 [L]
+RewriteRule ^upravit-mapu$ /~fortpet2/guideme/index.php?p=11 [L]
+RewriteRule ^profil$ /~fortpet2/guideme/index.php?p=12 [L]
+RewriteRule ^prihlasit$ /~fortpet2/guideme/index.php?p=13 [L]
+
+RewriteRule ^update-headings$ /~fortpet2/guideme/getheadings.php [L]

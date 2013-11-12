@@ -271,35 +271,6 @@ function zjisti_obsah_adresare($adresar='') {
 } 
 
 
-//
-// FUNKCE PRO TRIDENI ASOCIATIVNICH POLI
-//
-function sorting($asocpole,$sloupec,$order='ASC') {
-
-		if (!is_array($asocpole)) {
-		return false;
-		}
-		
-		$val = array();
-				
-		foreach ($asocpole as $key => $row) {
-			$val[$key] = $row['' . $sloupec . ''];
-		}
-		
-		if ((trim(strtoupper($order)))=='DESC')
-			array_multisort($val, SORT_DESC, $asocpole);
-		else {
-			array_multisort($val, SORT_ASC, $asocpole);
-		}
-					
-				array_multisort($val, SORT_ASC, $vypis);	
-			
-		return true;
-		
-}
-
-
-
 function authors() {
 
   $authors = array();
@@ -308,5 +279,6 @@ function authors() {
 	return $authors;	
 	
 }
+
 
 ?>

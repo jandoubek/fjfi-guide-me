@@ -147,8 +147,8 @@ function f_maps() {
 					$val[$key] = $row['Name'];
 				}
 		
-				array_multisort($val, SORT_DESC, $vypis);	
-		
+				array_multisort($val, SORT_DESC, $vypis);					
+
 		} else {
 
 				$val = array();
@@ -162,9 +162,7 @@ function f_maps() {
 		
 		// vypis z pripraveneho pole
 		foreach ($vypis as $key => $row) {		
-			
-			
-			
+				
 			$nazev = $row['Name'];			
 			$soubor = $row['File'];
 			$gps =	$row['GpsCoords'];

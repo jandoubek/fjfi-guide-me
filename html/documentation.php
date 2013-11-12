@@ -3,9 +3,11 @@
 echo '<b>Dokumentace k aplikaci guide.me</b>';
 
 echo '<ol>';
-echo '  <li>Stažení a instalace</li>';
+echo '  <li><span style="color: navy; cursor: pointer;" onClick="javascript:document.getElementById(\'doc1\').style.display=\'block\'">Stažení a instalace</span></li>';
 
 echo '
+<span style="display: none;" id="doc1" onClick="this.style.display=\'none\'"><br />
+
 <br />
 • Ověřte, zdali máte telefon se systémem Google Android verze 2.0 nebo vyšší.<br />
 <br />
@@ -27,6 +29,7 @@ echo '
 <br />
 • Spusťte aplikaci<br />
 <br />
+</span>
 ';
 
 echo '  <li>Získání a výběr mapy</li>';
