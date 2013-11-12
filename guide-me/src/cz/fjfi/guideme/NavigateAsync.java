@@ -71,8 +71,8 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 	
 	private String generateLabel(RoutePoint point)
 	{
-	    GMEdge edge = guide.getCurrentRoute().getEdge(point.getRouteIndex());
-	    RouteSegment segment = guide.getCurrentRoute().getSegment(point.getRouteIndex());
+	    GMEdge edge = point.getIterator().get();
+	    RouteSegment segment = point.getIterator().getSegment();
 	    String label;
 	    GMNode endpoint = guide.getCurrentRoute().getEnd();
 	    if (guide.reachedDestination())

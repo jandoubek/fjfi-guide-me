@@ -98,7 +98,11 @@ public class Navigator
     {
         return currentIterator.previousIndex();
     }
-    
+
+    /**
+     * checks if the end of the route has been reached
+     * @return boolean indicating if the end has been reached
+     */
     public boolean reachedEnd()
     {
         return reachedEnd;
@@ -111,12 +115,12 @@ public class Navigator
     {
     	if (currentIterator.hasNext())
     	{
-    	    RouteEdge nextEdge = currentIterator.next();
-    		currentEdge = nextEdge.getEdge();
-    		if (currentSegment != nextEdge.getSegment())
+    	    currentIterator.next();
+    		currentEdge = currentIterator.get();
+    		if (currentSegment != currentIterator.getSegment())
     		{
     		    timeOnCurrentSegment = 0;
-    		    currentSegment = nextEdge.getSegment();
+    		    currentSegment = currentIterator.getSegment();
     		}
     	}
     	else
@@ -131,7 +135,7 @@ public class Navigator
      */
     private RoutePoint generateRoutePoint()
     {
-        return new RoutePoint(timeOnCurrentEdge,timeOnCurrentSegment,getCurrentIndex());
+        return new RoutePoint(timeOnCurrentEdge,timeOnCurrentSegment,currentIterator.copy());
     }
 
 }

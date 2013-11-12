@@ -21,8 +21,8 @@ public class Route
 //==============================================================================
 //== CONSTRUCTORS ==============================================================
     
-    /***************************************************************************
-     * TODO: comment
+    /**
+     * constructs a Route from a list of edges
      */
     public Route(List<GMEdge> edges)
     {
@@ -49,11 +49,21 @@ public class Route
         return end;
     }
     
+    /**
+     * Returns the edge located at the index
+     * @param location
+     * @return edge at location
+     */
     public final GMEdge getEdge(int location)
     {
         return route.get(location).getEdge();
     }
     
+    /**
+     * Returns the segment the edge located at the index belongs to
+     * @param location
+     * @return segment at location
+     */
     public final RouteSegment getSegment(int location)
     {
         return route.get(location).getSegment();
@@ -64,7 +74,7 @@ public class Route
      */
     public final RouteIterator iterator()
     {
-        return new RouteIterator(route.listIterator());
+        return new RouteIterator(route);
     }
     
 //== OTHER METHODS =============================================================
@@ -98,9 +108,10 @@ public class Route
             if (currentDirection != currentEdge.getDirection() || lastEdgeFound)
             {
                 RouteSegment newSegment = new RouteSegment(currentSegmentList);
+                int i = 0;
                 for (GMEdge newEdge : currentSegmentList)
                 {
-                    route.add(new RouteEdge(newEdge, newSegment));
+                    route.add(new RouteEdge(newEdge, newSegment, i++));
                 }
                 currentSegmentList = new ArrayList<GMEdge>();
                 currentDirection = currentEdge.getDirection();
