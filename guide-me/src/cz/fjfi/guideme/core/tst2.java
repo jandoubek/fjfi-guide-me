@@ -69,73 +69,73 @@ public class tst2 {
 		
 		//Smìr 1
 		//lokace 1
-		GMEdge e0102 = new GMEdge(Utility.generateGUID(), "e0102", 0, n01, n02, 	Direction.South, 	"odchod z WC", myMap, myMap.getLocations());
-		GMEdge e0203 = new GMEdge(Utility.generateGUID(), "e0203", 1600, n02, n03, 	Direction.South, 	"chodba", myMap, myMap.getLocations());
-		GMEdge e0204 = new GMEdge(Utility.generateGUID(), "e0204", 2000, n02, n04, 	Direction.Southeast, "chodba", myMap, myMap.getLocations());
-		GMEdge e0304 = new GMEdge(Utility.generateGUID(), "e0304", 2000, n03, n04, 	Direction.Northeast, "chodba", myMap, myMap.getLocations());
-		GMEdge e0405 = new GMEdge(Utility.generateGUID(), "e0405", 0, n04, n05, 	Direction.East, 	"vstup na schodištì", myMap, myMap.getLocations());
+		GMEdge e0102 = new GMEdge(Utility.generateGUID(), "e0102", 0, n01, n02, 	Direction.South, 	"odchod z WC", myMap);
+		GMEdge e0203 = new GMEdge(Utility.generateGUID(), "e0203", 1600, n02, n03, 	Direction.South, 	"chodba", myMap);
+		GMEdge e0204 = new GMEdge(Utility.generateGUID(), "e0204", 2000, n02, n04, 	Direction.Southeast, "chodba", myMap);
+		GMEdge e0304 = new GMEdge(Utility.generateGUID(), "e0304", 2000, n03, n04, 	Direction.Northeast, "chodba", myMap);
+		GMEdge e0405 = new GMEdge(Utility.generateGUID(), "e0405", 0, n04, n05, 	Direction.East, 	"vstup na schodištì", myMap);
 		 
-		GMEdge e0307 = new GMEdge(Utility.generateGUID(), "e0307", 0, n03, n07, 	Direction.South, 	"vstup na KM", myMap, myMap.getLocations());
+		GMEdge e0307 = new GMEdge(Utility.generateGUID(), "e0307", 0, n03, n07, 	Direction.South, 	"vstup na KM", myMap);
 		//lokace 2
-		GMEdge e0608 = new GMEdge(Utility.generateGUID(), "e0608", 0, n06, n08, 	Direction.East, 	"odchod z místnosti T-1xx", myMap, myMap.getLocations());
-		GMEdge e0708 = new GMEdge(Utility.generateGUID(), "e0708", 700, n07, n08, 	Direction.Southwest, "hlavní chodba KM", myMap, myMap.getLocations());
-		GMEdge e0709 = new GMEdge(Utility.generateGUID(), "e0709", 700, n07, n09, 	Direction.Southeast, "hlavní chodba KM", myMap, myMap.getLocations());
-		GMEdge e0717 = new GMEdge(Utility.generateGUID(), "e0717", 5600, n07, n17, 	Direction.South, 	"hlavní chodba KM", myMap, myMap.getLocations());
-		GMEdge e0719 = new GMEdge(Utility.generateGUID(), "e0719", 8900, n07, n19, 	Direction.South, 	"hlavní chodba KM", myMap, myMap.getLocations());
-		GMEdge e0809 = new GMEdge(Utility.generateGUID(), "e0809", 1100, n08, n09, 	Direction.East, 	"hlavní chodba KM", myMap, myMap.getLocations());
-		GMEdge e0817 = new GMEdge(Utility.generateGUID(), "e0817", 5000, n08, n17, 	Direction.South, 	"hlavní chodba KM", myMap, myMap.getLocations());
-		GMEdge e0819 = new GMEdge(Utility.generateGUID(), "e0819", 8200, n08, n19, 	Direction.South, 	"hlavní chodba KM", myMap, myMap.getLocations());
-		GMEdge e0917 = new GMEdge(Utility.generateGUID(), "e0917", 4800, n09, n17, 	Direction.South, 	"hlavní chodba KM", myMap, myMap.getLocations());
-		GMEdge e0919 = new GMEdge(Utility.generateGUID(), "e0919", 8200, n09, n19, 	Direction.South, 	"hlavní chodba KM", myMap, myMap.getLocations());
-		GMEdge e1719 = new GMEdge(Utility.generateGUID(), "e1719", 3000, n17, n19, 	Direction.South, 	"hlavní chodba KM", myMap, myMap.getLocations());
-		GMEdge e1718 = new GMEdge(Utility.generateGUID(), "e1718", 0, n17, n18, 	Direction.East, 	"vstup do místnosti T-1xx", myMap, myMap.getLocations());
+		GMEdge e0608 = new GMEdge(Utility.generateGUID(), "e0608", 0, n06, n08, 	Direction.East, 	"odchod z místnosti T-1xx", myMap);
+		GMEdge e0708 = new GMEdge(Utility.generateGUID(), "e0708", 700, n07, n08, 	Direction.Southwest, "hlavní chodba KM", myMap);
+		GMEdge e0709 = new GMEdge(Utility.generateGUID(), "e0709", 700, n07, n09, 	Direction.Southeast, "hlavní chodba KM", myMap);
+		GMEdge e0717 = new GMEdge(Utility.generateGUID(), "e0717", 5600, n07, n17, 	Direction.South, 	"hlavní chodba KM", myMap);
+		GMEdge e0719 = new GMEdge(Utility.generateGUID(), "e0719", 8900, n07, n19, 	Direction.South, 	"hlavní chodba KM", myMap);
+		GMEdge e0809 = new GMEdge(Utility.generateGUID(), "e0809", 1100, n08, n09, 	Direction.East, 	"hlavní chodba KM", myMap);
+		GMEdge e0817 = new GMEdge(Utility.generateGUID(), "e0817", 5000, n08, n17, 	Direction.South, 	"hlavní chodba KM", myMap);
+		GMEdge e0819 = new GMEdge(Utility.generateGUID(), "e0819", 8200, n08, n19, 	Direction.South, 	"hlavní chodba KM", myMap);
+		GMEdge e0917 = new GMEdge(Utility.generateGUID(), "e0917", 4800, n09, n17, 	Direction.South, 	"hlavní chodba KM", myMap);
+		GMEdge e0919 = new GMEdge(Utility.generateGUID(), "e0919", 8200, n09, n19, 	Direction.South, 	"hlavní chodba KM", myMap);
+		GMEdge e1719 = new GMEdge(Utility.generateGUID(), "e1719", 3000, n17, n19, 	Direction.South, 	"hlavní chodba KM", myMap);
+		GMEdge e1718 = new GMEdge(Utility.generateGUID(), "e1718", 0, n17, n18, 	Direction.East, 	"vstup do místnosti T-1xx", myMap);
 		 
-		GMEdge e0910 = new GMEdge(Utility.generateGUID(), "e0910", 0, n09, n10, 	Direction.East, 	"vstup do severní chodby KM", myMap, myMap.getLocations());
+		GMEdge e0910 = new GMEdge(Utility.generateGUID(), "e0910", 0, n09, n10, 	Direction.East, 	"vstup do severní chodby KM", myMap);
 		//lokace 3 
-		GMEdge e1011 = new GMEdge(Utility.generateGUID(), "e1011", 6800, n10, n11, 	Direction.East, 	"severní chodba KM", myMap, myMap.getLocations());
-		GMEdge e1013 = new GMEdge(Utility.generateGUID(), "e1013", 12200, n10, n13, Direction.East, 	"severní chodba KM", myMap, myMap.getLocations());
-		GMEdge e1015 = new GMEdge(Utility.generateGUID(), "e1015", 18600, n10, n15, Direction.East, 	"severní chodba KM", myMap, myMap.getLocations());
-		GMEdge e1113 = new GMEdge(Utility.generateGUID(), "e1113", 5000, n11, n13, 	Direction.East, 	"severní chodba KM", myMap, myMap.getLocations());
-		GMEdge e1115 = new GMEdge(Utility.generateGUID(), "e1115", 11400, n11, n15, Direction.East, 	"severní chodba KM", myMap, myMap.getLocations());
-		GMEdge e1315 = new GMEdge(Utility.generateGUID(), "e1315", 6000, n13, n15, 	Direction.East, 	"severní chodba KM", myMap, myMap.getLocations());
-		GMEdge e1112 = new GMEdge(Utility.generateGUID(), "e1112", 0, n11, n12, 	Direction.South, 	"vstup do kanceláøe KM", myMap, myMap.getLocations());
-		GMEdge e1314 = new GMEdge(Utility.generateGUID(), "e1314", 0, n13, n14, 	Direction.South, 	"vstup do místnosti T-115", myMap, myMap.getLocations());
-		GMEdge e1516 = new GMEdge(Utility.generateGUID(), "e1516", 0, n15, n16, 	Direction.East, 	"vstup do místnosti T-1xx", myMap, myMap.getLocations());
+		GMEdge e1011 = new GMEdge(Utility.generateGUID(), "e1011", 6800, n10, n11, 	Direction.East, 	"severní chodba KM", myMap);
+		GMEdge e1013 = new GMEdge(Utility.generateGUID(), "e1013", 12200, n10, n13, Direction.East, 	"severní chodba KM", myMap);
+		GMEdge e1015 = new GMEdge(Utility.generateGUID(), "e1015", 18600, n10, n15, Direction.East, 	"severní chodba KM", myMap);
+		GMEdge e1113 = new GMEdge(Utility.generateGUID(), "e1113", 5000, n11, n13, 	Direction.East, 	"severní chodba KM", myMap);
+		GMEdge e1115 = new GMEdge(Utility.generateGUID(), "e1115", 11400, n11, n15, Direction.East, 	"severní chodba KM", myMap);
+		GMEdge e1315 = new GMEdge(Utility.generateGUID(), "e1315", 6000, n13, n15, 	Direction.East, 	"severní chodba KM", myMap);
+		GMEdge e1112 = new GMEdge(Utility.generateGUID(), "e1112", 0, n11, n12, 	Direction.South, 	"vstup do kanceláøe KM", myMap);
+		GMEdge e1314 = new GMEdge(Utility.generateGUID(), "e1314", 0, n13, n14, 	Direction.South, 	"vstup do místnosti T-115", myMap);
+		GMEdge e1516 = new GMEdge(Utility.generateGUID(), "e1516", 0, n15, n16, 	Direction.East, 	"vstup do místnosti T-1xx", myMap);
 
 		//Smìr 2 - opaèný
 		//lokace 1
-		GMEdge e0201 = new GMEdge(Utility.generateGUID(),"e0201", 0, n02, n01, Direction.North, "pøíchod na WC" ,myMap, myMap.getLocations());
-		GMEdge e0302 = new GMEdge(Utility.generateGUID(),"e0302", 1600, n03, n02, Direction.North, "chodba" ,myMap, myMap.getLocations());
-		GMEdge e0402 = new GMEdge(Utility.generateGUID(),"e0402", 2000, n04, n02, Direction.Northwest,"chodba" ,myMap, myMap.getLocations());
-		GMEdge e0403 = new GMEdge(Utility.generateGUID(),"e0403", 2000, n04, n03, Direction.Southwest,"chodba" ,myMap, myMap.getLocations());
-		GMEdge e0504 = new GMEdge(Utility.generateGUID(),"e0504", 0, n05, n04, Direction.West, "odchod ze schodištì" ,myMap, myMap.getLocations());
+		GMEdge e0201 = new GMEdge(Utility.generateGUID(),"e0201", 0, n02, n01, Direction.North, "pøíchod na WC" ,myMap);
+		GMEdge e0302 = new GMEdge(Utility.generateGUID(),"e0302", 1600, n03, n02, Direction.North, "chodba" ,myMap);
+		GMEdge e0402 = new GMEdge(Utility.generateGUID(),"e0402", 2000, n04, n02, Direction.Northwest,"chodba" ,myMap);
+		GMEdge e0403 = new GMEdge(Utility.generateGUID(),"e0403", 2000, n04, n03, Direction.Southwest,"chodba" ,myMap);
+		GMEdge e0504 = new GMEdge(Utility.generateGUID(),"e0504", 0, n05, n04, Direction.West, "odchod ze schodištì" ,myMap);
                                                            
-		GMEdge e0703 = new GMEdge(Utility.generateGUID(),"e0703", 0, n07, n03, Direction.North, "odchod z na KM" ,myMap, myMap.getLocations());
+		GMEdge e0703 = new GMEdge(Utility.generateGUID(),"e0703", 0, n07, n03, Direction.North, "odchod z na KM" ,myMap);
 		//lokace 2
-		GMEdge e0806 = new GMEdge(Utility.generateGUID(),"e0806", 0, n08, n06, Direction.West, "vstup do místnosti T-1xx" ,myMap, myMap.getLocations());
-		GMEdge e0807 = new GMEdge(Utility.generateGUID(),"e0807", 700, n08, n07, Direction.Northeast,"hlavní chodba KM" ,myMap, myMap.getLocations());
-		GMEdge e0907 = new GMEdge(Utility.generateGUID(),"e0907", 700, n09, n07, Direction.Northwest,"hlavní chodba KM" ,myMap, myMap.getLocations());
-		GMEdge e1707 = new GMEdge(Utility.generateGUID(),"e1707", 5600, n17, n07, Direction.North, "hlavní chodba KM" ,myMap, myMap.getLocations());
-		GMEdge e1907 = new GMEdge(Utility.generateGUID(),"e1907", 8900, n19, n07, Direction.North, "hlavní chodba KM" ,myMap, myMap.getLocations());
-		GMEdge e0908 = new GMEdge(Utility.generateGUID(),"e0908", 1100, n09, n08, Direction.West, "hlavní chodba KM" ,myMap, myMap.getLocations());
-		GMEdge e1708 = new GMEdge(Utility.generateGUID(),"e1708", 5000, n17, n08, Direction.North, "hlavní chodba KM" ,myMap, myMap.getLocations());
-		GMEdge e1908 = new GMEdge(Utility.generateGUID(),"e1908", 8200, n19, n08, Direction.North, "hlavní chodba KM" ,myMap, myMap.getLocations());
-		GMEdge e1709 = new GMEdge(Utility.generateGUID(),"e1709", 4800, n17, n09, Direction.North, "hlavní chodba KM" ,myMap, myMap.getLocations());
-		GMEdge e1909 = new GMEdge(Utility.generateGUID(),"e1909", 8200, n19, n09, Direction.North, "hlavní chodba KM" ,myMap, myMap.getLocations());
-		GMEdge e1917 = new GMEdge(Utility.generateGUID(),"e1917", 3000, n19, n17, Direction.North, "hlavní chodba KM" ,myMap, myMap.getLocations());
-		GMEdge e1817 = new GMEdge(Utility.generateGUID(),"e1817", 0, n18, n17, Direction.West, "odchod z místnosti T-1xx" ,myMap, myMap.getLocations());
+		GMEdge e0806 = new GMEdge(Utility.generateGUID(),"e0806", 0, n08, n06, Direction.West, "vstup do místnosti T-1xx" ,myMap);
+		GMEdge e0807 = new GMEdge(Utility.generateGUID(),"e0807", 700, n08, n07, Direction.Northeast,"hlavní chodba KM" ,myMap);
+		GMEdge e0907 = new GMEdge(Utility.generateGUID(),"e0907", 700, n09, n07, Direction.Northwest,"hlavní chodba KM" ,myMap);
+		GMEdge e1707 = new GMEdge(Utility.generateGUID(),"e1707", 5600, n17, n07, Direction.North, "hlavní chodba KM" ,myMap);
+		GMEdge e1907 = new GMEdge(Utility.generateGUID(),"e1907", 8900, n19, n07, Direction.North, "hlavní chodba KM" ,myMap);
+		GMEdge e0908 = new GMEdge(Utility.generateGUID(),"e0908", 1100, n09, n08, Direction.West, "hlavní chodba KM" ,myMap);
+		GMEdge e1708 = new GMEdge(Utility.generateGUID(),"e1708", 5000, n17, n08, Direction.North, "hlavní chodba KM" ,myMap);
+		GMEdge e1908 = new GMEdge(Utility.generateGUID(),"e1908", 8200, n19, n08, Direction.North, "hlavní chodba KM" ,myMap);
+		GMEdge e1709 = new GMEdge(Utility.generateGUID(),"e1709", 4800, n17, n09, Direction.North, "hlavní chodba KM" ,myMap);
+		GMEdge e1909 = new GMEdge(Utility.generateGUID(),"e1909", 8200, n19, n09, Direction.North, "hlavní chodba KM" ,myMap);
+		GMEdge e1917 = new GMEdge(Utility.generateGUID(),"e1917", 3000, n19, n17, Direction.North, "hlavní chodba KM" ,myMap);
+		GMEdge e1817 = new GMEdge(Utility.generateGUID(),"e1817", 0, n18, n17, Direction.West, "odchod z místnosti T-1xx" ,myMap);
                                                            
-		GMEdge e1009 = new GMEdge(Utility.generateGUID(),"e1009", 0, n10, n09, Direction.West, "vstup na hlavní chodbu KM" ,myMap, myMap.getLocations());
+		GMEdge e1009 = new GMEdge(Utility.generateGUID(),"e1009", 0, n10, n09, Direction.West, "vstup na hlavní chodbu KM" ,myMap);
 		//lokace 3
-		GMEdge e1110 = new GMEdge(Utility.generateGUID(),"e1110", 6800, n11, n10, Direction.West, "severní chodba KM" ,myMap, myMap.getLocations());
-		GMEdge e1310 = new GMEdge(Utility.generateGUID(),"e1310", 12200, n13, n10, Direction.West, "severní chodba KM" ,myMap, myMap.getLocations());
-		GMEdge e1510 = new GMEdge(Utility.generateGUID(),"e1510", 18600, n15, n10, Direction.West, "severní chodba KM" ,myMap, myMap.getLocations());
-		GMEdge e1311 = new GMEdge(Utility.generateGUID(),"e1311", 5000, n13, n11, Direction.West, "severní chodba KM" ,myMap, myMap.getLocations());
-		GMEdge e1511 = new GMEdge(Utility.generateGUID(),"e1511", 11400, n15, n11, Direction.West, "severní chodba KM" ,myMap, myMap.getLocations());
-		GMEdge e1513 = new GMEdge(Utility.generateGUID(),"e1513", 6000, n15, n13, Direction.West, "severní chodba KM" ,myMap, myMap.getLocations());
-		GMEdge e1211 = new GMEdge(Utility.generateGUID(),"e1211", 0, n12, n11, Direction.North, "odchod z kanceláøe KM" ,myMap, myMap.getLocations());
-		GMEdge e1413 = new GMEdge(Utility.generateGUID(),"e1413", 0, n14, n13, Direction.North, "odchod z místnosti T-115" ,myMap, myMap.getLocations());
-		GMEdge e1615 = new GMEdge(Utility.generateGUID(),"e1615", 0, n16, n15, Direction.West, "odchod z místnosti T-1xx" ,myMap, myMap.getLocations());
+		GMEdge e1110 = new GMEdge(Utility.generateGUID(),"e1110", 6800, n11, n10, Direction.West, "severní chodba KM" ,myMap);
+		GMEdge e1310 = new GMEdge(Utility.generateGUID(),"e1310", 12200, n13, n10, Direction.West, "severní chodba KM" ,myMap);
+		GMEdge e1510 = new GMEdge(Utility.generateGUID(),"e1510", 18600, n15, n10, Direction.West, "severní chodba KM" ,myMap);
+		GMEdge e1311 = new GMEdge(Utility.generateGUID(),"e1311", 5000, n13, n11, Direction.West, "severní chodba KM" ,myMap);
+		GMEdge e1511 = new GMEdge(Utility.generateGUID(),"e1511", 11400, n15, n11, Direction.West, "severní chodba KM" ,myMap);
+		GMEdge e1513 = new GMEdge(Utility.generateGUID(),"e1513", 6000, n15, n13, Direction.West, "severní chodba KM" ,myMap);
+		GMEdge e1211 = new GMEdge(Utility.generateGUID(),"e1211", 0, n12, n11, Direction.North, "odchod z kanceláøe KM" ,myMap);
+		GMEdge e1413 = new GMEdge(Utility.generateGUID(),"e1413", 0, n14, n13, Direction.North, "odchod z místnosti T-115" ,myMap);
+		GMEdge e1615 = new GMEdge(Utility.generateGUID(),"e1615", 0, n16, n15, Direction.West, "odchod z místnosti T-1xx" ,myMap);
 
 		//System.out.print(e1.exportXML());
 		myMap.addEdge(e0102);
