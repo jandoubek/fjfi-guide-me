@@ -10,7 +10,7 @@ if ($_SESSION["prihlasen"]) {
 	
 } else {
 
-	header("Location: index.php");	 
+	header("Location: http://kmlinux.fjfi.cvut.cz/~fortpet2/guideme/");	 
 				
 }
 

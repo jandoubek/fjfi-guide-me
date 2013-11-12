@@ -26,7 +26,7 @@ function f_profile($idu) {
 	$sex_db = $dbvalues[3];
 	$contact_db = $dbvalues[4];
 
-	$url = './index.php?p=12';	
+	$url = 'profil';	
 	
   $obsah = '';	   
   $obsah .= '<div style="position: relative; top: -60px;">';	

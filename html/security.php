@@ -19,7 +19,7 @@ if ($_SESSION["prihlasen"] == 1) {
 	$user_fullname = null;
 	$user_sex = null;
 
-	header("Location: index.php?p=13");	
+	header("Location: prihlasit");	
 	exit();	
 
 }

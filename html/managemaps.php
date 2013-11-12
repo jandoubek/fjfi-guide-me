@@ -91,7 +91,7 @@
 function f_stahnout_polozku($nazev) {
 
   $obsah = '';
-	$url = 'index.php?p=10';
+	$url = 'sprava-map';
 
   $obsah .= '<form method="post" action="' . $url . '" accept-charset="UTF-8 iso-8859-2 windows-1250">';
   $obsah .= '<input type="hidden" name="nazev" value="' . $nazev . '" />';
@@ -108,7 +108,7 @@ function f_zmenit_polozku($soubor,$nazev,$gps) {
 
   $obsah = '';
 	
-	$url = './index.php?p=11';
+	$url = 'upravit-mapu';
 
   $obsah .= '<form method="post" action="' . $url . '" accept-charset="UTF-8 iso-8859-2 windows-1250">';
   $obsah .= '<input type="hidden" name="soubor" value="' . $soubor . '" />';
@@ -126,7 +126,7 @@ function f_zmenit_polozku($soubor,$nazev,$gps) {
 function f_smazat_polozku($nazev) {
 
   $obsah = '';
-  $url = './index.php?p=10';	
+  $url = 'sprava-map';	
 
 	$obsah .= '<form method="post" action="' . $url . '" accept-charset="UTF-8 iso-8859-2 windows-1250">';
 	$obsah .= '<input type="hidden" name="nazev" value="' . $nazev . '" />';
@@ -143,7 +143,7 @@ function f_smazat_polozku($nazev) {
 function f_potvrdit_smazani_polozky($nazev) {
 
   $obsah = '';
-  $url = './index.php?p=10';	
+  $url = 'sprava-map';	
 	
 	$obsah .= '<form method="post" action="' . $url . '" accept-charset="UTF-8 iso-8859-2 windows-1250">';
 	$obsah .= '<input type="hidden" name="nazev" value="' . $nazev . '" />';
@@ -163,7 +163,7 @@ function f_potvrdit_smazani_polozky($nazev) {
 function f_serad_dle_nazvu_vzestupne() {
 
   $obsah = '';
-  $url = './index.php?p=10';
+  $url = 'sprava-map';
 	
   $obsah .= '<form method="post" action="' . $url . '" accept-charset="UTF-8 iso-8859-2 windows-1250">';
   $obsah .= '<input type="hidden" name="odeslo" value="1" />';
@@ -179,7 +179,7 @@ function f_serad_dle_nazvu_vzestupne() {
 function f_serad_dle_nazvu_sestupne() {
 
   $obsah = '';
-  $url = './index.php?p=10';
+  $url = 'sprava-map';
 
   $obsah .= '<form method="post" action="' . $url . '" accept-charset="UTF-8 iso-8859-2 windows-1250">';
   $obsah .= '<input type="hidden" name="odeslo" value="1" />';
@@ -195,7 +195,7 @@ function f_serad_dle_nazvu_sestupne() {
 function f_serad_dle_data_vytvoreni_vzestupne() {
 
   $obsah = '';
-  $url = './index.php?p=10';
+  $url = 'sprava-map';
 
   $obsah .= '<form method="post" action="' . $url . '" accept-charset="UTF-8 iso-8859-2 windows-1250">';
   $obsah .= '<input type="hidden" name="odeslo" value="1" />';
@@ -211,7 +211,7 @@ function f_serad_dle_data_vytvoreni_vzestupne() {
 function f_serad_dle_data_vytvoreni_sestupne() {
 
   $obsah = '';
-  $url = './index.php?p=10';
+  $url = 'sprava-map';
 	
   $obsah .= '<form method="post" action="' . $url . '" accept-charset="UTF-8 iso-8859-2 windows-1250">';
   $obsah .= '<input type="hidden" name="odeslo" value="1" />';
@@ -227,7 +227,7 @@ function f_serad_dle_data_vytvoreni_sestupne() {
 function f_serad_dle_data_zmeny_vzestupne() {
 
   $obsah = '';
-  $url = './index.php?p=10';
+  $url = 'sprava-map';
 
   $obsah .= '<form method="post" action="' . $url . '" accept-charset="UTF-8 iso-8859-2 windows-1250">';
   $obsah .= '<input type="hidden" name="odeslo" value="1" />';
@@ -243,7 +243,7 @@ function f_serad_dle_data_zmeny_vzestupne() {
 function f_serad_dle_data_zmeny_sestupne() {
 
   $obsah = '';
-  $url = './index.php?p=10';
+  $url = 'sprava-map';
 
   $obsah .= '<form method="post" action="' . $url . '" accept-charset="UTF-8 iso-8859-2 windows-1250">';
   $obsah .= '<input type="hidden" name="odeslo" value="1" />';

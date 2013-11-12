@@ -152,7 +152,7 @@ function f_upload($idu) {
   $obsah = '';	
 	$max_velikost_pro_nahrani_MB = 20;
 		
-  $url = './index.php?p=9';	
+  $url = 'pridat-mapu';	
   
   $obsah .= '<div style="position: relative; top: -60px;">';	
 	$obsah .= '<h3>Nahrát mapu v XML</h3>';	

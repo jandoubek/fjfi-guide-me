@@ -52,7 +52,7 @@ if ( (array_key_exists('odeslo',$_POST)) && (array_key_exists('prihlaseni',$_POS
 				$_SESSION["prihlasen"] = 1;			
 				$_SESSION["idu"] = $id_authored;
 			 
-				header("Location: index.php?p=10");	 
+				header("Location: sprava-map");	 
 				
 	} else {
 			
@@ -69,7 +69,7 @@ function f_login() {
   $obsah = '';	
 	$max_velikost_pro_nahrani_MB = 20;
 		
-  $url = './index.php?p=13';	
+  $url = 'prihlasit';	
   
   $obsah .= '<div style="position: relative; top: -40px;">';	
 	$obsah .= '<h3>Přihlásit uživatele</h3>';	

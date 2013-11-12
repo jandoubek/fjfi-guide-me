@@ -13,7 +13,7 @@ if ( (array_key_exists('odeslo',$_POST)) && (array_key_exists('stahnoutmapu',$_P
 function f_stahni_mapu($nazev,$soubor) {
 
   $obsah = '';
-	$url = 'index.php?p=4';
+	$url = 'mapy';
 
   $obsah .= '<form method="post" action="' . $url . '" accept-charset="UTF-8 iso-8859-2 windows-1250" class="stahnoutmapu">';
   $obsah .= '<input type="hidden" name="odeslo" value="1" />';
@@ -30,7 +30,7 @@ function f_stahni_mapu($nazev,$soubor) {
 function f_serad_dle_nazvu_vzestupne() {
 
   $obsah = '';
-  $url = './index.php?p=4';
+  $url = 'mapy';
 	
   $obsah .= '<form method="post" action="' . $url . '" accept-charset="UTF-8 iso-8859-2 windows-1250">';
   $obsah .= '<input type="hidden" name="odeslo" value="1" />';
@@ -46,7 +46,7 @@ function f_serad_dle_nazvu_vzestupne() {
 function f_serad_dle_nazvu_sestupne() {
 
   $obsah = '';
-  $url = './index.php?p=4';
+  $url = 'mapy';
 
   $obsah .= '<form method="post" action="' . $url . '" accept-charset="UTF-8 iso-8859-2 windows-1250">';
   $obsah .= '<input type="hidden" name="odeslo" value="1" />';

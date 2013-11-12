@@ -9,7 +9,7 @@ echo '
 <br />
 • Ověřte, zdali máte telefon se systémem Google Android verze 2.0 nebo vyšší.<br />
 <br />
-• Stáhněte si aktuální verzi aplikace na stránce <a href="index.php?p=3">Download</a>.<br />
+• Stáhněte si aktuální verzi aplikace na stránce <a href="stahnout">Download</a>.<br />
 <br />
 • Ověřte, jestli máte na telefonu povolenou instalaci aplikací pocházející i z jiných zdrojů, než z Google Play<br />
 <br />

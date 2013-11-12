@@ -23,7 +23,7 @@ function f_modify($guid,$nazev_puv,$gps_puv) {
 	$descrition_db = $dbvalues[1];
 	$gpscoords_db = $dbvalues[2];	
 
-	$url = './index.php?p=10';	
+	$url = 'sprava-map';	
 	
   $obsah = '';	   
   $obsah .= '<div style="position: relative; top: -40px;">';	
