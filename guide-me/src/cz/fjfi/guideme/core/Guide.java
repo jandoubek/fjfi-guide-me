@@ -63,7 +63,11 @@ public class Guide
         this.map = map;
         this.navigator = null;
     }
-    
+
+    /**
+     * sets the route to navigate on
+     * @param route
+     */
     public final void setRoute(Route route)
     {
         if (map == null)
@@ -73,6 +77,10 @@ public class Guide
         navigator = new Navigator(route);
     }
     
+    /**
+     * returns currently used route
+     * @return
+     */
     public final Route getCurrentRoute()
     {
         if (navigator == null)
@@ -82,25 +90,11 @@ public class Guide
         return navigator.getRoute();
     }
     
-//== OTHER METHODS =============================================================
+    //== OTHER METHODS =============================================================
     
-    /***************************************************************************
-    * returns navigation instructions given elapsed time
-    * takes a Navigator parameter due to temporal coupling
-     * beginNavigation has to be called before this method
-    */
-    public final String getCurrentLabel(long time)
-    {
-    	if (navigator == null)
-    	{
-			throw new IllegalStateException("getCurrentLabel called before setRoute");
-		}
-        return navigator.getCurrentLabel(time);
-    }
-
-    /***************************************************************************
-    * finds the shortest route between nodes 'from' and 'to'
-    */
+    /**
+     * finds the shortest route between nodes 'from' and 'to'
+     */
     public final Route findRouteBetween(GMNode from, GMNode to)
     {
         if (map == null)
@@ -110,9 +104,9 @@ public class Guide
         return Pathfinder.findRouteBetween(map, from, to);
     }
 
-    /***************************************************************************
-    * finds the shortest route between nodes 'from' and 'to', passing through all nodes contained in 'through'
-    */
+    /**
+     * finds the shortest route between nodes 'from' and 'to', passing through all nodes contained in 'through'
+     */
     public final Route findRouteBetween(GMNode from, GMNode to, List<GMNode> through)
     {
         if (map == null)
@@ -121,5 +115,40 @@ public class Guide
         }
         return Pathfinder.findRouteBetween(map, from, to, through);
     }
-
+    
+    /**
+     * returns navigation instructions given elapsed time
+     */
+    public final RoutePoint getCurrentRoutePoint(long time)
+    {
+        if (navigator == null)
+        {
+            throw new IllegalStateException("getCurrentRoutePoint called before setRoute");
+        }
+        return navigator.getCurrentRoutePoint(time);
+    }
+    
+    /**
+     * advances navigation to the next point
+     */
+    public final void goToNextSegment(long time)
+    {
+        if (navigator == null)
+        {
+            throw new IllegalStateException("goToNextSegment called before setRoute");
+        }
+        navigator.goToNextSegment(time);
+    }
+    
+    /**
+     * checks whether destination has been reached
+     */
+    public final boolean reachedDestination()
+    {
+        if (navigator == null)
+        {
+            throw new IllegalStateException("reachedDestination called before setRoute");
+        }
+        return navigator.reachedEnd();
+    }
 }

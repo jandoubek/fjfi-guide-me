@@ -27,13 +27,13 @@ public class Navigator
         this.timeOnCurrentEdge = 0;
         this.timeOnCurrentSegment = 0;
         this.reachedEnd = false;
-        getNextLabel();
+        advanceToNextEdge();
     }
 
     /**
      * returns current navigations instruction given elapsed time
      */
-    public final String getCurrentLabel(long time)
+    public final RoutePoint getCurrentRoutePoint(long time)
     {
         long timeDelta = time - lastTime + timeOnCurrentEdge;
         timeOnCurrentSegment -= timeOnCurrentEdge;
@@ -47,19 +47,22 @@ public class Navigator
         timeOnCurrentEdge = timeDelta;
         timeOnCurrentSegment += timeOnCurrentEdge;
         lastTime = time;
-        return generateLabel();
+        return generateRoutePoint();
     }
-
+    
     /**
-     * skips to the next instruction and returns it
+     * advances to the next segment
      */
-    public final String getNextLabel()
+    public final void goToNextSegment(long time)
     {
-        if (!reachedEnd)
+        RouteSegment oldSegment = currentSegment;
+        while (oldSegment == currentSegment && !reachedEnd)
         {
             advanceToNextEdge();
         }
-        return generateLabel();
+        timeOnCurrentEdge = 0;
+        timeOnCurrentSegment = 0;
+        lastTime = time;
     }
     
     /**
@@ -95,6 +98,11 @@ public class Navigator
     {
         return currentIterator.previousIndex();
     }
+    
+    public boolean reachedEnd()
+    {
+        return reachedEnd;
+    }
 
     /**
      * skips to the next instruction
@@ -118,26 +126,6 @@ public class Navigator
     }
     
     /**
-     * generates instructions from the current edge
-     */
-    private String generateLabel()
-    {
-        GMNode endpoint = currentEdge.getEnd();
-        String label;
-    	if (reachedEnd)
-    	{
-    		label = "Dosazen cil " + endpoint.getDescription();
-        }
-    	else
-    	{
-    		label = "Prave prochazite: " + currentEdge.getDescription() + "\n" +
-            		"Dalsiho bodu " + endpoint.getDescription() +
-            		" dosahnete za: " + (currentEdge.getTimeDistance() - timeOnCurrentEdge)/1000 + "s";
-    	}
-        return label;
-    }
-    
-    /**
      * generates the current route point
      * @return the current point on the route
      */
@@ -145,4 +133,5 @@ public class Navigator
     {
         return new RoutePoint(timeOnCurrentEdge,timeOnCurrentSegment,getCurrentIndex());
     }
+
 }

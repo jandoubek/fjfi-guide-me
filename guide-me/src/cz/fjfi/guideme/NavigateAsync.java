@@ -2,8 +2,12 @@ package cz.fjfi.guideme;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import cz.fjfi.guideme.core.GMEdge;
+import cz.fjfi.guideme.core.GMNode;
 import cz.fjfi.guideme.core.Guide;
 import cz.fjfi.guideme.core.Route;
+import cz.fjfi.guideme.core.RoutePoint;
+import cz.fjfi.guideme.core.RouteSegment;
 
 
 public class NavigateAsync extends AsyncTask<String, String, Void> {
@@ -35,7 +39,7 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 
 					wait(updateTime);
 					time += updateTime;
-					label = guide.getCurrentLabel(System.currentTimeMillis()-startTime);
+					label = generateLabel(guide.getCurrentRoutePoint(System.currentTimeMillis()-startTime));
 					publishProgress(label);
 					if(time>60000){
 						return null;
@@ -63,6 +67,28 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 	@Override
 	protected void onPreExecute() {
 		super.onPreExecute();
+	}
+	
+	private String generateLabel(RoutePoint point)
+	{
+	    GMEdge edge = guide.getCurrentRoute().getEdge(point.getRouteIndex());
+	    RouteSegment segment = guide.getCurrentRoute().getSegment(point.getRouteIndex());
+	    String label;
+	    GMNode endpoint = guide.getCurrentRoute().getEnd();
+	    if (guide.reachedDestination())
+	    {
+	        label = "Dosazen cil: " + endpoint.getDescription();
+	    }
+	    else
+	    {
+	        label = "Mirite k cili: " + endpoint.getDescription() + "\n" +
+                    "Dalsiho bodu " + segment.getEnd().getDescription() +
+                    " dosahnete za: " + (segment.getTimeDistance() - point.getSegmentDistancePassed())/1000 + "s" + "\n\n" +
+                    "Nyni se nachazite na: " + edge.getDescription() + "\n" +
+                    edge.getStart().getName() + " -> " + edge.getEnd().getName() + "(" +
+                    (edge.getTimeDistance() - point.getEdgeDistancePassed())/1000 + " s)";
+	    }
+	    return label;
 	}
 
 }

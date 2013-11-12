@@ -49,6 +49,16 @@ public class Route
         return end;
     }
     
+    public final GMEdge getEdge(int location)
+    {
+        return route.get(location).getEdge();
+    }
+    
+    public final RouteSegment getSegment(int location)
+    {
+        return route.get(location).getSegment();
+    }
+    
     /**
      * Returns an iterator pointing to the beginning of the route
      */
