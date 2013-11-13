@@ -14,7 +14,7 @@ public class Navigator
     private Route route;
     private RouteIterator currentIterator;
     private GMEdge currentEdge;
-    private RouteSegment currentSegment;
+    private RouteLeg currentSegment;
     private long lastTime;
     private long timeOnCurrentEdge;
     private long timeOnCurrentSegment;
@@ -55,7 +55,7 @@ public class Navigator
      */
     public final void goToNextSegment(long time)
     {
-        RouteSegment oldSegment = currentSegment;
+        RouteLeg oldSegment = currentSegment;
         while (oldSegment == currentSegment && !reachedEnd)
         {
             advanceToNextEdge();
@@ -85,7 +85,7 @@ public class Navigator
      * returns current segment
      * @return the currentSegment
      */
-    public final RouteSegment getCurrentSegment()
+    public final RouteLeg getCurrentSegment()
     {
         return currentSegment;
     }
@@ -117,10 +117,10 @@ public class Navigator
     	{
     	    currentIterator.next();
     		currentEdge = currentIterator.get();
-    		if (currentSegment != currentIterator.getSegment())
+    		if (currentSegment != currentIterator.getLeg())
     		{
     		    timeOnCurrentSegment = 0;
-    		    currentSegment = currentIterator.getSegment();
+    		    currentSegment = currentIterator.getLeg();
     		}
     	}
     	else

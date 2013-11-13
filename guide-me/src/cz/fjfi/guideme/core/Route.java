@@ -15,7 +15,7 @@ public class Route
 //== CLASS VARIABLES ===========================================================
 //== INSTANCE VARIABLES ========================================================
 
-    private List<RouteEdge> route = new ArrayList<RouteEdge>();
+    private List<RouteItem> route = new ArrayList<RouteItem>();
     private final GMNode start, end;
     
 //==============================================================================
@@ -64,9 +64,9 @@ public class Route
      * @param location
      * @return segment at location
      */
-    public final RouteSegment getSegment(int location)
+    public final RouteLeg getLeg(int location)
     {
-        return route.get(location).getSegment();
+        return route.get(location).getLeg();
     }
     
     /**
@@ -79,23 +79,27 @@ public class Route
     
 //== OTHER METHODS =============================================================
     /**
-     * Constructs a "rough" route out of the list of GMEdges
-     * TODO: Handling empty lists, handling changing locations
+     * Given a list of GMEdges, constructs the legs of the route
+     * TODO: Handling changing locations
      * @param edges
      */
     private void constructRoute(List<GMEdge> edges)
     {
         ListIterator<GMEdge> currentIterator = edges.listIterator();
+        if (!currentIterator.hasNext())
+        {
+            return;
+        }
         GMEdge currentEdge = currentIterator.next();
         Direction currentDirection = currentEdge.getDirection();
-        List<GMEdge> currentSegmentList = new ArrayList<GMEdge>();
+        List<GMEdge> currentLegList = new ArrayList<GMEdge>();
         boolean lastEdgeFound = false;
 
         while (!lastEdgeFound)
         {
             if (currentDirection == currentEdge.getDirection())
             {
-                currentSegmentList.add(currentEdge);
+                currentLegList.add(currentEdge);
                 if (currentIterator.hasNext())
                 {
                     currentEdge = currentIterator.next();
@@ -107,13 +111,13 @@ public class Route
             }
             if (currentDirection != currentEdge.getDirection() || lastEdgeFound)
             {
-                RouteSegment newSegment = new RouteSegment(currentSegmentList);
+                RouteLeg newLeg = new RouteLeg(currentLegList);
                 int i = 0;
-                for (GMEdge newEdge : currentSegmentList)
+                for (GMEdge newEdge : currentLegList)
                 {
-                    route.add(new RouteEdge(newEdge, newSegment, i++));
+                    route.add(new RouteItem(newEdge, newLeg, i++));
                 }
-                currentSegmentList = new ArrayList<GMEdge>();
+                currentLegList = new ArrayList<GMEdge>();
                 currentDirection = currentEdge.getDirection();
             }
         }

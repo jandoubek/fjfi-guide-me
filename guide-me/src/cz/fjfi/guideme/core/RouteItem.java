@@ -5,28 +5,28 @@ package cz.fjfi.guideme.core;
  * @author Martin Sochor
  *
  */
-public class RouteEdge
+class RouteItem
 {
     //== CLASS CONSTANTS ===========================================================
     //== CLASS VARIABLES ===========================================================
     //== INSTANCE VARIABLES ========================================================
     
     private GMEdge edge;
-    private RouteSegment segment;
-    private int segmentIndex;
+    private RouteLeg leg;
+    private int legIndex;
     
     //==============================================================================
     //== CONSTRUCTORS ==============================================================
     /**
-     * Creates the RouteEdge from the edge and the segment it belongs to
+     * Creates the RouteItem from the edge and the leg it belongs to
      * @param edge
-     * @param segment
+     * @param leg
      */
-    RouteEdge(GMEdge edge, RouteSegment segment, int segmentIndex)
+    RouteItem(GMEdge edge, RouteLeg leg, int legIndex)
     {
         this.edge = edge;
-        this.segment = segment;
-        this.segmentIndex = segmentIndex;
+        this.leg = leg;
+        this.legIndex = legIndex;
     }
     //== GETTERS AND SETTERS =======================================================
 
@@ -40,20 +40,20 @@ public class RouteEdge
     }
 
     /**
-     * returns the segment the edge belongs to
-     * @return the segment
+     * returns the leg the edge belongs to
+     * @return the leg
      */
-    public RouteSegment getSegment()
+    public RouteLeg getLeg()
     {
-        return segment;
+        return leg;
     }
 
     /**
-     * returns the index of the edge in the segment
-     * @return segment index of the edge
+     * returns the index of the edge in the leg
+     * @return leg index of the edge
      */
-	public int getSegmentIndex() {
-		return segmentIndex;
+	public int getLegIndex() {
+		return legIndex;
 	}
 
     //== OTHER METHODS =============================================================

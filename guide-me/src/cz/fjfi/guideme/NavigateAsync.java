@@ -8,7 +8,7 @@ import cz.fjfi.guideme.core.Guide;
 import cz.fjfi.guideme.core.Route;
 import cz.fjfi.guideme.core.RouteIterator;
 import cz.fjfi.guideme.core.RoutePoint;
-import cz.fjfi.guideme.core.RouteSegment;
+import cz.fjfi.guideme.core.RouteLeg;
 
 
 public class NavigateAsync extends AsyncTask<String, String, Void> {
@@ -74,7 +74,7 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 	{
 	    RouteIterator currentPosition = point.getIterator();
 	    GMEdge edge = currentPosition.get();
-	    RouteSegment segment = currentPosition.getSegment();
+	    RouteLeg segment = currentPosition.getLeg();
 	    String label;
 	    GMNode endpoint = guide.getCurrentRoute().getEnd();
 	    if (guide.reachedDestination())
@@ -85,7 +85,7 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 	    {
 	        label = "Mirite k cili: " + endpoint.getDescription() + "\n" +
                     "Dalsiho bodu " + segment.getEnd().getDescription() +
-                    " dosahnete za: " + (segment.getTimeDistance() - point.getSegmentDistancePassed())/1000 + "s" + "\n\n" +
+                    " dosahnete za: " + (segment.getTimeDistance() - point.getLegDistancePassed())/1000 + "s" + "\n\n" +
                     "Nyni se nachazite na: " + edge.getDescription() + "\n";
             RouteIterator previousPosition = point.getIterator();
             previousPosition.previous();
@@ -104,16 +104,16 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 	        label += "\n\n";
 	        previousPosition = point.getIterator();
 	        previousPosition.previous();
-	        if (previousPosition.hasPreviousSegment())
+	        if (previousPosition.hasPreviousLeg())
 	        {
-	            RouteSegment prevSegment = previousPosition.previousSegment();
+	            RouteLeg prevSegment = previousPosition.previousLeg();
 	            label += prevSegment.getStart().getName() + " -- " + prevSegment.getEnd().getName() + "\n";
 	        }
 	        currentPosition = point.getIterator();
 	        label += segment.getStart().getName() + " -- " + segment.getEnd().getName() + " <--\n";
-	        if (currentPosition.hasNextSegment())
+	        if (currentPosition.hasNextLeg())
 	        {
-	            RouteSegment nextSegment = currentPosition.nextSegment();
+	            RouteLeg nextSegment = currentPosition.nextLeg();
 	            label += nextSegment.getStart().getName() + " -- " + nextSegment.getEnd().getName();
 	        }
 	        

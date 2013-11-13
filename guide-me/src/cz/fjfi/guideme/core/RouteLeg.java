@@ -3,11 +3,11 @@ package cz.fjfi.guideme.core;
 import java.util.*;
 
 /**
- * This class represents a "rough" edge on the route, used to generate instructions
+ * This class represents a leg of the route, used to generate instructions
  * @author Martin Sochor
  *
  */
-public class RouteSegment
+public class RouteLeg
 {
     //== CLASS CONSTANTS ===========================================================
     //== CLASS VARIABLES ===========================================================
@@ -22,7 +22,7 @@ public class RouteSegment
     //==============================================================================
     //== CONSTRUCTORS ==============================================================
     
-    RouteSegment (List<GMEdge> edges)
+    RouteLeg (List<GMEdge> edges)
     {
         this.start = edges.get(0).getStart();
         this.end = edges.get(edges.size()-1).getEnd();
@@ -37,7 +37,7 @@ public class RouteSegment
     //== GETTERS AND SETTERS =======================================================
 
     /**
-     * returns the beginning node of the segment
+     * returns the beginning node of the leg
      * @return the start
      */
     public GMNode getStart()
@@ -45,7 +45,7 @@ public class RouteSegment
         return start;
     }
     /**
-     * returns the final node of the segment
+     * returns the final node of the leg
      * @return the end
      */
     public GMNode getEnd()
@@ -53,7 +53,7 @@ public class RouteSegment
         return end;
     }
     /**
-     * returns the direction of the segment
+     * returns the direction of the leg
      * @return the direction
      */
     public Direction getDirection()
@@ -61,7 +61,7 @@ public class RouteSegment
         return direction;
     }
     /**
-     * returns the total time/distance of the segment
+     * returns the total time/distance of the leg
      * @return the timeDistance
      */
     public long getTimeDistance()
@@ -70,7 +70,7 @@ public class RouteSegment
     }
     
     /**
-     * returns the number of edges in the segment
+     * returns the number of edges in the leg
      * @return number of edges
      */
     public int getLength() {
