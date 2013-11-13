@@ -113,7 +113,7 @@ public class GMEdge
      * TODO: comment
      */
     //TODO: body
-    protected final GMMap getMyMap()
+    final GMMap getMyMap()
     {
     	return this.myMap;
     }

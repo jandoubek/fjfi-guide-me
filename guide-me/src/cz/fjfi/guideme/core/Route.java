@@ -17,6 +17,7 @@ public class Route
 
     private List<RouteItem> route = new ArrayList<RouteItem>();
     private final GMNode start, end;
+    private final GMMap map;
     
 //==============================================================================
 //== CONSTRUCTORS ==============================================================
@@ -28,6 +29,7 @@ public class Route
     {
         this.start = edges.get(0).getStart();
         this.end = edges.get(edges.size()-1).getEnd();
+        this.map = edges.get(0).getMyMap();
         constructRoute(edges);
     }
    
@@ -49,6 +51,15 @@ public class Route
         return end;
     }
     
+    /**
+     * Returns the map the route is on
+     * @return the map
+     */
+    public GMMap getMap()
+    {
+        return map;
+    }
+
     /**
      * Returns the edge located at the index
      * @param location

@@ -58,18 +58,18 @@ public class Pathfinder
     /**
      * finds the edges in the shortest path between nodes 'from' and 'to'
      */
-    private List<GMEdge> findEdgeListBetween(GMNode from, GMNode to)
+    private List<GMEdge> findEdgeListBetween(GMNode start, GMNode end)
     {
-        initializeDistances(from);
+        initializeDistances(start);
         
         while (!openSet.isEmpty())
         {
             GMNode closestOpenNode = getClosestOpenNode();
             openSet.remove(closestOpenNode);
             
-            if (closestOpenNode == to)
+            if (closestOpenNode == end)
             {
-                break; // reached target, end search
+                break;
             }
 
             long distanceToClosestNode = distances.get(closestOpenNode);
@@ -81,7 +81,7 @@ public class Pathfinder
             updatePaths(closestOpenNode);
         }
 
-        return constructRoute(from, to);
+        return constructEdgeList(start, end);
     }
     
     private void reset()
@@ -139,28 +139,28 @@ public class Pathfinder
     }
 
     /**
-     * update the distance and previous arrays for node 'n' if necessary
+     * update the distance and previous arrays for the candidate if necessary
      */
-    private void updatePathFor(GMNode n, GMNode closestOpenNode,
+    private void updatePathFor(GMNode candidate, GMNode closestOpenNode,
             long distanceToClosestNode)
     {
-        GMEdge connectingEdge = map.getEdgeConnectingNodes(closestOpenNode, n);
+        GMEdge connectingEdge = map.getEdgeConnectingNodes(closestOpenNode, candidate);
         long newDistance = distanceToClosestNode + connectingEdge.getTimeDistance();
-        if (newDistance < distances.get(n))
+        if (newDistance < distances.get(candidate))
         {
-            distances.put(n, newDistance);
-            previous.put(n, connectingEdge);
+            distances.put(candidate, newDistance);
+            previous.put(candidate, connectingEdge);
         }
     }
 
     /**
      * construct the route from the distance and previous arrays
      */
-    private List<GMEdge> constructRoute(GMNode from, GMNode to)
+    private List<GMEdge> constructEdgeList(GMNode start, GMNode end)
     {
         List<GMEdge> route = new ArrayList<GMEdge>();
-        GMNode currentNode = to;
-        while (currentNode != from)
+        GMNode currentNode = end;
+        while (currentNode != start)
         {
             GMEdge currentEdge = previous.get(currentNode);
             currentNode = currentEdge.getStart();

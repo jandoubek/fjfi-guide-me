@@ -64,6 +64,10 @@ public class Guide
     public final void setRoute(Route route)
     {
         checkForMap("setRoute called before setMap");
+        if (getCurrentMap() != route.getMap())
+        {
+            throw new IllegalArgumentException("The route is not on the current map");
+        }
         navigator = new Navigator(route);
     }
     
@@ -85,6 +89,17 @@ public class Guide
     public final Route findRouteBetween(List<GMNode> nodes)
     {
         checkForMap("findRouteBetween called before setMap");
+        if (nodes.size() < 2)
+        {
+            throw new IllegalArgumentException("Fewer than two nodes");
+        }
+        for (GMNode n : nodes)
+        {
+            if (getCurrentMap() != n.getMyMap())
+            {
+                throw new IllegalArgumentException("Found node from a different map");
+            }
+        }
         return Pathfinder.findRouteBetween(map, nodes);
     }
     
