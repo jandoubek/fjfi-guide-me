@@ -29,7 +29,7 @@
         android:visibility="visible" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/navigate_bt_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/item_description"
@@ -40,8 +40,8 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button1"
-        android:layout_alignBottom="@+id/button1"
+        android:layout_alignBaseline="@+id/navigate_bt_next"
+        android:layout_alignBottom="@+id/navigate_bt_next"
         android:layout_alignParentRight="true"
         android:text="Button 2" />
 

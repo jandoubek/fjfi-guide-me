@@ -49,14 +49,14 @@ public class MapSelectionActivity extends Activity {
 					if (oldView != null && adapter.getClickedItem() != -1) {
 						description = (TextView) oldView.findViewById(R.id.item_description);
 						description.setVisibility(View.GONE);
-						button1 = (Button) oldView.findViewById(R.id.button1);
+						button1 = (Button) oldView.findViewById(R.id.navigate_bt_next);
 						button1.setVisibility(View.GONE);
 						button2 = (Button) oldView.findViewById(R.id.button2);
 						button2.setVisibility(View.GONE);
 					}
 					description = (TextView) view.findViewById(R.id.item_description);
 					description.setVisibility(View.VISIBLE);
-					button1 = (Button) view.findViewById(R.id.button1);
+					button1 = (Button) view.findViewById(R.id.navigate_bt_next);
 					button1.setVisibility(View.VISIBLE);
 					button2 = (Button) view.findViewById(R.id.button2);
 					button2.setVisibility(View.VISIBLE);
@@ -69,7 +69,7 @@ public class MapSelectionActivity extends Activity {
 					if (oldView != null && adapter.getClickedItem() != -1) {
 						description = (TextView) oldView.findViewById(R.id.item_description);
 						description.setVisibility(View.GONE);
-						button1 = (Button) oldView.findViewById(R.id.button1);
+						button1 = (Button) oldView.findViewById(R.id.navigate_bt_next);
 						button1.setVisibility(View.GONE);
 						button2 = (Button) oldView.findViewById(R.id.button2);
 						button2.setVisibility(View.GONE);

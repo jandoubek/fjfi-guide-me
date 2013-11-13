@@ -72,7 +72,7 @@ public class MapsBaseAdapter  extends BaseAdapter {
 			holder = new ViewHolder();
 			holder.itemDescription = (TextView) convertView.findViewById(R.id.item_description);
 			holder.itemName = (TextView) convertView.findViewById(R.id.item_name);
-			holder.button1 = (Button) convertView.findViewById(R.id.button1);
+			holder.button1 = (Button) convertView.findViewById(R.id.navigate_bt_next);
 			holder.button2 = (Button) convertView.findViewById(R.id.button2);
 
 			convertView.setTag(holder);

@@ -63,6 +63,16 @@ public class NavigateActivity extends Activity {
 			startAsync();
 		}
 	}
+	
+	public void navigate_bt_next_OnClick(View view)
+	{
+		//chci dal‰í instrukci navigace
+	}
+	
+	public void navigate_bt_previous_OnClick(View view)
+	{
+		//chci pﬁedchozí instrukci navigace
+	}
 
 	private void startAsync() 
 	{
