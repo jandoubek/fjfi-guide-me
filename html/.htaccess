@@ -8,7 +8,6 @@ Options -Indexes
 Options +FollowSymlinks
 
 RewriteEngine on
-
 RewriteBase /~fortpet2/guideme/
 
 RewriteCond %{REQUEST_FILENAME} !-d
@@ -31,5 +30,3 @@ RewriteRule ^sprava-map$ /~fortpet2/guideme/index.php?p=10 [L]
 RewriteRule ^upravit-mapu$ /~fortpet2/guideme/index.php?p=11 [L]
 RewriteRule ^profil$ /~fortpet2/guideme/index.php?p=12 [L]
 RewriteRule ^prihlasit$ /~fortpet2/guideme/index.php?p=13 [L]
-
-RewriteRule ^update-headings$ /~fortpet2/guideme/getheadings.php [L]

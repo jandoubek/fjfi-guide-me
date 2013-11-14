@@ -2,9 +2,8 @@
 
 
   // priprava na formular s potvrzenim smazani souboru
-  if ( (array_key_exists('odeslo',$_POST)) && (array_key_exists('smazatpolozku',$_POST)) && ($_POST['odeslo']==1) ) {
-		$nazev_s = htmlspecialchars($_POST['nazev']);
-		
+  if ( (array_key_exists('odeslo',$_POST)) && (array_key_exists('smazatpolozku',$_POST)) && ($_POST['odeslo']==1) ) {	
+		$nazev_s = htmlspecialchars($_POST['nazev']);		
 	}
 	else {
 	  $nazev_s = null;
@@ -24,6 +23,9 @@
 	
 		$path = './maps/' . $soubor_smazat;
 		unlink($path);
+				
+    // aktualizovat soubor s hlavickami				
+		update_headings();		
 				
 	}
 	
@@ -69,13 +71,16 @@
 		
 		if (empty($zpr)) {
 		
-		$sql = "UPDATE `GMMap` SET ";	
-		$sql.= "`Name` = '" . $name . "', ";		
-		$sql.= "`GpsCoords` = '" . $gpscoords . "', ";	
-		$sql.= "`Description` = '" . $description . "' " ;	
-		$sql.= "WHERE `Guid` =  '" . $guid . "' ";
+			$sql = "UPDATE `GMMap` SET ";	
+			$sql.= "`Name` = '" . $name . "', ";		
+			$sql.= "`GpsCoords` = '" . $gpscoords . "', ";	
+			$sql.= "`Description` = '" . $description . "' " ;	
+			$sql.= "WHERE `Guid` =  '" . $guid . "' ";
 	
-		db_func($sql);
+			db_func($sql);
+		
+		  // aktualizovat soubor s hlavickami
+			update_headings();	
 		
 		} else {
 		

@@ -94,9 +94,7 @@ if ( (array_key_exists('odeslo',$_POST)) && (array_key_exists('nahratsoubor',$_P
 			echo '<span class="errormsg">Během ukládání souboru <code>' .  $jmeno_puv . '</code> došlo k chybě<br /><a href="javascript:history.back(1)">&lt; &lt; Zpět</a></span>';		  						
 			die();					
 		}
-		
-		echo 'kuk3';
-							
+								
 	// 7. nastavit maximalni opravneni
 	if (isset($new_dest)) {
 		chmod($new_dest, 0777);
@@ -139,7 +137,10 @@ if ( (array_key_exists('odeslo',$_POST)) && (array_key_exists('nahratsoubor',$_P
 	
 	db_func($sql);
 	
-	// 12. soubor byl uspesne ulozen
+	// 12. aktualizace hlavicek
+	update_headings();		
+	
+	// 13. soubor byl uspesne ulozen
 	echo '<span style="position: relative; left: 380px; color: green;">Mapa byla úspěšně nahrána</span>';
 	
  } // konec testu, jestli neni jmeno prazdne		
