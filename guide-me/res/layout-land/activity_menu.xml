@@ -10,17 +10,18 @@
 
     <ImageView
         android:id="@+id/imageView1"
-        android:layout_width="400dp"
+        android:layout_width="300dp"
         android:layout_height="100dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
         android:src="@drawable/logo_guideme" />
 
     <Button
         android:id="@+id/buttonCreateMap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_marginRight="50dp"
+        android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:onClick="menu_bt_createMap_onClick"
         android:text="@string/menu_bt_create_map" />
@@ -29,9 +30,9 @@
         android:id="@+id/buttonSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/buttonCreateMap"
         android:layout_alignLeft="@+id/buttonCreateMap"
         android:layout_alignRight="@+id/buttonCreateMap"
+        android:layout_below="@+id/buttonCreateMap"
         android:onClick="menu_bt_settings_onClick"
         android:text="@string/menu_bt_settings" />
 
@@ -39,9 +40,9 @@
         android:id="@+id/buttonNavigate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/buttonCreateMap"
         android:layout_alignLeft="@+id/buttonCreateMap"
         android:layout_alignRight="@+id/buttonCreateMap"
-        android:layout_below="@+id/buttonCreateMap"
         android:onClick="menu_bt_navigate_onClick"
         android:text="@string/menu_bt_navigate" />
 

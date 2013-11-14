@@ -8,18 +8,32 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".NavigateActivity" >
 
+    <ListView
+        android:id="@+id/listView1"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_above="@+id/navigate_bt_next"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        tools:listitem="@layout/item_navigate" >
+
+    </ListView>
+
     <TextView
         android:id="@+id/navigate_tv_vypis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/listView1"
+        android:layout_alignParentBottom="true"
         android:text="@string/navigate_tv_vypis" />
 
     <Button
         android:id="@+id/navigate_bt_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_above="@+id/navigate_tv_vypis"
+        android:layout_toLeftOf="@+id/navigate_bt_previous"
+        android:layout_toRightOf="@+id/navigate_bt_start"
         android:onClick="navigate_bt_next_OnClick"
         android:text="@string/navigate_bt_next" />
 
@@ -27,9 +41,8 @@
         android:id="@+id/navigate_bt_previous"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/navigate_bt_next"
-        android:layout_alignBottom="@+id/navigate_bt_next"
-        android:layout_toLeftOf="@+id/navigate_bt_next"
+        android:layout_above="@+id/navigate_tv_vypis"
+        android:layout_alignRight="@+id/listView1"
         android:onClick="navigate_bt_previous_OnClick"
         android:text="@string/navigate_bt_previous" />
 
@@ -37,8 +50,8 @@
         android:id="@+id/navigate_bt_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/navigate_bt_previous"
-        android:layout_alignLeft="@+id/navigate_bt_previous"
+        android:layout_above="@+id/navigate_tv_vypis"
+        android:layout_alignParentLeft="true"
         android:onClick="navigate_bt_start_OnClick"
         android:text="@string/navigate_bt_start" />
 
