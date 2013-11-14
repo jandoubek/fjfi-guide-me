@@ -81,9 +81,11 @@ public class MapsBaseAdapter  extends BaseAdapter {
 		}
 
 		holder.itemDescription.setText(headers.get(position).getDescription()); 
-		holder.itemDescription.setVisibility(View.GONE);
-		holder.button1.setVisibility(View.GONE);
-		holder.button2.setVisibility(View.GONE);
+		if(clickedItem!=position){
+			holder.itemDescription.setVisibility(View.GONE);
+			holder.button1.setVisibility(View.GONE);
+			holder.button2.setVisibility(View.GONE);
+		}
 		holder.button1.setClickable(true);
 		holder.button2.setClickable(true);
 		holder.button1.setFocusable(true);

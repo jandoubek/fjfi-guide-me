@@ -7,6 +7,7 @@ import cz.fjfi.guideme.core.GMMapHeader;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -18,6 +19,7 @@ public class MapSelectionActivity extends Activity {
 
 	private ListView mapList;
 	private MapsBaseAdapter adapter;
+	private int clickedItem=-1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,20 +41,25 @@ public class MapSelectionActivity extends Activity {
 		mapList.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView adapterView, View view, int position, long id) {
-
-				if(adapter.getClickedItem()!=position){
-					View oldView = adapterView.getChildAt(adapter.getClickedItem());
+			public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+				//adapter.notifyDataSetChanged();
+				if(clickedItem!=position){
+					View oldView = adapterView.getChildAt(clickedItem);
 					TextView description;
 					Button button1;
 					Button button2;
-					if (oldView != null && adapter.getClickedItem() != -1) {
-						description = (TextView) oldView.findViewById(R.id.item_description);
+					//if (oldView != null && clickedItem != -1) {
+						if (oldView != null && adapter.getClickedItem() != -1) {
+								description = (TextView) oldView.findViewById(R.id.item_description);
 						description.setVisibility(View.GONE);
 						button1 = (Button) oldView.findViewById(R.id.navigate_bt_next);
 						button1.setVisibility(View.GONE);
 						button2 = (Button) oldView.findViewById(R.id.button2);
 						button2.setVisibility(View.GONE);
+						Log.i("MAP SELECTION", "hiding item:" + clickedItem);
+
+						//adapter.notifyDataSetChanged();
+						
 					}
 					description = (TextView) view.findViewById(R.id.item_description);
 					description.setVisibility(View.VISIBLE);
@@ -60,23 +67,28 @@ public class MapSelectionActivity extends Activity {
 					button1.setVisibility(View.VISIBLE);
 					button2 = (Button) view.findViewById(R.id.button2);
 					button2.setVisibility(View.VISIBLE);
+					//clickedItem=position;
 					adapter.setClickedItem(position);
+					Log.i("MAP SELECTION", "showing item:" + clickedItem);
 				}else{
 					View oldView = adapterView.getChildAt(adapter.getClickedItem());
 					TextView description;
 					Button button1;
 					Button button2;
-					if (oldView != null && adapter.getClickedItem() != -1) {
+					if (oldView != null && clickedItem != -1) {
 						description = (TextView) oldView.findViewById(R.id.item_description);
 						description.setVisibility(View.GONE);
 						button1 = (Button) oldView.findViewById(R.id.navigate_bt_next);
 						button1.setVisibility(View.GONE);
 						button2 = (Button) oldView.findViewById(R.id.button2);
 						button2.setVisibility(View.GONE);
+
+						//adapter.notifyDataSetChanged();
 					}
 					adapter.setClickedItem(-1);
 				}
-			}
+				adapter.notifyDataSetChanged();
+			}	
 		});
 
 	}
