@@ -71,13 +71,13 @@ public class Route
     }
     
     /**
-     * Returns the segment the edge located at the index belongs to
+     * Returns the stretch the edge located at the index belongs to
      * @param location
-     * @return segment at location
+     * @return stretch at location
      */
-    public final RouteLeg getLeg(int location)
+    public final RouteStretch getLeg(int location)
     {
-        return route.get(location).getLeg();
+        return route.get(location).getStretch();
     }
     
     /**
@@ -90,7 +90,7 @@ public class Route
     
 //== OTHER METHODS =============================================================
     /**
-     * Given a list of GMEdges, constructs the legs of the route
+     * Given a list of GMEdges, constructs the stretches of the route
      * TODO: Handling changing locations
      * @param edges
      */
@@ -103,14 +103,14 @@ public class Route
         }
         GMEdge currentEdge = currentIterator.next();
         Direction currentDirection = currentEdge.getDirection();
-        List<GMEdge> currentLegList = new ArrayList<GMEdge>();
+        List<GMEdge> currentStretchList = new ArrayList<GMEdge>();
         boolean lastEdgeFound = false;
 
         while (!lastEdgeFound)
         {
             if (currentDirection == currentEdge.getDirection())
             {
-                currentLegList.add(currentEdge);
+                currentStretchList.add(currentEdge);
                 if (currentIterator.hasNext())
                 {
                     currentEdge = currentIterator.next();
@@ -122,13 +122,13 @@ public class Route
             }
             if (currentDirection != currentEdge.getDirection() || lastEdgeFound)
             {
-                RouteLeg newLeg = new RouteLeg(currentLegList);
+                RouteStretch newStretch = new RouteStretch(currentStretchList);
                 int i = 0;
-                for (GMEdge newEdge : currentLegList)
+                for (GMEdge newEdge : currentStretchList)
                 {
-                    route.add(new RouteItem(newEdge, newLeg, i++));
+                    route.add(new RouteItem(newEdge, newStretch, i++));
                 }
-                currentLegList = new ArrayList<GMEdge>();
+                currentStretchList = new ArrayList<GMEdge>();
                 currentDirection = currentEdge.getDirection();
             }
         }

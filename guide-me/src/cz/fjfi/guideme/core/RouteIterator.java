@@ -18,7 +18,7 @@ public class RouteIterator
 	private List<RouteItem> route;
 	private int cursor = 0;
 	private int lastEdgeRet = -1;
-	private int lastLegRet = -1;
+	private int lastStretchRet = -1;
     
 //==============================================================================
 //== CONSTRUCTORS ==============================================================
@@ -42,7 +42,7 @@ public class RouteIterator
     {
     	RouteIterator iterator = new RouteIterator(route, cursor);
     	iterator.lastEdgeRet = lastEdgeRet;
-    	iterator.lastLegRet = lastLegRet;
+    	iterator.lastStretchRet = lastStretchRet;
     	return iterator;
     }
 
@@ -76,7 +76,7 @@ public class RouteIterator
     	try
     	{
     		GMEdge next = route.get(cursor).getEdge();
-    		lastEdgeRet = lastLegRet = cursor++;
+    		lastEdgeRet = lastStretchRet = cursor++;
     		return next;
     	}
     	catch (IndexOutOfBoundsException e)
@@ -104,7 +104,7 @@ public class RouteIterator
     	{
     		int i = cursor - 1;
     		GMEdge previous = route.get(i).getEdge();
-    		lastEdgeRet = lastLegRet = cursor = i;
+    		lastEdgeRet = lastStretchRet = cursor = i;
     		return previous;
     	}
     	catch (IndexOutOfBoundsException e)
@@ -139,35 +139,35 @@ public class RouteIterator
     }
     
     /**
-     * checks if there is a next leg in the route
-     * @return boolean indicating if there is a next leg
+     * checks if there is a next stretch in the route
+     * @return boolean indicating if there is a next stretch
      */
-    public boolean hasNextLeg()
+    public boolean hasNextStretch()
     {
-    	return nextLegIndex() < route.size();
+    	return nextStretchIndex() < route.size();
     }
     
     /**
-     * checks if there is a previous leg in the route
-     * @return boolean indicating if there is a previous leg
+     * checks if there is a previous stretch in the route
+     * @return boolean indicating if there is a previous stretch
      */
-    public boolean hasPreviousLeg()
+    public boolean hasPreviousStretch()
     {
-    	return previousLegIndex() >= 0;
+    	return previousStretchIndex() >= 0;
     }
     
     /**
-     * returns the next leg in the route and advances the iterator to it
-     * @return the next leg
+     * returns the next stretch in the route and advances the iterator to it
+     * @return the next stretch
      */
-    public RouteLeg nextLeg()
+    public RouteStretch nextStretch()
     {
     	try
     	{
-            cursor = nextLegIndex();
-    		RouteLeg next = route.get(cursor).getLeg();
+            cursor = nextStretchIndex();
+    		RouteStretch next = route.get(cursor).getStretch();
     		lastEdgeRet = cursor - 1;
-    		lastLegRet = cursor;
+    		lastStretchRet = cursor;
     		return next;
     	}
     	catch (IndexOutOfBoundsException e)
@@ -177,16 +177,16 @@ public class RouteIterator
     }
     
     /**
-     * returns the index of the first edge in the next leg in the route
-     * @return index of the next leg
+     * returns the index of the first edge in the next stretch in the route
+     * @return index of the next stretch
      */
-    public int nextLegIndex()
+    public int nextStretchIndex()
     {
     	try
     	{
-    		RouteItem edge = route.get(lastLegRet);
-    		int distance = edge.getLeg().getLength() - edge.getLegIndex();
-    		return lastLegRet + distance;
+    		RouteItem edge = route.get(lastStretchRet);
+    		int distance = edge.getStretch().getLength() - edge.getStretchIndex();
+    		return lastStretchRet + distance;
     	}
     	catch (IndexOutOfBoundsException e)
     	{
@@ -195,16 +195,16 @@ public class RouteIterator
     }
     
     /**
-     * returns the previous leg in the route and moves the iterator back to it
-     * @return the previous leg
+     * returns the previous stretch in the route and moves the iterator back to it
+     * @return the previous stretch
      */
-    public RouteLeg previousLeg()
+    public RouteStretch previousStretch()
     {
     	try
     	{
-        	int i = previousLegIndex();
-        	RouteLeg previous = route.get(i).getLeg();
-        	lastEdgeRet = lastLegRet = cursor = i;
+        	int i = previousStretchIndex();
+        	RouteStretch previous = route.get(i).getStretch();
+        	lastEdgeRet = lastStretchRet = cursor = i;
         	return previous;
     	}
     	catch (IndexOutOfBoundsException e)
@@ -214,24 +214,24 @@ public class RouteIterator
     }
     
     /**
-     * returns the index of the first edge of the previous leg in the route
-     * @return index of the previous leg
+     * returns the index of the first edge of the previous stretch in the route
+     * @return index of the previous stretch
      */
-    public int previousLegIndex()
+    public int previousStretchIndex()
     {
     	try
     	{
-    		RouteItem edge = route.get(lastLegRet);
-    		int distance = edge.getLegIndex();
-    		if (lastLegRet - distance == 0)
+    		RouteItem edge = route.get(lastStretchRet);
+    		int distance = edge.getStretchIndex();
+    		if (lastStretchRet - distance == 0)
     		{
     		    return -1;
     		}
     		else
     		{
-    		    edge = route.get(lastLegRet - distance - 1);
-    		    distance += edge.getLeg().getLength();
-    		    return lastLegRet - distance;
+    		    edge = route.get(lastStretchRet - distance - 1);
+    		    distance += edge.getStretch().getLength();
+    		    return lastStretchRet - distance;
     		}
     	}
     	catch (IndexOutOfBoundsException e)
@@ -241,14 +241,14 @@ public class RouteIterator
     }
     
     /**
-     * returns the leg returned by the most recent call to nextLeg() or previousLeg()
-     * @return the most recently returned leg
+     * returns the stretch returned by the most recent call to nextStretch() or previousStretch()
+     * @return the most recently returned stretch
      */
-    public RouteLeg getLeg()
+    public RouteStretch getStretch()
     {
     	try
     	{
-    		return route.get(lastLegRet).getLeg();
+    		return route.get(lastStretchRet).getStretch();
     	}
     	catch (IndexOutOfBoundsException e)
     	{

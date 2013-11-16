@@ -14,10 +14,10 @@ public class Navigator
     private Route route;
     private RouteIterator currentIterator;
     private GMEdge currentEdge;
-    private RouteLeg currentLeg;
+    private RouteStretch currentStretch;
     private long lastTime;
     private long timeOnCurrentEdge;
-    private long timeOnCurrentLeg;
+    private long timeOnCurrentStretch;
     
     public Navigator(Route route)
     {
@@ -25,7 +25,7 @@ public class Navigator
         this.currentIterator = route.iterator();
         this.lastTime = 0;
         this.timeOnCurrentEdge = 0;
-        this.timeOnCurrentLeg = 0;
+        this.timeOnCurrentStretch = 0;
         this.reachedEnd = false;
         advanceToNextEdge();
     }
@@ -36,39 +36,39 @@ public class Navigator
     public final RoutePoint getCurrentRoutePoint(long time)
     {
         long timeDelta = time - lastTime + timeOnCurrentEdge;
-        timeOnCurrentLeg -= timeOnCurrentEdge;
+        timeOnCurrentStretch -= timeOnCurrentEdge;
         // advance to the proper point on the route
         while (timeDelta > currentEdge.getTimeDistance() && !reachedEnd)
         {
-            timeOnCurrentLeg += currentEdge.getTimeDistance();
+            timeOnCurrentStretch += currentEdge.getTimeDistance();
             timeDelta -= currentEdge.getTimeDistance();
             advanceToNextEdge();
         }
         timeOnCurrentEdge = timeDelta;
-        timeOnCurrentLeg += timeOnCurrentEdge;
+        timeOnCurrentStretch += timeOnCurrentEdge;
         lastTime = time;
         return generateRoutePoint();
     }
     
     /**
-     * advances to the next leg
+     * advances to the next stretch
      */
-    public final void goToNextLeg(long time)
+    public final void goToNextStretch(long time)
     {
-        advanceToNextLeg();
+        advanceToNextStretch();
         timeOnCurrentEdge = 0;
-        timeOnCurrentLeg = 0;
+        timeOnCurrentStretch = 0;
         lastTime = time;
     }
     
     /**
-     * moves back to the previous leg
+     * moves back to the previous stretch
      */
-    public final void goToPreviousLeg(long time)
+    public final void goToPreviousStretch(long time)
     {
-        moveBackToPreviousLeg();
+        moveBackToPreviousStretch();
         timeOnCurrentEdge = 0;
-        timeOnCurrentLeg = 0;
+        timeOnCurrentStretch = 0;
         lastTime = time;
     }
     
@@ -89,16 +89,16 @@ public class Navigator
     }
 
     /**
-     * returns current segment
-     * @return the currentSegment
+     * returns current stretch
+     * @return the current stretch
      */
-    public final RouteLeg getCurrentLeg()
+    public final RouteStretch getCurrentStretch()
     {
-        return currentLeg;
+        return currentStretch;
     }
     
     /**
-     * returns the index of the current RouteEdge on the route
+     * returns the index of the current RouteItem on the route
      * @return
      */
     public int getCurrentIndex()
@@ -124,10 +124,10 @@ public class Navigator
     	{
     	    currentIterator.next();
     		currentEdge = currentIterator.get();
-    		if (currentLeg != currentIterator.getLeg())
+    		if (currentStretch != currentIterator.getStretch())
     		{
-    		    timeOnCurrentLeg = 0;
-    		    currentLeg = currentIterator.getLeg();
+    		    timeOnCurrentStretch = 0;
+    		    currentStretch = currentIterator.getStretch();
     		}
     	}
     	else
@@ -137,14 +137,14 @@ public class Navigator
     }
     
     /**
-     * skips to the next leg
+     * skips to the next stretch
      */
-    private void advanceToNextLeg()
+    private void advanceToNextStretch()
     {
-        if (currentIterator.hasNextLeg())
+        if (currentIterator.hasNextStretch())
         {
-            timeOnCurrentLeg = 0;
-            currentLeg = currentIterator.nextLeg();
+            timeOnCurrentStretch = 0;
+            currentStretch = currentIterator.nextStretch();
             currentEdge = currentIterator.next();
         }
         else
@@ -154,14 +154,14 @@ public class Navigator
     }
     
     /**
-     * moves back to the previous leg
+     * moves back to the previous stretch
      */
-    private void moveBackToPreviousLeg()
+    private void moveBackToPreviousStretch()
     {
-        if (currentIterator.hasPreviousLeg())
+        if (currentIterator.hasPreviousStretch())
         {
-            timeOnCurrentLeg = 0;
-            currentLeg = currentIterator.previousLeg();
+            timeOnCurrentStretch = 0;
+            currentStretch = currentIterator.previousStretch();
             currentEdge = currentIterator.next();
         }
     }
@@ -176,7 +176,7 @@ public class Navigator
             currentIterator.next();
         }
         reachedEnd = true;
-        timeOnCurrentLeg = 0;
+        timeOnCurrentStretch = 0;
     }
     
     /**
@@ -185,7 +185,7 @@ public class Navigator
      */
     private RoutePoint generateRoutePoint()
     {
-        return new RoutePoint(timeOnCurrentEdge,timeOnCurrentLeg,currentIterator.copy());
+        return new RoutePoint(timeOnCurrentEdge,timeOnCurrentStretch,currentIterator.copy());
     }
 
 }

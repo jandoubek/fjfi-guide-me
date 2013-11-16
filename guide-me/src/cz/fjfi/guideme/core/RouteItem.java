@@ -12,21 +12,21 @@ class RouteItem
     //== INSTANCE VARIABLES ========================================================
     
     private GMEdge edge;
-    private RouteLeg leg;
-    private int legIndex;
+    private RouteStretch stretch;
+    private int stretchIndex;
     
     //==============================================================================
     //== CONSTRUCTORS ==============================================================
     /**
-     * Creates the RouteItem from the edge and the leg it belongs to
+     * Creates the RouteItem from the edge and the stretch it belongs to
      * @param edge
-     * @param leg
+     * @param stretch
      */
-    RouteItem(GMEdge edge, RouteLeg leg, int legIndex)
+    RouteItem(GMEdge edge, RouteStretch stretch, int stretchIndex)
     {
         this.edge = edge;
-        this.leg = leg;
-        this.legIndex = legIndex;
+        this.stretch = stretch;
+        this.stretchIndex = stretchIndex;
     }
     //== GETTERS AND SETTERS =======================================================
 
@@ -40,20 +40,20 @@ class RouteItem
     }
 
     /**
-     * returns the leg the edge belongs to
-     * @return the leg
+     * returns the stretch the edge belongs to
+     * @return the stretch
      */
-    public RouteLeg getLeg()
+    public RouteStretch getStretch()
     {
-        return leg;
+        return stretch;
     }
 
     /**
-     * returns the index of the edge in the leg
-     * @return leg index of the edge
+     * returns the index of the edge in the stretch
+     * @return stretch index of the edge
      */
-	public int getLegIndex() {
-		return legIndex;
+	public int getStretchIndex() {
+		return stretchIndex;
 	}
 
     //== OTHER METHODS =============================================================

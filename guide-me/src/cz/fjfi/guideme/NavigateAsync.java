@@ -8,7 +8,7 @@ import cz.fjfi.guideme.core.Guide;
 import cz.fjfi.guideme.core.Route;
 import cz.fjfi.guideme.core.RouteIterator;
 import cz.fjfi.guideme.core.RoutePoint;
-import cz.fjfi.guideme.core.RouteLeg;
+import cz.fjfi.guideme.core.RouteStretch;
 
 
 public class NavigateAsync extends AsyncTask<String, String, Void> {
@@ -74,7 +74,7 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 	{
 	    RouteIterator currentPosition = point.getIterator();
 	    GMEdge edge = currentPosition.get();
-	    RouteLeg segment = currentPosition.getLeg();
+	    RouteStretch stretch = currentPosition.getStretch();
 	    String label;
 	    GMNode endpoint = guide.getCurrentRoute().getEnd();
 	    if (guide.reachedDestination())
@@ -84,8 +84,8 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 	    else
 	    {
 	        label = "Mirite k cili: " + endpoint.getDescription() + "\n" +
-                    "Dalsiho bodu " + segment.getEnd().getDescription() +
-                    " dosahnete za: " + (segment.getTimeDistance() - point.getLegDistancePassed())/1000 + "s" + "\n\n" +
+                    "Dalsiho bodu " + stretch.getEnd().getDescription() +
+                    " dosahnete za: " + (stretch.getTimeDistance() - point.getLegDistancePassed())/1000 + "s" + "\n\n" +
                     "Nyni se nachazite na: " + edge.getDescription() + "\n";
             RouteIterator previousPosition = point.getIterator();
             previousPosition.previous();
@@ -104,17 +104,17 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 	        label += "\n\n";
 	        previousPosition = point.getIterator();
 	        previousPosition.previous();
-	        if (previousPosition.hasPreviousLeg())
+	        if (previousPosition.hasPreviousStretch())
 	        {
-	            RouteLeg prevSegment = previousPosition.previousLeg();
-	            label += prevSegment.getStart().getName() + " -- " + prevSegment.getEnd().getName() + "\n";
+	            RouteStretch prevStretch = previousPosition.previousStretch();
+	            label += prevStretch.getStart().getName() + " -- " + prevStretch.getEnd().getName() + "\n";
 	        }
 	        currentPosition = point.getIterator();
-	        label += segment.getStart().getName() + " -- " + segment.getEnd().getName() + " <--\n";
-	        if (currentPosition.hasNextLeg())
+	        label += stretch.getStart().getName() + " -- " + stretch.getEnd().getName() + " <--\n";
+	        if (currentPosition.hasNextStretch())
 	        {
-	            RouteLeg nextSegment = currentPosition.nextLeg();
-	            label += nextSegment.getStart().getName() + " -- " + nextSegment.getEnd().getName();
+	            RouteStretch nextStretch = currentPosition.nextStretch();
+	            label += nextStretch.getStart().getName() + " -- " + nextStretch.getEnd().getName();
 	        }
 	        
 	    }

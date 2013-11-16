@@ -3,11 +3,11 @@ package cz.fjfi.guideme.core;
 import java.util.*;
 
 /**
- * This class represents a leg of the route, used to generate instructions
+ * This class represents a stretch of the route, used to generate instructions
  * @author Martin Sochor
  *
  */
-public class RouteLeg
+public class RouteStretch
 {
     //== CLASS CONSTANTS ===========================================================
     //== CLASS VARIABLES ===========================================================
@@ -22,7 +22,7 @@ public class RouteLeg
     //==============================================================================
     //== CONSTRUCTORS ==============================================================
     
-    RouteLeg (List<GMEdge> edges)
+    RouteStretch (List<GMEdge> edges)
     {
         this.start = edges.get(0).getStart();
         this.end = edges.get(edges.size()-1).getEnd();
@@ -37,7 +37,7 @@ public class RouteLeg
     //== GETTERS AND SETTERS =======================================================
 
     /**
-     * returns the beginning node of the leg
+     * returns the beginning node of the stretch
      * @return the start
      */
     public GMNode getStart()
@@ -45,7 +45,7 @@ public class RouteLeg
         return start;
     }
     /**
-     * returns the final node of the leg
+     * returns the final node of the stretch
      * @return the end
      */
     public GMNode getEnd()
@@ -53,7 +53,7 @@ public class RouteLeg
         return end;
     }
     /**
-     * returns the direction of the leg
+     * returns the direction of the stretch
      * @return the direction
      */
     public Direction getDirection()
@@ -61,7 +61,7 @@ public class RouteLeg
         return direction;
     }
     /**
-     * returns the total time/distance of the leg
+     * returns the total time/distance of the stretch
      * @return the timeDistance
      */
     public long getTimeDistance()
@@ -70,7 +70,7 @@ public class RouteLeg
     }
     
     /**
-     * returns the number of edges in the leg
+     * returns the number of edges in the stretch
      * @return number of edges
      */
     public int getLength() {
