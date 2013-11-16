@@ -66,12 +66,12 @@ public class NavigateActivity extends Activity {
 	
 	public void navigate_bt_next_OnClick(View view)
 	{
-		//chci dal‰í instrukci navigace
+		guide.goToNextStretch(System.currentTimeMillis()-startTime);
 	}
 	
 	public void navigate_bt_previous_OnClick(View view)
 	{
-		//chci pﬁedchozí instrukci navigace
+		guide.goToPreviousStretch(System.currentTimeMillis()-startTime);
 	}
 
 	private void startAsync() 
