@@ -12,7 +12,7 @@ public class RoutePoint
     //== INSTANCE VARIABLES ========================================================
     
     private long edgeDistancePassed;
-    private long legDistancePassed;
+    private long stretchDistancePassed;
     private RouteIterator iterator;
     
     //==============================================================================
@@ -20,14 +20,14 @@ public class RoutePoint
     /**
      * constructor
      * @param edgeDistancePassed time passed since edge was reached
-     * @param legDistancePassed time passed since leg was reached
+     * @param stretchDistancePassed time passed since stretch was reached
      * @param iterator iterator pointing at the current edge
      */
     public RoutePoint(long edgeDistancePassed,
-            long legDistancePassed, RouteIterator iterator)
+            long stretchDistancePassed, RouteIterator iterator)
     {
         this.edgeDistancePassed = edgeDistancePassed;
-        this.legDistancePassed = legDistancePassed;
+        this.stretchDistancePassed = stretchDistancePassed;
         this.iterator = iterator;
     }   
     //== GETTERS AND SETTERS =======================================================
@@ -42,12 +42,12 @@ public class RoutePoint
     }
 
     /**
-     * returns how much time has passed since the current leg was started
-     * @return the leg distance passed
+     * returns how much time has passed since the current stretch was started
+     * @return the stretch distance passed
      */
-    public long getLegDistancePassed()
+    public long getStretchDistancePassed()
     {
-        return legDistancePassed;
+        return stretchDistancePassed;
     }
 
     /**

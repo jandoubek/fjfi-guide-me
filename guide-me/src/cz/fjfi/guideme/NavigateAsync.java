@@ -85,7 +85,7 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 	    {
 	        label = "Mirite k cili: " + endpoint.getDescription() + "\n" +
                     "Dalsiho bodu " + stretch.getEnd().getDescription() +
-                    " dosahnete za: " + (stretch.getTimeDistance() - point.getLegDistancePassed())/1000 + "s" + "\n\n" +
+                    " dosahnete za: " + (stretch.getTimeDistance() - point.getStretchDistancePassed())/1000 + "s" + "\n\n" +
                     "Nyni se nachazite na: " + edge.getDescription() + "\n";
             RouteIterator previousPosition = point.getIterator();
             previousPosition.previous();
