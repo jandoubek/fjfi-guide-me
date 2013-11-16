@@ -17,5 +17,6 @@
     <string name="item_description">Map description</string>
     <string name="map_selection_tv_mapy">Mapy</string>
     <string name="navigate_bt_previous">Předchozí</string>
+    <string name="url_headers">http://kmlinux.fjfi.cvut.cz/~fortpet2/guideme/headings.xml</string>
 
 </resources>
