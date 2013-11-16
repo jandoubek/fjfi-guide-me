@@ -14,10 +14,10 @@ public class Navigator
     private Route route;
     private RouteIterator currentIterator;
     private GMEdge currentEdge;
-    private RouteLeg currentSegment;
+    private RouteLeg currentLeg;
     private long lastTime;
     private long timeOnCurrentEdge;
-    private long timeOnCurrentSegment;
+    private long timeOnCurrentLeg;
     
     public Navigator(Route route)
     {
@@ -25,7 +25,7 @@ public class Navigator
         this.currentIterator = route.iterator();
         this.lastTime = 0;
         this.timeOnCurrentEdge = 0;
-        this.timeOnCurrentSegment = 0;
+        this.timeOnCurrentLeg = 0;
         this.reachedEnd = false;
         advanceToNextEdge();
     }
@@ -36,32 +36,39 @@ public class Navigator
     public final RoutePoint getCurrentRoutePoint(long time)
     {
         long timeDelta = time - lastTime + timeOnCurrentEdge;
-        timeOnCurrentSegment -= timeOnCurrentEdge;
+        timeOnCurrentLeg -= timeOnCurrentEdge;
         // advance to the proper point on the route
         while (timeDelta > currentEdge.getTimeDistance() && !reachedEnd)
         {
-            timeOnCurrentSegment += currentEdge.getTimeDistance();
+            timeOnCurrentLeg += currentEdge.getTimeDistance();
             timeDelta -= currentEdge.getTimeDistance();
             advanceToNextEdge();
         }
         timeOnCurrentEdge = timeDelta;
-        timeOnCurrentSegment += timeOnCurrentEdge;
+        timeOnCurrentLeg += timeOnCurrentEdge;
         lastTime = time;
         return generateRoutePoint();
     }
     
     /**
-     * advances to the next segment
+     * advances to the next leg
      */
-    public final void goToNextSegment(long time)
+    public final void goToNextLeg(long time)
     {
-        RouteLeg oldSegment = currentSegment;
-        while (oldSegment == currentSegment && !reachedEnd)
-        {
-            advanceToNextEdge();
-        }
+        advanceToNextLeg();
         timeOnCurrentEdge = 0;
-        timeOnCurrentSegment = 0;
+        timeOnCurrentLeg = 0;
+        lastTime = time;
+    }
+    
+    /**
+     * moves back to the previous leg
+     */
+    public final void goToPreviousLeg(long time)
+    {
+        moveBackToPreviousLeg();
+        timeOnCurrentEdge = 0;
+        timeOnCurrentLeg = 0;
         lastTime = time;
     }
     
@@ -85,9 +92,9 @@ public class Navigator
      * returns current segment
      * @return the currentSegment
      */
-    public final RouteLeg getCurrentSegment()
+    public final RouteLeg getCurrentLeg()
     {
-        return currentSegment;
+        return currentLeg;
     }
     
     /**
@@ -109,7 +116,7 @@ public class Navigator
     }
 
     /**
-     * skips to the next instruction
+     * skips to the next edge
      */
     private void advanceToNextEdge()
     {
@@ -117,10 +124,10 @@ public class Navigator
     	{
     	    currentIterator.next();
     		currentEdge = currentIterator.get();
-    		if (currentSegment != currentIterator.getLeg())
+    		if (currentLeg != currentIterator.getLeg())
     		{
-    		    timeOnCurrentSegment = 0;
-    		    currentSegment = currentIterator.getLeg();
+    		    timeOnCurrentLeg = 0;
+    		    currentLeg = currentIterator.getLeg();
     		}
     	}
     	else
@@ -130,12 +137,55 @@ public class Navigator
     }
     
     /**
+     * skips to the next leg
+     */
+    private void advanceToNextLeg()
+    {
+        if (currentIterator.hasNextLeg())
+        {
+            timeOnCurrentLeg = 0;
+            currentLeg = currentIterator.nextLeg();
+            currentEdge = currentIterator.next();
+        }
+        else
+        {
+            skipToEnd();
+        }
+    }
+    
+    /**
+     * moves back to the previous leg
+     */
+    private void moveBackToPreviousLeg()
+    {
+        if (currentIterator.hasPreviousLeg())
+        {
+            timeOnCurrentLeg = 0;
+            currentLeg = currentIterator.previousLeg();
+            currentEdge = currentIterator.next();
+        }
+    }
+    
+    /**
+     * skips to the end
+     */
+    private void skipToEnd()
+    {
+        while (currentIterator.hasNext())
+        {
+            currentIterator.next();
+        }
+        reachedEnd = true;
+        timeOnCurrentLeg = 0;
+    }
+    
+    /**
      * generates the current route point
      * @return the current point on the route
      */
     private RoutePoint generateRoutePoint()
     {
-        return new RoutePoint(timeOnCurrentEdge,timeOnCurrentSegment,currentIterator.copy());
+        return new RoutePoint(timeOnCurrentEdge,timeOnCurrentLeg,currentIterator.copy());
     }
 
 }

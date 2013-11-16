@@ -17,7 +17,8 @@ public class RouteIterator
 	
 	private List<RouteItem> route;
 	private int cursor = 0;
-	private int lastRet = -1;
+	private int lastEdgeRet = -1;
+	private int lastLegRet = -1;
     
 //==============================================================================
 //== CONSTRUCTORS ==============================================================
@@ -40,7 +41,8 @@ public class RouteIterator
     public RouteIterator copy()
     {
     	RouteIterator iterator = new RouteIterator(route, cursor);
-    	iterator.lastRet = lastRet;
+    	iterator.lastEdgeRet = lastEdgeRet;
+    	iterator.lastLegRet = lastLegRet;
     	return iterator;
     }
 
@@ -74,7 +76,7 @@ public class RouteIterator
     	try
     	{
     		GMEdge next = route.get(cursor).getEdge();
-    		lastRet = cursor++;
+    		lastEdgeRet = lastLegRet = cursor++;
     		return next;
     	}
     	catch (IndexOutOfBoundsException e)
@@ -102,7 +104,7 @@ public class RouteIterator
     	{
     		int i = cursor - 1;
     		GMEdge previous = route.get(i).getEdge();
-    		lastRet = cursor = i;
+    		lastEdgeRet = lastLegRet = cursor = i;
     		return previous;
     	}
     	catch (IndexOutOfBoundsException e)
@@ -128,7 +130,7 @@ public class RouteIterator
     {
     	try
     	{
-    		return route.get(lastRet).getEdge();
+    		return route.get(lastEdgeRet).getEdge();
     	}
     	catch (IndexOutOfBoundsException e)
     	{
@@ -162,9 +164,10 @@ public class RouteIterator
     {
     	try
     	{
+            cursor = nextLegIndex();
     		RouteLeg next = route.get(cursor).getLeg();
-    		lastRet = cursor;
-    		cursor = nextLegIndex();
+    		lastEdgeRet = cursor - 1;
+    		lastLegRet = cursor;
     		return next;
     	}
     	catch (IndexOutOfBoundsException e)
@@ -181,9 +184,9 @@ public class RouteIterator
     {
     	try
     	{
-    		RouteItem edge = route.get(lastRet);
+    		RouteItem edge = route.get(lastLegRet);
     		int distance = edge.getLeg().getLength() - edge.getLegIndex();
-    		return lastRet + distance;
+    		return lastLegRet + distance;
     	}
     	catch (IndexOutOfBoundsException e)
     	{
@@ -201,7 +204,7 @@ public class RouteIterator
     	{
         	int i = previousLegIndex();
         	RouteLeg previous = route.get(i).getLeg();
-        	lastRet = cursor = i;
+        	lastEdgeRet = lastLegRet = cursor = i;
         	return previous;
     	}
     	catch (IndexOutOfBoundsException e)
@@ -218,9 +221,18 @@ public class RouteIterator
     {
     	try
     	{
-    		RouteItem edge = route.get(cursor);
+    		RouteItem edge = route.get(lastLegRet);
     		int distance = edge.getLegIndex();
-    		return cursor - distance - 1;
+    		if (lastLegRet - distance == 0)
+    		{
+    		    return -1;
+    		}
+    		else
+    		{
+    		    edge = route.get(lastLegRet - distance - 1);
+    		    distance += edge.getLeg().getLength();
+    		    return lastLegRet - distance;
+    		}
     	}
     	catch (IndexOutOfBoundsException e)
     	{
@@ -229,14 +241,14 @@ public class RouteIterator
     }
     
     /**
-     * returns the leg returned by the most recent call to nextleg() or previousleg()
+     * returns the leg returned by the most recent call to nextLeg() or previousLeg()
      * @return the most recently returned leg
      */
     public RouteLeg getLeg()
     {
     	try
     	{
-    		return route.get(lastRet).getLeg();
+    		return route.get(lastLegRet).getLeg();
     	}
     	catch (IndexOutOfBoundsException e)
     	{

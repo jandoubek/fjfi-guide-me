@@ -115,10 +115,19 @@ public class Guide
     /**
      * advances navigation to the next point
      */
-    public final void goToNextSegment(long time)
+    public final void goToNextLeg(long time)
     {
-        checkForNavigator("goToNextSegment called before setRoute");
-        navigator.goToNextSegment(time);
+        checkForNavigator("goToNextLeg called before setRoute");
+        navigator.goToNextLeg(time);
+    }
+    
+    /**
+     * moves navigation back to the previous point
+     */
+    public final void goToPreviousLeg(long time)
+    {
+        checkForNavigator("goToPreviousLeg called before setRoute");
+        navigator.goToPreviousLeg(time);
     }
     
     /**
