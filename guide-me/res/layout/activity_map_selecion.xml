@@ -2,30 +2,55 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginBottom="10dp"
-    android:layout_marginLeft="25dp"
-    android:layout_marginRight="25dp"
-    android:layout_marginTop="10dp" >
+    android:layout_height="match_parent" >
 
-    <TextView
-        android:id="@+id/select_map_tv_maps"
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="19dp" >
+
+        <TextView
+            android:id="@+id/select_map_tv_maps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="12dp"
+            android:text="@string/map_selection_tv_mapy"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <ListView
+            android:id="@+id/select_map_lv_mapList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/select_map_bt_download"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/select_map_tv_maps"
+            tools:listitem="@layout/item_map_selection" >
+        </ListView>
+
+        <Button
+            android:id="@+id/select_map_bt_download"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="12dp"
+            android:text="@string/map_selection_bt_download" />
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_alignLeft="@+id/relativeLayout1"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/map_selection_tv_mapy" />
-
-    <ListView
-        android:id="@+id/select_map_lv_mapList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/select_map_tv_maps"
-        tools:listitem="@layout/item_map_selection" >
-
-    </ListView>
+        android:layout_alignRight="@+id/relativeLayout1" />
 
 </RelativeLayout>

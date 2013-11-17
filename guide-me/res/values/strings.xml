@@ -16,6 +16,9 @@
     <string name="item_name">Map name</string>
     <string name="item_description">Map description</string>
     <string name="map_selection_tv_mapy">Mapy</string>
+    <string name="map_selection_bt_download">Stáhnout mapu</string>
+    <string name="map_selection_d_title">Stáhnout mapu</string>
+    <string name="dialog_download_et_search_hint">Vyledávání mapy</string>
     <string name="navigate_bt_previous">Předchozí</string>
     <string name="url_headers">http://kmlinux.fjfi.cvut.cz/~fortpet2/guideme/headings.xml</string>
 
