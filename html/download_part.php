@@ -29,9 +29,11 @@ echo '						<li>Dostupné internetové připojení při stahování map</li>';
 echo '					</ul>';		
 			
 echo '				</div>';
+
+echo '      <br /><br /><br /><br />';
 								
 echo '			</div>';
 
-echo '      <br /><br /><br />';
+
 
 ?>
