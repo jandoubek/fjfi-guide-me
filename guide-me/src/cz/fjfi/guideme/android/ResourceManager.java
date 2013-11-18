@@ -28,15 +28,14 @@ public class ResourceManager
      * TODO: comment
      */
     // TODO: body
-    public static GMMap loadMap(File fileName)
+    public static GMMap loadMap(FileInputStream fis)
     {
-        InputStream in = null;
+       
         try
         {
-            in = new FileInputStream(fileName);
             XmlPullParser parser = Xml.newPullParser();
             parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-            parser.setInput(in, null);
+            parser.setInput(fis, null);
             parser.nextTag();
             return readXMLFile(parser);
         }
@@ -59,8 +58,8 @@ public class ResourceManager
         {
             try
             {
-                if (in != null)
-                    in.close();
+                if (fis != null)
+                    fis.close();
             }
             catch (IOException e)
             {
