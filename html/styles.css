@@ -135,6 +135,7 @@ margin: 5px;
 
 #download2 {
 	width: 540px;
+	height: 145px;
 	float: left; 
 	font-weight: bold;
 }
@@ -411,3 +412,4 @@ input.seraditsestupne:hover {
 	text-decoration: none;
 	color: #66ccff;
 }
+
