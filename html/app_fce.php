@@ -335,7 +335,7 @@ $obsahadr = zjisti_obsah_adresare('./maps/');
 		array_multisort($val, SORT_ASC, $vypis);		
 		
 		// to xml
-		$xml = new SimpleXMLElement('<?xml version="1.0" encoding="utf-8"?><map></map>');
+		$xml = new SimpleXMLElement('<?xml version="1.0" encoding="utf-8"?><headers></headers>');
 	  $xml->addAttribute('version', '1.0');
 	
 		foreach ($vypis as $key => $row) {		
@@ -344,13 +344,28 @@ $obsahadr = zjisti_obsah_adresare('./maps/');
 			$nazev = $row['Name'];	  // htmlentities($row['Name']);	
 			$detail = $row['Description'];
 			$gps =	$row['GpsCoords'];
-      $autor = $row['AuthorID'];
+      $autor_id = $row['AuthorID'];
+			
+			// author info by author ID
+			$sql = "SELECT Name, Surname, Email from Author WHERE ID = '" . $autor_id . "'";
+			$author_row = db_selectrow($sql);
 
-			$guidnode = $xml->addChild('Guid', $guid);
-			$guidnode->addChild('Name',$nazev);
-			$guidnode->addChild('Description',$detail);
-			$guidnode->addChild('GpsCoords',$gps);
-			$guidnode->addChild('AuthorID',$autor);
+			$autor_name_db = $author_row['Name'];
+			$autor_surname_db = $author_row['Surname'];
+			$autor_email = $author_row['Email'];
+	  
+			$autor = trim($autor_name_db . ' '. $autor_surname_db);      
+			
+			// prepare xml
+			
+			$guidnode = $xml->addChild('map');
+			$guidnode->addAttribute('guid', $guid);
+			$guidnode->addChild('name',$nazev);
+			$guidnode->addChild('description',$detail);
+			$guidnode->addChild('gpscoords',$gps);
+			$autnode = $guidnode->addChild('author',$autor);
+			$autnode->addAttribute('name',$autor);
+			$autnode->addAttribute('email',$autor_email);
 							
 		}	
 		
