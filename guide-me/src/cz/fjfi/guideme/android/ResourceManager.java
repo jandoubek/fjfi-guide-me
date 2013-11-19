@@ -36,7 +36,7 @@ public class ResourceManager
             XmlPullParser parser = Xml.newPullParser();
             parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
             parser.setInput(fis, null);
-            parser.nextTag();
+            parser.nextTag(); 
             return readXMLFile(parser);
         }
         catch (XmlPullParserException e)
@@ -86,7 +86,7 @@ public class ResourceManager
             XmlPullParser parser = Xml.newPullParser();
             parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
             parser.setInput(fis, null);
-            parser.nextTag();
+            //parser.nextTag(); //špatnì
             return readHeadersFromXMLFile(parser);
         }
         catch (XmlPullParserException e)
@@ -169,7 +169,62 @@ public class ResourceManager
     private static List<GMMapHeader> readHeadersFromXMLFile(XmlPullParser parser)
             throws XmlPullParserException, IOException
     {
-    	List<GMMapHeader> headers = new ArrayList<GMMapHeader>();
+    	List<GMMapHeader> headers = null;
+        int eventType = parser.getEventType();
+        GMMapHeader currentHeader = null;
+
+        while (eventType != XmlPullParser.END_DOCUMENT)
+        {
+            String name = null;
+            switch (eventType)
+            {
+                case XmlPullParser.START_DOCUMENT:
+                	headers = new ArrayList<GMMapHeader>();
+                    break;
+                case XmlPullParser.START_TAG:
+                    name = parser.getName();
+                    if (name.equalsIgnoreCase("map"))
+                    {
+                        currentHeader = new GMMapHeader();
+                    } 
+                    else if (currentHeader != null)
+                    {
+                        if (name.equalsIgnoreCase("name"))
+                        {
+                            currentHeader.setName(parser.nextText());
+                        }
+                        else if (name.equalsIgnoreCase("description"))
+                        {
+                        	currentHeader.setDescription(parser.nextText());
+                        }
+                        else if (name.equalsIgnoreCase("gpscoords"))
+                        {
+                            //TODO: Do something
+                        }
+                        else if (name.equalsIgnoreCase("author"))
+                        {
+                        	if(parser.getAttributeName(0).equalsIgnoreCase("name"))
+        	                {
+        	                    currentHeader.setAuthorName(parser.getAttributeValue(0));
+        	                }
+        	            	if(parser.getAttributeName(1).equalsIgnoreCase("email"))
+        	                {
+        	            		currentHeader.setAuthorEmail(parser.getAttributeValue(1));
+        	                }
+                        }
+                    }
+                    break;
+                case XmlPullParser.END_TAG:
+                    name = parser.getName();
+                    if (name.equalsIgnoreCase("map") && currentHeader != null)
+                    {
+                    	headers.add(currentHeader);
+                    } 
+            }
+            eventType = parser.next();
+        }
+        
+    	/*List<GMMapHeader> headers = new ArrayList<GMMapHeader>();
         parser.require(XmlPullParser.START_TAG, "", "headers");
         parser.next();
         while (parser.getName() != "headers")
@@ -182,7 +237,7 @@ public class ResourceManager
                 parser.next();
         }
         parser.require(XmlPullParser.END_TAG, "", "headers");
-        parser.next();
+        parser.next();*/
         return headers;
     }
     
