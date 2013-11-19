@@ -69,6 +69,7 @@ public class MapsDownloadBaseAdapter extends BaseAdapter {
 
 	public void setHeaders(ArrayList<GMMapHeader> headers){
 		this.headers = headers;
+		headersOrig = new ArrayList<GMMapHeader>(headers);
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {

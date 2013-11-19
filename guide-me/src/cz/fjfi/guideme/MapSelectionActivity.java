@@ -27,7 +27,7 @@ public class MapSelectionActivity extends Activity {
 	private ListView mapList;
 	private MapsBaseAdapter adapter;
 	private int clickedItem=-1;
-	private MapsDownloadBaseAdapter adpaterDownload;
+	public MapsDownloadBaseAdapter adpaterDownload;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +43,13 @@ public class MapSelectionActivity extends Activity {
 	private void initWidgets() {
 		Button downloadBT = (Button) findViewById(R.id.select_map_bt_download);
 		downloadBT.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
 				setDialog();
 			}
 		});
-		
+
 		mapList = (ListView)findViewById(R.id.select_map_lv_mapList);
 		mapList.setOnItemClickListener(new OnItemClickListener() {
 
@@ -130,7 +130,7 @@ public class MapSelectionActivity extends Activity {
 
 		adpaterDownload = new MapsDownloadBaseAdapter(MapSelectionActivity.this, headers);
 		maps.setAdapter(adpaterDownload);
-
+		new DownloadHeadersAsync(MapSelectionActivity.this).execute("");
 		searchET.addTextChangedListener(new TextWatcher() {
 
 			@Override
