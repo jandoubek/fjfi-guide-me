@@ -18,10 +18,10 @@ public class MapsDownloadBaseAdapter extends BaseAdapter {
 	private ArrayList<GMMapHeader> headersOrig;
 	private LayoutInflater mInflater;
 
-	public MapsDownloadBaseAdapter(Context context, ArrayList<GMMapHeader> headers) {
+	public MapsDownloadBaseAdapter(Context context, ArrayList<GMMapHeader> headers, ArrayList<GMMapHeader> headersOrig) {
 		//sortList(headers);
 		this.headers = headers;
-		headersOrig = new ArrayList<GMMapHeader>(headers);
+		this.headersOrig = headersOrig;
 		mInflater = LayoutInflater.from(context);
 	}
 
@@ -64,12 +64,11 @@ public class MapsDownloadBaseAdapter extends BaseAdapter {
 		return headers;
 	}
 	public ArrayList<GMMapHeader> getHeadersOrig(){
-		return headers;
+		return headersOrig;
 	}
 
 	public void setHeaders(ArrayList<GMMapHeader> headers){
 		this.headers = headers;
-		headersOrig = new ArrayList<GMMapHeader>(headers);
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {

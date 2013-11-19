@@ -15,7 +15,6 @@ import java.util.ArrayList;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 import cz.fjfi.guideme.android.ResourceManager;
 import cz.fjfi.guideme.core.GMMapHeader;
 
@@ -29,9 +28,7 @@ public class DownloadHeadersAsync extends AsyncTask<String, String, Void> {
 
 	@Override
 	protected Void doInBackground(String... params) {
-		Log.i("ASYNC", "background");
 		String result = downloadToString(context.getString(R.string.url_headers));
-		Log.e("DOWNLOADASYNC", result);
 		safeToFile(result, "headers.xml");
 		FileInputStream fis=null;
 		try {
@@ -40,7 +37,6 @@ public class DownloadHeadersAsync extends AsyncTask<String, String, Void> {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		Log.w("DOWNLOADASYNC", "konec");
 		return null;
 	}
 	
@@ -95,7 +91,8 @@ public class DownloadHeadersAsync extends AsyncTask<String, String, Void> {
 	@Override
 	protected void onPostExecute(Void result) {
 		super.onPostExecute(result);
-		context.adpaterDownload.setHeaders(headers);
+		for(GMMapHeader header : headers)
+		context.adpaterDownload.add(header);
 		context.adpaterDownload.notifyDataSetChanged();
 	}
 

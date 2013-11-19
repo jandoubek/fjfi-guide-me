@@ -127,8 +127,9 @@ public class MapSelectionActivity extends Activity {
 		ListView maps = (ListView) dialog1.findViewById(R.id.dialog_download_lv_maps);
 		EditText searchET = (EditText) dialog1.findViewById(R.id.dialog_download_et_search);
 		ArrayList<GMMapHeader> headers = new ArrayList<GMMapHeader>();
-
-		adpaterDownload = new MapsDownloadBaseAdapter(MapSelectionActivity.this, headers);
+		ArrayList<GMMapHeader> headers2 = new ArrayList<GMMapHeader>();
+		
+		adpaterDownload = new MapsDownloadBaseAdapter(MapSelectionActivity.this, headers, headers2);
 		maps.setAdapter(adpaterDownload);
 		new DownloadHeadersAsync(MapSelectionActivity.this).execute("");
 		searchET.addTextChangedListener(new TextWatcher() {
@@ -138,7 +139,7 @@ public class MapSelectionActivity extends Activity {
 				if (s.equals("")) {
 					adpaterDownload.setOriginalHeaders();
 					adpaterDownload.notifyDataSetChanged();
-				} else {   	
+				}else {   
 					adpaterDownload.setHeaders(searchSeznam(adpaterDownload.getHeadersOrig(), s.toString()));
 					adpaterDownload.notifyDataSetChanged();
 				}
@@ -163,7 +164,7 @@ public class MapSelectionActivity extends Activity {
 		ArrayList<GMMapHeader> seznamNal = new ArrayList<GMMapHeader>();
 
 		for(GMMapHeader polozka : seznam){
-			if(org.apache.commons.lang3.StringUtils.containsIgnoreCase(removeDiacritics(polozka.getName()), removeDiacritics(compare))){
+			if(org.apache.commons.lang3.StringUtils.containsIgnoreCase(polozka.getName(), compare)){
 				seznamNal.add(polozka);				
 			}
 		}
