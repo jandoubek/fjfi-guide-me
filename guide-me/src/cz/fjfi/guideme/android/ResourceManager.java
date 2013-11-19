@@ -69,6 +69,56 @@ public class ResourceManager
         }
         return null;
     }
+    
+    /***************************************************************************
+     * Returns list containing all map headers in XML file of given 
+     * @FileInputStream. If not successful, than returns null.
+     * 
+     * @param fis Input stream of XML file in which Mapheaders should
+     *            be found.
+     * @return List of headers from given stream, or when unsuccessful null.
+     */
+    public static List<GMMapHeader> loadHeaders(FileInputStream fis)
+    {
+       
+        try
+        {
+            XmlPullParser parser = Xml.newPullParser();
+            parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+            parser.setInput(fis, null);
+            parser.nextTag();
+            return readHeadersFromXMLFile(parser);
+        }
+        catch (XmlPullParserException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        catch (FileNotFoundException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        catch (IOException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        finally
+        {
+            try
+            {
+                if (fis != null)
+                    fis.close();
+            }
+            catch (IOException e)
+            {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
 
     private static GMMap readXMLFile(XmlPullParser parser)
             throws XmlPullParserException, IOException
@@ -114,6 +164,79 @@ public class ResourceManager
             }
         }
         return createdMap;
+    }
+    
+    private static List<GMMapHeader> readHeadersFromXMLFile(XmlPullParser parser)
+            throws XmlPullParserException, IOException
+    {
+    	List<GMMapHeader> headers = new ArrayList<GMMapHeader>();
+        parser.require(XmlPullParser.START_TAG, "", "headers");
+        parser.next();
+        while (parser.getName() != "headers")
+        {
+            if (parser.getName() == "map")
+            {
+                headers.add(readHeader(parser));
+            }
+            else
+                parser.next();
+        }
+        parser.require(XmlPullParser.END_TAG, "", "headers");
+        parser.next();
+        return headers;
+    }
+    
+    private static GMMapHeader readHeader(XmlPullParser parser) 
+    		throws XmlPullParserException, IOException
+    {
+    	        UUID uuid = null;
+    	        String name = "";
+    	        String description = "";
+    	        String authorName = "";
+    	        String authorEmail = "";
+    	        String filename = "";
+    	        
+    	        parser.require(XmlPullParser.START_TAG, "", "map");
+    	        filename = parser.getAttributeValue(0);
+                uuid = java.util.UUID.fromString(filename);
+    	        while (parser.getName() != "map")
+    	        {
+    	            if (parser.getEventType() != XmlPullParser.START_TAG)
+    	            {
+    	            	parser.next();
+    	            }
+    	            else if (parser.getName() == "name")
+    	            {
+    	                name = parser.getText();
+    	            }
+    	            else if (parser.getName() == "author")
+    	            {
+    	            	if(parser.getAttributeName(0) == "name")
+    	                {
+    	                    authorName = parser.getAttributeValue(0);
+    	                }
+    	            	if(parser.getAttributeName(1) == "email")
+    	                {
+    	                    authorEmail = parser.getAttributeValue(1);
+    	                }
+    	            }
+    	            else if (parser.getName() == "desc")
+    	            {
+    	                description = parser.getText();
+    	            }
+    	        }
+    	        
+    	        parser.require(XmlPullParser.END_TAG, "", "map");
+    	        parser.next();
+    	        
+    	        GMMapHeader header = new GMMapHeader();
+    	        header.setGuid(uuid);
+    	        header.setName(name);
+    	        header.setAuthorName(authorName);
+    	        header.setAuthorEmail(authorEmail);
+    	        header.setFilename(filename);
+    	        header.setDescription(description);
+    	        return header;
     }
 
     private static List<GMNode> parseNodeList(XmlPullParser parser,
