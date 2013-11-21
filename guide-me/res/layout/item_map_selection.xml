@@ -43,6 +43,7 @@
         android:layout_alignBaseline="@+id/navigate_bt_next"
         android:layout_alignBottom="@+id/navigate_bt_next"
         android:layout_alignParentRight="true"
-        android:text="@string/item_delete_bt" />
+        android:text="@string/item_delete_bt" 
+        android:visibility="gone"/>
 
 </RelativeLayout>

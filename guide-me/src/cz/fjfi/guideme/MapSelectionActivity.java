@@ -99,7 +99,7 @@ public class MapSelectionActivity extends Activity {
 					play = (Button) view.findViewById(R.id.navigate_bt_next);
 					play.setVisibility(View.VISIBLE);
 					delete = (Button) view.findViewById(R.id.button2);
-					delete.setVisibility(View.VISIBLE);
+					delete.setVisibility(View.GONE);
 					adapter.setClickedItem(position);
 				}else{
 					View oldView = adapterView.getChildAt(adapter.getClickedItem());
@@ -264,8 +264,8 @@ public class MapSelectionActivity extends Activity {
 		final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
 		alertDialog.setTitle(R.string.map_selection_alert_title);
 		String msg = MapSelectionActivity.this.getText(R.string.map_selection_alert_msg).toString() + " " + guide.getCurrentMap().getName() + " " +
-				MapSelectionActivity.this.getText(R.string.map_selection_alert_msg2) + " " + from.getName() + " " +
-				MapSelectionActivity.this.getText(R.string.map_selection_alert_msg3) + " " + to.getName() + "?";
+				MapSelectionActivity.this.getText(R.string.map_selection_alert_msg2) + " " + from.getDescription() + " " +
+				MapSelectionActivity.this.getText(R.string.map_selection_alert_msg3) + " " + to.getDescription() + "?";
 
 		alertDialog.setMessage(msg);
 		alertDialog.setButton(Dialog.BUTTON_POSITIVE,MapSelectionActivity.this.getText(R.string.map_selection_alert_yes), new DialogInterface.OnClickListener() {
