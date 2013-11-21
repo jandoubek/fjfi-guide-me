@@ -305,7 +305,7 @@ public class MapSelectionActivity extends Activity {
 		ArrayList<GMNode> seznamNal = new ArrayList<GMNode>();
 
 		for(GMNode polozka : seznam){
-			if(org.apache.commons.lang3.StringUtils.containsIgnoreCase(polozka.getName(), compare)){
+			if(org.apache.commons.lang3.StringUtils.containsIgnoreCase(polozka.getDescription(), compare)){
 				seznamNal.add(polozka);				
 			}
 		}
@@ -337,7 +337,7 @@ public class MapSelectionActivity extends Activity {
 		{
 			GMNode o1 = (GMNode) obj1;
 			GMNode o2 = (GMNode) obj2;
-			return o1.getName().compareToIgnoreCase(o2.getName());
+			return o1.getDescription().compareToIgnoreCase(o2.getDescription());
 		}
 	}
 }
