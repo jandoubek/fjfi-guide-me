@@ -88,7 +88,7 @@ public class MapsPointBaseAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag();
 		}
 
-		holder.itemName.setText(nodes.get(position).getName());  
+		holder.itemName.setText(nodes.get(position).getDescription());  
 		return convertView;
 	}
 

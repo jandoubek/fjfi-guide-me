@@ -14,7 +14,7 @@ public class TrojankaMap {
 	 */
 	public static GMMap Trojanka(UUID guid1, UUID guid2)
 	{
-		int timeCard = 
+		int timeCard = 8000; 
 		GMMap myMap = new GMMap();
 		myMap.setAuthorName("KBen");
 		myMap.setAuthorEmail("email@email.com");
@@ -35,27 +35,27 @@ public class TrojankaMap {
 		myMap.addLocation(l03);
 		myMap.addLocation(l04);
 		
-		GMNode l01n01 = new GMNode(guid1,				   "l01n01", loclist, l01.description, myMap);
-		GMNode l01n02 = new GMNode(Utility.generateGUID(), "l01n02", loclist, l01.description, myMap);
-		GMNode l01n03 = new GMNode(Utility.generateGUID(), "l01n03", loclist, l01.description, myMap);
-		GMNode l02n01 = new GMNode(Utility.generateGUID(), "l02n01", loclist, l02.description, myMap);
-		GMNode l02n02 = new GMNode(Utility.generateGUID(), "l02n02", loclist, l02.description, myMap);
-		GMNode l02n03 = new GMNode(Utility.generateGUID(), "l02n03", loclist, l02.description, myMap);
-		GMNode l02n04 = new GMNode(Utility.generateGUID(), "l02n04", loclist, l02.description, myMap);
-		GMNode l03n01 = new GMNode(Utility.generateGUID(), "l03n01", loclist, l03.description, myMap);
-		GMNode l03n02 = new GMNode(Utility.generateGUID(), "l03n02", loclist, l03.description, myMap);
-		GMNode l03n03 = new GMNode(Utility.generateGUID(), "l03n03", loclist, l03.description, myMap);
-		GMNode l03n04 = new GMNode(Utility.generateGUID(), "l03n04", loclist, l03.description, myMap);
-		GMNode l03n05 = new GMNode(Utility.generateGUID(), "l03n05", loclist, l03.description, myMap);
-		GMNode l03n06 = new GMNode(Utility.generateGUID(), "l03n06", loclist, l03.description, myMap);
-		GMNode l03n07 = new GMNode(Utility.generateGUID(), "l03n07", loclist, l03.description, myMap);
-		GMNode l03n08 = new GMNode(Utility.generateGUID(), "l03n08", loclist, l03.description, myMap);
-		GMNode l03n09 = new GMNode(Utility.generateGUID(), "l03n09", loclist, l03.description, myMap);
-		GMNode l03n10 = new GMNode(Utility.generateGUID(), "l03n10", loclist, l03.description, myMap);
-		GMNode l04n01 = new GMNode(Utility.generateGUID(), "l04n01", loclist, l04.description, myMap);
-		GMNode l04n02 = new GMNode(Utility.generateGUID(), "l04n02", loclist, l04.description, myMap);
-		GMNode l04n03 = new GMNode(Utility.generateGUID(), "l04n03", loclist, l04.description, myMap);
-		GMNode l04n04 = new GMNode(guid2,				   "l04n04", loclist, l04.description, myMap);
+		GMNode l01n01 = new GMNode(guid1,				   "l01n01", loclist, l01.getDescription(), myMap);
+		GMNode l01n02 = new GMNode(Utility.generateGUID(), "l01n02", loclist, l01.getDescription(), myMap);
+		GMNode l01n03 = new GMNode(Utility.generateGUID(), "l01n03", loclist, l01.getDescription(), myMap);
+		GMNode l02n01 = new GMNode(Utility.generateGUID(), "l02n01", loclist, l02.getDescription(), myMap);
+		GMNode l02n02 = new GMNode(Utility.generateGUID(), "l02n02", loclist, l02.getDescription(), myMap);
+		GMNode l02n03 = new GMNode(Utility.generateGUID(), "l02n03", loclist, l02.getDescription(), myMap);
+		GMNode l02n04 = new GMNode(Utility.generateGUID(), "l02n04", loclist, l02.getDescription(), myMap);
+		GMNode l03n01 = new GMNode(Utility.generateGUID(), "l03n01", loclist, l03.getDescription(), myMap);
+		GMNode l03n02 = new GMNode(Utility.generateGUID(), "l03n02", loclist, l03.getDescription(), myMap);
+		GMNode l03n03 = new GMNode(Utility.generateGUID(), "l03n03", loclist, l03.getDescription(), myMap);
+		GMNode l03n04 = new GMNode(Utility.generateGUID(), "l03n04", loclist, l03.getDescription(), myMap);
+		GMNode l03n05 = new GMNode(Utility.generateGUID(), "l03n05", loclist, l03.getDescription(), myMap);
+		GMNode l03n06 = new GMNode(Utility.generateGUID(), "l03n06", loclist, l03.getDescription(), myMap);
+		GMNode l03n07 = new GMNode(Utility.generateGUID(), "l03n07", loclist, l03.getDescription(), myMap);
+		GMNode l03n08 = new GMNode(Utility.generateGUID(), "l03n08", loclist, l03.getDescription(), myMap);
+		GMNode l03n09 = new GMNode(Utility.generateGUID(), "l03n09", loclist, l03.getDescription(), myMap);
+		GMNode l03n10 = new GMNode(Utility.generateGUID(), "l03n10", loclist, l03.getDescription(), myMap);
+		GMNode l04n01 = new GMNode(Utility.generateGUID(), "l04n01", loclist, l04.getDescription(), myMap);
+		GMNode l04n02 = new GMNode(Utility.generateGUID(), "l04n02", loclist, l04.getDescription(), myMap);
+		GMNode l04n03 = new GMNode(Utility.generateGUID(), "l04n03", loclist, l04.getDescription(), myMap);
+		GMNode l04n04 = new GMNode(guid2,				   "l04n04", loclist, l04.getDescription(), myMap);
 		GMNode r01 = new GMNode(Utility.generateGUID(), "r01", loclist, "WC", myMap);
 		GMNode r02 = new GMNode(Utility.generateGUID(), "r02", loclist, "T-116", myMap);
 		GMNode r03 = new GMNode(Utility.generateGUID(), "r03", loclist, "T-115", myMap);
@@ -107,20 +107,21 @@ public class TrojankaMap {
 		myMap.addNode(s01);
 		
 		//lokace l01
-		GMEdge l01e0102 = new GMEdge(Utility.generateGUID(), "l01e0102", 2000, n01, n02, Direction.Southeast, l01.description, myMap);
-		GMEdge l01e0103 = new GMEdge(Utility.generateGUID(), "l01e0103", 1600, n01, n03, Direction.South, 	  l01.description, myMap);
-		GMEdge l01e0201 = new GMEdge(Utility.generateGUID(), "l01e0201", 2000, n02, n01, Direction.Northeast, l01.description, myMap);
-		GMEdge l01e0203 = new GMEdge(Utility.generateGUID(), "l01e0203", 2000, n02, n03, Direction.Southwest, l01.description, myMap);
-		GMEdge l01e0301 = new GMEdge(Utility.generateGUID(), "l01e0301", 1600, n03, n01, Direction.North, 	  l01.description, myMap);
-		GMEdge l01e0302 = new GMEdge(Utility.generateGUID(), "l01e0302", 2000, n03, n02, Direction.Northwest, l01.description, myMap);
+		/*
+		GMEdge l01e0102 = new GMEdge(Utility.generateGUID(), "l01e0102", 2000, n01, n02, Direction.Southeast, l01.getDescription(), myMap);
+		GMEdge l01e0103 = new GMEdge(Utility.generateGUID(), "l01e0103", 1600, n01, n03, Direction.South, 	  l01.getDescription(), myMap);
+		GMEdge l01e0201 = new GMEdge(Utility.generateGUID(), "l01e0201", 2000, n02, n01, Direction.Northeast, l01.getDescription(), myMap);
+		GMEdge l01e0203 = new GMEdge(Utility.generateGUID(), "l01e0203", 2000, n02, n03, Direction.Southwest, l01.getDescription(), myMap);
+		GMEdge l01e0301 = new GMEdge(Utility.generateGUID(), "l01e0301", 1600, n03, n01, Direction.North, 	  l01.getDescription(), myMap);
+		GMEdge l01e0302 = new GMEdge(Utility.generateGUID(), "l01e0302", 2000, n03, n02, Direction.Northwest, l01.getDescription(), myMap);
 
-		GMEdge r01e01 = new GMEdge(Utility.generateGUID(), "r01e01", 0, r01, e01, Direction.South, "odchod z " + r01.description , myMap);
-		GMEdge s01e02 = new GMEdge(Utility.generateGUID(), "s01e02", 0, s01, e02, Direction.West,  "odchod z " + s01.description , myMap);
-		GMEdge e01r01 = new GMEdge(Utility.generateGUID(), "e01r01", 0, e01, r01, Direction.North, "příchod na " + r01.description, myMap);
-		GMEdge e02s01 = new GMEdge(Utility.generateGUID(), "e02s01", 0, e02, s01, Direction.East,  "příchod na " + s01.description, myMap);
+		GMEdge r01e01 = new GMEdge(Utility.generateGUID(), "r01e01", 0, r01, e01, Direction.South, "odchod z " + r01.getDescription() , myMap);
+		GMEdge s01e02 = new GMEdge(Utility.generateGUID(), "s01e02", 0, s01, e02, Direction.West,  "odchod z " + s01.getDescription() , myMap);
+		GMEdge e01r01 = new GMEdge(Utility.generateGUID(), "e01r01", 0, e01, r01, Direction.North, "příchod na " + r01.getDescription(), myMap);
+		GMEdge e02s01 = new GMEdge(Utility.generateGUID(), "e02s01", 0, e02, s01, Direction.East,  "příchod na " + s01.getDescription(), myMap);
 		
-		GMEdge l01l03 = new GMEdge(Utility.generateGUID(), "l01l03", timeCard, l01e03, l03e01, Direction.South, "přechod z " + l01.description + " do " + l03.description, myMap);
-		GMEdge l03l01 = new GMEdge(Utility.generateGUID(), "l03l01", timeCard, l03e01, l01e03, Direction.North, "přechod z " + l03.description + " do " + l01.description, myMap);
+		GMEdge l01l03 = new GMEdge(Utility.generateGUID(), "l01l03", timeCard, l01e03, l03e01, Direction.South, "přechod z " + l01.getDescription() + " do " + l03.getDescription(), myMap);
+		GMEdge l03l01 = new GMEdge(Utility.generateGUID(), "l03l01", timeCard, l03e01, l01e03, Direction.North, "přechod z " + l03.getDescription() + " do " + l01.getDescription(), myMap);
 
 		myMap.addEdge(l01e0102);
 		myMap.addEdge(l01e0103);
@@ -134,7 +135,7 @@ public class TrojankaMap {
 		myMap.addEdge(e02s01);		
 		myMap.addEdge(l01l03);		
 		myMap.addEdge(l03l01);
-		
+		*/
 		return myMap;
 	}
 }
