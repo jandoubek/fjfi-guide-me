@@ -64,6 +64,7 @@ public class MapSelectionActivity extends Activity {
 		gmMap = tst2.testmap2(guid1,guid2);
 		guide.setMap(gmMap);
 	}
+
 	private void initWidgets() {
 		Button downloadBT = (Button) findViewById(R.id.select_map_bt_download);
 		downloadBT.setOnClickListener(new OnClickListener() {
@@ -196,7 +197,10 @@ public class MapSelectionActivity extends Activity {
 		final boolean firstNode = firstPoint;
 		final Dialog dialog1 = new Dialog(MapSelectionActivity.this);
 		dialog1.setContentView(R.layout.dialog_download_map);
-		dialog1.setTitle(getString(R.string.map_selection_d_title));
+		if(firstNode)
+			dialog1.setTitle(getString(R.string.map_selection_point_a_title));
+		else
+			dialog1.setTitle(getString(R.string.map_selection_point_b_title));
 		dialog1.setCancelable(true);
 
 

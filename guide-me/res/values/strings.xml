@@ -26,6 +26,8 @@
     <string name="map_selection_tv_mapy">Mapy</string>
     <string name="map_selection_bt_download">Stáhnout mapu</string>
     <string name="map_selection_d_title">Stáhnout mapu</string>
+    <string name="map_selection_point_a_title">Vyberte počáteční bod</string>
+    <string name="map_selection_point_b_title">Vyberte cílový bod</string>
     <string name="dialog_download_et_search_hint">Vyledávání mapy</string>
     <string name="dialog_download_et_search_hint2">Vyledávání bodu</string>
     <string name="navigate_bt_previous">Předchozí</string>
