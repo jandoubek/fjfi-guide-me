@@ -281,67 +281,59 @@ function authors() {
 }
 
 
-
-// returns an headers from an specified XML file
-function getHeadersFromMap($file) {
-  
-  $path = './maps/' . $file;
-	$xml = simplexml_load_file($path);
-		
-	try {		
-    $map  = $xml->map;	
-	  $map->attributes()->guid;		
-	} catch (Exception $e) {	
-    echo 'Behem zpracovavani souboru se vyskytla chyba: ',  $e->getMessage(), "\n";
-		die();
-	}
-
-  $map = $xml->map;	
-	$guid         = $map->attributes()->guid;
-	$name         = $map->name;
-	$description  = $map->description;
-	$gpscoords    = $map->gpscoords;
-	$author_name  = $map->author->attributes()->name;
-	$author_email = $map->author->attributes()->email;	
-
-	return array($guid,$name,$description,$gpscoords,$author_name,$author_email);
-	
-}
-
-
-
 // function for update headings.xml with structured headings of maps
 function update_headings() {
 
-  $obsahadr = zjisti_obsah_adresare('./maps/');
-
+$obsahadr = zjisti_obsah_adresare('./maps/');
+		
+// pokud neni adresar prazdny
   if (!empty($obsahadr)) {
-		  		
-	  for ($i=0; $i < sizeof($obsahadr); $i++) {
-	
-	    $nazev = $obsahadr[$i]['nazev'];
-	  	list($guid,$name,$description,$gpscoords,$author_name,$author_email) = getHeadersFromMap($nazev);
 		
-			$vypis[$i]['Guid'] = $guid;
-      $vypis[$i]['Name'] = $name;
-			$vypis[$i]['GpsCoords'] = $gpscoords;
-			$vypis[$i]['Description'] = $description;
-			$vypis[$i]['AuthorName'] = $author_name;
-			$vypis[$i]['AuthorEmail'] = $author_email;
+		$vypis = array();
+		$j = 0;
+ 
+    for ($i=0; $i < sizeof($obsahadr); $i++) {
 		
+		  $nazev = $obsahadr[$i]['nazev'];
+			$nazev_cele = explode('.',$nazev);
+			$naz = $nazev_cele[0];					
 		
-	  }
+			// porovnej realne nahrane soubory s databazi 
+			$maps_db = db_select('SELECT * from GMMap');
 
-		// sort
+			foreach ($maps_db as $key => $val) {
+			
+				$guid_db = $val['Guid'];
+				
+				// shoda
+				if ($guid_db==$naz) {
+								
+					$j++;			
+
+					$name = $val['Name'];
+					$gpscoords = $val['GpsCoords'];
+					$description = $val['Description'];
+					$author = $val['AuthorID'];
+
+					$k = $j-1;
+					$vypis[$k]['Guid'] = $guid_db;
+          $vypis[$k]['Name'] = $name;
+					$vypis[$k]['GpsCoords'] = $gpscoords;
+					$vypis[$k]['Description'] = $description;
+					$vypis[$k]['AuthorID'] = $author;
+					
+				}
+			}
+		}	
+		
+		// setrideni
 		$val = array();
 		foreach ($vypis as $key => $row) {
 			$val[$key] = $row['Name'];
 		}
 		
 		array_multisort($val, SORT_ASC, $vypis);		
-				
-  }
-	
+		
 		// to xml
 		$xml = new SimpleXMLElement('<?xml version="1.0" encoding="utf-8"?><headers></headers>');
 	  $xml->addAttribute('version', '1.0');
@@ -352,26 +344,64 @@ function update_headings() {
 			$nazev = $row['Name'];	  // htmlentities($row['Name']);	
 			$detail = $row['Description'];
 			$gps =	$row['GpsCoords'];
-      $autor = $row['AuthorName'];
-			$autor_email = $row['AuthorEmail'];
+      $autor_id = $row['AuthorID'];
 			
-			// prepare xml			
+			// author info by author ID
+			$sql = "SELECT Name, Surname, Email from Author WHERE ID = '" . $autor_id . "'";
+			$author_row = db_selectrow($sql);
+
+			$autor_name_db = $author_row['Name'];
+			$autor_surname_db = $author_row['Surname'];
+			$autor_email = $author_row['Email'];
+	  
+			$autor = trim($autor_name_db . ' '. $autor_surname_db);      
+			
+			// prepare xml
+			
 			$guidnode = $xml->addChild('map');
 			$guidnode->addAttribute('guid', $guid);
 			$guidnode->addChild('name',$nazev);
 			$guidnode->addChild('description',$detail);
 			$guidnode->addChild('gpscoords',$gps);
-			$autnode = $guidnode->addChild('author');
+			$autnode = $guidnode->addChild('author',$autor);
 			$autnode->addAttribute('name',$autor);
 			$autnode->addAttribute('email',$autor_email);
 							
 		}	
 		
 	$xml->asXML('./headings.xml');
+	print $xml->asXML;
+			
+	}
 
 }
 
 
+
+
+function getHeadersFromMap($file) {
+
+  
+  $path = './maps/' . $file;
+	$xml = simplexml_load_file($path);
+		
+	try {		
+	  $xml->attributes()->guid;				
+	} catch (Exception $e) {	
+    echo 'Behem zpracovavani souboru se vyskytla chyba: ',  $e->getMessage(), "\n";
+		die();
+	}
+	 	
+	$guid = $xml->attributes()->guid;
+	$name         = $xml->name;
+	$description  = $xml->description;
+	$gpscoords    = $xml->gpscoords;
+	$author_name  = $xml->author->attributes()->name;
+	$author_email = $xml->author->attributes()->email;	
+			
+	return array($guid,$name,$description,$gpscoords,$author_name,$author_email);
+	
+}
 
 
 

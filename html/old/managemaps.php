@@ -13,7 +13,14 @@
 	// smazat soubor
 	if ( (array_key_exists('odeslo',$_POST)) && (array_key_exists('potvrditsmazani',$_POST)) && ($_POST['odeslo']==1) ) {
 	
-		$soubor_smazat = htmlspecialchars($_POST['nazev']);				
+		$soubor_smazat = htmlspecialchars($_POST['nazev']);			
+	
+		$nazev_cele = explode('.',$soubor_smazat);
+		$naz = $nazev_cele[0];
+			
+		$sql = "DELETE FROM `GMMap` WHERE `GMMap`.`Guid` = '" . $naz . "'";	
+		db_func($sql);
+	
 		$path = './maps/' . $soubor_smazat;
 		unlink($path);
 				
@@ -34,13 +41,11 @@
 	
 	// ulozeni provedenych zmen v atributech mapy
 	if ( (array_key_exists('odeslo',$_POST)) && (array_key_exists('provedzmenu',$_POST)) && ($_POST['odeslo']==1) ) {
-
+		
 		$guid = htmlspecialchars($_POST['RefGuid']);
 		$name = htmlspecialchars($_POST['NewName']);
 		$description = htmlspecialchars($_POST['NewDescription']);
 		$gpscoords = htmlspecialchars($_POST['NewGpsCoords']);
-		$author_name = htmlspecialchars($_POST['NewAuthorName']);
-		$author_email = htmlspecialchars($_POST['NewAuthorEmail']);
 
 		$zpr = '';
 		
@@ -63,36 +68,17 @@
 		if (strlen($description)>2000) {
 			$zpr .= 'Detailní popis je příliš dlouhý. Je povoleno pouze 2000 znaků.<br />';
 		}
-				
-		if (!empty($author_email) && !jemail($author_email)) {
-			$zpr .= 'Email není ve správném tvaru.<br />';
-		}
-				
-	  if (strlen($author_name)>50) {
-			$zpr .= 'Nick autora mapy je příliš dlouhý.<br />';
-		}			
-
-	  if (strlen($author_email)>60) {
-			$zpr .= 'Email autora mapy je příliš dlouhý.<br />';
-		}						
-				
 		
-		if (empty($zpr)) {	
-
+		if (empty($zpr)) {
 		
-		  // provest zmeny v xml souboru na serveru			
-			$soubor_cesta = './maps/'  . $guid . '.xml';			
-			$xmlobj = simplexml_load_file($soubor_cesta);	
-			
-			$xmlobj->map->name = $name;
-			$xmlobj->map->description = $description;
-			$xmlobj->map->gpscoords = $gpscoords;
-			$xmlobj->map->author['name'] = $author_name;
-			$xmlobj->map->author['email'] = $author_email;
+			$sql = "UPDATE `GMMap` SET ";	
+			$sql.= "`Name` = '" . $name . "', ";		
+			$sql.= "`GpsCoords` = '" . $gpscoords . "', ";	
+			$sql.= "`Description` = '" . $description . "' " ;	
+			$sql.= "WHERE `Guid` =  '" . $guid . "' ";
+	
+			db_func($sql);
 		
-			$xmlobj->asXML($soubor_cesta);			
-
-
 		  // aktualizovat soubor s hlavickami
 			update_headings();	
 		
@@ -327,30 +313,46 @@ function f_display($nazev_s) {
 		
 		
 		// vypisovani souboru z adresare	
-		$vypis_soub = '';		
+		$vypis_soub = '';
+		
 		$vypis = array();
+		$j = 0;
  
     for ($i=0; $i < sizeof($obsahadr); $i++) {
 		
-		  // atributy ze souboroveho souboru
 		  $nazev = $obsahadr[$i]['nazev'];
 			$nazev_cele = explode('.',$nazev);
-			$naz = $nazev_cele[0];		
-			$nazev_cesta = './maps/' . $nazev;
-			$datum_vytvoreni = $obsahadr[$i]['datum_vytvoreni'];
-			$zmena = strftime("%d. %m. %Y %H:%M:%S", filemtime($nazev_cesta));	
-			$velikost = velikost_vypis($obsahadr[$i]['velikost_b']);					
-		  
-			// atributy z hlavicky v souboru
-			list($guid,$name,$description,$gpscoords,$author_name,$author_email) = getHeadersFromMap($nazev);
+			$naz = $nazev_cele[0];					
+		
+			// porovnej realne nahrane soubory s databazi 
+			$maps_db = db_select('SELECT * from GMMap');
 
-      $vypis[$i]['Name'] = $name;
-			$vypis[$i]['File'] = $nazev;
-			$vypis[$i]['GpsCoords'] = $gpscoords;
-			$vypis[$i]['MapUploaded'] = $datum_vytvoreni;
-			$vypis[$i]['MapModified'] = $zmena;
-			$vypis[$i]['MapSize'] = $velikost;
+			foreach ($maps_db as $key => $val) {
+			
+				$guid_db = $val['Guid'];
+				
+				// shoda
+				if ($guid_db==$naz) {
+								
+					$j++;			
+					$nazev_cesta = './maps/' . $nazev;
+					$datum_vytvoreni = $obsahadr[$i]['datum_vytvoreni'];
+					$zmena = strftime("%d. %m. %Y %H:%M:%S", filemtime($nazev_cesta));	
+					$velikost = velikost_vypis($obsahadr[$i]['velikost_b']);			
+				
+					$name = $val['Name'];
+					$gpscoords = $val['GpsCoords'];
 
+					$k = $j-1;
+          $vypis[$k]['Name'] = $name;
+					$vypis[$k]['File'] = $nazev;
+					$vypis[$k]['GpsCoords'] = $gpscoords;
+					$vypis[$k]['MapUploaded'] = $datum_vytvoreni;
+					$vypis[$k]['MapModified'] = $zmena;
+					$vypis[$k]['MapSize'] = $velikost;
+					
+				}
+			}
 		}	
 
     // sestrideni dle vybraneho razeni, pokud neni, serazeno dle nazvu vzestupne
@@ -470,7 +472,7 @@ function f_display($nazev_s) {
 
     } 
 		
-		if ((!isset($i))||($i==0)) {
+		if ((!isset($j))||($j==0)) {
 		
       $obsah .= '<tr>';
       $obsah .= '<td style="margin: 0px; padding: 2px; border: 1px solid black; font-size: 10px; vertical-align: center;" colspan="7">' . 'V aktuálním adresáři se nenachází žádný soubor.' . '</td>';

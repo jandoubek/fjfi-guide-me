@@ -1,11 +1,27 @@
 ﻿<?php
 
+function dbvalues($guid) {
 
-function f_modify($guid,$soubor_puv) {
+	$sql = "SELECT Name, Description, GpsCoords from GMMap WHERE Guid = '" . $guid . "'";
+	$map_db = db_selectrow($sql);
 
-  
-	list($f_guid,$f_name,$f_description,$f_gpscoords,$f_author_name,$f_author_email) = getHeadersFromMap($soubor_puv);	
+	$name_db = $map_db['Name'];
+	$descrition_db = $map_db['Description'];
+	$gpscoords_db = $map_db['GpsCoords'];			
 
+	$res = array($name_db,$descrition_db,$gpscoords_db);
+	
+	return $res;
+	
+}
+
+
+function f_modify($guid,$nazev_puv,$gps_puv) {
+
+  $dbvalues = dbvalues($guid);	
+	$name_db = $dbvalues[0];
+	$descrition_db = $dbvalues[1];
+	$gpscoords_db = $dbvalues[2];	
 
 	$url = 'sprava-map';	
 	
@@ -15,26 +31,18 @@ function f_modify($guid,$soubor_puv) {
 	
   $obsah .= '<form method="post" action="' . $url . '" enctype="multipart/form-data">';
   $obsah .= '<p><br />';
-	
-	$obsah .= 'Název mapy: <input type="text" name="NewName" maxlenth="80" size="34" value="' . $f_name . '" />';	
+	$obsah .= 'Název mapy: <input type="text" name="NewName" maxlenth="80" size="34" value="' . $name_db . '" />';	
 	$obsah .= '<br /><br />';
-	
-	$obsah .= 'GPS souřadnice: <input type="text" name="NewGpsCoords" maxlenth="23" size="30" value="' . $f_gpscoords . '" />';		
-	$obsah .= '<br /><br />';	
-
-	$obsah .= 'Nick autora mapy: <input type="text" name="NewAuthorName" maxlenth="50" size="28" value="' . $f_author_name . '" />';		
+	$obsah .= 'GPS souřadnice: <input type="text" name="NewGpsCoords" maxlenth="23" size="30" value="' . $gpscoords_db . '" />';		
 	$obsah .= '<br /><br />';	
 	
-	$obsah .= 'Email autora: <input type="text" name="NewAuthorEmail" maxlenth="60" size="34" value="' . $f_author_email . '" />';		
-	$obsah .= '<br /><br />';	
-	
-	if (!empty($f_descrition)) {
+	if (!empty($descrition_db)) {
 		$obsah .= '<textarea name="NewDescription" cols="44" rows="4" maxlength="2000">';	
 	} else {
 		$obsah .= '<textarea name="NewDescription" cols="44" rows="4" maxlength="2000" placeholder="Sem můžete umístit detail popisující mapu.">';	
 	}
 
-	$obsah .= $f_description;
+	$obsah .= $descrition_db;
 	$obsah .= '</textarea>';
 	$obsah .= '<br /><br />';
 	
@@ -53,10 +61,13 @@ function f_modify($guid,$soubor_puv) {
 if ( (array_key_exists('odeslo',$_POST)) && (array_key_exists('zmenitpol',$_POST)) && ($_POST['odeslo']==1) ) { 
   	
   $soubor_puv = osetrivstup($_POST['soubor']);
+	$nazev_puv = osetrivstup($_POST['nazev']);
+	$gps_puv = osetrivstup($_POST['gps']);
+		
 	$soubor_cele = explode('.',$soubor_puv);
 	$guid = $soubor_cele[0];
 		
-	echo f_modify($guid,$soubor_puv);
+	echo f_modify($guid,$nazev_puv,$gps_puv);
 		
 } else {
 		

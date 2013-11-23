@@ -95,30 +95,48 @@ function f_maps() {
 		}
 		
 		// vypisovani souboru z adresare	
-		$vypis_soub = '';		
+		$vypis_soub = '';
+		
 		$vypis = array();
-
+		$j = 0;
+ 
     for ($i=0; $i < sizeof($obsahadr); $i++) {
 		
 		  $nazev = $obsahadr[$i]['nazev'];
 			$nazev_cele = explode('.',$nazev);
-			$naz = $nazev_cele[0];						
-			$nazev_cesta = './maps/' . $nazev;
-			$datum_vytvoreni = $obsahadr[$i]['datum_vytvoreni'];
-			$zmena = strftime("%d. %m. %Y %H:%M:%S", filemtime($nazev_cesta));	
-			$velikost = velikost_vypis($obsahadr[$i]['velikost_b']);	
+			$naz = $nazev_cele[0];					
+		
+			// porovnej realne nahrane soubory s databazi 
+			$maps_db = db_select('SELECT * from GMMap');
+
+			foreach ($maps_db as $key => $val) {
 			
-			// atributy z hlavicky v souboru
-			list($guid,$name,$description,$gpscoords,$author_name,$author_email) = getHeadersFromMap($nazev);
+				$guid_db = $val['Guid'];
+				
+				// shoda
+				if ($guid_db==$naz) {
+								
+					$j++;			
+					$nazev_cesta = './maps/' . $nazev;
+					$datum_vytvoreni = $obsahadr[$i]['datum_vytvoreni'];
+					$zmena = strftime("%d. %m. %Y %H:%M:%S", filemtime($nazev_cesta));	
+					$velikost = velikost_vypis($obsahadr[$i]['velikost_b']);			
+				
+					$name = $val['Name'];
+					$gpscoords = $val['GpsCoords'];
+					$description = $val['Description'];
 
-      $vypis[$i]['Name'] = $name;
-			$vypis[$i]['File'] = $nazev;
-			$vypis[$i]['GpsCoords'] = $gpscoords;
-			$vypis[$i]['MapUploaded'] = $datum_vytvoreni;
-			$vypis[$i]['Description'] = nl2br($description);
-			$vypis[$i]['MapModified'] = $zmena;
-			$vypis[$i]['MapSize'] = $velikost;			
-
+					$k = $j-1;
+          $vypis[$k]['Name'] = $name;
+					$vypis[$k]['File'] = $nazev;
+					$vypis[$k]['GpsCoords'] = $gpscoords;
+					$vypis[$k]['Description'] = $description;
+					$vypis[$k]['MapUploaded'] = $datum_vytvoreni;					
+					$vypis[$k]['MapModified'] = $zmena;
+					$vypis[$k]['MapSize'] = $velikost;
+					
+				}
+			}
 		}	
 		
 		// sestrideni dle vybraneho razeni, pokud neni, serazeno dle nazvu vzestupne
@@ -153,8 +171,7 @@ function f_maps() {
 			$velikost = $row['MapSize'];
 			$detail = $row['Description'];
 			
-			$detail_vypis = str_replace('\n','<br />',$detail);
-			$detail_vypis = str_replace('&lt;br&gt;','<br />',$detail_vypis);
+			$detail_vypis = str_replace('&lt;br&gt;','<br />',$detail);
 			$detail_vypis = str_replace('&lt;br &gt;','<br />',$detail_vypis);
 			$detail_vypis = str_replace('&lt;br /&gt;','<br />',$detail_vypis);		
 			
