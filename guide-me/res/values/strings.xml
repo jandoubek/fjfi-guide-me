@@ -24,6 +24,7 @@
     <string name="map_selection_alert_yes">Ano</string>
     <string name="map_selection_alert_no">Ne</string>
     <string name="map_selection_tv_mapy">Mapy</string>
+    <string name="map_selection_toast_download">Byla stazena mapa </string>
     <string name="map_selection_bt_download">Stáhnout mapu</string>
     <string name="map_selection_d_title">Stáhnout mapu</string>
     <string name="map_selection_point_a_title">Vyberte počáteční bod</string>

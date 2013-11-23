@@ -158,7 +158,8 @@ public class MapSelectionActivity extends Activity {
 
 			@Override
 			public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-
+				new DownloadMapAsync(MapSelectionActivity.this).execute(""+adpaterDownload.getItem(position).getGuid(),adpaterDownload.getItem(position).getName());
+				dialog1.cancel();
 			}
 		});
 
