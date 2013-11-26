@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/item_description"
         android:layout_below="@+id/item_description"
-        android:text="Button 1" />
+        android:text="@string/item_play_button" />
 
     <Button
         android:id="@+id/button2"
@@ -43,6 +43,7 @@
         android:layout_alignBaseline="@+id/navigate_bt_next"
         android:layout_alignBottom="@+id/navigate_bt_next"
         android:layout_alignParentRight="true"
-        android:text="Button 2" />
+        android:text="@string/item_delete_bt" 
+        android:visibility="gone"/>
 
 </RelativeLayout>

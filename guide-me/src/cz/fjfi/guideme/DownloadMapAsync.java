@@ -13,21 +13,22 @@ import java.net.URLConnection;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
-public class DownloadMapAsync extends AsyncTask<String, String, Void> {
-	private MenuActivity context;
+public class DownloadMapAsync extends AsyncTask<String, String, String> {
+	private MapSelectionActivity context;
 
-	public DownloadMapAsync(MenuActivity context){
+	public DownloadMapAsync(MapSelectionActivity context){
 		this.context=context;
 	}
 
 	@Override
-	protected Void doInBackground(String... params) {
+	protected String doInBackground(String... params) {
 		Log.i("ASYNC", "background");
-		String result = downloadToString(context.getString(R.string.url_headers));
+		String result = downloadToString("http://kmlinux.fjfi.cvut.cz/~fortpet2/guideme/maps/"+params[0]+".xml");
 		Log.e("DOWNLOADASYNC", result);
-		safeToFile(result, "map.xml");
-		return null;
+		safeToFile(result, params[0]+".xml");
+		return params[0];
 	}
 
 	private void safeToFile(String data, String fileName){
@@ -78,8 +79,9 @@ public class DownloadMapAsync extends AsyncTask<String, String, Void> {
 	}
 
 	@Override
-	protected void onPostExecute(Void result) {
+	protected void onPostExecute(String result) {
 		super.onPostExecute(result);
+		Toast.makeText(context, context.getString(R.string.map_selection_toast_download)+result, Toast.LENGTH_LONG).show();
 	}
 
 	@Override

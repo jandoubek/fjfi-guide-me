@@ -1,5 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<xml version="1.0" encoding="utf-8">
 <map guid="i8xt2fa6nvi1u9ps0s82sxujq7vwcgz586t1m27yy2euxgsjn4j84ft7xu2z8clg">
+<name>Druhá mapa</name>
+<description/>
+<gpscoords>30.074494,-10.416797</gpscoords>
+<author name="Petr Fořt" email="petrf89@gmail.com">Petr Fořt</author>
     <nodelist>
         <node guid="">
             <name></name>
@@ -48,3 +52,4 @@
         </location>
     </locationlist>
 </map>
+</xml>

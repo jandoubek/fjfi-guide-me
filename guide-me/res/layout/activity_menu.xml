@@ -29,9 +29,9 @@
         android:id="@+id/buttonSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/buttonCreateMap"
         android:layout_alignLeft="@+id/buttonCreateMap"
         android:layout_alignRight="@+id/buttonCreateMap"
+        android:layout_below="@+id/buttonCreateMap"
         android:onClick="menu_bt_settings_onClick"
         android:text="@string/menu_bt_settings" />
 
@@ -39,9 +39,9 @@
         android:id="@+id/buttonNavigate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/buttonCreateMap"
         android:layout_alignLeft="@+id/buttonCreateMap"
         android:layout_alignRight="@+id/buttonCreateMap"
-        android:layout_below="@+id/buttonCreateMap"
         android:onClick="menu_bt_navigate_onClick"
         android:text="@string/menu_bt_navigate" />
 

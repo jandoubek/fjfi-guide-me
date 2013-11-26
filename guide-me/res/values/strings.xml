@@ -15,10 +15,22 @@
     <string name="navigate_bt_next">Další</string>
     <string name="item_name">Map name</string>
     <string name="item_description">Map description</string>
+    <string name="item_delete_bt">Smazat mapu</string>
+    <string name="item_play_button">Spustit navigaci</string>
+    <string name="map_selection_alert_title">Vybraná mapa</string>
+    <string name="map_selection_alert_msg">Opravdu si prejete vybrat mapu </string>
+    <string name="map_selection_alert_msg2"> a navigovat mezi body </string>
+    <string name="map_selection_alert_msg3"> a </string>
+    <string name="map_selection_alert_yes">Ano</string>
+    <string name="map_selection_alert_no">Ne</string>
     <string name="map_selection_tv_mapy">Mapy</string>
+    <string name="map_selection_toast_download">Byla stazena mapa </string>
     <string name="map_selection_bt_download">Stáhnout mapu</string>
     <string name="map_selection_d_title">Stáhnout mapu</string>
+    <string name="map_selection_point_a_title">Vyberte počáteční bod</string>
+    <string name="map_selection_point_b_title">Vyberte cílový bod</string>
     <string name="dialog_download_et_search_hint">Vyledávání mapy</string>
+    <string name="dialog_download_et_search_hint2">Vyledávání bodu</string>
     <string name="navigate_bt_previous">Předchozí</string>
     <string name="url_headers">http://kmlinux.fjfi.cvut.cz/~fortpet2/guideme/headings.xml</string>
 

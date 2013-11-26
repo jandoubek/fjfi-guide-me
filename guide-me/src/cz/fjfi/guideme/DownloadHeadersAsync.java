@@ -11,14 +11,16 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 import cz.fjfi.guideme.android.ResourceManager;
+import cz.fjfi.guideme.core.GMMapHeader;
 
 public class DownloadHeadersAsync extends AsyncTask<String, String, Void> {
 	private MapSelectionActivity context;
+	private ArrayList<GMMapHeader> headers;
 
 	public DownloadHeadersAsync(MapSelectionActivity context){
 		this.context=context;
@@ -26,17 +28,15 @@ public class DownloadHeadersAsync extends AsyncTask<String, String, Void> {
 
 	@Override
 	protected Void doInBackground(String... params) {
-		Log.i("ASYNC", "background");
 		String result = downloadToString(context.getString(R.string.url_headers));
-		Log.e("DOWNLOADASYNC", result);
 		safeToFile(result, "headers.xml");
 		FileInputStream fis=null;
 		try {
 			fis = context.openFileInput("headers.xml" );
+			headers = new ArrayList<GMMapHeader>(ResourceManager.loadHeaders(fis));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		ResourceManager.loadMap(fis);
 		return null;
 	}
 	
@@ -91,6 +91,9 @@ public class DownloadHeadersAsync extends AsyncTask<String, String, Void> {
 	@Override
 	protected void onPostExecute(Void result) {
 		super.onPostExecute(result);
+		for(GMMapHeader header : headers)
+		context.adpaterDownload.add(header);
+		context.adpaterDownload.notifyDataSetChanged();
 	}
 
 	@Override

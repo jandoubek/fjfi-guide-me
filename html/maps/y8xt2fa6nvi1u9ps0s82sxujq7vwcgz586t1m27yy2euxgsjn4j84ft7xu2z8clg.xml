@@ -1,5 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<xml version="1.0" encoding="utf-8">
 <map guid="y8xt2fa6nvi1u9ps0s82sxujq7vwcgz586t1m27yy2euxgsjn4j84ft7xu2z8clg">
+<name>ČVUT FJFI Trojanova ulice</name>
+<description>Trojanova 13 120 00 Praha 2, Česká republika +420 224 351 111 cvut.cz\n\nČeské Vysoké Učení Technické V Praze, fakulta jaderná a fyzikálně inženýrská\n\n ulice Trojanova 339/13\n čtvrť Praha 2\n 120 00 Praha, Nové Město\n okres Hlavní město Praha\n kraj Hlavní město Praha \n Česká republika\n \n +420 224 351 111\n cvut.cz?\n \n Katedra inženýrství pevných látek Fakulty jaderné a fyzikálně inženýrské\n Katedra jazyků Fakulty jaderné a fyzikálně inženýrské\n Katedra matematiky Fakulty jaderné a fyzikálně inženýrské\n Katedra materiálů Fakulty jaderné a fyzikálně inženýrské\n Katedra softwarového inženýrství v ekonomii Fakulty jaderné a fyzikálně inženýrské</description>
+<gpscoords>30.074494,-10.416797</gpscoords>
+<author name="Petr Fořt" email="petrf89@gmail.com">Petr Fořt</author>
     <nodelist>
         <node guid="">
             <name></name>
@@ -48,3 +52,4 @@
         </location>
     </locationlist>
 </map>
+</xml>

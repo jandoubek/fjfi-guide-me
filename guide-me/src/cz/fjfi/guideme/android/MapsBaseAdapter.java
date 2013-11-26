@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import cz.fjfi.guideme.MapSelectionActivity;
 import cz.fjfi.guideme.R;
 import cz.fjfi.guideme.core.GMMapHeader;
 /**
@@ -20,13 +21,13 @@ import cz.fjfi.guideme.core.GMMapHeader;
  */
 public class MapsBaseAdapter  extends BaseAdapter {
 	private ArrayList<GMMapHeader> headers;
-
+	private MapSelectionActivity context;
 	private int clickedItem = -1;
 	private LayoutInflater mInflater;
 
-	public MapsBaseAdapter(Context context, ArrayList<GMMapHeader> headers) {
+	public MapsBaseAdapter(MapSelectionActivity context, ArrayList<GMMapHeader> headers) {
 		this.headers = headers;
-
+		this.context=context;
 		mInflater = LayoutInflater.from(context);
 	}
 
@@ -72,8 +73,8 @@ public class MapsBaseAdapter  extends BaseAdapter {
 			holder = new ViewHolder();
 			holder.itemDescription = (TextView) convertView.findViewById(R.id.item_description);
 			holder.itemName = (TextView) convertView.findViewById(R.id.item_name);
-			holder.button1 = (Button) convertView.findViewById(R.id.navigate_bt_next);
-			holder.button2 = (Button) convertView.findViewById(R.id.button2);
+			holder.play = (Button) convertView.findViewById(R.id.navigate_bt_next);
+			holder.delete = (Button) convertView.findViewById(R.id.button2);
 
 			convertView.setTag(holder);
 		} else {
@@ -83,26 +84,27 @@ public class MapsBaseAdapter  extends BaseAdapter {
 		holder.itemDescription.setText(headers.get(position).getDescription()); 
 		if(clickedItem!=position){
 			holder.itemDescription.setVisibility(View.GONE);
-			holder.button1.setVisibility(View.GONE);
-			holder.button2.setVisibility(View.GONE);
+			holder.play.setVisibility(View.GONE);
+			holder.delete.setVisibility(View.GONE);
 		}
-		holder.button1.setClickable(true);
-		holder.button2.setClickable(true);
-		holder.button1.setFocusable(true);
-		holder.button2.setFocusable(true);  
+		holder.play.setClickable(true);
+		holder.delete.setClickable(true);
+		holder.play.setFocusable(true);
+		holder.delete.setFocusable(true);  
 		holder.itemName.setText(headers.get(position).getName());  
-		holder.button1.setOnClickListener(new OnClickListener() {
+		holder.play.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				Log.i("ADAPTER", "clicked button1 ");
+				Log.i("ADAPTER", "clicked play button ");
+				context.setDialogSelectPoint(true);
 			}
 		});
-		holder.button2.setOnClickListener(new OnClickListener() {
+		holder.delete.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				Log.i("ADAPTER", "clicked button2 ");
+				Log.i("ADAPTER", "clicked delete button ");
 			}
 		});
 
@@ -112,8 +114,8 @@ public class MapsBaseAdapter  extends BaseAdapter {
 	static class ViewHolder {
 		TextView itemName;
 		TextView itemDescription;
-		Button button1;
-		Button button2;
+		Button play;
+		Button delete;
 	}
 
 	public int getClickedItem(){

@@ -12,16 +12,18 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import cz.fjfi.guideme.R;
 import cz.fjfi.guideme.core.GMMapHeader;
+import cz.fjfi.guideme.core.GMNode;
+import cz.fjfi.guideme.core.Guide;
 
-public class MapsDownloadBaseAdapter extends BaseAdapter {
-	private ArrayList<GMMapHeader> headers;
-	private ArrayList<GMMapHeader> headersOrig;
+public class MapsPointBaseAdapter extends BaseAdapter {
+	private ArrayList<GMNode> nodes;
+	private ArrayList<GMNode> nodesOrig;
 	private LayoutInflater mInflater;
 
-	public MapsDownloadBaseAdapter(Context context, ArrayList<GMMapHeader> headers, ArrayList<GMMapHeader> headersOrig) {
+	public MapsPointBaseAdapter(Context context, ArrayList<GMNode> nodes) {
 		//sortList(headers);
-		this.headers = headers;
-		this.headersOrig = headersOrig;
+		this.nodes = nodes;
+		this.nodesOrig = new ArrayList<GMNode>(nodes);
 		mInflater = LayoutInflater.from(context);
 	}
 
@@ -29,72 +31,72 @@ public class MapsDownloadBaseAdapter extends BaseAdapter {
 	 * Number of item in arraylist
 	 */
 	public int getCount() { 
-		return headers.size();
+		return nodes.size();
 	}
 
 	/**
 	 * Return header by given position
 	 * @param position position of item in arraylist
 	 */
-	public GMMapHeader getItem(int position) {
-		return headers.get(position);
+	public GMNode getItem(int position) {
+		return nodes.get(position);
 	}
 
 	/**
-	 * Add new header to arraylist
+	 * Add new node to arraylist
 	 * @param header header to add
 	 */
-	public void add(GMMapHeader header){
-		headers.add(header);
-		headersOrig.add(header);
-		sortList(headers);
-		sortList(headersOrig);
+	public void add(GMNode header){
+		nodes.add(header);
+		nodesOrig.add(header);
+		sortList(nodes);
+		sortList(nodesOrig);
 	}
 	
-	public void setOriginalHeaders(){
-		sortList(headersOrig);
-		headers = new ArrayList<GMMapHeader>(headersOrig);
+	public void setOriginalNodes(){
+		sortList(nodesOrig);
+		nodes = new ArrayList<GMNode>(nodesOrig);
 	}
 
 	public long getItemId(int position) {
 		return position;
 	}
 
-	public ArrayList<GMMapHeader> getHeaders(){
-		return headers;
+	public ArrayList<GMNode> getNodes(){
+		return nodes;
 	}
-	public ArrayList<GMMapHeader> getHeadersOrig(){
-		return headersOrig;
+	public ArrayList<GMNode> getNodesOrig(){
+		return nodesOrig;
 	}
 
-	public void setHeaders(ArrayList<GMMapHeader> headers){
-		this.headers = headers;
+	public void setNodes(ArrayList<GMNode> nodes){
+		this.nodes = nodes;
+	}
+	public GMNode getNode(int position){
+		return nodes.get(position);
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ViewHolder holder;
 		if (convertView == null) { 
-			convertView = mInflater.inflate(R.layout.item_download_map, null);
+			convertView = mInflater.inflate(R.layout.item_select_point, null);
 			holder = new ViewHolder();
-			holder.itemDescription = (TextView) convertView.findViewById(R.id.item_download_tv_description);
-			holder.itemName = (TextView) convertView.findViewById(R.id.item_download_tv_name);
+			holder.itemName = (TextView) convertView.findViewById(R.id.select_point_tv);
 
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
 
-		holder.itemDescription.setText(headers.get(position).getDescription()); 
-		holder.itemName.setText(headers.get(position).getName());  
+		holder.itemName.setText(nodes.get(position).getDescription());  
 		return convertView;
 	}
 
 	static class ViewHolder {
 		TextView itemName;
-		TextView itemDescription;
 	}
 	
-	private static void sortList(ArrayList<GMMapHeader> aItems){
+	private static void sortList(ArrayList<GMNode> aItems){
 		Collections.sort(aItems, new NameComparator());
 	}
 	

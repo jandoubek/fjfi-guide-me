@@ -51,7 +51,7 @@ public class GMMap
     // =======================================================
 
     /***************************************************************************
-     * // Getter of guid
+     * Getter of guid
      */
     public UUID getGuid()
     {
@@ -286,6 +286,9 @@ public class GMMap
         return output;
     }
 
+    /***************************************************************************
+     * Function for exporting whole map datastructure into XML format
+     */
     public void exportXML(File outputFile)
     {
 
