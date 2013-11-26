@@ -310,7 +310,7 @@ public class GMMap
     {
         for (GMNode node : this.mappedNodes)
         {
-            if (node.getGUID() == guid)
+            if (node.getGUID().equals(guid))
             {
                 return node;
             }
