@@ -46,81 +46,72 @@ public class GMNode
     // =======================================================
 
     /***************************************************************************
-     * TODO: comment
+     * Getter of guid
      */
-    // TODO: body
     public final UUID getGUID()
     {
         return this.guid;
     }
 
     /***************************************************************************
-     * TODO: comment
+     * Getter of name
      */
-    // TODO: body
     public final String getName()
     {
         return this.name;
     }
 
     /***************************************************************************
-     * TODO: comment
+     * Getter of locations
      */
-    // TODO: body
     public final List<UUID> getLocations()
     {
         return this.locations;
     }
 
     /***************************************************************************
-     * TODO: comment
+     * Getter of description
      */
-    // TODO: body
     public final String getDescription()
     {
         return this.description;
     }
 
     /***************************************************************************
-     * TODO: comment
+     * Getter of map
      */
-    // TODO: body
     final GMMap getMyMap()
     {
         return this.myMap;
     }
 
     /***************************************************************************
-     * TODO: comment
+     * Setter of guid
      */
-    // TODO: body
     public final void setGUID(UUID newGUID)
     {
         this.guid = newGUID;
     }
 
     /***************************************************************************
-     * TODO: comment
+     * Setter of name
      */
-    // TODO: body
     public final void setName(String newName)
     {
         this.name = newName;
     }
 
     /***************************************************************************
-     * TODO: comment
+     * Setter of locations
      */
-    // TODO: body
     public final void setLocations(List<UUID> newLocations)
     {
         this.locations = newLocations;
     }
 
     /***************************************************************************
-     * TODO: comment
+     * Setter of description
      */
-    // TODO: body
     public final void setDescription(String newDescription)
     {
         this.description = newDescription;
@@ -128,6 +119,9 @@ public class GMNode
 
     // == OTHER METHODS
     // =============================================================
+    /***************************************************************************
+     * Function for exporting all Node parameters into XML format
+     */
     public String exportXML()
     {
         String output = new String("<node guid=\"" + this.getGUID() + "\">\n"

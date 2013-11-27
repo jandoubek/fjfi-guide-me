@@ -48,140 +48,128 @@ public class GMEdge
 //== GETTERS AND SETTERS =======================================================
     
     /***************************************************************************
-     * TODO: comment
+     * Getter of guid
      */
-    //TODO: body
     public final UUID getGUID()
     {
         return this.guid;
     }
     
     /***************************************************************************
-     * TODO: comment
+     * Getter of name
      */
-    //TODO: body
     public final String getName()
     {
     	return this.name;
     }
     
     /***************************************************************************
-     * TODO: comment
+     * Getter of time distance
      */
-    //TODO: body
     public final long getTimeDistance()
     {
     	return this.timeDistance;
     }
     
     /***************************************************************************
-     * TODO: comment
+     * Getter of starting Node
      */
-    //TODO: body
     public final GMNode getStart()
     {
     	return this.start;
     }
     
     /***************************************************************************
-     * TODO: comment
+     * Getter of ending Node
      */
-    //TODO: body
     public final GMNode getEnd()
     {
     	return this.end;
     }
     
     /***************************************************************************
-     * TODO: comment
+     * Getter of edge direction
      */
-    //TODO: body
     public final Direction getDirection()
     {
     	return this.direction;
     }
     
     /***************************************************************************
-     * TODO: comment
+     * Getter of description
      */
-    //TODO: body
     public final String getDescription()
     {return this.description;
     }
     
     /***************************************************************************
-     * TODO: comment
+     * Getter of map
      */
-    //TODO: body
     final GMMap getMyMap()
     {
     	return this.myMap;
     }
     
     /***************************************************************************
-     * TODO: comment
+     * Setter of guid
      */
-    //TODO: body
     public final void setGUID(UUID newGUID)
     {
     	this.guid = newGUID;
     }
     
     /***************************************************************************
-     * TODO: comment
+     * Setter of name
      */
-    //TODO: body
     public final void setName(String newName)
     {
     	this.name = newName;
     }
     
     /***************************************************************************
-     * TODO: comment
+     * Setter of time distance
      */
-    //TODO: body
     public final void setTimeDistance(long newTimeDistance)
     {
     	this.timeDistance = newTimeDistance;
     }
     
     /***************************************************************************
-     * TODO: comment
+     * Setter of start Node
      */
-    //TODO: body
     public final void setStart(GMNode newStart)
     {
     	this.start = newStart;
     }
     
     /***************************************************************************
-     * TODO: comment
+     * Setter of end Node
      */
-    //TODO: body
     public final void setEnd(GMNode newEnd)
     {
     	this.end = newEnd;
     }
     
     /***************************************************************************
-     * TODO: comment
+     * Setter of direction
      */
-    //TODO: body
     public final void setDirection(Direction newDirection)
     {
     	this.direction = newDirection;
     }
     
     /***************************************************************************
-     * TODO: comment
+     * Setter of description
      */
-    //TODO: body
     public final void setDescription(String newDescription)
     {
     	this.description = newDescription;
     }
     
 //== OTHER METHODS =============================================================
+    /***************************************************************************
+     * Function for exporting all Edge parameters into XML format
+     */
     public String exportXML()
     {
     	return new String("<edge guid=\"" + this.getGUID() + "\">\n"
