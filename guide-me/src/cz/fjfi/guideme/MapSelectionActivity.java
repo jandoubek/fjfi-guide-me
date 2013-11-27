@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
@@ -158,6 +159,7 @@ public class MapSelectionActivity extends Activity {
 
 			@Override
 			public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+				//Log.w("MAPSELECTION", "guid: "+adpaterDownload.getItem(position).getGuid() + "  ,name:" +adpaterDownload.getItem(position).getName());
 				new DownloadMapAsync(MapSelectionActivity.this).execute(""+adpaterDownload.getItem(position).getGuid(),adpaterDownload.getItem(position).getName());
 				dialog1.cancel();
 			}

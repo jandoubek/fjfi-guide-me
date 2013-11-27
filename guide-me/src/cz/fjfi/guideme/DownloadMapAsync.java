@@ -24,11 +24,12 @@ public class DownloadMapAsync extends AsyncTask<String, String, String> {
 
 	@Override
 	protected String doInBackground(String... params) {
-		Log.i("ASYNC", "background");
+		Log.i("ASYNC", "downloading map " + params[0]);
 		String result = downloadToString("http://kmlinux.fjfi.cvut.cz/~fortpet2/guideme/maps/"+params[0]+".xml");
-		Log.e("DOWNLOADASYNC", result);
+		Log.e("DOWNLOADASYNC", "map downloaded: " + result);
 		safeToFile(result, params[0]+".xml");
-		return params[0];
+		
+		return params[1];
 	}
 
 	private void safeToFile(String data, String fileName){
@@ -81,7 +82,7 @@ public class DownloadMapAsync extends AsyncTask<String, String, String> {
 	@Override
 	protected void onPostExecute(String result) {
 		super.onPostExecute(result);
-		Toast.makeText(context, context.getString(R.string.map_selection_toast_download)+result, Toast.LENGTH_LONG).show();
+		Toast.makeText(context, context.getString(R.string.map_selection_toast_download)+" "+result, Toast.LENGTH_LONG).show();
 	}
 
 	@Override

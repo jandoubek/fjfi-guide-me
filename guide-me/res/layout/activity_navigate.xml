@@ -8,51 +8,185 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".NavigateActivity" >
 
-    <ListView
-        android:id="@+id/listView1"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_above="@+id/navigate_bt_next"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        tools:listitem="@layout/item_navigate" >
-
-    </ListView>
-
     <TextView
         android:id="@+id/navigate_tv_vypis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/listView1"
         android:layout_alignParentBottom="true"
-        android:text="@string/navigate_tv_vypis" />
+        android:layout_centerHorizontal="true"
+        android:text="@string/navigate_tv_vypis"
+        android:visibility="gone" />
 
-    <Button
-        android:id="@+id/navigate_bt_next"
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/navigate_tv_vypis"
-        android:layout_toLeftOf="@+id/navigate_bt_previous"
-        android:layout_toRightOf="@+id/navigate_bt_start"
-        android:onClick="navigate_bt_next_OnClick"
-        android:text="@string/navigate_bt_next" />
-
-    <Button
-        android:id="@+id/navigate_bt_previous"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/navigate_tv_vypis"
-        android:layout_alignRight="@+id/listView1"
-        android:onClick="navigate_bt_previous_OnClick"
-        android:text="@string/navigate_bt_previous" />
-
-    <Button
-        android:id="@+id/navigate_bt_start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/navigate_tv_vypis"
         android:layout_alignParentLeft="true"
-        android:onClick="navigate_bt_start_OnClick"
-        android:text="@string/navigate_bt_start" />
+        android:layout_alignParentRight="true" >
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/navigate_tv_actual_time"
+            android:paddingTop="18dp"
+            android:src="@drawable/line" />
+
+        <ImageView
+            android:id="@+id/navigate_iv_actual"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@android:drawable/ic_delete" />
+
+        <TextView
+            android:id="@+id/navigate_tv_actual_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="2 s"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/navigate_tv_actual"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Ústí chodby"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/relativeLayout1"
+        android:layout_below="@+id/relativeLayout1" >
+
+        <ImageView
+            android:id="@+id/imageView02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/navigate_tv_next"
+            android:paddingTop="18dp"
+            android:src="@drawable/line" />
+
+        <ImageView
+            android:id="@+id/navigate_iv_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@android:drawable/ic_delete" />
+
+        <TextView
+            android:id="@+id/navigate_tv_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/relativeLayout2"
+        android:layout_below="@+id/relativeLayout2" >
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/navigate_tv_next2"
+            android:paddingTop="18dp"
+            android:src="@drawable/line" />
+
+        <ImageView
+            android:id="@+id/navigate_iv_next2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@android:drawable/ic_delete" />
+
+        <TextView
+            android:id="@+id/navigate_tv_next2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/relativeLayout4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/relativeLayout3" >
+
+        <SurfaceView
+            android:id="@+id/surfaceView1"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true" >
+
+        <Button
+            android:id="@+id/navigate_bt_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceLarge" 
+            android:onClick="navigate_bt_next_OnClick"
+            android:text="@string/navigate_bt_next" />
+
+        <Button
+            android:id="@+id/navigate_bt_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/navigate_bt_next"
+            android:onClick="navigate_bt_start_OnClick"
+            android:text="@string/navigate_bt_start" />
+
+        <Button
+            android:id="@+id/navigate_bt_previous"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/navigate_bt_next"
+            android:onClick="navigate_bt_previous_OnClick"
+            android:text="@string/navigate_bt_previous" />
+
+    </RelativeLayout>
 
 </RelativeLayout>
