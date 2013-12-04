@@ -38,7 +38,7 @@ public enum Direction
         {
             Relative[] directions = Relative.values();
             int ordinal = this.ordinal();
-            ordinal = (ordinal - turn.ordinal()) % directions.length;
+            ordinal = (directions.length + ordinal - turn.ordinal()) % directions.length;
             return directions[ordinal];
         }
     }
@@ -52,7 +52,7 @@ public enum Direction
     {
         Direction[] directions = Direction.values();
         int ordinal = this.ordinal();
-        ordinal = (ordinal - turn.ordinal()) % directions.length;
+        ordinal = (directions.length + ordinal - turn.ordinal()) % directions.length;
         return directions[ordinal];
     }
     
@@ -65,7 +65,7 @@ public enum Direction
     {
         Relative[] directions = Relative.values();
         int ordinal = this.ordinal();
-        ordinal = (other.ordinal() - ordinal) % directions.length;
+        ordinal = (directions.length + other.ordinal() - ordinal) % directions.length;
         return directions[ordinal];
     }
 
