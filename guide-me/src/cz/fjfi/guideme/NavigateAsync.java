@@ -1,10 +1,10 @@
 package cz.fjfi.guideme;
 
-import java.util.List;
-
+import android.graphics.Canvas;
 import android.os.AsyncTask;
-import android.util.Log;
+import android.view.SurfaceHolder;
 import android.view.View;
+import cz.fjfi.guideme.core.Direction;
 import cz.fjfi.guideme.core.GMEdge;
 import cz.fjfi.guideme.core.GMNode;
 import cz.fjfi.guideme.core.Guide;
@@ -61,13 +61,10 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 	protected void onProgressUpdate(String... progress) {
 		//context.vypis.setText(progress[0]);
 		context.setStartTime(startTime);
-
 		RoutePoint point = guide.getCurrentRoutePoint(System.currentTimeMillis()-startTime);
 		RouteIterator currentPosition = point.getIterator();
 		GMEdge edge = currentPosition.get();
-		List<GMNode> nodes = guide.getCurrentMap().getNeighborsOf(edge.getEnd());
-		for(GMNode node : nodes)
-			Log.e("ASYNC", "map " + node.getName() + " --> " + node.getDescription());
+
 		GMNode endpoint = guide.getCurrentRoute().getEnd();
 		if (guide.reachedDestination())
 		{
@@ -80,16 +77,55 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 			context.getActualTimeTV().setText((edge.getTimeDistance() - point.getEdgeDistancePassed())/1000 + " s");
 
 			//context.getActualIV().setImageResource(getDirectionImage(edge));
+			SurfaceHolder holder = context.getSurface().getHolder();
+			Canvas canvas = holder.lockCanvas();
+			canvas.drawRGB(255, 255, 255);
+
 
 			if (currentPosition.hasNext())
 			{
+
+
 				GMEdge nextEdge = currentPosition.next();
+				Direction.Relative direction = edge.getDirection().subtract(nextEdge.getDirection());
+				if(direction == Direction.Relative.Straight )
+				{
+					context.tryDrawingStart(canvas, edge, false, Direction.Relative.Straight);
+					context.tryDrawing(canvas, nextEdge, true, Direction.Relative.Straight);	
+				}else if(direction == Direction.Relative.SharpRight | direction == Direction.Relative.SlightRight| direction == Direction.Relative.Right)
+				{
+					context.tryDrawingStart(canvas, edge, false, Direction.Relative.Right);
+					context.tryDrawing(canvas, nextEdge, true, Direction.Relative.Right);
+				}else if(direction == Direction.Relative.SharpLeft | direction == Direction.Relative.SlightLeft | direction == Direction.Relative.Left){
+					context.tryDrawingStart(canvas, edge, false, Direction.Relative.Left);
+					context.tryDrawing(canvas, nextEdge, true, Direction.Relative.Left);
+				}else{
+					context.tryDrawingStart(canvas, edge, false, Direction.Relative.Left);
+					context.tryDrawing(canvas, nextEdge, true, Direction.Relative.Back);
+				}
+
 				context.getNextTV().setText(nextEdge.getDescription());
 				//context.getNextIV().setImageResource(getDirectionImage(nextEdge));
 				if (currentPosition.hasNext())
 				{
+					currentPosition.copy().get();
 					nextEdge = currentPosition.next();
+					Direction.Relative direction2 = currentPosition.copy().get().getDirection().subtract(nextEdge.getDirection());
+					if(direction2 == Direction.Relative.Straight )
+					{
+						context.tryDrawing(canvas, nextEdge, true, Direction.Relative.Straight);
+					}
+					else if(direction2 == Direction.Relative.SharpRight | direction == Direction.Relative.SlightRight| direction == Direction.Relative.Right)
+					{
+						context.tryDrawing(canvas, nextEdge, true, Direction.Relative.Right);
+					}
+					else if(direction2 == Direction.Relative.SharpLeft | direction == Direction.Relative.SlightLeft | direction == Direction.Relative.Left)
+					{
+						context.tryDrawing(canvas, nextEdge, true, Direction.Relative.Left);
+						}
+
 					context.getNext2TV().setText(nextEdge.getDescription());
+					//context.tryDrawing(canvas, nextEdge, true, Direction.Relative.Back);
 					//context.getNext2IV().setImageResource(getDirectionImage(nextEdge));
 				}else{
 					context.getNext2TV().setText("");
@@ -98,40 +134,41 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 			}else{
 				context.getNextTV().setText("");
 				context.getNextIV().setVisibility(View.VISIBLE);
+				//context.tryDrawingStart(canvas, edge, false, Direction.Relative.Back);				
 			}
-
+			holder.unlockCanvasAndPost(canvas);
 		}
 	}
 
-	private int getDirectionImage(GMEdge edge) {
+	private int getDirectionImage(Direction.Relative direction) {
 
-		switch (edge.getDirection()) {
-		case East:
-			return 1;
-		case North:
+		switch (direction) {
+		case Back:
+			return R.drawable.unknown;
 
-			return 1;
-		case Northeast:
+		case Right:
+			return R.drawable.right;
 
-			return 1;
-		case Northwest:
+		case SharpRight:
+			return R.drawable.right;
 
-			return 1;
-		case South:
+		case SlightRight:
+			return R.drawable.right;
 
-			return 1;
-		case Southeast:
+		case Left:
+			return R.drawable.left;
 
-			return 1;
-		case Southwest:
+		case SharpLeft:
+			return R.drawable.left;
 
-			return 1;
-		case West:
+		case SlightLeft:
+			return R.drawable.left;
 
-			return 1;
+		case Straight:
+			return R.drawable.straight;
 
 		default:
-			return 0;
+			return R.drawable.unknown;
 		}
 	}
 
