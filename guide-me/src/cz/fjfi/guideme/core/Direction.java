@@ -55,5 +55,18 @@ public enum Direction
         ordinal = (ordinal - turn.ordinal()) % directions.length;
         return directions[ordinal];
     }
+    
+    /**
+     * Returns the turn needed to change direction from this to 'other'
+     * @param desired target direction
+     * @return relative direction
+     */
+    public Relative subtract(Direction other)
+    {
+        Relative[] directions = Relative.values();
+        int ordinal = this.ordinal();
+        ordinal = (other.ordinal() - ordinal) % directions.length;
+        return directions[ordinal];
+    }
 
 }
