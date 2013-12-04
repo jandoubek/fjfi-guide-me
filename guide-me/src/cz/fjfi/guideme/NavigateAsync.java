@@ -1,7 +1,10 @@
 package cz.fjfi.guideme;
 
+import java.util.List;
+
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
 import cz.fjfi.guideme.core.GMEdge;
 import cz.fjfi.guideme.core.GMNode;
 import cz.fjfi.guideme.core.Guide;
@@ -58,11 +61,13 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 	protected void onProgressUpdate(String... progress) {
 		//context.vypis.setText(progress[0]);
 		context.setStartTime(startTime);
-		
+
 		RoutePoint point = guide.getCurrentRoutePoint(System.currentTimeMillis()-startTime);
 		RouteIterator currentPosition = point.getIterator();
 		GMEdge edge = currentPosition.get();
-		String label;
+		List<GMNode> nodes = guide.getCurrentMap().getNeighborsOf(edge.getEnd());
+		for(GMNode node : nodes)
+			Log.e("ASYNC", "map " + node.getName() + " --> " + node.getDescription());
 		GMNode endpoint = guide.getCurrentRoute().getEnd();
 		if (guide.reachedDestination())
 		{
@@ -71,27 +76,63 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 		}
 		else
 		{
-			 context.getActualTV().setText(edge.getDescription()); 
+			context.getActualTV().setText(edge.getDescription()); 
 			context.getActualTimeTV().setText((edge.getTimeDistance() - point.getEdgeDistancePassed())/1000 + " s");
 
+			//context.getActualIV().setImageResource(getDirectionImage(edge));
 
 			if (currentPosition.hasNext())
 			{
 				GMEdge nextEdge = currentPosition.next();
 				context.getNextTV().setText(nextEdge.getDescription());
+				//context.getNextIV().setImageResource(getDirectionImage(nextEdge));
 				if (currentPosition.hasNext())
 				{
 					nextEdge = currentPosition.next();
 					context.getNext2TV().setText(nextEdge.getDescription());
+					//context.getNext2IV().setImageResource(getDirectionImage(nextEdge));
 				}else{
 					context.getNext2TV().setText("");
+					context.getNext2IV().setVisibility(View.INVISIBLE);
 				}
 			}else{
 				context.getNextTV().setText("");
+				context.getNextIV().setVisibility(View.VISIBLE);
 			}
 
 		}
-	
+	}
+
+	private int getDirectionImage(GMEdge edge) {
+
+		switch (edge.getDirection()) {
+		case East:
+			return 1;
+		case North:
+
+			return 1;
+		case Northeast:
+
+			return 1;
+		case Northwest:
+
+			return 1;
+		case South:
+
+			return 1;
+		case Southeast:
+
+			return 1;
+		case Southwest:
+
+			return 1;
+		case West:
+
+			return 1;
+
+		default:
+			return 0;
+		}
 	}
 
 	@Override
