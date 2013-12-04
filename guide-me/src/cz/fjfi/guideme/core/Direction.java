@@ -18,28 +18,42 @@ public enum Direction
     West,
     Northwest;
     
-    /***************************************************************************
-     * TODO: comment
-     */
-    //TODO: body
-    public Direction turnRight()
+    public enum Relative
     {
-    	Direction[] directions = Direction.values();
-    	int ordinal = this.ordinal();
-    	ordinal = ++ordinal % directions.length;
-    	return directions[ordinal];
+        Straight,
+        SlightRight,
+        Right,
+        SharpRight,
+        Back,
+        SharpLeft,
+        Left,
+        SlightLeft;
+        
+        /**
+         * Returns direction made by turning by 'turn'
+         * @param change in direction
+         * @return direction after turning
+         */
+        public Relative turn(Relative turn)
+        {
+            Relative[] directions = Relative.values();
+            int ordinal = this.ordinal();
+            ordinal = (ordinal - turn.ordinal()) % directions.length;
+            return directions[ordinal];
+        }
     }
-    
-    /***************************************************************************
-     * TODO: comment
+
+    /**
+     * Returns direction made by turning by 'turn'
+     * @param change in direction
+     * @return direction after turning
      */
-    //TODO: body
-    public Direction turnLeft()
+    public Direction turn(Relative turn)
     {
-    	Direction[] directions = Direction.values();
-    	int ordinal = this.ordinal();
-    	ordinal = --ordinal % directions.length;
-    	return directions[ordinal];
+        Direction[] directions = Direction.values();
+        int ordinal = this.ordinal();
+        ordinal = (ordinal - turn.ordinal()) % directions.length;
+        return directions[ordinal];
     }
 
 }
