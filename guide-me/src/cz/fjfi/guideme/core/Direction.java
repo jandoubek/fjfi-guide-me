@@ -18,28 +18,55 @@ public enum Direction
     West,
     Northwest;
     
-    /***************************************************************************
-     * TODO: comment
-     */
-    //TODO: body
-    public Direction turnRight()
+    public enum Relative
     {
-    	Direction[] directions = Direction.values();
-    	int ordinal = this.ordinal();
-    	ordinal = ++ordinal % directions.length;
-    	return directions[ordinal];
+        Straight,
+        SlightRight,
+        Right,
+        SharpRight,
+        Back,
+        SharpLeft,
+        Left,
+        SlightLeft;
+        
+        /**
+         * Returns direction made by turning by 'turn'
+         * @param change in direction
+         * @return direction after turning
+         */
+        public Relative turn(Relative turn)
+        {
+            Relative[] directions = Relative.values();
+            int ordinal = this.ordinal();
+            ordinal = (ordinal - turn.ordinal()) % directions.length;
+            return directions[ordinal];
+        }
+    }
+
+    /**
+     * Returns direction made by turning by 'turn'
+     * @param change in direction
+     * @return direction after turning
+     */
+    public Direction turn(Relative turn)
+    {
+        Direction[] directions = Direction.values();
+        int ordinal = this.ordinal();
+        ordinal = (ordinal - turn.ordinal()) % directions.length;
+        return directions[ordinal];
     }
     
-    /***************************************************************************
-     * TODO: comment
+    /**
+     * Returns the turn needed to change direction from this to 'other'
+     * @param desired target direction
+     * @return relative direction
      */
-    //TODO: body
-    public Direction turnLeft()
+    public Relative subtract(Direction other)
     {
-    	Direction[] directions = Direction.values();
-    	int ordinal = this.ordinal();
-    	ordinal = --ordinal % directions.length;
-    	return directions[ordinal];
+        Relative[] directions = Relative.values();
+        int ordinal = this.ordinal();
+        ordinal = (other.ordinal() - ordinal) % directions.length;
+        return directions[ordinal];
     }
 
 }
