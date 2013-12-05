@@ -14,7 +14,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
@@ -31,6 +30,7 @@ import cz.fjfi.guideme.core.GMMap;
 import cz.fjfi.guideme.core.GMMapHeader;
 import cz.fjfi.guideme.core.GMNode;
 import cz.fjfi.guideme.core.Guide;
+import cz.fjfi.guideme.core.TrojankaMap;
 import cz.fjfi.guideme.core.Utility;
 import cz.fjfi.guideme.core.tst2;
 
@@ -62,7 +62,7 @@ public class MapSelectionActivity extends Activity {
 		GMMap gmMap = new GMMap();
 		UUID guid1 = Utility.generateGUID();
 		UUID guid2 = Utility.generateGUID();
-		gmMap = tst2.testmap2(guid1,guid2);
+		gmMap = TrojankaMap.Trojanka(guid1,guid2);
 		guide.setMap(gmMap);
 	}
 

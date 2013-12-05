@@ -105,7 +105,7 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 				}
 
 				context.getNextTV().setText(nextEdge.getDescription());
-				//context.getNextIV().setImageResource(getDirectionImage(nextEdge));
+				//context.getNextIV().setImageResource(getDirectionImage(direction));
 				if (currentPosition.hasNext())
 				{
 					currentPosition.copy().get();
