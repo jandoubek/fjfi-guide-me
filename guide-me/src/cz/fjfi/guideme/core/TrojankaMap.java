@@ -261,6 +261,143 @@ public class TrojankaMap {
 		GMEdge l04r13r12		= new GMEdge(Utility.generateGUID(), "l04r13r12", 2000*spd, r13,	r12, 		Direction.West, 	l04.getDescription(), myMap);
 		GMEdge l04l04l05r12		= new GMEdge(Utility.generateGUID(), "l04l04l05r12", 2000*spd, l04l05, r12, 	Direction.West, 	l04.getDescription(), myMap);
 		GMEdge l04l04l05r13		= new GMEdge(Utility.generateGUID(), "l04l04l05r13", 2000*spd, l04l05, r13, 	Direction.Northwest, 	l04.getDescription(), myMap);
+		//lokace l05
+		GMEdge l05l04l05l05l08		= new GMEdge(Utility.generateGUID(), "l05l04l05l05l08", 2000*spd, l04l05, l05l08,	Direction.North, 	l05.getDescription(), myMap);
+		GMEdge l05l05l08l04l05		= new GMEdge(Utility.generateGUID(), "l05l05l08l04l05", 2000*spd, l05l08, 	l04l05,	Direction.South, 	l05.getDescription(), myMap);
+		//lokace l06
+		GMEdge l06r14l06l08		= new GMEdge(Utility.generateGUID(), "l06r14l06l08", 2000*spd, r14, l06l08, 	Direction.North, 	l06.getDescription(), myMap); //Direction.Up
+		GMEdge l06l06l08r14		= new GMEdge(Utility.generateGUID(), "l06l06l08r14", 2000*spd, l06l08, r14,  	Direction.South, 	l06.getDescription(), myMap); //Direction.Down
+		//lokace l07
+		GMEdge l07l07l08r16			= new GMEdge(Utility.generateGUID(), "l07l07l08r16", 2000*spd, l07l08, r16, 	Direction.East, 	l07.getDescription(), myMap); 
+		GMEdge l07l07l08r17			= new GMEdge(Utility.generateGUID(), "l07l07l08r17", 2000*spd, l07l08, r17, 	Direction.South, 	l07.getDescription(), myMap); 
+		GMEdge l07l07l08l07l13		= new GMEdge(Utility.generateGUID(), "l07l07l08l07l13", 2000*spd, l07l08, l07l13, 	Direction.South, 	l07.getDescription(), myMap); 
+		GMEdge l07r16r17			= new GMEdge(Utility.generateGUID(), "l07r16r17", 2000*spd, r16, r17, 		Direction.South, 	l07.getDescription(), myMap); 
+		GMEdge l07r16l07l13			= new GMEdge(Utility.generateGUID(), "l07r16l07l13", 2000*spd, r16, l07l13, 	Direction.South, 	l07.getDescription(), myMap); 
+		GMEdge l07r17l07l13			= new GMEdge(Utility.generateGUID(), "l07r17l07l13", 2000*spd, r17, l07l13, 	Direction.South, 	l07.getDescription(), myMap); 
+		GMEdge l07r16l07l08			= new GMEdge(Utility.generateGUID(), "l07r16l07l08", 2000*spd, r16, 	l07l08, Direction.West, 	l07.getDescription(), myMap); 
+		GMEdge l07r17l07l08			= new GMEdge(Utility.generateGUID(), "l07r17l07l08", 2000*spd, r17, 	l07l08, Direction.North, 	l07.getDescription(), myMap); 
+		GMEdge l07l07l13l07l08		= new GMEdge(Utility.generateGUID(), "l07l07l13l07l08", 2000*spd, l07l13, 	l07l08, Direction.North, 	l07.getDescription(), myMap); 
+		GMEdge l07r17r16			= new GMEdge(Utility.generateGUID(), "l07r17r16", 2000*spd, r17, 	r16, 	Direction.North, 	l07.getDescription(), myMap); 
+		GMEdge l07l07l13r16			= new GMEdge(Utility.generateGUID(), "l07l07l13r16", 2000*spd, l07l13, 	r16, 	Direction.North, 	l07.getDescription(), myMap); 
+		GMEdge l07l07l13r17			= new GMEdge(Utility.generateGUID(), "l07l07l13r17", 2000*spd, l07l13, 	r17, 	Direction.North, 	l07.getDescription(), myMap); 
+		//lokace l08
+		GMEdge l08l05l08l06l08		= new GMEdge(Utility.generateGUID(), "l08l05l08l06l08", 2000*spd, l05l08, l06l08, 	Direction.East, 	l08.getDescription(), myMap); 
+		GMEdge l08l05l08l07l08		= new GMEdge(Utility.generateGUID(), "l08l05l08l07l08", 2000*spd, l05l08, l07l08, 	Direction.East, 	l08.getDescription(), myMap); 
+		GMEdge l08l05l08l08l09		= new GMEdge(Utility.generateGUID(), "l08l05l08l08l09", 2000*spd, l05l08, l08l09, 	Direction.East, 	l08.getDescription(), myMap); 
+		GMEdge l08l05l08l08l10		= new GMEdge(Utility.generateGUID(), "l08l05l08l08l10", 2000*spd, l05l08, l08l10, 	Direction.East, 	l08.getDescription(), myMap); 
+		GMEdge l08l06l08l07l08		= new GMEdge(Utility.generateGUID(), "l08l06l08l07l08", 2000*spd, l06l08, l07l08, 	Direction.East, 	l08.getDescription(), myMap); 
+		GMEdge l08l06l08l08l09		= new GMEdge(Utility.generateGUID(), "l08l06l08l08l09", 2000*spd, l06l08, l08l09, 	Direction.Northwest, 	l08.getDescription(), myMap); 
+		GMEdge l08l06l08l08l10		= new GMEdge(Utility.generateGUID(), "l08l06l08l08l10", 2000*spd, l06l08, l08l10, 	Direction.Northeast, 	l08.getDescription(), myMap); 
+		GMEdge l08l07l08l08l09		= new GMEdge(Utility.generateGUID(), "l08l07l08l08l09", 2000*spd, l07l08, l08l09, 	Direction.West, 	l08.getDescription(), myMap); 
+		GMEdge l08l07l08l08l10		= new GMEdge(Utility.generateGUID(), "l08l07l08l08l10", 2000*spd, l07l08, l08l10, 	Direction.Northwest, 	l08.getDescription(), myMap); 
+		GMEdge l08l08l09l08l10		= new GMEdge(Utility.generateGUID(), "l08l08l09l08l10", 2000*spd, l08l09, l08l10, 	Direction.East, 	l08.getDescription(), myMap); 
+		GMEdge l08l06l08l05l08		= new GMEdge(Utility.generateGUID(), "l08l06l08l05l08", 2000*spd, l06l08, l05l08, 	Direction.West, 	l08.getDescription(), myMap); 
+		GMEdge l08l07l08l05l08		= new GMEdge(Utility.generateGUID(), "l08l07l08l05l08", 2000*spd, l07l08, l05l08, 	Direction.West, 	l08.getDescription(), myMap); 
+		GMEdge l08l08l09l05l08		= new GMEdge(Utility.generateGUID(), "l08l08l09l05l08", 2000*spd, l08l09, l05l08, 	Direction.West, 	l08.getDescription(), myMap); 
+		GMEdge l08l08l10l05l08		= new GMEdge(Utility.generateGUID(), "l08l08l10l05l08", 2000*spd, l08l10, l05l08, 	Direction.West, 	l08.getDescription(), myMap); 
+		GMEdge l08l07l08l06l08		= new GMEdge(Utility.generateGUID(), "l08l07l08l06l08", 2000*spd, l07l08, l06l08, 	Direction.West, 	l08.getDescription(), myMap); 
+		GMEdge l08l08l09l06l08		= new GMEdge(Utility.generateGUID(), "l08l08l09l06l08", 2000*spd, l08l09, l06l08, 	Direction.Southeast, 	l08.getDescription(), myMap); 
+		GMEdge l08l08l10l06l08		= new GMEdge(Utility.generateGUID(), "l08l08l10l06l08", 2000*spd, l08l10, l06l08, 	Direction.Southwest, 	l08.getDescription(), myMap); 
+		GMEdge l08l08l09l07l08		= new GMEdge(Utility.generateGUID(), "l08l08l09l07l08", 2000*spd, l08l09, l07l08, 	Direction.East, 	l08.getDescription(), myMap); 
+		GMEdge l08l08l10l07l08		= new GMEdge(Utility.generateGUID(), "l08l08l10l07l08", 2000*spd, l08l10, l07l08, 	Direction.Southeast, 	l08.getDescription(), myMap); 
+		GMEdge l08l08l10l08l09		= new GMEdge(Utility.generateGUID(), "l08l08l10l08l09", 2000*spd, l08l10, l08l09, 	Direction.West, 	l08.getDescription(), myMap); 
+		//lokace l09
+		GMEdge l09l08l09l09l11		= new GMEdge(Utility.generateGUID(), "l09l08l09l09l11", 2000*spd, l08l09, l09l11, 	Direction.North, 	l09.getDescription(), myMap); 
+		GMEdge l09l09l11l08l09		= new GMEdge(Utility.generateGUID(), "l09l09l11l08l09", 2000*spd, l09l11, l08l09, 	Direction.South, 	l09.getDescription(), myMap); 
+		//lokace l10
+		GMEdge l10l08l10l10l11		= new GMEdge(Utility.generateGUID(), "l10l08l10l10l11", 2000*spd, l08l10, l10l11, 	Direction.North, 	l10.getDescription(), myMap); 
+		GMEdge l10l10l11l08l10		= new GMEdge(Utility.generateGUID(), "l10l10l11l08l10", 2000*spd, l10l11, l08l10, 	Direction.South, 	l10.getDescription(), myMap); 
+		//lokace l11
+		GMEdge l11l10l11l09l11	= new GMEdge(Utility.generateGUID(), "l11l10l11l09l11", 2000*spd, l10l11, l09l11, 	Direction.West, 	l11.getDescription(), myMap); 
+		GMEdge l11l10l11l11l12	= new GMEdge(Utility.generateGUID(), "l11l10l11l11l12", 2000*spd, l10l11, l11l12, 	Direction.Northwest, 	l11.getDescription(), myMap); 
+		GMEdge l11l09l11l11l12	= new GMEdge(Utility.generateGUID(), "l11l09l11l11l12", 2000*spd, l09l11, l11l12, 	Direction.North, 	l11.getDescription(), myMap); 
+		GMEdge l11l09l11l10l11	= new GMEdge(Utility.generateGUID(), "l11l09l11l10l11", 2000*spd, l09l11, l10l11, 	Direction.East, 	l11.getDescription(), myMap); 
+		GMEdge l11l11l12l10l11	= new GMEdge(Utility.generateGUID(), "l11l11l12l10l11", 2000*spd, l11l12, l10l11, 	Direction.Southeast, 	l11.getDescription(), myMap); 
+		GMEdge l11l11l12l09l11	= new GMEdge(Utility.generateGUID(), "l11l11l12l09l11", 2000*spd, l11l12, l09l11, 	Direction.South, 	l11.getDescription(), myMap); 
+		//lokace l12
+		GMEdge l12l11l12r15	= new GMEdge(Utility.generateGUID(), "l12l11l12r15", 2000*spd, l11l12, r15, 	Direction.Northwest, 	l12.getDescription(), myMap); 
+		GMEdge l12r15l11l12	= new GMEdge(Utility.generateGUID(), "l12r15l11l12", 2000*spd, r15, l11l12, 	Direction.Southeast, 	l12.getDescription(), myMap); 
+
+		//lokace l13
+		GMEdge l13l07l13r18 	= new GMEdge(Utility.generateGUID(), "l13l07l13r18", 2000*spd, l07l13, r18 	, 	Direction.East, 	l13.getDescription(), myMap); 
+		GMEdge l13l07l13r19 	= new GMEdge(Utility.generateGUID(), "l13l07l13r19", 2000*spd, l07l13, r19 	, 	Direction.East, 	l13.getDescription(), myMap); 
+		GMEdge l13l07l13r20 	= new GMEdge(Utility.generateGUID(), "l13l07l13r20", 2000*spd, l07l13, r20 	, 	Direction.East, 	l13.getDescription(), myMap); 
+		GMEdge l13l07l13l13l14	= new GMEdge(Utility.generateGUID(), "l13l07l13l13l14", 2000*spd, l07l13, l13l14, 	Direction.East, 	l13.getDescription(), myMap); 
+		GMEdge l13r18r19 		= new GMEdge(Utility.generateGUID(), "l13r18r19", 2000*spd, r18, r19 	, 	Direction.East, 	l13.getDescription(), myMap); 
+		GMEdge l13r18r20 		= new GMEdge(Utility.generateGUID(), "l13r18r20", 2000*spd, r18, r20 	, 	Direction.East, 	l13.getDescription(), myMap); 
+		GMEdge l13r18l13l14		= new GMEdge(Utility.generateGUID(), "l13r18l13l14", 2000*spd, r18, l13l14, 	Direction.East, 	l13.getDescription(), myMap); 
+		GMEdge l13r19r20 		= new GMEdge(Utility.generateGUID(), "l13r19r20", 2000*spd, r19, r20,	 	Direction.East, 	l13.getDescription(), myMap); 
+		GMEdge l13r19l13l14		= new GMEdge(Utility.generateGUID(), "l13r19l13l14", 2000*spd, r19, l13l14, 	Direction.East, 	l13.getDescription(), myMap); 
+		GMEdge l13r20l13l14		= new GMEdge(Utility.generateGUID(), "l13r20l13l14", 2000*spd, r20, l13l14,		Direction.East, 	l13.getDescription(), myMap); 
+		GMEdge l13r18l07l13	 	= new GMEdge(Utility.generateGUID(), "l13r18l07l13", 2000*spd, r18, 	l07l13, 	Direction.West, 	l13.getDescription(), myMap); 
+		GMEdge l13r19l07l13		= new GMEdge(Utility.generateGUID(), "l13r19l07l13", 2000*spd, r19, 	l07l13, 	Direction.West, 	l13.getDescription(), myMap); 
+		GMEdge l13r20l07l13	 	= new GMEdge(Utility.generateGUID(), "l13r20l07l13", 2000*spd, r20, 	l07l13, 	Direction.West, 	l13.getDescription(), myMap); 
+		GMEdge l13l13l14l07l13	= new GMEdge(Utility.generateGUID(), "l13l13l14l07l13", 2000*spd, l13l14, 	l07l13, 	Direction.West, 	l13.getDescription(), myMap); 
+		GMEdge l13r19r18		= new GMEdge(Utility.generateGUID(), "l13r19r18", 2000*spd, r19, 	r18, 	Direction.West, 	l13.getDescription(), myMap); 
+		GMEdge l13r20r18		= new GMEdge(Utility.generateGUID(), "l13r20r18", 2000*spd, r20, 	r18, 	Direction.West, 	l13.getDescription(), myMap); 
+		GMEdge l13l13l14r18		= new GMEdge(Utility.generateGUID(), "l13l13l14r18", 2000*spd, l13l14, 	r18, 	Direction.West, 	l13.getDescription(), myMap); 
+		GMEdge l13r20r19		= new GMEdge(Utility.generateGUID(), "l13r20r19", 2000*spd, r20, 	r19, 	Direction.West, 	l13.getDescription(), myMap); 
+		GMEdge l13l13l14r19		= new GMEdge(Utility.generateGUID(), "l13l13l14r19", 2000*spd, l13l14, 	r19, 	Direction.West, 	l13.getDescription(), myMap); 
+		GMEdge l13l13l14r20		= new GMEdge(Utility.generateGUID(), "l13l13l14r20", 2000*spd, l13l14,	r20, 	Direction.West, 	l13.getDescription(), myMap); 
+		
+		//lokace l14
+		GMEdge l14l13l14r21 	= new GMEdge(Utility.generateGUID(), "l14l13l14r21", 2000*spd, l13l14, r21,	Direction.East, 	l14.getDescription(), myMap); 
+		GMEdge l14l13l14r22 	= new GMEdge(Utility.generateGUID(), "l14l13l14r22", 2000*spd, l13l14, r22,	Direction.North, 	l14.getDescription(), myMap); 
+		GMEdge l14l13l14r23 	= new GMEdge(Utility.generateGUID(), "l14l13l14r23", 2000*spd, l13l14, r23,	Direction.North, 	l14.getDescription(), myMap); 
+		GMEdge l14l13l14r24 	= new GMEdge(Utility.generateGUID(), "l14l13l14r24", 2000*spd, l13l14, r24,	Direction.North, 	l14.getDescription(), myMap); 
+		GMEdge l14l13l14r25 	= new GMEdge(Utility.generateGUID(), "l14l13l14r25", 2000*spd, l13l14, r25,	Direction.North, 	l14.getDescription(), myMap); 
+		GMEdge l14l13l14r26 	= new GMEdge(Utility.generateGUID(), "l14l13l14r26", 2000*spd, l13l14, r26,	Direction.North, 	l14.getDescription(), myMap); 
+		GMEdge l14l13l14r27 	= new GMEdge(Utility.generateGUID(), "l14l13l14r27", 2000*spd, l13l14, r27,	Direction.North, 	l14.getDescription(), myMap); 
+		GMEdge l14r21r22 	= new GMEdge(Utility.generateGUID(), "l14r21r22", 2000*spd, r21, r22, 	Direction.Northwest, 	l14.getDescription(), myMap); 
+		GMEdge l14r21r23 	= new GMEdge(Utility.generateGUID(), "l14r21r23", 2000*spd, r21, r23, 	Direction.North, 	l14.getDescription(), myMap); 
+		GMEdge l14r21r24 	= new GMEdge(Utility.generateGUID(), "l14r21r24", 2000*spd, r21, r24, 	Direction.North, 	l14.getDescription(), myMap); 
+		GMEdge l14r21r25 	= new GMEdge(Utility.generateGUID(), "l14r21r25", 2000*spd, r21, r25, 	Direction.North, 	l14.getDescription(), myMap); 
+		GMEdge l14r21r26 	= new GMEdge(Utility.generateGUID(), "l14r21r26", 2000*spd, r21, r26, 	Direction.North, 	l14.getDescription(), myMap); 
+		GMEdge l14r21r27 	= new GMEdge(Utility.generateGUID(), "l14r21r27", 2000*spd, r21, r27, 	Direction.North, 	l14.getDescription(), myMap); 
+		GMEdge l14r22r23 	= new GMEdge(Utility.generateGUID(), "l14r22r23", 2000*spd, r22, r23, 	Direction.North, 	l14.getDescription(), myMap); 
+		GMEdge l14r22r24 	= new GMEdge(Utility.generateGUID(), "l14r22r24", 2000*spd, r22, r24, 	Direction.North, 	l14.getDescription(), myMap); 
+		GMEdge l14r22r25 	= new GMEdge(Utility.generateGUID(), "l14r22r25", 2000*spd, r22, r25, 	Direction.North, 	l14.getDescription(), myMap); 
+		GMEdge l14r22r26 	= new GMEdge(Utility.generateGUID(), "l14r22r26", 2000*spd, r22, r26, 	Direction.North, 	l14.getDescription(), myMap); 
+		GMEdge l14r22r27 	= new GMEdge(Utility.generateGUID(), "l14r22r27", 2000*spd, r22, r27, 	Direction.North, 	l14.getDescription(), myMap); 
+		GMEdge l14r23r24 	= new GMEdge(Utility.generateGUID(), "l14r23r24", 2000*spd, r23, r24, 	Direction.North, 	l14.getDescription(), myMap); 
+		GMEdge l14r23r25 	= new GMEdge(Utility.generateGUID(), "l14r23r25", 2000*spd, r23, r25, 	Direction.North, 	l14.getDescription(), myMap); 
+		GMEdge l14r23r26 	= new GMEdge(Utility.generateGUID(), "l14r23r26", 2000*spd, r23, r26, 	Direction.North, 	l14.getDescription(), myMap); 
+		GMEdge l14r23r27 	= new GMEdge(Utility.generateGUID(), "l14r23r27", 2000*spd, r23, r27, 	Direction.North, 	l14.getDescription(), myMap); 
+		GMEdge l14r24r25 	= new GMEdge(Utility.generateGUID(), "l14r24r25", 2000*spd, r24, r25, 	Direction.North, 	l14.getDescription(), myMap); 
+		GMEdge l14r24r26 	= new GMEdge(Utility.generateGUID(), "l14r24r26", 2000*spd, r24, r26, 	Direction.North, 	l14.getDescription(), myMap); 
+		GMEdge l14r24r27 	= new GMEdge(Utility.generateGUID(), "l14r24r27", 2000*spd, r24, r27, 	Direction.North, 	l14.getDescription(), myMap); 
+		GMEdge l14r25r26 	= new GMEdge(Utility.generateGUID(), "l14r25r26", 2000*spd, r25, r26, 	Direction.North, 	l14.getDescription(), myMap); 
+		GMEdge l14r25r27 	= new GMEdge(Utility.generateGUID(), "l14r25r27", 2000*spd, r25, r27, 	Direction.North, 	l14.getDescription(), myMap); 
+		GMEdge l14r26r27 	= new GMEdge(Utility.generateGUID(), "l14r26r27", 2000*spd, r26, r27, 	Direction.Northwest, 	l14.getDescription(), myMap); 
+		GMEdge l14r21l13l14 	= new GMEdge(Utility.generateGUID(), "l14r21l13l14", 2000*spd, r21, l13l14,	Direction.West, 	l14.getDescription(), myMap); 
+		GMEdge l14r22l13l14 	= new GMEdge(Utility.generateGUID(), "l14r22l13l14", 2000*spd, r22, l13l14,	Direction.South, 	l14.getDescription(), myMap); 
+		GMEdge l14r23l13l14 	= new GMEdge(Utility.generateGUID(), "l14r23l13l14", 2000*spd, r23, l13l14,	Direction.South, 	l14.getDescription(), myMap); 
+		GMEdge l14r24l13l14 	= new GMEdge(Utility.generateGUID(), "l14r24l13l14", 2000*spd, r24, l13l14,	Direction.South, 	l14.getDescription(), myMap); 
+		GMEdge l14r25l13l14 	= new GMEdge(Utility.generateGUID(), "l14r25l13l14", 2000*spd, r25, l13l14,	Direction.South, 	l14.getDescription(), myMap); 
+		GMEdge l14r26l13l14 	= new GMEdge(Utility.generateGUID(), "l14r26l13l14", 2000*spd, r26, l13l14,	Direction.South, 	l14.getDescription(), myMap); 
+		GMEdge l14r27l13l14 	= new GMEdge(Utility.generateGUID(), "l14r27l13l14", 2000*spd, r27, l13l14,	Direction.South, 	l14.getDescription(), myMap); 
+		GMEdge l14r22r21 	= new GMEdge(Utility.generateGUID(), "l14r22r21", 2000*spd, r22,r21,  	Direction.Southeast, 	l14.getDescription(), myMap); 
+		GMEdge l14r23r21 	= new GMEdge(Utility.generateGUID(), "l14r23r21", 2000*spd, r23,r21,  	Direction.South, 	l14.getDescription(), myMap); 
+		GMEdge l14r24r21 	= new GMEdge(Utility.generateGUID(), "l14r24r21", 2000*spd, r24,r21,  	Direction.South, 	l14.getDescription(), myMap); 
+		GMEdge l14r25r21 	= new GMEdge(Utility.generateGUID(), "l14r25r21", 2000*spd, r25,r21,  	Direction.South, 	l14.getDescription(), myMap); 
+		GMEdge l14r26r21 	= new GMEdge(Utility.generateGUID(), "l14r26r21", 2000*spd, r26,r21,  	Direction.South, 	l14.getDescription(), myMap); 
+		GMEdge l14r27r21 	= new GMEdge(Utility.generateGUID(), "l14r27r21", 2000*spd, r27,r21,  	Direction.South, 	l14.getDescription(), myMap); 
+		GMEdge l14r23r22 	= new GMEdge(Utility.generateGUID(), "l14r23r22", 2000*spd, r23,r22,  	Direction.South, 	l14.getDescription(), myMap); 
+		GMEdge l14r24r22 	= new GMEdge(Utility.generateGUID(), "l14r24r22", 2000*spd, r24,r22,  	Direction.South, 	l14.getDescription(), myMap); 
+		GMEdge l14r25r22 	= new GMEdge(Utility.generateGUID(), "l14r25r22", 2000*spd, r25,r22,  	Direction.South, 	l14.getDescription(), myMap); 
+		GMEdge l14r26r22 	= new GMEdge(Utility.generateGUID(), "l14r26r22", 2000*spd, r26,r22,  	Direction.South, 	l14.getDescription(), myMap); 
+		GMEdge l14r27r22 	= new GMEdge(Utility.generateGUID(), "l14r27r22", 2000*spd, r27,r22,  	Direction.South, 	l14.getDescription(), myMap); 
+		GMEdge l14r24r23 	= new GMEdge(Utility.generateGUID(), "l14r24r23", 2000*spd, r24,r23,  	Direction.South, 	l14.getDescription(), myMap); 
+		GMEdge l14r25r23 	= new GMEdge(Utility.generateGUID(), "l14r25r23", 2000*spd, r25,r23,  	Direction.South, 	l14.getDescription(), myMap); 
+		GMEdge l14r26r23 	= new GMEdge(Utility.generateGUID(), "l14r26r23", 2000*spd, r26,r23,  	Direction.South, 	l14.getDescription(), myMap); 
+		GMEdge l14r27r23 	= new GMEdge(Utility.generateGUID(), "l14r27r23", 2000*spd, r27,r23,  	Direction.South, 	l14.getDescription(), myMap); 
+		GMEdge l14r25r24 	= new GMEdge(Utility.generateGUID(), "l14r25r24", 2000*spd, r25,r24,  	Direction.South, 	l14.getDescription(), myMap); 
+		GMEdge l14r26r24 	= new GMEdge(Utility.generateGUID(), "l14r26r24", 2000*spd, r26,r24,  	Direction.South, 	l14.getDescription(), myMap); 
+		GMEdge l14r27r24 	= new GMEdge(Utility.generateGUID(), "l14r27r24", 2000*spd, r27,r24,  	Direction.South, 	l14.getDescription(), myMap); 
+		GMEdge l14r26r25 	= new GMEdge(Utility.generateGUID(), "l14r26r25", 2000*spd, r26,r25,  	Direction.South, 	l14.getDescription(), myMap); 
+		GMEdge l14r27r25 	= new GMEdge(Utility.generateGUID(), "l14r27r25", 2000*spd, r27,r25,  	Direction.South, 	l14.getDescription(), myMap); 
+		GMEdge l14r27r26 	= new GMEdge(Utility.generateGUID(), "l14r27r26", 2000*spd, r27,r26,  	Direction.Southeast, 	l14.getDescription(), myMap); 
+
 		//lokacel01
 		myMap.addEdge(l01er01s01); myMap.addEdge(l01er01s01); myMap.addEdge(l01er01l01l03); myMap.addEdge(l01es01r01);
 		myMap.addEdge(l01es01l01l03); myMap.addEdge(l01el01l03r01); myMap.addEdge(l01el01l03s01);
@@ -296,12 +433,51 @@ public class TrojankaMap {
 		myMap.addEdge(l04l03l04r12); myMap.addEdge(l04l03l04r13); myMap.addEdge(l04l03l04l04l05); myMap.addEdge(l04r12r13);
 		myMap.addEdge(l04r12l04l05); myMap.addEdge(l04r13l04l05); myMap.addEdge(l04r12l03l04); myMap.addEdge(l04r13l03l04);
 		myMap.addEdge(l04l04l05l03l04); myMap.addEdge(l04r13r12); myMap.addEdge(l04l04l05r12); myMap.addEdge(l04l04l05r13);
-		
- 
-		
+		//lokace l05
+		myMap.addEdge(l05l04l05l05l08); myMap.addEdge(l05l05l08l04l05); 
+		//lokace l06
+		myMap.addEdge(l06r14l06l08); myMap.addEdge(l06l06l08r14); 
+		//lokace l07
+		myMap.addEdge(l07l07l08r16); myMap.addEdge(l07l07l08r17); myMap.addEdge(l07l07l08l07l13); myMap.addEdge(l07r16r17); 
+		myMap.addEdge(l07r16l07l13); myMap.addEdge(l07r17l07l13); myMap.addEdge(l07r16l07l08); myMap.addEdge(l07r17l07l08); 
+		myMap.addEdge(l07l07l13l07l08); myMap.addEdge(l07r17r16); myMap.addEdge(l07l07l13r16); myMap.addEdge(l07l07l13r17); 
+		//lokace l08
+		myMap.addEdge(l08l05l08l06l08); myMap.addEdge(l08l05l08l07l08); myMap.addEdge(l08l05l08l08l09); myMap.addEdge(l08l05l08l08l10); 
+		myMap.addEdge(l08l06l08l07l08); myMap.addEdge(l08l06l08l08l09); myMap.addEdge(l08l06l08l08l10); myMap.addEdge(l08l07l08l08l09); 
+		myMap.addEdge(l08l07l08l08l10); myMap.addEdge(l08l08l09l08l10); myMap.addEdge(l08l06l08l05l08); myMap.addEdge(l08l07l08l05l08); 
+		myMap.addEdge(l08l08l09l05l08); myMap.addEdge(l08l08l10l05l08); myMap.addEdge(l08l07l08l06l08); myMap.addEdge(l08l08l09l06l08); 
+		myMap.addEdge(l08l08l10l06l08); myMap.addEdge(l08l08l09l07l08); myMap.addEdge(l08l08l10l07l08); myMap.addEdge(l08l08l10l08l09); 
+		//lokace l09
+		myMap.addEdge(l09l08l09l09l11); myMap.addEdge(l09l09l11l08l09); 
+		//lokace l10
+		myMap.addEdge(l10l08l10l10l11); myMap.addEdge(l10l10l11l08l10); 
+		//lokace l11
+		myMap.addEdge(l11l10l11l09l11); myMap.addEdge(l11l10l11l11l12); myMap.addEdge(l11l09l11l11l12); myMap.addEdge(l11l09l11l10l11); 
+		myMap.addEdge(l11l11l12l10l11); myMap.addEdge(l11l11l12l09l11); 
+		//lokace l12
+		myMap.addEdge(l12l11l12r15); myMap.addEdge(l12r15l11l12); 
+		//lokace l13
+		myMap.addEdge(l13l07l13r18); myMap.addEdge(l13l07l13r19); myMap.addEdge(l13l07l13r20); myMap.addEdge(l13l07l13l13l14); 
+		myMap.addEdge(l13r18r19); myMap.addEdge(l13r18r20); myMap.addEdge(l13r18l13l14); myMap.addEdge(l13r19r20); 
+		myMap.addEdge(l13r19l13l14); myMap.addEdge(l13r20l13l14); myMap.addEdge(l13r18l07l13); myMap.addEdge(l13r19l07l13); 
+		myMap.addEdge(l13r20l07l13); myMap.addEdge(l13l13l14l07l13); myMap.addEdge(l13r19r18); myMap.addEdge(l13r20r18); 
+		myMap.addEdge(l13l13l14r18); myMap.addEdge(l13r20r19); myMap.addEdge(l13l13l14r19); myMap.addEdge(l13l13l14r20); 
+		//lokace l14
+		myMap.addEdge(l14l13l14r21); myMap.addEdge(l14l13l14r22); myMap.addEdge(l14l13l14r23); myMap.addEdge(l14l13l14r24); 
+		myMap.addEdge(l14l13l14r25); myMap.addEdge(l14l13l14r26); myMap.addEdge(l14l13l14r27); myMap.addEdge(l14r21r22); 
+		myMap.addEdge(l14r21r23); myMap.addEdge(l14r21r24); myMap.addEdge(l14r21r25); myMap.addEdge(l14r21r26); 
+		myMap.addEdge(l14r21r27); myMap.addEdge(l14r22r23); myMap.addEdge(l14r22r24); myMap.addEdge(l14r22r25); 
+		myMap.addEdge(l14r22r26); myMap.addEdge(l14r22r27); myMap.addEdge(l14r23r24); myMap.addEdge(l14r23r25); 
+		myMap.addEdge(l14r23r26); myMap.addEdge(l14r23r27); myMap.addEdge(l14r24r25); myMap.addEdge(l14r24r26); 
+		myMap.addEdge(l14r24r27); myMap.addEdge(l14r25r26); myMap.addEdge(l14r25r27); myMap.addEdge(l14r26r27); 
+		myMap.addEdge(l14r21l13l14); myMap.addEdge(l14r22l13l14); myMap.addEdge(l14r23l13l14); myMap.addEdge(l14r24l13l14); 
+		myMap.addEdge(l14r25l13l14); myMap.addEdge(l14r26l13l14); myMap.addEdge(l14r27l13l14); myMap.addEdge(l14r22r21); 
+		myMap.addEdge(l14r23r21); myMap.addEdge(l14r24r21); myMap.addEdge(l14r25r21); myMap.addEdge(l14r26r21); 
+		myMap.addEdge(l14r27r21); myMap.addEdge(l14r23r22); myMap.addEdge(l14r24r22); myMap.addEdge(l14r25r22); 
+		myMap.addEdge(l14r26r22); myMap.addEdge(l14r27r22); myMap.addEdge(l14r24r23); myMap.addEdge(l14r25r23); 
+		myMap.addEdge(l14r26r23); myMap.addEdge(l14r27r23); myMap.addEdge(l14r25r24); myMap.addEdge(l14r26r24); 
+		myMap.addEdge(l14r27r24); myMap.addEdge(l14r26r25); myMap.addEdge(l14r27r25); myMap.addEdge(l14r27r26); 
 
-		
-		
 		return myMap;
 	}
 }
