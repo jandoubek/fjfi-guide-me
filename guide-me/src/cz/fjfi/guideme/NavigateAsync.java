@@ -144,28 +144,28 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 
 		switch (direction) {
 		case Back:
-			return R.drawable.unknown;
+			return R.drawable.back_1;
 
 		case Right:
-			return R.drawable.right;
+			return R.drawable.right_1;
 
 		case SharpRight:
-			return R.drawable.right;
+			return R.drawable.right_2;
 
 		case SlightRight:
-			return R.drawable.right;
+			return R.drawable.right_3;
 
 		case Left:
-			return R.drawable.left;
+			return R.drawable.left_1;
 
 		case SharpLeft:
-			return R.drawable.left;
+			return R.drawable.left_2;
 
 		case SlightLeft:
-			return R.drawable.left;
+			return R.drawable.left_3;
 
 		case Straight:
-			return R.drawable.straight;
+			return R.drawable.straight_1;
 
 		default:
 			return R.drawable.unknown;

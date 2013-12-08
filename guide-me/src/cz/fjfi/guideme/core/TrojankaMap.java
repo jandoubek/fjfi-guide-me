@@ -15,7 +15,7 @@ public class TrojankaMap {
 	public static GMMap Trojanka(UUID guid1,	 UUID guid2)
 	{
 		int timeCard = 8000; 
-		int spd = 1; 
+		int spd = 10; 
 		GMMap myMap = new GMMap();
 		myMap.setAuthorName("KBen");
 		myMap.setAuthorEmail("email@email.com");
