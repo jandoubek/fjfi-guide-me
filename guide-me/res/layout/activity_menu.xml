@@ -23,7 +23,8 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:onClick="menu_bt_createMap_onClick"
-        android:text="@string/menu_bt_create_map" />
+        android:text="@string/menu_bt_create_map"
+        android:enabled="false" />
 
     <Button
         android:id="@+id/buttonSettings"
