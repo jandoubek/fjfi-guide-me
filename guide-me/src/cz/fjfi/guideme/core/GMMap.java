@@ -259,30 +259,29 @@ public class GMMap
     public String exportXML()
     {
         String output = new String(
-                "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + "<map guid=\""
-                        + this.getGuid() + "\">" + "<name>" + this.getName()
-                        + "</name>\n" + "<author name=\""
-                        + this.getAuthorName() + "\" email=\""
-                        + this.getAuthorEmail() + "\" />\n" + "<description>"
-                        + this.getDescription() + "</description>\n"
-                        + "<nodelist>\n");
+                "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" 
+              + "<map guid=\"" + this.getGuid() + "\">" 
+              + "    <name>" + this.getName() + "</name>\n" 
+              + "    <author name=\"" + this.getAuthorName() + "\" email=\"" + this.getAuthorEmail() + "\" />\n" 
+              + "    <description>" + this.getDescription() + "</description>\n"
+              + "    <nodelist>\n");
         for (GMNode node : this.mappedNodes)
         {
             output = output.concat(node.exportXML());
         }
-        output = output.concat(new String("</nodelist>\n<edgelist>\n"));
+        output = output.concat(new String("    </nodelist>\n    <edgelist>\n"));
 
         for (GMEdge edge : this.mappedEdges)
         {
             output = output.concat(edge.exportXML());
         }
-        output = output.concat(new String("</edgelist>\n<locationlist>\n"));
+        output = output.concat(new String("    </edgelist>\n    <locationlist>\n"));
 
         for (Location loc : this.mappedLocations)
         {
             output = output.concat(loc.exportXML());
         }
-        output = output.concat(new String("</locationlist>\n</map>\n"));
+        output = output.concat(new String("    </locationlist>\n</map>\n"));
         return output;
     }
 
