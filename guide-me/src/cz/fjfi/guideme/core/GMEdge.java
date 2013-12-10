@@ -172,15 +172,15 @@ public class GMEdge
      */
     public String exportXML()
     {
-    	return new String("<edge guid=\"" + this.getGUID() + "\">\n"
-    						+ "<name>" + this.getName() + "</name>\n" 
-    						+ "<distance time=\"" + this.getTimeDistance() + "\" />\n"
-    						+ "<start guid=\"" + this.getStart().getGUID() + "\" />\n" 
-    						+ "<end guid=\"" + this.getEnd().getGUID() + "\" />\n"
-    						+ "<direction>" + this.getDirection() + "</direction>\n"
-    				//		+ "<location guid=\">" + this.getLocation().getGUID() + "\"/>\n"
-    						+ "<desc>" + this.getDescription() + "</desc>\n"
-    						+ "</edge>\n");
+    	return new String(    "        <edge guid=\"" + this.getGUID() + "\">\n"
+    						+ "            <name>" + this.getName() + "</name>\n" 
+    						+ "            <distance time=\"" + this.getTimeDistance() + "\" />\n"
+    						+ "            <start guid=\"" + this.getStart().getGUID() + "\" />\n" 
+    						+ "            <end guid=\"" + this.getEnd().getGUID() + "\" />\n"
+    						+ "            <direction>" + this.getDirection() + "</direction>\n"
+    				//		+ "            <location guid=\">" + this.getLocation().getGUID() + "\"/>\n"
+    						+ "            <desc>" + this.getDescription() + "</desc>\n"
+    						+ "        </edge>\n");
     }
     
 }
