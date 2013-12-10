@@ -7,16 +7,50 @@ package cz.fjfi.guideme.core;
  * @author
  * @version
  */
-public enum Direction
+public class Direction
 {
-    North,
-    Northeast,
-    East,
-    Southeast,
-    South,
-    Southwest,
-    West,
-    Northwest;
+    private Compass compassDirection;
+    private Vertical verticalDirection;
+    private final static int NUM_DIRECTIONS = 8;
+    
+    /**
+     * constructs a level direction
+     * @param compass direction
+     */
+    public Direction(Compass direction)
+    {
+        this(direction, Vertical.Level);
+    }
+    
+    /**
+     * constructs a vertical direction
+     * @param compass direction
+     * @param vertical direction
+     */
+    public Direction(Compass compassDirection, Vertical verticalDirection)
+    {
+        this.compassDirection = compassDirection;
+        this.verticalDirection = verticalDirection;
+    }
+    
+    public enum Compass
+    {
+        North,
+        Northeast,
+        East,
+        Southeast,
+        South,
+        Southwest,
+        West,
+        Northwest;
+    }
+    
+    public enum Vertical
+    {
+        Downwards,
+        Level,
+        Upwards;
+    }
     
     public enum Relative
     {
@@ -27,7 +61,9 @@ public enum Direction
         Back,
         SharpLeft,
         Left,
-        SlightLeft;
+        SlightLeft,
+        Up,
+        Down;
         
         /**
          * Returns direction made by turning by 'turn'
@@ -36,10 +72,25 @@ public enum Direction
          */
         public Relative turn(Relative turn)
         {
-            Relative[] directions = Relative.values();
-            int ordinal = this.ordinal();
-            ordinal = (directions.length + ordinal - turn.ordinal()) % directions.length;
-            return directions[ordinal];
+            switch (turn)
+            {
+            case Up: case Down:
+                return turn;
+
+            default:
+                Relative[] directions = Relative.values();
+                int ordinal;
+                if (this == Up || this == Down)
+                {
+                    ordinal = 0;
+                }
+                else
+                {
+                    ordinal = this.ordinal();
+                }
+                ordinal = (NUM_DIRECTIONS + ordinal - turn.ordinal()) % NUM_DIRECTIONS;
+                return directions[ordinal];
+            }
         }
     }
 
@@ -50,10 +101,20 @@ public enum Direction
      */
     public Direction turn(Relative turn)
     {
-        Direction[] directions = Direction.values();
-        int ordinal = this.ordinal();
-        ordinal = (directions.length + ordinal - turn.ordinal()) % directions.length;
-        return directions[ordinal];
+        switch (turn)
+        {
+        case Up:
+            return new Direction(compassDirection,Vertical.Upwards);
+            
+        case Down:
+            return new Direction(compassDirection,Vertical.Downwards);
+
+        default:
+            Compass[] directions = Compass.values();
+            int ordinal = this.compassDirection.ordinal();
+            ordinal = (NUM_DIRECTIONS + ordinal - turn.ordinal()) % NUM_DIRECTIONS;
+            return new Direction(directions[ordinal]);
+        }
     }
     
     /**
@@ -63,10 +124,20 @@ public enum Direction
      */
     public Relative subtract(Direction other)
     {
-        Relative[] directions = Relative.values();
-        int ordinal = this.ordinal();
-        ordinal = (directions.length + other.ordinal() - ordinal) % directions.length;
-        return directions[ordinal];
+        switch (other.verticalDirection)
+        {
+        case Upwards:
+            return Relative.Up;
+            
+        case Downwards:
+            return Relative.Down;
+            
+        default:
+            Relative[] directions = Relative.values();
+            int ordinal = this.compassDirection.ordinal();
+            ordinal = (NUM_DIRECTIONS + other.compassDirection.ordinal() - ordinal) % NUM_DIRECTIONS;
+            return directions[ordinal];
+        }
     }
 
 }

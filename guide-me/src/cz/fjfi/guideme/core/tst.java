@@ -37,9 +37,9 @@ public class tst {
 		myMap.addNode(n3);
 		myMap.addNode(n4);
 		
-		GMEdge e1 = new GMEdge(Utility.generateGUID(),"e1", 15000, n1, n2, Direction.Northeast, "severn’ chodba KM",myMap);
-		GMEdge e2 = new GMEdge(Utility.generateGUID(),"e2", 27000, n2, n3, Direction.Southeast, "hlavn’ chodba KM",myMap);
-		GMEdge e3 = new GMEdge(Utility.generateGUID(),"e3", 18000, n3, n4, Direction.Southwest, "jiìn’ chotba KM",myMap);
+		GMEdge e1 = new GMEdge(Utility.generateGUID(),"e1", 15000, n1, n2, new Direction(Direction.Compass.Northeast), "severn’ chodba KM",myMap);
+		GMEdge e2 = new GMEdge(Utility.generateGUID(),"e2", 27000, n2, n3, new Direction(Direction.Compass.Southeast), "hlavn’ chodba KM",myMap);
+		GMEdge e3 = new GMEdge(Utility.generateGUID(),"e3", 18000, n3, n4, new Direction(Direction.Compass.Southwest), "jiìn’ chotba KM",myMap);
 		//System.out.print(e1.exportXML());
 		myMap.addEdge(e1);
 		myMap.addEdge(e2);
