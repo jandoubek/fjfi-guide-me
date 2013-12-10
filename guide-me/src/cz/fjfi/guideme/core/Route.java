@@ -91,7 +91,6 @@ public class Route
 //== OTHER METHODS =============================================================
     /**
      * Given a list of GMEdges, constructs the stretches of the route
-     * TODO: Handling changing locations
      * @param edges
      */
     private void constructRoute(List<GMEdge> edges)
@@ -102,17 +101,20 @@ public class Route
             return;
         }
         GMEdge currentEdge = currentIterator.next();
+        GMNode lastNode = currentEdge.getStart();
         Direction currentDirection = currentEdge.getDirection();
         List<GMEdge> currentStretchList = new ArrayList<GMEdge>();
         boolean lastEdgeFound = false;
 
         while (!lastEdgeFound)
         {
-            if (currentDirection == currentEdge.getDirection())
+            boolean changedLocation = checkLocationTransition(lastNode, currentEdge);
+            if (currentDirection == currentEdge.getDirection() && !changedLocation)
             {
                 currentStretchList.add(currentEdge);
                 if (currentIterator.hasNext())
                 {
+                    lastNode = currentEdge.getStart();
                     currentEdge = currentIterator.next();
                 }
                 else
@@ -120,7 +122,7 @@ public class Route
                     lastEdgeFound = true;
                 }
             }
-            if (currentDirection != currentEdge.getDirection() || lastEdgeFound)
+            if (currentDirection != currentEdge.getDirection() || changedLocation || lastEdgeFound)
             {
                 RouteStretch newStretch = new RouteStretch(currentStretchList);
                 int i = 0;
@@ -132,5 +134,16 @@ public class Route
                 currentDirection = currentEdge.getDirection();
             }
         }
+    }
+    
+    /**
+     * Checks if the location changed, given an edge and a preceding node. 
+     * @param lastNode - start node of the previous edge
+     * @param currentEdge - this edge
+     * @return if the location changed
+     */
+    private boolean checkLocationTransition(GMNode lastNode, GMEdge currentEdge)
+    {
+        return Collections.disjoint(lastNode.getLocations(), currentEdge.getEnd().getLocations());
     }
 }
