@@ -104,10 +104,10 @@ public class Location
     //TODO: body
     public String exportXML()
     {
-    	String output = new String("<location guid=\"" + this.getGUID() + "\">\n"
-    								+ "<name>" + this.getName() + "</name>\n"
-    								+ "<desc>" + this.getDescription() + "</desc>\n"
-    								+ "</location>\n");
+    	String output = new String("        <location guid=\"" + this.getGUID() + "\">\n"
+    							 + "            <name>" + this.getName() + "</name>\n"
+    							 + "            <desc>" + this.getDescription() + "</desc>\n"
+    							 + "        </location>\n");
     	return output;
     }
 }
