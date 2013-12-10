@@ -124,15 +124,15 @@ public class GMNode
      */
     public String exportXML()
     {
-        String output = new String("<node guid=\"" + this.getGUID() + "\">\n"
-                + "<name>" + this.getName() + "</name>\n" + "<desc>"
-                + this.getDescription() + "</desc>\n" + "<locs>\n");
+        String output = new String("        <node guid=\"" + this.getGUID() + "\">\n"
+                                 + "            <name>" + this.getName() + "</name>\n" 
+        		                 + "            <desc>" + this.getDescription() + "</desc>\n" 
+                                 + "            <locs>\n");
         for (UUID loc : this.locations)
         {
-            output = output.concat(new String("<loc guid=\"" + loc.toString()
-                    + "\" />\n"));
+            output = output.concat(new String("                <loc guid=\"" + loc.toString() + "\" />\n"));
         }
-        output = output.concat(new String("</locs>\n" + "</node>\n"));
+        output = output.concat(new String("            </locs>\n" + "</node>\n"));
         return output;
     }
 }
