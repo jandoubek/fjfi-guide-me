@@ -1,5 +1,8 @@
 package cz.fjfi.guideme.core;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -7,10 +10,11 @@ import java.util.UUID;
 
 import cz.fjfi.guideme.core.GMMap;
 
-public class tst2 {
-
+public class tst2 
+{
 	/**
-	 * @param args
+	 * @param guid1
+	 * @param guid2
 	 */
 	public static GMMap testmap2(UUID guid1, UUID guid2) // potﬁebujeme vrátit mapu
 	{
@@ -198,6 +202,23 @@ public class tst2 {
 		//File out = new File();//"D:\\adt-bundle-windows-x86-20130917\\adt-bundle-windows-x86-20130917\\workspace\\GitHub\\fjfi-guide-me\\out.txt");
 		//myMap.exportXML(null);
 		return myMap;
+	}
+	
+	/**
+	 * Exports test map to XML on drive C.
+	 */
+	public static void exportTest2ToXML()
+	{
+		GMMap test = testmap2(Utility.generateGUID(), Utility.generateGUID());
+		String myXML = test.exportXML().toString();
+		test.exportXML(new File("C:\\test2.xml"));
+		
+		
+	}
+	
+	public static void main(String... args)
+	{
+		exportTest2ToXML();
 	}
 
 }
