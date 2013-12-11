@@ -2,6 +2,8 @@ package cz.fjfi.guideme.android;
 
 import android.util.Xml;
 import cz.fjfi.guideme.core.*;
+import cz.fjfi.guideme.core.Direction.Compass;
+import cz.fjfi.guideme.core.Direction.Vertical;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -402,7 +404,7 @@ public class ResourceManager
                             }
                             else if (name.equalsIgnoreCase("direction"))
                             {
-                            	direction = null;
+                            	direction = new Direction(Enum.valueOf(Compass.class, parser.getAttributeValue(0)), Enum.valueOf(Vertical.class, parser.getAttributeValue(1)));
                             }
                             else if (name.equalsIgnoreCase("location"))
                             {
