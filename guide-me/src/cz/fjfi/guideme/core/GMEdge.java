@@ -178,7 +178,7 @@ public class GMEdge
     	sb.append("            <distance time=\"" + this.getTimeDistance() + "\" />\n");
     	sb.append("            <start guid=\"" + this.getStart().getGUID() + "\" />\n"); 
     	sb.append("            <end guid=\"" + this.getEnd().getGUID() + "\" />\n");
-    	sb.append("            <direction>" + this.getDirection() + "</direction>\n");
+    	sb.append(this.getDirection().exportXML());
     	//sb.append("            <location guid=\">" + this.getLocation().getGUID() + "\"/>\n");
     	sb.append("            <desc>" + this.getDescription() + "</desc>\n");
     	sb.append("        </edge>\n");

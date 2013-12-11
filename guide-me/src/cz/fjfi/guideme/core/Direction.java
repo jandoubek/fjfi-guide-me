@@ -139,5 +139,15 @@ public class Direction
             return directions[ordinal];
         }
     }
+    
+    /**
+     * Exports given Direction to its XML.
+     */
+    public StringBuilder exportXML()
+    {
+    	StringBuilder sb = new StringBuilder();
+    	sb.append("            <direction> compass=\"" + compassDirection.name() + "\" vertical=\"" + verticalDirection.name() + "\"</direction>\n");
+    	return sb;
+    }
 
 }
