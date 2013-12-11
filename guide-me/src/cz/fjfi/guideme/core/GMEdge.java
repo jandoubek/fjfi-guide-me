@@ -170,17 +170,19 @@ public class GMEdge
     /***************************************************************************
      * Function for exporting all Edge parameters into XML format
      */
-    public String exportXML()
+    public StringBuilder exportXML()
     {
-    	return new String(    "        <edge guid=\"" + this.getGUID() + "\">\n"
-    						+ "            <name>" + this.getName() + "</name>\n" 
-    						+ "            <distance time=\"" + this.getTimeDistance() + "\" />\n"
-    						+ "            <start guid=\"" + this.getStart().getGUID() + "\" />\n" 
-    						+ "            <end guid=\"" + this.getEnd().getGUID() + "\" />\n"
-    						+ "            <direction>" + this.getDirection() + "</direction>\n"
-    				//		+ "            <location guid=\">" + this.getLocation().getGUID() + "\"/>\n"
-    						+ "            <desc>" + this.getDescription() + "</desc>\n"
-    						+ "        </edge>\n");
+    	StringBuilder sb = new StringBuilder();
+    	sb.append("        <edge guid=\"" + this.getGUID() + "\">\n");
+    	sb.append("            <name>" + this.getName() + "</name>\n"); 
+    	sb.append("            <distance time=\"" + this.getTimeDistance() + "\" />\n");
+    	sb.append("            <start guid=\"" + this.getStart().getGUID() + "\" />\n"); 
+    	sb.append("            <end guid=\"" + this.getEnd().getGUID() + "\" />\n");
+    	sb.append("            <direction>" + this.getDirection() + "</direction>\n");
+    	//sb.append("            <location guid=\">" + this.getLocation().getGUID() + "\"/>\n");
+    	sb.append("            <desc>" + this.getDescription() + "</desc>\n");
+    	sb.append("        </edge>\n");
+    	return sb;
     }
     
 }

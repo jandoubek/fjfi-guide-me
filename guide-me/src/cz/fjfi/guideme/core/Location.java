@@ -102,12 +102,13 @@ public class Location
      * TODO: comment
      */
     //TODO: body
-    public String exportXML()
+    public StringBuilder exportXML()
     {
-    	String output = new String("        <location guid=\"" + this.getGUID() + "\">\n"
-    							 + "            <name>" + this.getName() + "</name>\n"
-    							 + "            <desc>" + this.getDescription() + "</desc>\n"
-    							 + "        </location>\n");
-    	return output;
+    	StringBuilder sb = new StringBuilder();
+    	sb.append("        <location guid=\"" + this.getGUID() + "\">\n");
+    	sb.append("            <name>" + this.getName() + "</name>\n");
+    	sb.append("            <desc>" + this.getDescription() + "</desc>\n");
+    	sb.append("        </location>\n");
+    	return sb;
     }
 }

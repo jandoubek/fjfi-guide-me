@@ -256,33 +256,33 @@ public class GMMap
         this.mappedLocations.add(newLocation);
     }
 
-    public String exportXML()
+    public StringBuilder exportXML()
     {
-        String output = new String(
-                "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" 
-              + "<map guid=\"" + this.getGuid() + "\">" 
-              + "    <name>" + this.getName() + "</name>\n" 
-              + "    <author name=\"" + this.getAuthorName() + "\" email=\"" + this.getAuthorEmail() + "\" />\n" 
-              + "    <description>" + this.getDescription() + "</description>\n"
-              + "    <nodelist>\n");
+    	StringBuilder sb = new StringBuilder();
+        sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"); 
+        sb.append("<map guid=\"" + this.getGuid() + "\">");
+        sb.append("    <name>" + this.getName() + "</name>\n");
+        sb.append("    <author name=\"" + this.getAuthorName() + "\" email=\"" + this.getAuthorEmail() + "\" />\n"); 
+        sb.append("    <description>" + this.getDescription() + "</description>\n");
+        sb.append("    <nodelist>\n");
         for (GMNode node : this.mappedNodes)
         {
-            output = output.concat(node.exportXML());
+        	sb.append(node.exportXML());
         }
-        output = output.concat(new String("    </nodelist>\n    <edgelist>\n"));
+        sb.append("    </nodelist>\n    <edgelist>\n");
 
         for (GMEdge edge : this.mappedEdges)
         {
-            output = output.concat(edge.exportXML());
+        	sb.append(edge.exportXML());
         }
-        output = output.concat(new String("    </edgelist>\n    <locationlist>\n"));
+        sb.append("    </edgelist>\n    <locationlist>\n");
 
         for (Location loc : this.mappedLocations)
         {
-            output = output.concat(loc.exportXML());
+        	sb.append(loc.exportXML());
         }
-        output = output.concat(new String("    </locationlist>\n</map>\n"));
-        return output;
+        sb.append("    </locationlist>\n</map>\n");
+        return sb;
     }
 
     /***************************************************************************
@@ -291,7 +291,7 @@ public class GMMap
     public void exportXML(File outputFile)
     {
 
-        String output = exportXML();
+        String output = exportXML().toString();
         // System.out.print(output);
         PrintWriter out;
 

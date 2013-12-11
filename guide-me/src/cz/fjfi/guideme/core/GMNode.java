@@ -122,17 +122,18 @@ public class GMNode
     /***************************************************************************
      * Function for exporting all Node parameters into XML format
      */
-    public String exportXML()
+    public StringBuilder exportXML()
     {
-        String output = new String("        <node guid=\"" + this.getGUID() + "\">\n"
-                                 + "            <name>" + this.getName() + "</name>\n" 
-        		                 + "            <desc>" + this.getDescription() + "</desc>\n" 
-                                 + "            <locs>\n");
+    	StringBuilder sb = new StringBuilder();
+        sb.append("        <node guid=\"" + this.getGUID() + "\">\n");
+        sb.append("            <name>" + this.getName() + "</name>\n");
+        sb.append("            <desc>" + this.getDescription() + "</desc>\n");
+        sb.append("            <locs>\n");
         for (UUID loc : this.locations)
         {
-            output = output.concat(new String("                <loc guid=\"" + loc.toString() + "\" />\n"));
+        	sb.append("                <loc guid=\"" + loc.toString() + "\" />\n");
         }
-        output = output.concat(new String("            </locs>\n" + "</node>\n"));
-        return output;
+        sb.append("            </locs>\n" + "</node>\n");
+        return sb;
     }
 }
