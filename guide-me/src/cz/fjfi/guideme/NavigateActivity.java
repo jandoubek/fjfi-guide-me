@@ -20,13 +20,13 @@ import cz.fjfi.guideme.core.Direction;
 import cz.fjfi.guideme.core.GMEdge;
 import cz.fjfi.guideme.core.Guide;
 
-public class NavigateActivity extends Activity  implements SurfaceHolder.Callback {
+public class NavigateActivity extends Activity  implements SurfaceHolder.Callback 
+{
 	public TextView vypis;
 	private Guide guide = Guide.getInstance();
 	private boolean navigateIsRunning ;
-	private long startTime=0;
+	private long startTime = 0;
 	private NavigateAsync navigateAsync;
-
 	private TextView actualTV,actualTimeTV,nextTV,next2TV;
 	private ImageView actualIV,nextIV,next2IV;
 	private SurfaceView surface;
@@ -34,8 +34,7 @@ public class NavigateActivity extends Activity  implements SurfaceHolder.Callbac
 	private int height;
 	Paint paint;
 	Paint paint2;
-
-
+ 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
@@ -48,7 +47,8 @@ public class NavigateActivity extends Activity  implements SurfaceHolder.Callbac
 		paint2.setColor(Color.BLACK);
 	}
 
-	private void initWidget() {
+	private void initWidget() 
+	{
 		actualTV = (TextView) findViewById(R.id.navigate_tv_actual);
 		actualTimeTV = (TextView) findViewById(R.id.navigate_tv_actual_time);
 		nextTV = (TextView) findViewById(R.id.navigate_tv_next);
@@ -71,7 +71,7 @@ public class NavigateActivity extends Activity  implements SurfaceHolder.Callbac
 		getMenuInflater().inflate(R.menu.navigate, menu);
 		return true;
 	}
-
+	// klik na tlacitko Start navigace
 	public void navigate_bt_start_OnClick(View view)
 	{
 		if (!navigateIsRunning)
@@ -81,12 +81,12 @@ public class NavigateActivity extends Activity  implements SurfaceHolder.Callbac
 			startAsync();
 		}
 	}
-
+	// kliknuti na tlacitko Dalsi
 	public void navigate_bt_next_OnClick(View view)
 	{
 		guide.goToNextStretch(System.currentTimeMillis()-startTime);
 	}
-
+	// kliknuti na tlacitko Predchozi
 	public void navigate_bt_previous_OnClick(View view)
 	{
 		guide.goToPreviousStretch(System.currentTimeMillis()-startTime);
@@ -123,19 +123,22 @@ public class NavigateActivity extends Activity  implements SurfaceHolder.Callbac
 		}
 	}
 
-	public void setStartTime(long startTime){
+	public void setStartTime(long startTime)
+	{
 		this.startTime=startTime;
 	}
 
 	@Override
-	protected void onStop() {
+	protected void onStop() 
+	{
 		if(navigateAsync!=null)
 			navigateAsync.cancel(false);
 		super.onStop();
 	}
 
 	@Override
-	public void surfaceChanged(SurfaceHolder holder, int frmt, int w, int h) {
+	public void surfaceChanged(SurfaceHolder holder, int frmt, int w, int h) 
+	{
 		/*Canvas canvas = holder.lockCanvas();
 		if (canvas != null) {
 			canvas.drawRGB(255, 255, 255);
@@ -148,45 +151,53 @@ public class NavigateActivity extends Activity  implements SurfaceHolder.Callbac
 	}
 
 	@Override
-	public void surfaceCreated(SurfaceHolder holder) {
+	public void surfaceCreated(SurfaceHolder holder) 
+	{
 		Canvas canvas = holder.lockCanvas();
-		if (canvas != null) {
+		if (canvas != null) 
+		{
 			//canvas.drawRGB(255, 255, 255);
 			holder.unlockCanvasAndPost(canvas);
 		}
 	}
 
 	@Override
-	public void surfaceDestroyed(SurfaceHolder holder) {
+	public void surfaceDestroyed(SurfaceHolder holder) 
+	{
 		// TODO Auto-generated method stub
 
 	}
-	public void tryDrawing(final Canvas canvas, GMEdge edge, boolean route, Direction.Relative direction) {
-		if (canvas != null) {
+	public void tryDrawing(final Canvas canvas, GMEdge edge, boolean route, Direction.Relative direction) 
+	{
+		if (canvas != null) 
+		{
 			if(direction == Direction.Relative.Straight )
 			{
 				drawMyNextPointToStraight(canvas, edge, route);
-			}else if(direction == Direction.Relative.Right)
+			}
+			else if(direction == Direction.Relative.Right)
 			{
 				drawMyNextPointToRight(canvas, edge, route);
-			}else if(direction == Direction.Relative.Left)
+			}
+			else if(direction == Direction.Relative.Left)
 			{
 				drawMyNextPointToLeft(canvas, edge, route);
 			}
-			
 		}
 	}
 
-	public void tryDrawingStart(final Canvas canvas, GMEdge edge, boolean route, Direction.Relative direction) {
-		
-		if (canvas != null) {
+	public void tryDrawingStart(final Canvas canvas, GMEdge edge, boolean route, Direction.Relative direction) 
+	{	
+		if (canvas != null) 
+		{
 			//drawMyStuff(canvas);
 			drawMyPoint(canvas);
 			drawMyNextPoint(canvas, edge, direction);
 		}
 	}
 
-	private void drawMyPoint( Canvas canvas){
+	private void drawMyPoint(Canvas canvas)
+	{
 		int w = width/8;
 		int h = height/8;
 		//vychozi pozice
@@ -194,24 +205,27 @@ public class NavigateActivity extends Activity  implements SurfaceHolder.Callbac
 		canvas.drawCircle(3*w, 5*h, circle, paint);
 	}
 
-	private void drawMyNextPoint(Canvas canvas, GMEdge edge, Direction.Relative next){
-
+	private void drawMyNextPoint(Canvas canvas, GMEdge edge, Direction.Relative next)
+	{
 		int w = width/8;
 		int h = height/8;
 		//nasledujici bod (uprostred)
 		List<GMEdge> edges = guide.getCurrentMap().getEdgesStartingIn(edge.getEnd());	
-		for(GMEdge edget : edges){
+		for(GMEdge edget : edges)
+		{
 			Direction.Relative direction = edge.getDirection().subtract(edget.getDirection());
 			if(direction == Direction.Relative.Straight )
 			{
 
 				canvas.drawLine(3*w, 4*h, 3*w, 3*h, next==Direction.Relative.Straight?paint:paint2);//nahoru
 				if(next!=Direction.Relative.Straight)canvas.drawText(edget.getDescription(), 3*w, 3*h, paint2);
-			}else if(direction == Direction.Relative.SharpRight | direction == Direction.Relative.SlightRight| direction == Direction.Relative.Right)
+			}
+			else if(direction == Direction.Relative.SharpRight | direction == Direction.Relative.SlightRight| direction == Direction.Relative.Right)
 			{
 				canvas.drawLine(3*w, 4*h, 4*w, 4*h, next==Direction.Relative.Right?paint:paint2); //napravo
 				if(next!=Direction.Relative.Right)canvas.drawText(edget.getDescription(), 4*w, 4*h, paint2);
-			}else if(direction == Direction.Relative.SharpLeft | direction == Direction.Relative.SlightLeft | direction == Direction.Relative.Left){
+			}
+			else if(direction == Direction.Relative.SharpLeft | direction == Direction.Relative.SlightLeft | direction == Direction.Relative.Left){
 				canvas.drawLine(2*w, 4*h, 3*w, 4*h, next==Direction.Relative.Left?paint:paint2); 
 				if(next!=Direction.Relative.Left)canvas.drawText(edget.getDescription(), 3*w, 4*h, paint2);
 			}
@@ -219,7 +233,8 @@ public class NavigateActivity extends Activity  implements SurfaceHolder.Callbac
 		canvas.drawCircle(3*w, 4*h, circle, paint2);
 	}
 
-	private void drawMyNextPointToLeft( Canvas canvas, GMEdge edge,boolean route){
+	private void drawMyNextPointToLeft( Canvas canvas, GMEdge edge,boolean route)
+	{
 		Paint paint = new Paint();
 		paint.setColor(Color.GREEN);
 		int w = width/8;
@@ -231,29 +246,35 @@ public class NavigateActivity extends Activity  implements SurfaceHolder.Callbac
 
 
 
-		if(route){
+		if(route)
+		{
 
 			List<GMEdge> edges = guide.getCurrentMap().getEdgesStartingIn(edge.getEnd());	
-			for(GMEdge edget : edges){
+			for(GMEdge edget : edges)
+			{
 				Direction.Relative direction = edge.getDirection().subtract(edget.getDirection());
 				if(direction == Direction.Relative.Straight )
 				{
 					canvas.drawLine(2*w, 4*h, 1*w, 4*h, paint);//nalevo
 					canvas.drawText(edget.getDescription(), 1*w, 4*h, paint2);
-				}else if(direction == Direction.Relative.SharpRight | direction == Direction.Relative.SlightRight| direction == Direction.Relative.Right)
+				}
+				else if(direction == Direction.Relative.SharpRight | direction == Direction.Relative.SlightRight| direction == Direction.Relative.Right)
 				{
 					canvas.drawLine(2*w, 4*h, 2*w, 3*h, paint);//nahoru
 					canvas.drawText(edget.getDescription(), 2*w, 3*h, paint2); 
-				}else if(direction == Direction.Relative.SharpLeft | direction == Direction.Relative.SlightLeft | direction == Direction.Relative.Left){
+				}
+				else if(direction == Direction.Relative.SharpLeft | direction == Direction.Relative.SlightLeft | direction == Direction.Relative.Left){
 					canvas.drawLine(2*w, 4*h, 2*w, 5*h, paint);//dolu
 					canvas.drawText(edget.getDescription(), 2*w, 5*h, paint2); 
 				}
 			} 
 			canvas.drawCircle(2*w, 4*h, circle, paint2);
-		}else canvas.drawText(edge.getDescription(), 2*w, 4*h, paint2);
+		}
+		else canvas.drawText(edge.getDescription(), 2*w, 4*h, paint2);
 	}
 
-	private void drawMyNextPointToStraight( Canvas canvas, GMEdge edge, boolean route){
+	private void drawMyNextPointToStraight( Canvas canvas, GMEdge edge, boolean route)
+	{
 		Paint paint = new Paint();
 		paint.setColor(Color.GREEN);
 		Paint paint2 = new Paint();
@@ -262,32 +283,38 @@ public class NavigateActivity extends Activity  implements SurfaceHolder.Callbac
 		int h = height/8;
 
 		//bod nahoru od nasledujiciho
-		if(route){
+		if(route)
+		{
 
 			List<GMEdge> edges = guide.getCurrentMap().getEdgesStartingIn(edge.getEnd());	
-			for(GMEdge edget : edges){
+			for(GMEdge edget : edges)
+			{
 				Direction.Relative direction = edge.getDirection().subtract(edget.getDirection());
 				if(direction == Direction.Relative.Straight )
 				{
 					canvas.drawLine(3*w, 3*h, 3*w, 2*h, paint2);//naohru
 					canvas.drawText(edget.getDescription(), 3*w, 2*h, paint2);
-				}else if(direction == Direction.Relative.SharpRight | direction == Direction.Relative.SlightRight| direction == Direction.Relative.Right)
+				}
+				else if(direction == Direction.Relative.SharpRight | direction == Direction.Relative.SlightRight| direction == Direction.Relative.Right)
 				{
 					canvas.drawLine(3*w, 3*h, 4*w, 3*h, paint2);//doprava
 					canvas.drawText(edget.getDescription(), 4*w, 3*h, paint2); 
-				}else if(direction == Direction.Relative.SharpLeft | direction == Direction.Relative.SlightLeft | direction == Direction.Relative.Left){
+				}
+				else if(direction == Direction.Relative.SharpLeft | direction == Direction.Relative.SlightLeft | direction == Direction.Relative.Left){
 					canvas.drawLine(3*w, 3*h, 2*w, 3*h, paint2);//doleva
 					canvas.drawText(edget.getDescription(), 2*w, 3*h, paint2);
 				}
 			}
 			canvas.drawCircle(3*w, 3*h, circle, paint2);
-		}else canvas.drawText(edge.getDescription(), 3*w, 3*h, paint2);
+		}
+		else canvas.drawText(edge.getDescription(), 3*w, 3*h, paint2);
 
 
 
 	}
 
-	private void drawMyNextPointToRight(Canvas canvas, GMEdge edge, boolean route){
+	private void drawMyNextPointToRight(Canvas canvas, GMEdge edge, boolean route)
+	{
 		Paint paint = new Paint();
 		paint.setColor(Color.GREEN);
 		Paint paint2 = new Paint();
@@ -296,26 +323,31 @@ public class NavigateActivity extends Activity  implements SurfaceHolder.Callbac
 		int h = height/8;
 
 		//bod napravo od nasledujiciho
-		if(route){
+		if(route)
+		{
 
 			List<GMEdge> edges = guide.getCurrentMap().getEdgesStartingIn(edge.getEnd());	
-			for(GMEdge edget : edges){
+			for(GMEdge edget : edges)
+			{
 				Direction.Relative direction = edge.getDirection().subtract(edget.getDirection());
 				if(direction == Direction.Relative.Straight )
 				{
 					canvas.drawLine(4*w, 4*h, 5*w, 4*h, paint);//napravo
 					canvas.drawText(edget.getDescription(), 5*w, 4*h, paint2);	
-				}else if(direction == Direction.Relative.SharpRight | direction == Direction.Relative.SlightRight| direction == Direction.Relative.Right)
+				}
+				else if(direction == Direction.Relative.SharpRight | direction == Direction.Relative.SlightRight| direction == Direction.Relative.Right)
 				{
 					canvas.drawLine(4*w, 4*h, 4*w, 5*h, paint2);//dolu
 					canvas.drawText(edget.getDescription(), 4*w, 5*h, paint2);	
-				}else if(direction == Direction.Relative.SharpLeft | direction == Direction.Relative.SlightLeft | direction == Direction.Relative.Left){
+				}
+				else if(direction == Direction.Relative.SharpLeft | direction == Direction.Relative.SlightLeft | direction == Direction.Relative.Left){
 					canvas.drawLine(4*w, 4*h, 4*w, 3*h, paint2);//nahoru
 					canvas.drawText("dole", 4*w, 3*h, paint2);	
 				}
 			} 
 			canvas.drawCircle(4*w, 4*h, circle, paint2);
-		}else canvas.drawText(edge.getDescription(), 4*w, 4*h, paint2);
+		}
+		else canvas.drawText(edge.getDescription(), 4*w, 4*h, paint2);
 
 	}
 	private int circle = 5;
@@ -375,40 +407,49 @@ public class NavigateActivity extends Activity  implements SurfaceHolder.Callbac
 		canvas.drawText("vpravo", 4*w, 3*h, new Paint());
 	}
 	 */
-	public TextView getActualTV() {
+	public TextView getActualTV() 
+	{
 		return actualTV;
 	}
 
-	public TextView getActualTimeTV() {
+	public TextView getActualTimeTV() 
+	{
 		return actualTimeTV;
 	}
 
-	public TextView getNextTV() {
+	public TextView getNextTV() 
+	{
 		return nextTV;
 	}
 
-	public TextView getNext2TV() {
+	public TextView getNext2TV() 
+	{
 		return next2TV;
 	}
 
-	public ImageView getActualIV() {
+	public ImageView getActualIV() 
+	{
 		return actualIV;
 	}
 
-	public ImageView getNextIV() {
+	public ImageView getNextIV() 
+	{
 		return nextIV;
 	}
 
-	public ImageView getNext2IV() {
+	public ImageView getNext2IV() 
+	{
 		return next2IV;
 	}
 
-	public SurfaceView getSurface() {
+	public SurfaceView getSurface() 
+	{
 		return surface;
 	}
 
 
-	public void hideWidgets(){
+	public void hideWidgets()
+	{
 		RelativeLayout rl = (RelativeLayout) findViewById(R.id.relativeLayout2); 
 		rl.setVisibility(View.INVISIBLE);
 		rl = (RelativeLayout) findViewById(R.id.relativeLayout3);
