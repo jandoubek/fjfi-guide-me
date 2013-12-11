@@ -24,7 +24,7 @@
         android:layout_centerVertical="true"
         android:onClick="menu_bt_createMap_onClick"
         android:text="@string/menu_bt_create_map"
-        android:enabled="false" />
+        android:enabled="false" /> <!-- tunkce tlacitka Vytvor mapu zatim neni implementovana. Bude az v dalsim semestru. -->
 
     <Button
         android:id="@+id/buttonSettings"
@@ -34,7 +34,8 @@
         android:layout_alignRight="@+id/buttonCreateMap"
         android:layout_below="@+id/buttonCreateMap"
         android:onClick="menu_bt_settings_onClick"
-        android:text="@string/menu_bt_settings" />
+        android:text="@string/menu_bt_settings" 
+		android:enabled="false" /> <!-- tunkce tlacitka Nastaveni zatim neni implementovana. Bude az v dalsim semestru. -->
 
     <Button
         android:id="@+id/buttonNavigate"
