@@ -34,7 +34,7 @@ public class NavigateActivity extends Activity  implements SurfaceHolder.Callbac
 	private int height;
 	Paint paint;
 	Paint paint2;
- 
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
@@ -139,11 +139,11 @@ public class NavigateActivity extends Activity  implements SurfaceHolder.Callbac
 	@Override
 	public void surfaceChanged(SurfaceHolder holder, int frmt, int w, int h) 
 	{
-		/*Canvas canvas = holder.lockCanvas();
+		Canvas canvas = holder.lockCanvas();
 		if (canvas != null) {
 			canvas.drawRGB(255, 255, 255);
 			holder.unlockCanvasAndPost(canvas);
-		}*/
+		}
 		width  = w;
 		height = h;
 
@@ -156,7 +156,7 @@ public class NavigateActivity extends Activity  implements SurfaceHolder.Callbac
 		Canvas canvas = holder.lockCanvas();
 		if (canvas != null) 
 		{
-			//canvas.drawRGB(255, 255, 255);
+			canvas.drawRGB(255, 255, 255);
 			holder.unlockCanvasAndPost(canvas);
 		}
 	}
@@ -218,16 +218,16 @@ public class NavigateActivity extends Activity  implements SurfaceHolder.Callbac
 			{
 
 				canvas.drawLine(3*w, 4*h, 3*w, 3*h, next==Direction.Relative.Straight?paint:paint2);//nahoru
-				if(next!=Direction.Relative.Straight)canvas.drawText(edget.getDescription(), 3*w, 3*h, paint2);
+				//if(next!=Direction.Relative.Straight)canvas.drawText(edget.getDescription(), 3*w, 3*h, paint2);
 			}
 			else if(direction == Direction.Relative.SharpRight | direction == Direction.Relative.SlightRight| direction == Direction.Relative.Right)
 			{
 				canvas.drawLine(3*w, 4*h, 4*w, 4*h, next==Direction.Relative.Right?paint:paint2); //napravo
-				if(next!=Direction.Relative.Right)canvas.drawText(edget.getDescription(), 4*w, 4*h, paint2);
+				//if(next!=Direction.Relative.Right)canvas.drawText(edget.getDescription(), 4*w, 4*h, paint2);
 			}
 			else if(direction == Direction.Relative.SharpLeft | direction == Direction.Relative.SlightLeft | direction == Direction.Relative.Left){
 				canvas.drawLine(2*w, 4*h, 3*w, 4*h, next==Direction.Relative.Left?paint:paint2); 
-				if(next!=Direction.Relative.Left)canvas.drawText(edget.getDescription(), 3*w, 4*h, paint2);
+				//if(next!=Direction.Relative.Left)canvas.drawText(edget.getDescription(), 3*w, 4*h, paint2);
 			}
 		} 
 		canvas.drawCircle(3*w, 4*h, circle, paint2);
@@ -256,21 +256,21 @@ public class NavigateActivity extends Activity  implements SurfaceHolder.Callbac
 				if(direction == Direction.Relative.Straight )
 				{
 					canvas.drawLine(2*w, 4*h, 1*w, 4*h, paint);//nalevo
-					canvas.drawText(edget.getDescription(), 1*w, 4*h, paint2);
+					//canvas.drawText(edget.getDescription(), 1*w, 4*h, paint2);
 				}
 				else if(direction == Direction.Relative.SharpRight | direction == Direction.Relative.SlightRight| direction == Direction.Relative.Right)
 				{
 					canvas.drawLine(2*w, 4*h, 2*w, 3*h, paint);//nahoru
-					canvas.drawText(edget.getDescription(), 2*w, 3*h, paint2); 
+					//canvas.drawText(edget.getDescription(), 2*w, 3*h, paint2); 
 				}
 				else if(direction == Direction.Relative.SharpLeft | direction == Direction.Relative.SlightLeft | direction == Direction.Relative.Left){
 					canvas.drawLine(2*w, 4*h, 2*w, 5*h, paint);//dolu
-					canvas.drawText(edget.getDescription(), 2*w, 5*h, paint2); 
+					//canvas.drawText(edget.getDescription(), 2*w, 5*h, paint2); 
 				}
 			} 
 			canvas.drawCircle(2*w, 4*h, circle, paint2);
 		}
-		else canvas.drawText(edge.getDescription(), 2*w, 4*h, paint2);
+		//else canvas.drawText(edge.getDescription(), 2*w, 4*h, paint2);
 	}
 
 	private void drawMyNextPointToStraight( Canvas canvas, GMEdge edge, boolean route)
@@ -293,21 +293,21 @@ public class NavigateActivity extends Activity  implements SurfaceHolder.Callbac
 				if(direction == Direction.Relative.Straight )
 				{
 					canvas.drawLine(3*w, 3*h, 3*w, 2*h, paint2);//naohru
-					canvas.drawText(edget.getDescription(), 3*w, 2*h, paint2);
+					//		canvas.drawText(edget.getDescription(), 3*w, 2*h, paint2);
 				}
 				else if(direction == Direction.Relative.SharpRight | direction == Direction.Relative.SlightRight| direction == Direction.Relative.Right)
 				{
 					canvas.drawLine(3*w, 3*h, 4*w, 3*h, paint2);//doprava
-					canvas.drawText(edget.getDescription(), 4*w, 3*h, paint2); 
+					//	canvas.drawText(edget.getDescription(), 4*w, 3*h, paint2); 
 				}
 				else if(direction == Direction.Relative.SharpLeft | direction == Direction.Relative.SlightLeft | direction == Direction.Relative.Left){
 					canvas.drawLine(3*w, 3*h, 2*w, 3*h, paint2);//doleva
-					canvas.drawText(edget.getDescription(), 2*w, 3*h, paint2);
+					//canvas.drawText(edget.getDescription(), 2*w, 3*h, paint2);
 				}
 			}
 			canvas.drawCircle(3*w, 3*h, circle, paint2);
 		}
-		else canvas.drawText(edge.getDescription(), 3*w, 3*h, paint2);
+		//	else canvas.drawText(edge.getDescription(), 3*w, 3*h, paint2);
 
 
 
@@ -317,6 +317,7 @@ public class NavigateActivity extends Activity  implements SurfaceHolder.Callbac
 	{
 		Paint paint = new Paint();
 		paint.setColor(Color.GREEN);
+		
 		Paint paint2 = new Paint();
 		paint.setColor(Color.WHITE);
 		int w = width/8;
@@ -333,80 +334,25 @@ public class NavigateActivity extends Activity  implements SurfaceHolder.Callbac
 				if(direction == Direction.Relative.Straight )
 				{
 					canvas.drawLine(4*w, 4*h, 5*w, 4*h, paint);//napravo
-					canvas.drawText(edget.getDescription(), 5*w, 4*h, paint2);	
+					//			canvas.drawText(edget.getDescription(), 5*w, 4*h, paint2);	
 				}
 				else if(direction == Direction.Relative.SharpRight | direction == Direction.Relative.SlightRight| direction == Direction.Relative.Right)
 				{
 					canvas.drawLine(4*w, 4*h, 4*w, 5*h, paint2);//dolu
-					canvas.drawText(edget.getDescription(), 4*w, 5*h, paint2);	
+					//		canvas.drawText(edget.getDescription(), 4*w, 5*h, paint2);	
 				}
 				else if(direction == Direction.Relative.SharpLeft | direction == Direction.Relative.SlightLeft | direction == Direction.Relative.Left){
 					canvas.drawLine(4*w, 4*h, 4*w, 3*h, paint2);//nahoru
-					canvas.drawText("dole", 4*w, 3*h, paint2);	
+					//	canvas.drawText("dole", 4*w, 3*h, paint2);	
 				}
 			} 
 			canvas.drawCircle(4*w, 4*h, circle, paint2);
 		}
-		else canvas.drawText(edge.getDescription(), 4*w, 4*h, paint2);
+		//else canvas.drawText(edge.getDescription(), 4*w, 4*h, paint2);
 
 	}
-	private int circle = 5;
-	/*private void drawMyStuff(final Canvas canvas) {
+	private int circle = 20;
 
-		canvas.drawRGB(255, 255, 255);
-		Paint paint = new Paint();
-		paint.setColor(Color.GREEN);
-		int w = width/8;
-		int h = height/8;
-		//vychozi pozice
-		canvas.drawCircle(3*w, 5*h, 20, paint);
-		canvas.drawLine(3*w, 4*h, 3*w, 5*h, paint);
-		//nasledujici bod (uprostred)
-
-		canvas.drawLine(2*w, 4*h, 3*w, 4*h, new Paint());  //vlevo
-		canvas.drawLine(3*w, 4*h, 4*w, 4*h, paint); //napravo
-		canvas.drawLine(3*w, 4*h, 3*w, 3*h, new Paint());//nahoru
-		canvas.drawCircle(3*w, 4*h, 20, new Paint());
-
-		//bod nalevo od nasledujiciho
-		canvas.drawText("chodba", 2*w, 4*h, new Paint());
-		canvas.drawCircle(2*w, 4*h, 20, new Paint());
-
-		canvas.drawLine(2*w, 4*h, 1*w, 4*h, paint);//nalevo
-		canvas.drawText("vlevo", 1*w, 4*h, new Paint());
-		canvas.drawLine(2*w, 4*h, 2*w, 3*h, paint);//nahoru
-		canvas.drawText("nahore", 2*w, 3*h, new Paint());
-		canvas.drawLine(2*w, 4*h, 2*w, 5*h, paint);//dolu
-		canvas.drawText("dole", 2*w, 5*h, new Paint());
-
-		//bod napravo od nasledujiciho
-		canvas.drawText("T-211", 4*w, 4*h, new Paint());
-		canvas.drawCircle(4*w, 4*h, 20, new Paint());
-
-		canvas.drawLine(4*w, 4*h, 5*w, 4*h, paint);//napravo
-		canvas.drawText("vpravo", 5*w, 4*h, new Paint());		
-
-		canvas.drawLine(4*w, 4*h, 4*w, 3*h, new Paint());//nahoru
-		canvas.drawText("nahore", 4*w, 3*h, new Paint());	
-
-		canvas.drawLine(4*w, 4*h, 4*w, 5*h, new Paint());//dolu
-		canvas.drawText("dole", 4*w, 5*h, new Paint());	
-
-		//bod nahoru od nasledujiciho
-		canvas.drawText("T-211", 3*w, 3*h, new Paint());
-		canvas.drawCircle(3*w, 3*h, 20, new Paint());
-
-
-		canvas.drawLine(3*w, 3*h, 3*w, 2*h, new Paint());//naohru
-		canvas.drawText("nahore", 3*w, 2*h, new Paint());
-
-		canvas.drawLine(3*w, 3*h, 2*w, 3*h, new Paint());//doleva
-		canvas.drawText("vlevo", 2*w, 3*h, new Paint());
-
-		canvas.drawLine(3*w, 3*h, 4*w, 3*h, new Paint());//doprava
-		canvas.drawText("vpravo", 4*w, 3*h, new Paint());
-	}
-	 */
 	public TextView getActualTV() 
 	{
 		return actualTV;

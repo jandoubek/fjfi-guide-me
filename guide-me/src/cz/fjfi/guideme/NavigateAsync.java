@@ -18,6 +18,7 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 	private long startTime;
 	private NavigateActivity context;
 	private Guide guide = Guide.getInstance();
+	private GMEdge previousEdge;
 
 	public NavigateAsync(NavigateActivity context, long timeStart){
 		this.context=context;
@@ -75,8 +76,8 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 		{
 			context.getActualTV().setText(edge.getDescription()); 
 			context.getActualTimeTV().setText((edge.getTimeDistance() - point.getEdgeDistancePassed())/1000 + " s");
-
-			//context.getActualIV().setImageResource(getDirectionImage(edge));
+			if(previousEdge!=null)
+				context.getActualIV().setImageResource( getDirectionImage(previousEdge.getDirection().subtract(edge.getDirection())));
 			SurfaceHolder holder = context.getSurface().getHolder();
 			Canvas canvas = holder.lockCanvas();
 			canvas.drawRGB(255, 255, 255);
@@ -105,38 +106,43 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 				}
 
 				context.getNextTV().setText(nextEdge.getDescription());
-				//context.getNextIV().setImageResource(getDirectionImage(direction));
+				context.getNextIV().setImageResource(getDirectionImage(direction));
 				if (currentPosition.hasNext())
 				{
-					currentPosition.copy().get();
-					nextEdge = currentPosition.next();
-					Direction.Relative direction2 = currentPosition.copy().get().getDirection().subtract(nextEdge.getDirection());
+					//currentPosition.copy().get();
+					GMEdge nextEdge2 = currentPosition.next();
+					Direction.Relative direction2 = nextEdge2.getDirection().subtract(nextEdge2.getDirection());
 					if(direction2 == Direction.Relative.Straight )
 					{
-						context.tryDrawing(canvas, nextEdge, true, Direction.Relative.Straight);
+						context.tryDrawing(canvas, nextEdge2, true, Direction.Relative.Straight);
 					}
 					else if(direction2 == Direction.Relative.SharpRight | direction == Direction.Relative.SlightRight| direction == Direction.Relative.Right)
 					{
-						context.tryDrawing(canvas, nextEdge, true, Direction.Relative.Right);
+						context.tryDrawing(canvas, nextEdge2, true, Direction.Relative.Right);
 					}
 					else if(direction2 == Direction.Relative.SharpLeft | direction == Direction.Relative.SlightLeft | direction == Direction.Relative.Left)
 					{
-						context.tryDrawing(canvas, nextEdge, true, Direction.Relative.Left);
-						}
+						context.tryDrawing(canvas, nextEdge2, true, Direction.Relative.Left);
+					}
 
-					context.getNext2TV().setText(nextEdge.getDescription());
+					context.getNext2TV().setText(nextEdge2.getDescription());
 					//context.tryDrawing(canvas, nextEdge, true, Direction.Relative.Back);
-					//context.getNext2IV().setImageResource(getDirectionImage(nextEdge));
+					context.getNext2IV().setImageResource(getDirectionImage( nextEdge.getDirection().subtract(nextEdge2.getDirection())));
 				}else{
 					context.getNext2TV().setText("");
 					context.getNext2IV().setVisibility(View.INVISIBLE);
 				}
 			}else{
 				context.getNextTV().setText("");
-				context.getNextIV().setVisibility(View.VISIBLE);
+				context.getNextIV().setVisibility(View.INVISIBLE);
 				//context.tryDrawingStart(canvas, edge, false, Direction.Relative.Back);				
 			}
 			holder.unlockCanvasAndPost(canvas);
+			
+			if(previousEdge==null) previousEdge=edge;
+			if(previousEdge.getGUID()!=edge.getGUID())
+				previousEdge = edge;
+			
 		}
 	}
 
@@ -147,22 +153,22 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 			return R.drawable.back_1;
 
 		case Right:
-			return R.drawable.right_1;
-
-		case SharpRight:
-			return R.drawable.right_2;
-
-		case SlightRight:
-			return R.drawable.right_3;
-
-		case Left:
-			return R.drawable.left_1;
-
-		case SharpLeft:
 			return R.drawable.left_2;
 
-		case SlightLeft:
+		case SharpRight:
 			return R.drawable.left_3;
+
+		case SlightRight:
+			return R.drawable.left_1;
+
+		case Left:
+			return R.drawable.right_2;
+
+		case SharpLeft:
+			return R.drawable.right_3;
+
+		case SlightLeft:
+			return R.drawable.right_1;
 
 		case Straight:
 			return R.drawable.straight_1;
