@@ -146,8 +146,6 @@ public class NavigateActivity extends Activity  implements SurfaceHolder.Callbac
 		}
 		width  = w;
 		height = h;
-
-		Log.e("", width + " " + height);
 	}
 
 	@Override
@@ -317,7 +315,7 @@ public class NavigateActivity extends Activity  implements SurfaceHolder.Callbac
 	{
 		Paint paint = new Paint();
 		paint.setColor(Color.GREEN);
-		
+
 		Paint paint2 = new Paint();
 		paint.setColor(Color.WHITE);
 		int w = width/8;

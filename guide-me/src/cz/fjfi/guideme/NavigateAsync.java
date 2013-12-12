@@ -44,7 +44,7 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 					wait(updateTime);
 					time += updateTime;
 					label = generateLabel(guide.getCurrentRoutePoint(System.currentTimeMillis()-startTime));
-					//Log.d("NAVIGATEASYNC", generatTestLAbel(guide.getCurrentRoutePoint(System.currentTimeMillis()-startTime)));
+					
 					publishProgress(label);
 					if(time>60000){
 						return null;
@@ -60,7 +60,6 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 
 	@Override
 	protected void onProgressUpdate(String... progress) {
-		//context.vypis.setText(progress[0]);
 		context.setStartTime(startTime);
 		RoutePoint point = guide.getCurrentRoutePoint(System.currentTimeMillis()-startTime);
 		RouteIterator currentPosition = point.getIterator();
@@ -233,37 +232,6 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 			{
 				RouteStretch nextStretch = currentPosition.nextStretch();
 				label += nextStretch.getStart().getName() + " -- " + nextStretch.getEnd().getName();
-			}
-
-		}
-		return label;
-	}
-
-	private String generatTestLAbel(RoutePoint point){
-		RouteIterator currentPosition = point.getIterator();
-		GMEdge edge = currentPosition.get();
-		String label;
-		GMNode endpoint = guide.getCurrentRoute().getEnd();
-		if (guide.reachedDestination())
-		{
-			label = "Dosazen cil: " + endpoint.getDescription();
-		}
-		else
-		{
-			label = 
-					"Nyni se nachazite na: " + edge.getDescription()  + "(" +
-							(edge.getTimeDistance() - point.getEdgeDistancePassed())/1000 + "s) \n";
-
-
-			if (currentPosition.hasNext())
-			{
-				GMEdge nextEdge = currentPosition.next();
-				label+="dalsi: " + nextEdge.getDescription();
-				if (currentPosition.hasNext())
-				{
-					nextEdge = currentPosition.next();
-					label+="dalsi: " + nextEdge.getDescription();
-				}
 			}
 
 		}
