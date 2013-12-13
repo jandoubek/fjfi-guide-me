@@ -105,10 +105,10 @@ public class Location
     public StringBuilder exportXML()
     {
     	StringBuilder sb = new StringBuilder();
-    	sb.append("        <location guid=\"" + this.getGUID() + "\">\n");
-    	sb.append("            <name>" + this.getName() + "</name>\n");
-    	sb.append("            <desc>" + this.getDescription() + "</desc>\n");
-    	sb.append("        </location>\n");
+    	sb.append("        <location guid=\"" + this.getGUID() + "\">\r\n");
+    	sb.append("            <name>" + this.getName() + "</name>\r\n");
+    	sb.append("            <desc>" + this.getDescription() + "</desc>\r\n");
+    	sb.append("        </location>\r\n");
     	return sb;
     }
 }
