@@ -146,7 +146,7 @@ public class Direction
     public StringBuilder exportXML()
     {
     	StringBuilder sb = new StringBuilder();
-    	sb.append("            <direction compass=\"" + compassDirection.name() + "\" vertical=\"" + verticalDirection.name() + "\" />\n");
+    	sb.append("            <direction compass=\"" + compassDirection.name() + "\" vertical=\"" + verticalDirection.name() + "\" />\r\n");
     	return sb;
     }
 

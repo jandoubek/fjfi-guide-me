@@ -133,7 +133,7 @@ public class GMNode
         {
         	sb.append("                <loc guid=\"" + loc.toString() + "\" />\r\n");
         }
-        sb.append("            </locs>\n" + "</node>\r\n");
+        sb.append("            </locs>\r\n" + "</node>\r\n");
         return sb;
     }
 }
