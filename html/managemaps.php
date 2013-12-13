@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 
   // priprava na formular s potvrzenim smazani souboru
@@ -41,7 +41,7 @@
 		$gpscoords = htmlspecialchars($_POST['NewGpsCoords']);
 		$author_name = htmlspecialchars($_POST['NewAuthorName']);
 		$author_email = htmlspecialchars($_POST['NewAuthorEmail']);
-
+		
 		$zpr = '';
 		
 		if (empty($name)) {
@@ -79,19 +79,18 @@
 		
 		if (empty($zpr)) {	
 
-		
 		  // provest zmeny v xml souboru na serveru			
 			$soubor_cesta = './maps/'  . $guid . '.xml';			
-			$xmlobj = simplexml_load_file($soubor_cesta);	
 			
-			$xmlobj->map->name = $name;
-			$xmlobj->map->description = $description;
-			$xmlobj->map->gpscoords = $gpscoords;
-			$xmlobj->map->author['name'] = $author_name;
-			$xmlobj->map->author['email'] = $author_email;
-		
-			$xmlobj->asXML($soubor_cesta);			
+			$xmlobj = simplexml_load_file($soubor_cesta);					
+					
+			$xmlobj->name[0] = $name;					
+			$xmlobj->description[0] = $description;
+			$xmlobj->gpscoords[0] = $gpscoords;
+			$xmlobj->author['name'] = $author_name;
+			$xmlobj->author['email'] = $author_email;
 
+			file_put_contents($soubor_cesta, $xmlobj->asXml());		
 
 		  // aktualizovat soubor s hlavickami
 			update_headings();	
@@ -277,7 +276,7 @@ function f_serad_dle_data_zmeny_sestupne() {
 function f_display($nazev_s) {
  
   $obsah = '';
-  $obsah .= '<div style="position: relative; top: -40px;">';	
+  $obsah .= '<div style="position: relative; top: -3px;">';	
 	$obsah .= '<h3>Nahrané mapy</h3><br />';	
 	
 	$obsahadr = zjisti_obsah_adresare('./maps/');
