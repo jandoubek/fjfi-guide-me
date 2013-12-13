@@ -1,10 +1,14 @@
 
 package cz.fjfi.guideme.core;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.io.Writer;
 //import java.util.UUID;
 import java.util.*;
 
@@ -255,7 +259,10 @@ public class GMMap
     {
         this.mappedLocations.add(newLocation);
     }
-
+    
+    /**
+     * Exports whole map to huge string, which represents map in XML.
+     */
     public StringBuilder exportXML()
     {
     	StringBuilder sb = new StringBuilder();
@@ -293,13 +300,16 @@ public class GMMap
 
         String output = exportXML().toString();
         // System.out.print(output);
-        PrintWriter out;
+        Writer out;
 
         try
         {
-            out = new PrintWriter(new FileWriter(outputFile));
-            out.print(output);
-            out.close();
+            out = new BufferedWriter(new OutputStreamWriter(
+        			new FileOutputStream(outputFile), "UTF8"));
+            out.append(output);
+            
+    		out.flush();
+    		out.close();
         }
         catch (IOException e)
         {
