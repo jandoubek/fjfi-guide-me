@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 
 function f_modify($guid,$soubor_puv) {
@@ -10,7 +10,7 @@ function f_modify($guid,$soubor_puv) {
 	$url = 'sprava-map';	
 	
   $obsah = '';	   
-  $obsah .= '<div style="position: relative; top: -40px;">';	
+  $obsah .= '<div style="position: relative; top: 0px;">';	
 	$obsah .= '<h3>Upravit mapu</h3>';	
 	
   $obsah .= '<form method="post" action="' . $url . '" enctype="multipart/form-data">';

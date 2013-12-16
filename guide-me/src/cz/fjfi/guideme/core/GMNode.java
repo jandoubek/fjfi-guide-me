@@ -125,15 +125,15 @@ public class GMNode
     public StringBuilder exportXML()
     {
     	StringBuilder sb = new StringBuilder();
-        sb.append("        <node guid=\"" + this.getGUID() + "\">\n");
-        sb.append("            <name>" + this.getName() + "</name>\n");
-        sb.append("            <desc>" + this.getDescription() + "</desc>\n");
-        sb.append("            <locs>\n");
+        sb.append("        <node guid=\"" + this.getGUID() + "\">\r\n");
+        sb.append("            <name>" + this.getName() + "</name>\r\n");
+        sb.append("            <desc>" + this.getDescription() + "</desc>\r\n");
+        sb.append("            <locs>\r\n");
         for (UUID loc : this.locations)
         {
-        	sb.append("                <loc guid=\"" + loc.toString() + "\" />\n");
+        	sb.append("                <loc guid=\"" + loc.toString() + "\" />\r\n");
         }
-        sb.append("            </locs>\n" + "</node>\n");
+        sb.append("            </locs>\r\n" + "        </node>\r\n");
         return sb;
     }
 }

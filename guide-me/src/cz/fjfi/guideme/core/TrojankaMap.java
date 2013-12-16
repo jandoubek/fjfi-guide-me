@@ -1171,4 +1171,21 @@ public class TrojankaMap {
 				
 		return myMap;
 	}
+	
+	/**
+	 * Exports Trojanka map to XML on drive C.
+	 */
+	public static void exportTrojankaToXML()
+	{
+		GMMap test = Trojanka(Utility.generateGUID(), Utility.generateGUID());
+		String myXML = test.exportXML().toString();
+		test.exportXML(new File("C:\\Trojanka.xml"));
+		
+		
+	}
+	
+	public static void main(String... args)
+	{
+		exportTrojankaToXML();
+	}
 }

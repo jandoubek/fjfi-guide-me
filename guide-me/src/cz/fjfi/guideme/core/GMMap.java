@@ -1,10 +1,14 @@
 
 package cz.fjfi.guideme.core;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.io.Writer;
 //import java.util.UUID;
 import java.util.*;
 
@@ -255,33 +259,36 @@ public class GMMap
     {
         this.mappedLocations.add(newLocation);
     }
-
+    
+    /**
+     * Exports whole map to huge string, which represents map in XML.
+     */
     public StringBuilder exportXML()
     {
     	StringBuilder sb = new StringBuilder();
-        sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"); 
-        sb.append("<map guid=\"" + this.getGuid() + "\">");
-        sb.append("    <name>" + this.getName() + "</name>\n");
-        sb.append("    <author name=\"" + this.getAuthorName() + "\" email=\"" + this.getAuthorEmail() + "\" />\n"); 
-        sb.append("    <description>" + this.getDescription() + "</description>\n");
-        sb.append("    <nodelist>\n");
+        sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n"); 
+        sb.append("<map guid=\"" + this.getGuid() + "\">\r\n");
+        sb.append("    <name>" + this.getName() + "</name>\r\n");
+        sb.append("    <author name=\"" + this.getAuthorName() + "\" email=\"" + this.getAuthorEmail() + "\" />\r\n"); 
+        sb.append("    <description>" + this.getDescription() + "</description>\r\n");
+        sb.append("    <nodelist>\r\n");
         for (GMNode node : this.mappedNodes)
         {
         	sb.append(node.exportXML());
         }
-        sb.append("    </nodelist>\n    <edgelist>\n");
+        sb.append("    </nodelist>\r\n    <edgelist>\r\n");
 
         for (GMEdge edge : this.mappedEdges)
         {
         	sb.append(edge.exportXML());
         }
-        sb.append("    </edgelist>\n    <locationlist>\n");
+        sb.append("    </edgelist>\r\n    <locationlist>\r\n");
 
         for (Location loc : this.mappedLocations)
         {
         	sb.append(loc.exportXML());
         }
-        sb.append("    </locationlist>\n</map>\n");
+        sb.append("    </locationlist>\r\n</map>\r\n");
         return sb;
     }
 
@@ -293,13 +300,16 @@ public class GMMap
 
         String output = exportXML().toString();
         // System.out.print(output);
-        PrintWriter out;
+        Writer out;
 
         try
         {
-            out = new PrintWriter(new FileWriter(outputFile));
-            out.print(output);
-            out.close();
+            out = new BufferedWriter(new OutputStreamWriter(
+        			new FileOutputStream(outputFile), "UTF8"));
+            out.append(output);
+            
+    		out.flush();
+    		out.close();
         }
         catch (IOException e)
         {

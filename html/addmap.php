@@ -37,12 +37,11 @@ if ( (array_key_exists('odeslo',$_POST)) && (array_key_exists('nahratsoubor',$_P
 			echo '<span class="errormsg">Během ukládání souboru <code>' .  $jmeno_puv . '</code> došlo k chybě<br /><a href="javascript:history.back(1)">&lt; &lt; Zpět</a></span>';		  						
 			die();					
 		}
-			
-
+										
   // 5. zjistit ze souboru udaje  
 	list($guid,$name,$description,$gpscoords,$author_name,$author_email) = getHeadersFromMap($jmeno_puv);
 	
-	// 6. nastavit maximalni opravneni
+	// 6. nastavit maximalni opravneni, na nekterych serverech muze delat problem tato fce
 	if (isset($new_dest)) {
 		chmod($new_dest, 0777);
 	}	
@@ -52,7 +51,9 @@ if ( (array_key_exists('odeslo',$_POST)) && (array_key_exists('nahratsoubor',$_P
 	
 	if ($guid != $jmeno_cele[0]) {
 		echo '<span class="errormsg">Jméno souboru a v něm obsažený identifikátor mapy se neshodují.<br /><a href="javascript:history.back(1)">&lt; &lt; Zpět</a></span>';		  						
-		die();	
+    unlink($new_dest);
+		die();
+		
 	}
 
 	// 8. aktualizace hlavicek

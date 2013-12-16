@@ -42,7 +42,7 @@ public class ResourceManager
      *           returned. If the XML is not consistent, some structures within 
      *           the map can be empty.
      */
-    public static GMMap loadMap(FileInputStream fis)
+    public static GMMap loadMap(InputStream fis)
     {
     	GMMap map = new GMMap();
         List<GMMapHeader> header = null;

@@ -287,25 +287,23 @@ function getHeadersFromMap($file) {
   
   $path = './maps/' . $file;
 	$xml = simplexml_load_file($path);
-		
-	try {		
-    $map  = $xml->map;	
-	  $map->attributes()->guid;		
+
+	try {		    
+	  $guid = $xml->attributes()->guid;		
 	} catch (Exception $e) {	
     echo 'Behem zpracovavani souboru se vyskytla chyba: ',  $e->getMessage(), "\n";
 		die();
 	}
 
-  $map = $xml->map;	
-	$guid         = $map->attributes()->guid;
-	$name         = $map->name;
-	$description  = $map->description;
-	$gpscoords    = $map->gpscoords;
-	$author_name  = $map->author->attributes()->name;
-	$author_email = $map->author->attributes()->email;	
-
-	return array($guid,$name,$description,$gpscoords,$author_name,$author_email);
+	$guid         = $xml->attributes()->guid;		
+	$name         = $xml->name;		
+	$description  = $xml->description;
+	$gpscoords    = $xml->gpscoords;
+	$author_name  = $xml->author->attributes()->name;
+	$author_email = $xml->author->attributes()->email;	
 	
+	return array($guid,$name,$description,$gpscoords,$author_name,$author_email);
+
 }
 
 
@@ -340,7 +338,10 @@ function update_headings() {
 		
 		array_multisort($val, SORT_ASC, $vypis);		
 				
-  }
+  } else
+	{
+	  $vypis = Array();
+	}
 	
 		// to xml
 		$xml = new SimpleXMLElement('<?xml version="1.0" encoding="utf-8"?><headers></headers>');
