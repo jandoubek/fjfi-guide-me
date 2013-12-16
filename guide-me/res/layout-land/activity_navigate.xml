@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:text="2 s"
+            android:text=""
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="Ústí chodby"
+            android:text="Zahajte navigování tlačítkem start"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
     </RelativeLayout>
@@ -93,7 +93,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="Large Text"
+            android:text=""
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
     </RelativeLayout>
@@ -129,7 +129,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="Large Text"
+            android:text=""
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
     </RelativeLayout>

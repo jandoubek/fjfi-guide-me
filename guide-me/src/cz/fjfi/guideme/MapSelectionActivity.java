@@ -125,12 +125,12 @@ public class MapSelectionActivity extends Activity {
 	private void initData() {
 		ArrayList<GMMapHeader> headers = new ArrayList<GMMapHeader>();
 
-		for(int i = 1 ; i < 20 ; i++){
+		
 			GMMapHeader header = new GMMapHeader();
-			header.setName("Mapa "+i);
-			header.setDescription("Popis mapy " +i);
+			header.setName("Trojanka");
+			header.setDescription("Mapa budovy FJFI ÈVUT, Trojanova 13, Praha 2");
 			headers.add(header);
-		}
+		
 
 
 		adapter = new MapsBaseAdapter(this, headers);
