@@ -1,8 +1,10 @@
 package cz.fjfi.guideme.android;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.UUID;
 
-import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 import cz.fjfi.guideme.MapSelectionActivity;
 import cz.fjfi.guideme.R;
 import cz.fjfi.guideme.core.GMMapHeader;
+import cz.fjfi.guideme.core.Guide;
 /**
  * This class is adapter for listview
  * 
@@ -68,6 +71,7 @@ public class MapsBaseAdapter  extends BaseAdapter {
 
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ViewHolder holder;
+		final int pos = position;
 		if (convertView == null) { 
 			convertView = mInflater.inflate(R.layout.item_map_selection, null);
 			holder = new ViewHolder();
@@ -97,6 +101,7 @@ public class MapsBaseAdapter  extends BaseAdapter {
 			@Override
 			public void onClick(View v) {
 				Log.i("ADAPTER", "clicked play button ");
+				loadMap(headers.get(pos).getGuid());
 				context.setDialogSelectPoint(true);
 			}
 		});
@@ -110,7 +115,16 @@ public class MapsBaseAdapter  extends BaseAdapter {
 
 		return convertView;
 	}
-
+	private void loadMap(UUID map) {
+		FileInputStream fis;
+		try {
+			fis = context.openFileInput(map.toString()+".xml");
+			Guide guide = Guide.getInstance();
+			guide.setMap(ResourceManager.loadMap(fis));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
 	static class ViewHolder {
 		TextView itemName;
 		TextView itemDescription;

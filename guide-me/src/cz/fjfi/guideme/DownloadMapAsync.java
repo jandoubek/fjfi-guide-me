@@ -2,6 +2,8 @@ package cz.fjfi.guideme;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,6 +16,8 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
+import cz.fjfi.guideme.android.ResourceManager;
+import cz.fjfi.guideme.core.GMMap;
 
 public class DownloadMapAsync extends AsyncTask<String, String, String> {
 	private MapSelectionActivity context;
@@ -28,7 +32,16 @@ public class DownloadMapAsync extends AsyncTask<String, String, String> {
 		String result = downloadToString("http://kmlinux.fjfi.cvut.cz/~fortpet2/guideme/maps/"+params[0]+".xml");
 		Log.e("DOWNLOADASYNC", "map downloaded: " + result);
 		safeToFile(result, params[0]+".xml");
-		
+		/*FileInputStream fis=null;
+		try {
+			fis = context.openFileInput(params[0]+".xml" );
+			GMMap map  = ResourceManager.loadMap(fis);
+			Log.w("DOWNLOAD MAP", "" + map.getDescription() + "  ," + map.getNodes().size()) ;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}*/
+		for(String file : context.fileList())
+			Log.w("DOWNLOAD MAP2", "" +file);
 		return params[1];
 	}
 

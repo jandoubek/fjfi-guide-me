@@ -13,7 +13,6 @@ import android.widget.TextView;
 import cz.fjfi.guideme.R;
 import cz.fjfi.guideme.core.GMMapHeader;
 import cz.fjfi.guideme.core.GMNode;
-import cz.fjfi.guideme.core.Guide;
 
 public class MapsPointBaseAdapter extends BaseAdapter {
 	private ArrayList<GMNode> nodes;
@@ -105,7 +104,7 @@ public class MapsPointBaseAdapter extends BaseAdapter {
 	      {
 	            GMMapHeader o1 = (GMMapHeader) obj1;
 	            GMMapHeader o2 = (GMMapHeader) obj2;
-	            return o1.getName().compareToIgnoreCase(o2.getName());
+	            return o1.getDescription().compareToIgnoreCase(o2.getDescription());
 	      }
 	}
 }

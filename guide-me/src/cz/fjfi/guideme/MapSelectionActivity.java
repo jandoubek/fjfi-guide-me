@@ -1,5 +1,7 @@
 package cz.fjfi.guideme;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -14,6 +16,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
@@ -26,13 +29,13 @@ import android.widget.TextView;
 import cz.fjfi.guideme.android.MapsBaseAdapter;
 import cz.fjfi.guideme.android.MapsDownloadBaseAdapter;
 import cz.fjfi.guideme.android.MapsPointBaseAdapter;
+import cz.fjfi.guideme.android.ResourceManager;
 import cz.fjfi.guideme.core.GMMap;
 import cz.fjfi.guideme.core.GMMapHeader;
 import cz.fjfi.guideme.core.GMNode;
 import cz.fjfi.guideme.core.Guide;
 import cz.fjfi.guideme.core.TrojankaMap;
 import cz.fjfi.guideme.core.Utility;
-import cz.fjfi.guideme.core.tst2;
 
 public class MapSelectionActivity extends Activity {
 
@@ -52,18 +55,10 @@ public class MapSelectionActivity extends Activity {
 
 		initWidgets();
 		initData();
-		loadMap();
+		//loadMap();
 
 
 
-	}
-	private void loadMap() {
-		guide = Guide.getInstance();
-		GMMap gmMap = new GMMap();
-		UUID guid1 = Utility.generateGUID();
-		UUID guid2 = Utility.generateGUID();
-		gmMap = TrojankaMap.Trojanka(guid1,guid2);
-		guide.setMap(gmMap);
 	}
 
 	private void initWidgets() {
@@ -124,13 +119,19 @@ public class MapSelectionActivity extends Activity {
 
 	private void initData() {
 		ArrayList<GMMapHeader> headers = new ArrayList<GMMapHeader>();
-
-		
-			GMMapHeader header = new GMMapHeader();
-			header.setName("Trojanka");
-			header.setDescription("Mapa budovy FJFI ÈVUT, Trojanova 13, Praha 2");
-			headers.add(header);
-		
+		for(String file : fileList()){
+			if(!file.equals("headers.xml")){
+				Log.i("map  selection", file);
+				FileInputStream fis;
+				try {
+					fis = openFileInput(file);
+					headers.add(ResourceManager.loadHeaders(fis).get(0));
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				}
+				Log.i("map  selection", ""+headers.size() + " " + headers.get(0).getName());
+			}
+		}
 
 
 		adapter = new MapsBaseAdapter(this, headers);
