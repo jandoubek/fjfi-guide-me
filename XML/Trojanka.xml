@@ -1,242 +1,242 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <map guid="7d62670d-2d54-499a-95c3-17de8b9eae06">
     <name>Trojanka</name>
     <author name="KBen" email="email@email.com" />
     <description>Mapa budovy FJFI ČVUT, Trojanova 13, Praha 2</description>
     <nodelist>
         <node guid="e438031f-8fcd-4975-afce-a915724a929d">
-            <name>r01</name>
+            <name>Záchod 1. patro vzadu</name>
             <desc>chodba</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="0341bcf3-79fd-4219-8fd6-71ee99f2f12e">
-            <name>s01</name>
+            <name>Zadní schodiště první patro</name>
             <desc>chodba</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="9e3465dd-59de-422d-848c-4b1db7205450">
-            <name>l01l03</name>
+            <name>Zadní dveře katedra matematiky</name>
             <desc>přechod mezi chodba a hlavní chodba KM</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="f40ddd3d-087b-47a7-a6c7-977d01941cb0">
-            <name>r02</name>
+            <name>T-116</name>
             <desc>severní chodba KM</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="749932f5-cfe5-4de2-afff-116d865f1946">
-            <name>r03</name>
+            <name>T-115</name>
             <desc>severní chodba KM</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="93b4a9bd-c73e-45bc-8a84-0fae8f878279">
-            <name>r04</name>
-            <desc>severní chodba KM</desc>
+            <name>T-115b</name>
+            <desc></desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="891b6107-4c95-4fe5-8b1d-a18924b31ef2">
-            <name>l02l03</name>
+            <name>Křižovatka severní a hlavní chodby katedry matematiky</name>
             <desc>přechod mezi severní chodba KM a hlavní chodba KM</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="e34b51bd-83ca-48e3-b35e-b0158c584f98">
-            <name>r05</name>
+            <name>T-112</name>
             <desc>hlavní chodba KM</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="f59e762c-1c9f-422a-99d9-11fb8e42ce2d">
-            <name>r06</name>
+            <name>T-111</name>
             <desc>hlavní chodba KM</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="c2e2a303-133b-4481-9719-b261706def5a">
-            <name>r07</name>
+            <name>T-110</name>
             <desc>hlavní chodba KM</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="5aa56fbf-65a5-4a3c-bb2a-6129c0c25683">
-            <name>r08</name>
+            <name>T-109</name>
             <desc>hlavní chodba KM</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="5941cec9-1a9f-4921-96bf-b41d4a85dd62">
-            <name>r09</name>
+            <name>T-108</name>
             <desc>hlavní chodba KM</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="2d8fc390-e098-4a7a-a467-4bac9bdc1d7f">
-            <name>r10</name>
+            <name>T.107</name>
             <desc>hlavní chodba KM</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="c4ac04a3-4cf1-4fe7-a178-b9825eb25b45">
-            <name>r11</name>
+            <name>T-106</name>
             <desc>hlavní chodba KM</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="f1a414fe-4ad6-42c6-8503-7619167c1280">
-            <name>l03l04</name>
+            <name>Přechod mezi jižní a hlavní chodbbou KM</name>
             <desc>přechod mezi hlavní chodba KM a jižní chodba KM</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="ca8ad59a-ba2d-4dde-a6e9-e5236c19aa37">
-            <name>r12</name>
+            <name>T-105</name>
             <desc>jižní chodba KM</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="5c62c315-874d-4801-affa-7beddd05da6d">
-            <name>r13</name>
+            <name>T-104</name>
             <desc>jižní chodba KM</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="a9d85e99-a451-4876-b873-30a5b1eba1f8">
-            <name>l04l05</name>
+            <name>Vstup na KM</name>
             <desc>přechod mezi jižní chodba KM a západní chodba u vrátnice</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="ecbd0c4d-6e86-4ddc-889b-24315eac535c">
-            <name>l05l08</name>
+            <name>Přechod mezi západní chodbou u vrátnice a severní chodbou u vrátnice</name>
             <desc>přechod mezi západní chodba u vrátnice a severní chodba u vrátnice</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="603c2a29-460a-4f8c-91cb-683689693fe7">
-            <name>r14</name>
+            <name>Hlavní vchod do budovy</name>
             <desc>vrátnice</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="0e75624c-e54b-4f84-bc2e-e3eadc40af18">
-            <name>l06l08</name>
+            <name>Přechod mezi vrátnicí a severní chodbou u vrátnice</name>
             <desc>přechod mezi vrátnice a severní chodba u vrátnice</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="3bda2f5c-43a4-4fd2-97d8-5c0911647257">
-            <name>r16</name>
+            <name>Falešný vstup na klučičí záchody u vrátnice</name>
             <desc>východní chodba u vrátnice</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="a53ae551-9ad6-456e-abcd-9889eb15a41a">
-            <name>r17</name>
+            <name>Vstup na mužské WC u vrátnice</name>
             <desc>východní chodba u vrátnice</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="cf0d102c-35fe-45e8-ba4a-4f10aeb8e6e0">
-            <name>l07l08</name>
+            <name>Přechod mezi východní chodbou u vrátnice a severní chodbou u vrátnice</name>
             <desc>přechod mezi východní chodba u vrátnice a severní chodba u vrátnice</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="57aa8afc-24a1-48e7-aa5a-696bff353ccf">
-            <name>l07l13</name>
+            <name>Přechod mezi východní chodbaóu u vrátnice a jižní chodbou KFE</name>
             <desc>přechod mezi východní chodba u vrátnice a jižní chodba KFE</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="c6b170ab-1a25-43d0-8475-92795ba63461">
-            <name>l08l09</name>
+            <name>Přechod mezi severní chodbou u vrátnice a chodbou vedoucí k T-101</name>
             <desc>přechod mezi severní chodba u vrátnice a chodba vedoucí k T-101</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="79788563-f3c2-4373-8899-b98303290e46">
-            <name>l08l10</name>
+            <name>Přechod mezi severní chodbou u vrátnice a chodbou vedoucí k T-101</name>
             <desc>přechod mezi severní chodba u vrátnice a chodba vedoucí k T-101</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="53a19109-bb26-430c-832c-05fb641e0b57">
-            <name>l09l11</name>
+            <name>Předsíň T-101</name>
             <desc>přechod mezi chodba vedoucí k T-101 a chodba vedoucí k T-101</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="48a636c8-8f99-41e2-8478-2e6ae445dcb0">
-            <name>l10l11</name>
+            <name>Předsíň T-101</name>
             <desc>přechod mezi chodba vedoucí k T-101 a chodba vedoucí k T-101</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="738d5579-1c4b-42e7-838e-e3d838cfac4b">
-            <name>l11l12</name>
+            <name>Předsíň T-101</name>
             <desc>přechod mezi chodba vedoucí k T-101 a chodba před T-101</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="d0ecee43-14ba-4dd4-93fb-f0b263b709e6">
-            <name>r15</name>
+            <name>T-101</name>
             <desc>chodba před T-101</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="a7cc8940-c276-4e30-b2f4-cc221b6cd1cf">
-            <name>r18</name>
+            <name>T-118</name>
             <desc>jižní chodba KFE</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="dd24215f-bb92-46cf-bad9-7cb081800e93">
-            <name>r19</name>
+            <name>T-119</name>
             <desc>jižní chodba KFE</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="50ff23d3-9ed1-42a8-b926-543c95899005">
-            <name>r20</name>
+            <name>T-120</name>
             <desc>jižní chodba KFE</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
@@ -250,196 +250,196 @@
             </locs>
         </node>
         <node guid="21ccb689-7069-4732-9ba0-62bf7a8c9895">
-            <name>r21</name>
+            <name>T-121</name>
             <desc>hlavní chodba KFE</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="19fa4c3c-965b-478c-95eb-614fc6bd8d02">
-            <name>r22</name>
+            <name>T-122</name>
             <desc>hlavní chodba KFE</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="0d86e730-a4d6-4b06-8f9b-555a5d1302d1">
-            <name>r23</name>
+            <name>T-123</name>
             <desc>hlavní chodba KFE</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="be5dd8a3-ea0f-4392-ac08-746d044919a1">
-            <name>r24</name>
+            <name>T-124</name>
             <desc>hlavní chodba KFE</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="5bc3fc3c-bddf-4f33-837c-a7b95ce8ac23">
-            <name>r25</name>
+            <name>T-125</name>
             <desc>hlavní chodba KFE</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="d8230c58-7d74-4261-b57d-bbd7d717f065">
-            <name>r26</name>
+            <name>T-126</name>
             <desc>hlavní chodba KFE</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="b26cceba-1bec-4cb0-bb7d-e9476171f3f6">
-            <name>r27</name>
+            <name>Zadní východ z KFE</name>
             <desc>hlavní chodba KFE</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="7d783ecf-76bf-478e-b684-e02b0bcae2cc">
-            <name>l15l16</name>
+            <name>Západní mezipatro hlavního schodiště 1.-2. patro</name>
             <desc>přechod mezi schodiště a schodiště</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="df1aa2bd-2f6e-4fa3-ba91-a99e2e550d96">
-            <name>l15l18</name>
+            <name>Hlavní schodiště 2. patro západní část</name>
             <desc>přechod mezi schodiště a chodba v 2. patře</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="ab27238c-78e7-4f4e-9d70-63fc40788822">
-            <name>l16l17</name>
+            <name>Východní mezipatro hlavního schodiště 1.-2. patro</name>
             <desc>přechod mezi schodiště a schodiště</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="00c84b49-1bb4-4967-8ada-244ff407ec2b">
-            <name>l08l16</name>
+            <name>Hlavní schodiště - 1. patro</name>
             <desc>přechod mezi severní chodba u vrátnice a schodiště</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="c5f2e7f5-4dff-48f9-9511-f8d5d6b67734">
-            <name>l17l18</name>
+            <name>Hlavní schodiště 2. patro východní část</name>
             <desc>přechod mezi schodiště a chodba v 2. patře</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="bc302a2f-8686-4696-9dda-893a3d9f4c9f">
-            <name>l18l19</name>
+            <name>Výtahy 2. patro</name>
             <desc>přechod mezi chodba v 2. patře a chodba v 2. patře</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="9a8f42db-d941-4393-9fd0-981dd96f5758">
-            <name>l18l20</name>
+            <name>Roh mezi hlavní shodištěm a chodbou na KFE(2.patro)</name>
             <desc>přechod mezi chodba v 2. patře a chodba v 2. patře</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="18fc24b4-868b-40a0-8b99-3ee9509a2fa0">
-            <name>r31</name>
+            <name>T-228 (Lasery)</name>
             <desc>T-228</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="fad9e772-448b-44d5-8a88-7d85c0184938">
-            <name>l19l21</name>
+            <name>Vstup k učebnám na druhém patře</name>
             <desc>přechod mezi chodba v 2. patře a chodba v 2. patře</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="a969ea5d-735c-45de-9cc6-734841c88b27">
-            <name>r28</name>
+            <name>Vstup na KFE(2.patro)</name>
             <desc>...</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="3a88e479-7094-466d-acf0-6ed1a42b3288">
-            <name>r29</name>
+            <name>Dámské WC u KFE(2.patro)</name>
             <desc>WC</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="ec375888-cc72-4fd3-bc93-2cc65cf2aead">
-            <name>r30</name>
+            <name>Pánské WC u KFE(2.patro)</name>
             <desc>WC</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="38e9dceb-4412-40be-affb-1fa38d1b7423">
-            <name>r32</name>
+            <name>T-204</name>
             <desc>T-204</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="3c0d1e15-87dd-43c9-8d68-75684a713a5b">
-            <name>r33</name>
+            <name>T-205</name>
             <desc>T-205</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="3b59a679-9c3d-401b-a2d1-09c610b7e440">
-            <name>r34</name>
+            <name>T-206</name>
             <desc>T-206</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="aa6a52e9-1001-4c5d-970c-3c0d83786a14">
-            <name>l21l22</name>
+            <name>Roh chodby mezi jižní chodbou a hlavní chodbou učeben v 2. patře</name>
             <desc>přechod mezi chodba v 2. patře a chodba v 2. patře</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="93fc1c24-d1f9-43ef-9823-7e4f831ccbb0">
-            <name>r35</name>
+            <name>T-207</name>
             <desc>T-207</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="352f891b-5430-414d-8341-c597e44493de">
-            <name>r36</name>
+            <name>T-208</name>
             <desc>T-208</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="e01fbf1e-8e0f-4d3b-b85c-2e90d6090b12">
-            <name>r37</name>
+            <name>T-209</name>
             <desc>T-209</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="5d4d74b2-ac66-441c-9c7f-cdcc6bb16a7d">
-            <name>r38</name>
+            <name>T-210</name>
             <desc>T-210</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="461e9090-3b29-4a1b-b661-8c5095710edd">
-            <name>r39</name>
+            <name>T-211</name>
             <desc>T-211</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
@@ -453,315 +453,315 @@
             </locs>
         </node>
         <node guid="0f9361e5-1d22-475d-941e-8b2681c987e7">
-            <name>r41</name>
+            <name>Zadní WC v 2. patře</name>
             <desc>WC</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="f021199d-9f86-4d86-b7e7-1d9e687976bb">
-            <name>l22l23</name>
+            <name>Křižovatka u studovny</name>
             <desc>přechod mezi chodba v 2. patře a chodba v 2. patře</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="baa5b7c0-c00a-4d1e-b860-9470d90c6561">
-            <name>r42</name>
+            <name>T-214, studovna</name>
             <desc>T-214, studovna</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="9014ba24-9b01-43f8-ae9e-4008df498631">
-            <name>s02</name>
+            <name>Zadní schodiště druhé patro</name>
             <desc>schodiště</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="58462aa3-2def-4c99-a91d-1bd7a5ea4a54">
-            <name>l18l35</name>
+            <name>Hlavní schodiště ze druhého do třetího patra</name>
             <desc>přechod mezi chodba v 2. patře a schodiště</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="15f409ac-a18d-4850-a211-34074ee4e4b2">
-            <name>s03</name>
+            <name>Zadní schodiště u KSE</name>
             <desc>schodiště</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="ba6cefad-0f24-443e-83a1-fd6ec3a87bb9">
-            <name>r43</name>
+            <name>T-010(Pošta+Kerouš)</name>
             <desc>schodiště</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="8eec0e51-6aa3-4e9d-9f06-882c67c79f32">
-            <name>r57</name>
+            <name>Záchod u KSE</name>
             <desc>schodiště</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="04847bf1-b66f-465f-aba2-9cef5e9321e8">
-            <name>l24l25</name>
+            <name>Vstup do KSE</name>
             <desc>přechod mezi chodba a KSI</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="c41ebfc7-137d-4ff4-afad-aefec3a98ddd">
-            <name>r44</name>
+            <name>T-015</name>
             <desc>T-015</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="b8580c09-5b53-48ac-a98b-5b0f536d9857">
-            <name>r45</name>
+            <name>T-014</name>
             <desc>T-014</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="6f7a6875-507b-461e-9f4f-1abf09205481">
-            <name>r46</name>
+            <name>T-013</name>
             <desc>T-013</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="d3d57d75-c578-47b3-8faf-0208bb571a4d">
-            <name>r47</name>
+            <name>T-012</name>
             <desc>T-012</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="c4badc94-3ce5-49c4-a81e-a82529b9d3c6">
-            <name>r56</name>
+            <name>T-011</name>
             <desc>T-011</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="7cc3da0b-e0ca-4949-aac7-dafef2af0922">
-            <name>r48</name>
+            <name>T-009</name>
             <desc>T-009</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="22973f0a-d044-4859-8565-c5a5f8c935a3">
-            <name>r49</name>
+            <name>T-039</name>
             <desc>T-039</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="249d8e49-dfd3-42a4-9b64-e52ca63397a2">
-            <name>r50</name>
+            <name>T-040</name>
             <desc>T-040</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="e4851697-767f-4395-9650-67ea65847013">
-            <name>l26l31</name>
+            <name>Průchod na dvůr od KSE</name>
             <desc>přechod mezi průjezd a chodba u KSI</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="18ee8538-cd48-471c-8384-fcb40eaeb7cb">
-            <name>l26l32</name>
+            <name>Průchod na dvůr od KJ</name>
             <desc>přechod mezi průjezd a chodba za KJ</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="c5a75e94-2121-4470-a6a2-a8c7216fee4b">
-            <name>r51</name>
+            <name>Pracovna doktorandů u KJ</name>
             <desc>...</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="40b42d45-c36a-4198-b97b-f455aac50dad">
-            <name>r52</name>
+            <name>T-046</name>
             <desc>T-046</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="80f06cc7-83ea-407b-bdee-dd310264f7fe">
-            <name>l27l32</name>
+            <name>Zadní dveře KJ</name>
             <desc>přechod mezi KJ a chodba za KJ</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="b14d4931-d2f1-4d2c-9f25-d9e3803ca16d">
-            <name>r53</name>
+            <name>T-062</name>
             <desc>T-062</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="d67dcfe5-c942-445b-8e0c-83f794c05e24">
-            <name>r54</name>
+            <name>T-066</name>
             <desc>T-066</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="57d1fe26-b4b1-4687-818e-51f70a7ccc8a">
-            <name>r55</name>
+            <name>T-067</name>
             <desc>T-067</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="5b294b56-314c-4bd2-b144-b7cb69bee1d3">
-            <name>l27l28</name>
+            <name>Vstup na KJ</name>
             <desc>přechod mezi KJ a chodba u KJ</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="cb7216a0-8c84-49c6-b8b4-343fb7ac81fb">
-            <name>l28n01</name>
+            <name>Výtahy v přízemí</name>
             <desc>KJ</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="f5ce9727-1415-441e-a037-3f7dc8b2d551">
-            <name>l28n02</name>
+            <name>Roh mezi výtahy a dámskými záchody v přízemí</name>
             <desc>KJ</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="ae153174-1f89-4500-8a3b-abc0d103c6c9">
-            <name>l06l2801</name>
+            <name>Průc´hod od vrátnice ke KJ</name>
             <desc>přechod mezi vrátnice a chodba u KJ</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="ce17553b-a7ee-437f-a661-64eb06a74b6d">
-            <name>l06l2802</name>
+            <name>Průchod od vrátnice ke KIPL</name>
             <desc>přechod mezi vrátnice a chodba u KJ</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="e2806062-73d1-4f38-be1a-345b6a4e1940">
-            <name>l28l29</name>
+            <name>Vchod na KIPL</name>
             <desc>přechod mezi chodba u KJ a chodba</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="ac4a6f6a-60e5-424a-a9f6-75ab7ed07566">
-            <name>r58</name>
+            <name>KIPL</name>
             <desc>KIPl</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="f1ff2e94-7b29-4d53-b497-8bb999061a2f">
-            <name>r59</name>
+            <name>KMAT</name>
             <desc>KMAT</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="0db9e8e3-af00-4aa7-a1c1-4b1606c647f5">
-            <name>r60</name>
-            <desc>T-302</desc>
+            <name>T-302</name>
+            <desc>Strojovna klimatizace</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="6845d78f-5252-4eea-bf34-ce32793f867b">
-            <name>r61</name>
+            <name>T-301</name>
             <desc>T-301</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="8f8a93f7-6781-40f0-9781-067ed424bd3e">
-            <name>r62</name>
+            <name>WC dámské ve třetím patře</name>
             <desc>WC</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="b91abc6a-f950-45d4-a802-bb239973618b">
-            <name>r63</name>
+            <name>WC pánské ve třetím patře</name>
             <desc>WC</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="3aceb60a-40fd-49d4-9381-8ec2136e9dab">
-            <name>l33n01</name>
+            <name>Roh chodby mezi hlavní schodištěm a KIPL(3.patro)</name>
             <desc>chodba</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="7bb2d2ff-1658-4e4d-9435-3308a8bdd66f">
-            <name>l33n02</name>
+            <name>Roh chodby mezi hlavní schodištěm a KMAT(3.patro)</name>
             <desc>chodba</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="00b317a1-4894-4697-b7e9-becabd6b5e7f">
-            <name>l35l37</name>
+            <name>Před chodbou k T-201</name>
             <desc>přechod mezi schodiště a chodba před T-201</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="eb4d0b0e-b264-465a-9d8c-dbf25f8d19ce">
-            <name>l33l34</name>
+            <name>Hlavní schodiště ve 3. patře - západní část</name>
             <desc>přechod mezi chodba a schodiště</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="96417f72-3adb-4143-add6-6df40cc2f904">
-            <name>l33l36</name>
+            <name>Hlavní schodiště ve 3. patře - východní část</name>
             <desc>přechod mezi chodba a schodiště</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="5887ab24-d879-4879-9a1f-95276ef25723">
-            <name>r64</name>
+            <name>T-201</name>
             <desc>T-201</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="00c7770a-830b-4699-bbd9-9c6ad13b8bd8">
-            <name>ns01s02</name>
+            <name>Mezipatro zadního schodiště mezi 1. a 2. patrem</name>
             <desc>chodba</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
             </locs>
         </node>
         <node guid="91c72a4a-f88f-4628-ad10-761e7c613713">
-            <name>ns02s03</name>
+            <name>Mezipatro zadní schodiště mezi přízemím a 1. patrem</name>
             <desc>schodiště</desc>
             <locs>
                 <loc guid="fbcb1ea3-2802-48f2-ae9a-aab86d7efbf0" />
