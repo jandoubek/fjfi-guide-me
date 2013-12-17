@@ -57,6 +57,12 @@ public class ResourceManager
             parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
             parser.setInput(fis, null);
             header = readHeadersFromXMLFile(parser);
+            GMMapHeader head = header.get(0);
+            map.setName(head.getName());
+            map.setGuid(head.getGuid());
+            map.setAuthorName(head.getAuthorName());
+            map.setAuthorEmail(head.getAuthorEmail());
+            map.setDescription(head.getDescription());
             
             //read nodes
             parser = Xml.newPullParser();

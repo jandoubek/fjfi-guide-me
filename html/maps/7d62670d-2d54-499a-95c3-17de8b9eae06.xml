@@ -2,7 +2,8 @@
 <map guid="7d62670d-2d54-499a-95c3-17de8b9eae06">
     <name>Trojanka</name>
     <author name="KBen" email="email@email.com" />
-    <description>Mapa budovy FJFI ČVUT, Trojanova 13, Praha 2</description>
+    <description>Trojanova 13 120 00 Praha 2, Česká republika +420 224 351 111 cvut.cz\n\nČeské Vysoké Učení Technické V Praze, fakulta jaderná a fyzikálně inženýrská\n\n ulice Trojanova 339/13\n čtvrť Praha 2\n 120 00 Praha, Nové Město\n okres Hlavní město Praha\n kraj Hlavní město Praha \n Česká republika\n \n +420 224 351 111\n cvut.cz?\n \n Katedra inženýrství pevných látek Fakulty jaderné a fyzikálně inženýrské\n Katedra jazyků Fakulty jaderné a fyzikálně inženýrské\n Katedra matematiky Fakulty jaderné a fyzikálně inženýrské\n Katedra materiálů Fakulty jaderné a fyzikálně inženýrské\n Katedra softwarového inženýrství v ekonomii Fakulty jaderné a fyzikálně inženýrské</description>
+		<gpscoords>30.074494,-10.416797</gpscoords>
     <nodelist>
         <node guid="e438031f-8fcd-4975-afce-a915724a929d">
             <name>Záchod 1. patro vzadu</name>
