@@ -87,7 +87,7 @@ public class MapsPointBaseAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag();
 		}
 
-		holder.itemName.setText(nodes.get(position).getDescription());  
+		holder.itemName.setText(nodes.get(position).getName());  
 		return convertView;
 	}
 
@@ -104,7 +104,7 @@ public class MapsPointBaseAdapter extends BaseAdapter {
 	      {
 	            GMMapHeader o1 = (GMMapHeader) obj1;
 	            GMMapHeader o2 = (GMMapHeader) obj2;
-	            return o1.getDescription().compareToIgnoreCase(o2.getDescription());
+	            return o1.getName().compareToIgnoreCase(o2.getName());
 	      }
 	}
 }
