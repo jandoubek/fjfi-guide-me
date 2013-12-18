@@ -1,7 +1,5 @@
 package cz.fjfi.guideme;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -16,7 +14,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
@@ -29,7 +26,6 @@ import android.widget.TextView;
 import cz.fjfi.guideme.android.MapsBaseAdapter;
 import cz.fjfi.guideme.android.MapsDownloadBaseAdapter;
 import cz.fjfi.guideme.android.MapsPointBaseAdapter;
-import cz.fjfi.guideme.android.ResourceManager;
 import cz.fjfi.guideme.core.GMMap;
 import cz.fjfi.guideme.core.GMMapHeader;
 import cz.fjfi.guideme.core.GMNode;
@@ -54,11 +50,21 @@ public class MapSelectionActivity extends Activity {
 		setContentView(R.layout.activity_map_selecion);
 
 		initWidgets();
+		loadMap();
 		initData();
-		//loadMap();
+		
 
 
 
+	}
+
+	private void loadMap() {
+		guide = Guide.getInstance();
+		GMMap gmMap = new GMMap();
+		UUID guid1 = Utility.generateGUID();
+		UUID guid2 = Utility.generateGUID();
+		gmMap = TrojankaMap.Trojanka(guid1,guid2);
+		guide.setMap(gmMap);
 	}
 
 	private void initWidgets() {
@@ -119,7 +125,8 @@ public class MapSelectionActivity extends Activity {
 
 	private void initData() {
 		ArrayList<GMMapHeader> headers = new ArrayList<GMMapHeader>();
-		for(String file : fileList()){
+		//zde se nactou mapy ze slozky
+		/*for(String file : fileList()){
 			if(!file.equals("headers.xml")){
 				Log.i("map  selection", file);
 				FileInputStream fis;
@@ -131,9 +138,8 @@ public class MapSelectionActivity extends Activity {
 				}
 				Log.i("map  selection", ""+headers.size() + " " + headers.get(0).getName());
 			}
-		}
-
-
+		}*/
+		headers.add(guide.getCurrentMap().getHeader());
 		adapter = new MapsBaseAdapter(this, headers);
 		mapList.setAdapter(adapter);
 	}

@@ -101,7 +101,8 @@ public class MapsBaseAdapter  extends BaseAdapter {
 			@Override
 			public void onClick(View v) {
 				Log.i("ADAPTER", "clicked play button ");
-				loadMap(headers.get(pos).getGuid());
+				//tady se nacte mapa ze slozky
+				//loadMap(headers.get(pos).getGuid());
 				context.setDialogSelectPoint(true);
 			}
 		});
