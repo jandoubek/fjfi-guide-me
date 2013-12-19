@@ -68,12 +68,12 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 		GMNode endpoint = guide.getCurrentRoute().getEnd();
 		if (guide.reachedDestination())
 		{
-			context.getActualTV().setText("Dosažen cíl: " + endpoint.getDescription());
+			context.getActualTV().setText("Dosažen cíl: " + endpoint.getName());
 			context.hideWidgets();
 		}
 		else
 		{
-			context.getActualTV().setText(edge.getDescription()); 
+			context.getActualTV().setText(edge.getEnd().getName()); 
 			context.getActualTimeTV().setText((edge.getTimeDistance() - point.getEdgeDistancePassed())/1000 + " s");
 			if(previousEdge!=null)
 				context.getActualIV().setImageResource( getDirectionImage(previousEdge.getDirection().subtract(edge.getDirection())));
@@ -104,7 +104,7 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 					context.tryDrawing(canvas, nextEdge, true, Direction.Relative.Back);
 				}
 
-				context.getNextTV().setText(nextEdge.getDescription());
+				context.getNextTV().setText(nextEdge.getEnd().getName());
 				context.getNextIV().setImageResource(getDirectionImage(direction));
 				if (currentPosition.hasNext())
 				{
@@ -124,7 +124,7 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 						context.tryDrawing(canvas, nextEdge2, true, Direction.Relative.Left);
 					}
 
-					context.getNext2TV().setText(nextEdge2.getDescription());
+					context.getNext2TV().setText(nextEdge2.getEnd().getName());
 					//context.tryDrawing(canvas, nextEdge, true, Direction.Relative.Back);
 					context.getNext2IV().setImageResource(getDirectionImage( nextEdge.getDirection().subtract(nextEdge2.getDirection())));
 				}else{
@@ -196,14 +196,14 @@ public class NavigateAsync extends AsyncTask<String, String, Void> {
 		GMNode endpoint = guide.getCurrentRoute().getEnd();
 		if (guide.reachedDestination())
 		{
-			label = "Dosazen cil: " + endpoint.getDescription();
+			label = "Dosazen cil: " + endpoint.getName();
 		}
 		else
 		{
-			label = "Mirite k cili: " + endpoint.getDescription() + "\n" +
-					"Dalsiho bodu " + stretch.getEnd().getDescription() +
+			label = "Mirite k cili: " + endpoint.getName() + "\n" +
+					"Dalsiho bodu " + stretch.getEnd().getName() +
 					" dosahnete za: " + (stretch.getTimeDistance() - point.getStretchDistancePassed())/1000 + "s" + "\n\n" +
-					"Nyni se nachazite na: " + edge.getDescription() + "\n";
+					"Nyni se nachazite na: " + edge.getEnd().getName() + "\n";
 			RouteIterator previousPosition = point.getIterator();
 			previousPosition.previous();
 			if (previousPosition.hasPrevious())
